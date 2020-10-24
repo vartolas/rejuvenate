@@ -1,14 +1,33 @@
 import React from 'react';
 import './styles.css';
 
-import SpanLink from '../../react-components/SpanLink';
-
 export default class Register extends React.Component {
-    render(){
+    render() {
         return (
             <div id="registerContainer">
                 <h1>This is the register page</h1>
-                <SpanLink to="/home" name="register" />
+                <br></br>
+
+                {/* A sign up form */}
+                <div>
+                    <label>
+                        New Username: <input type="text" name="username" />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        New Password: <input type="text" name="password" />
+                    </label>
+                </div>
+
+                <form action="/">
+                    <br></br>
+                    <input type="submit" value="Go Back" />
+                </form>
+                <form action="/home">
+                    <br></br>
+                    <input type="submit" value="Register" />
+                </form>
             </div>    
         );
     }
