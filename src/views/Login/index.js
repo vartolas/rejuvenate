@@ -73,7 +73,7 @@ export default class Login extends React.Component {
 
                 { this.displayError() }
 
-                <form onSubmit={this.tryToLogin} action={this.tryToLogin ? "/home" : "/"}>
+                <form onSubmit={this.tryToLogin} action={this.tryToLogin() ? "/home" : "/"}>
                     <input type="submit" value="Log in" />
                 </form>
                 <br></br>
