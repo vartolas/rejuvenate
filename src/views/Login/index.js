@@ -67,7 +67,7 @@ export default class Login extends React.Component {
                 <div>
                     <label>
                         Password: <input type="text" name="password" 
-                        value={this.props.password} onChange={this.updatePassword}/>
+                        value={this.props.password} onChange={this.updatePassword} />
                     </label>
                 </div>
 
