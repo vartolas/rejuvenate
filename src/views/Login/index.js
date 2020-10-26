@@ -70,19 +70,16 @@ export default class Login extends React.Component {
                         value={this.props.password} onChange={this.updatePassword}/>
                     </label>
                 </div>
-                <br></br>
 
                 { this.displayError() }
-                <br></br>
 
-                {/* TODO: Only visit the home page if credentials are correct. */}
-                <form onSubmit={this.tryToLogin} action={this.tryToLogin() ? "/home" : "/"}>
+                <form onSubmit={this.tryToLogin} action={this.tryToLogin ? "/home" : "/"}>
                     <input type="submit" value="Log in" />
                 </form>
                 <br></br>
 
-                <SpanLink to="/register" name="Don't have an account? Sign up!"/>
-                <SpanLink to="/password reset" name="Forgot password?" />
+                <SpanLink to="/register" name="Sign Up"/>
+                <SpanLink to="/password reset" name="Reset Password" />
             </div>
         );
     }
