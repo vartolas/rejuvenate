@@ -9,17 +9,17 @@
 .userInfoComponent {
   margin-bottom: 10px;
   padding: 10px;
-  background-color: rgb(60, 60, 75);
+  background-color: rgb(100, 100, 110);
+
 }
 
 #userInfoMain img {
   border-radius: 50%;
-  /* box-sizing: border-box; */
   height: 200px;
   width: 200px;
   margin-top: 25px;
-  margin-left: 55px;
-  border: 10px solid rgb(20, 20, 20);
+  margin-left: 58px;
+  border: 7px solid rgb(20, 20, 20);
 }
 
 #userInfoMain h1 {
@@ -33,7 +33,7 @@
 #userInfoMain h3 {
   text-align: center;
   margin: 5px;
-  color: rgb(25, 25, 25);
+  color: rgb(40, 40, 40);
 }
 
 #userInfoMain ul {
@@ -43,7 +43,6 @@
   text-align: center;
   box-sizing: border-box;
   padding-inline-start: 0;
-  /* border: 1px dashed rgb(25, 25, 30); */
 }
 
 #userInfoMain li {
@@ -55,7 +54,7 @@
 
 #userInfoMain li:hover{
   cursor: pointer;
-  background-color: rgb(75, 75, 90);
+  background-color: rgb(120, 120, 130);
 }
 
 #userInfoMain .follow-amount {
@@ -63,18 +62,29 @@
 }
 
 #bio {
-  background-color: rgb(75, 75, 90);
+  background-color: rgb(120, 120, 130);
   padding: 2px 15px;
 }
 
 #favouriteThings {
   padding: 10px;
-  height: 180px;
-  overflow-x: scroll;
+  height: 195px;
+
+}
+
+#favouriteThingsContainer {
+  width: 310px;
+  height: 130px;
+  margin: 0;
+  padding: 10px;
+  padding-right: 0;
+  background-color: rgb(120, 120, 130);
+  overflow-x: auto;
   overflow-y: hidden;
+  white-space: nowrap;
 }
 
 #favouriteThings p {
-  font-size: 20px;
-  margin: 10px;
+  font-size: 24px;
+  margin: 5px 0 10px 5px;
 }

@@ -1,5 +1,19 @@
-#profileContainer {
-    width: 100%;
-    height: 100%;
-    text-align: center;
+#profile {
+}
+
+#navPlaceholder {
+  height: 50px;
+  color: white;
+  text-align: center;
+  background-color: rgb(100, 100, 110);
+}
+
+#userPostsPlaceholder {
+  background-color: rgb(100, 100, 110);
+  height: 745px;
+  width: 700px;
+  color: white;
+  float: left;
+  margin-top: 10px;
+  text-align: center;
 }
