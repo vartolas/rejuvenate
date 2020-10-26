@@ -12,15 +12,15 @@ import PasswordReset from './views/Password Reset';
 class App extends React.Component{
     render(){
         return (
-                <BrowserRouter>
-                    <Switch>
-                        <Route exact path="/"  component={Login}/>
-                        <Route exact path="/home" component={Home}/>
-                        <Route exact path="/register" component={Register}/>
-                        <Route exact path="/profile" component={Profile} />
-                        <Route exact path="/password reset" component={PasswordReset}/>
-                    </Switch>
-                </BrowserRouter>
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path="/"  component={Login}/>
+                    <Route exact path="/home" component={Home}/>
+                    <Route exact path="/register" component={Register}/>
+                    <Route exact path="/profile" component={Profile} />
+                    <Route exact path="/password reset" component={PasswordReset}/>
+                </Switch>
+            </BrowserRouter>
         );
     }
 }
