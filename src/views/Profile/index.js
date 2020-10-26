@@ -8,7 +8,7 @@ export default class Profile extends React.Component {
             <div id="profileContainer">
                 <h1>This is the profile page</h1>
                 <SpanLink to="/home" name="home"/>
-            </div>
+            </div>    
         );
     }
 }
