@@ -17,6 +17,7 @@ export default class Login extends React.Component {
         this.updateUsername = this.updateUsername.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
         this.tryToLogin = this.tryToLogin.bind(this);
+        this.displayError = this.displayError.bind(this);
     }
 
     updateUsername(e) {
@@ -29,34 +30,25 @@ export default class Login extends React.Component {
         this.setState({ password: e.target.value });
     }
 
-    tryToLogin(e) {
-        console.log("Username is: " + this.state.username + "\n" +
-                    "Password is: " + this.state.password);
+    tryToLogin() {
+        return this.state.username !== '' &&
+            this.state.password !== '' &&
+            this.state.username === CORRECT_REGULAR_USER_USERNAME &&
+            this.state.password === CORRECT_REGULAR_USER_PASSWORD;
+    }
 
-        // Check if any credentials are missing.
+    displayError() {
         if (this.state.username === '') {
-            alert("Username is missing.");
-            return false;
+            return <p>Username is missing.</p>;
+        } else if (this.state.password === '') {
+            return <p>Password is missing.</p>;
+        } else if (this.state.username !== CORRECT_REGULAR_USER_USERNAME) {
+            return <p>Username is incorrect.</p>;
+        } else if (this.state.password !== CORRECT_REGULAR_USER_PASSWORD) {
+            return <p>Password is incorrect.</p>;
+        } else {
+            return <p>Username and password are correct.</p>;
         }
-
-        if (this.state.password === '') {
-            alert("Password is missing.");
-            return false; 
-        }
-
-        // Check if all credentials are correct.
-        if (this.state.username !== CORRECT_REGULAR_USER_USERNAME) {
-            alert("Username is incorrect.");
-            return false;
-        }
-
-        if (this.state.password !== CORRECT_REGULAR_USER_PASSWORD) {
-            alert("Password is incorrect.");
-            return false;
-        }
-
-        alert("Username and password are correct.");
-        return true;
     }
 
     render() {
@@ -80,8 +72,11 @@ export default class Login extends React.Component {
                 </div>
                 <br></br>
 
+                { this.displayError() }
+                <br></br>
+
                 {/* TODO: Only visit the home page if credentials are correct. */}
-                <form onSubmit={this.tryToLogin} action="/home">
+                <form onSubmit={this.tryToLogin} action={this.tryToLogin() ? "/home" : "/"}>
                     <input type="submit" value="Log in" />
                 </form>
                 <br></br>
