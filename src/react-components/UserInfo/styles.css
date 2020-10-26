@@ -1,0 +1,80 @@
+#userInfo {
+  height: 745px;
+  width: 350px;
+  margin-top: 10px;
+  margin-right: 10px;
+  float: left;
+}
+
+.userInfoComponent {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: rgb(60, 60, 75);
+}
+
+#userInfoMain img {
+  border-radius: 50%;
+  /* box-sizing: border-box; */
+  height: 200px;
+  width: 200px;
+  margin-top: 25px;
+  margin-left: 55px;
+  border: 10px solid rgb(20, 20, 20);
+}
+
+#userInfoMain h1 {
+  text-align: center;
+  font-size: 38px;
+  margin: 5px;
+  margin-top: 0;
+  color: rgb(15, 15, 15);
+}
+
+#userInfoMain h3 {
+  text-align: center;
+  margin: 5px;
+  color: rgb(25, 25, 25);
+}
+
+#userInfoMain ul {
+  height: 40px;
+  margin-top: 20px;
+  font-size: 16px;
+  text-align: center;
+  box-sizing: border-box;
+  padding-inline-start: 0;
+  /* border: 1px dashed rgb(25, 25, 30); */
+}
+
+#userInfoMain li {
+  list-style: none;
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+#userInfoMain li:hover{
+  cursor: pointer;
+  background-color: rgb(75, 75, 90);
+}
+
+#userInfoMain .follow-amount {
+  font-size: 20px;
+}
+
+#bio {
+  background-color: rgb(75, 75, 90);
+  padding: 2px 15px;
+}
+
+#favouriteThings {
+  padding: 10px;
+  height: 180px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+#favouriteThings p {
+  font-size: 20px;
+  margin: 10px;
+}
