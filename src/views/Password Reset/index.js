@@ -47,7 +47,7 @@ export default class PasswordReset extends React.Component {
         } else if (this.state.newPassword !== CORRECT_REGULAR_USER_PASSWORD) {
             return <p>New password is not strong enough.</p>;
         } else {
-            return <p>New username and password are strong enough.</p>;
+            return <p>This existing username has a strong enough password.</p>;
         }
     }
     
