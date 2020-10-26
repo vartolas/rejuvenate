@@ -1,6 +1,5 @@
 import React from 'react';
 import './styles.css';
-import SpanLink from '../../react-components/SpanLink';
 
 const CORRECT_REGULAR_USER_USERNAME = "user";
 const CORRECT_REGULAR_USER_PASSWORD = "user";
