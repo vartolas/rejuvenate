@@ -13,14 +13,15 @@ import CreateStatistic from './views/CreateStatistic';
 
 import './index.css';
 
+var user = null;
+
 class App extends React.Component{
     render(){
         return (
                 <BrowserRouter>
                     <Switch>
-                        <Route exact path="/"  component={Login}/>
                         <Route exact path="/home" component={Home}/>
-                        <Route exact path="/register" component={Register}/>
+                        
                         <Route exact path="/profile" component={Profile} />
                         <Route exact path="/password reset" component={PasswordReset}/>
                         <Route exact path="/statistics" component={Statistics}/>
@@ -29,7 +30,27 @@ class App extends React.Component{
                 </BrowserRouter>
         );
     }
+    
+    componentDidMount() {
+        if(user == null){
+            console.log("user not logged in");
+        }
+    }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class AppLoginWrapper extends React.Component {
+    render () {
+        return (
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path="/" component={Login}/>
+                    <Route exact path="/register" component={Register}/>
+                    <Route path="/" component={App}/>
+                </Switch>
+            </BrowserRouter>
+        );
+    }
+}
+
+ReactDOM.render(<AppLoginWrapper/>, document.getElementById('root'));
 
