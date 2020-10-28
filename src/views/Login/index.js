@@ -7,7 +7,7 @@ export default class Login extends React.Component {
         return (
             <div id="loginContainer">
                 <h1>This is the login page</h1>
-                <SpanLink to="/home" name="login"/>
+                <SpanLink to="/authorized" name="login"/>
                 <SpanLink to="/register" name="sign up"/>
                 <SpanLink to="/password reset" name="reset password"/>
             </div>    

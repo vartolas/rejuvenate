@@ -7,7 +7,7 @@ export default class RecordStatistics extends React.Component {
     render(){
         return (
             <div id="recordStatisticsContainer">
-                <h1>This is the setting page</h1>
+                <h1>This is the Record Statistics page</h1>
             </div>    
         );
     }

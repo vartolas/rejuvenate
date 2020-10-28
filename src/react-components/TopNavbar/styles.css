@@ -1,3 +1,6 @@
+.navBar {
+  height: 5vh;
+}
 .navContent {
   display: flex;
   flex-flow: row wrap;
