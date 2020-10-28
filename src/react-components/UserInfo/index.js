@@ -5,23 +5,6 @@ import SpanLink from '../../react-components/SpanLink';
 import FavouriteThing from '../../react-components/FavouriteThing';
 export default class UserInfo extends React.Component {
 
-  state = {
-    beingEdited: false
-  };
-
-  toggleEditState = (e) =>  {
-    this.setState({ beingEdited: !this.state.beingEdited }, this.setUpEditView);
-  };
-
-  setUpEditView = () => {
-    if (this.state.beingEdited) {
-      const editProfileButton = document.querySelector('#editProfileButton');
-      editProfileButton.innerText = 'Stop Editing';
-
-    }
-
-  };
-
   render(){
     // Must pull this data from somewhere.
     const userInfo = {
@@ -43,8 +26,6 @@ export default class UserInfo extends React.Component {
       <div id='userInfo'>
         { /* Need to pull image, name, username, list of followers, list of users following, bio */ }
         <div className='userInfoComponent' id='userInfoMain'>
-          <span id='editProfileButton' onClick={ this.toggleEditState }>Edit Profile</span>
-
           <img src={ profilePic } />
           <h1>{ firstName + " " + lastName }</h1>
           <h3>@{ username }</h3>
