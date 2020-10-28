@@ -1,0 +1,6 @@
+.navContent {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  width: 100%;
+}
