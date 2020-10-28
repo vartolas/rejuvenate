@@ -6,9 +6,12 @@
 }
 
 #userPosts {
-  height: 745px;
-  width: 740px;
+  height: 735px;
+  width: 400px;
   float: left;
+  color: white;
+  padding: 5px;
+  text-align: center;
 }
 
 #userStatsLinks {

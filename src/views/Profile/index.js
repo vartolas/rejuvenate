@@ -24,7 +24,7 @@ export default class Profile extends React.Component {
             </div>
 
             <div className='profilePageComp' id='userPosts'>
-              This div will contain this user's posts.
+              This div will contain this user's posts. (It will also fit to the rest of the page.)
             </div>
 
           </div>
