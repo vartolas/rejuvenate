@@ -8,6 +8,10 @@ import Home from './views/Home';
 import Profile from './views/Profile';
 import Register from './views/Register';
 import PasswordReset from './views/Password Reset';
+import Statistics from './views/Statistics';
+import CreateStatistic from './views/CreateStatistic';
+
+import './index.css';
 
 class App extends React.Component{
     render(){
@@ -19,6 +23,8 @@ class App extends React.Component{
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/profile" component={Profile} />
                         <Route exact path="/password reset" component={PasswordReset}/>
+                        <Route exact path="/statistics" component={Statistics}/>
+                        <Route exact path="/statistics/create" component={CreateStatistic}/>
                     </Switch>
                 </BrowserRouter>
         );
