@@ -21,7 +21,6 @@ class App extends React.Component{
                 <BrowserRouter>
                     <Switch>
                         <Route exact path="/home" component={Home}/>
-                        
                         <Route exact path="/profile" component={Profile} />
                         <Route exact path="/password reset" component={PasswordReset}/>
                         <Route exact path="/statistics" component={Statistics}/>
