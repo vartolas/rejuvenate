@@ -8,12 +8,27 @@
   background-color: rgb(100, 100, 110);
 }
 
-#userPostsPlaceholder {
-  background-color: rgb(100, 100, 110);
+#userPosts {
   height: 745px;
-  width: 700px;
-  color: white;
+  width: 740px;
   float: left;
+}
+
+#userStatsLinks {
+  height: 215px;
+  width: 300px;
+}
+
+#secondProfilePageBar {
+  height: 800px;
+  width: 300px;
+  float: left;
+  margin-right: 10px;
   margin-top: 10px;
-  text-align: center;
+}
+
+.profilePageComp {
+  background-color: rgb(100, 100, 110);
+  margin: 10px 10px 0 0;
+
 }

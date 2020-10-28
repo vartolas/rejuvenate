@@ -5,25 +5,60 @@ import SpanLink from '../../react-components/SpanLink';
 import FavouriteThing from '../../react-components/FavouriteThing';
 export default class UserInfo extends React.Component {
 
+  state = {
+    beingEdited: false
+  };
+
+  toggleEditState = (e) =>  {
+    this.setState({ beingEdited: !this.state.beingEdited }, this.setUpEditView);
+  };
+
+  setUpEditView = () => {
+    if (this.state.beingEdited) {
+      const editProfileButton = document.querySelector('#editProfileButton');
+      editProfileButton.innerText = 'Stop Editing';
+
+    }
+
+  };
+
   render(){
+    // Must pull this data from somewhere.
+    const userInfo = {
+      firstName: 'John',
+      lastName: 'Doe',
+      username: 'johndoethebroe99',
+      profilePic: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+      numFollowers: 80,
+      numFollowing: 61,
+      bio: "Hi, my name is John and I like to run. Bananas are my \
+      favourite fruit because they're good in smoothies. I like drinking\
+      smoothies."
+    }
+
+    const { firstName, lastName, username, numFollowers, numFollowing, bio, profilePic } = userInfo;
+    const { isEditable } = this.props;
+
     return (
       <div id='userInfo'>
         { /* Need to pull image, name, username, list of followers, list of users following, bio */ }
         <div className='userInfoComponent' id='userInfoMain'>
-          <img src='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' />
-          <h1>John Doe</h1>
-          <h3>@johndoethebroe99</h3>
+          <span id='editProfileButton' onClick={ this.toggleEditState }>Edit Profile</span>
+
+          <img src={ profilePic } />
+          <h1>{ firstName + " " + lastName }</h1>
+          <h3>@{ username }</h3>
           <ul>
-            <li><b>Followers</b><br /><span className='follow-amount'>80</span></li>
-            <li><b>Following</b><br /><span className='follow-amount'>66</span></li>
+            <li><b>Followers</b><br /><span className='follow-amount'>{ numFollowers }</span></li>
+            <li><b>Following</b><br /><span className='follow-amount'>{ numFollowing }</span></li>
           </ul>
           <div id='bio'>
-            <p>Hi, my name is John and I like to run. <br/><br/> Bananas are my favourite fruit because they're good in smoothies. I like drinking smoothies.</p>
+            <p>{ bio }</p>
           </div>
         </div>
         <div className='userInfoComponent' id='favouriteThings'>
           { /* Need to pull favourite things here, and use the user's name */ }
-          <p><b>John's Favourites</b></p>
+          <p><b>{ firstName }'s Favourites</b></p>
           { /* These images are just placeholders for now and should NOT be submitted!! */ }
           <div id='favouriteThingsContainer'>
             <FavouriteThing name='Bananas' imgSrc='https://pixy.org/src/442/thumbs350/4428098.jpg'/>
