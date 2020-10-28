@@ -3,7 +3,7 @@ import FriendEntry from '../FreindEntry';
 import {ListGroup} from 'react-bootstrap';
 import './styles.css';
 
-export default class ProductTable extends React.Component {
+export default class FriendList extends React.Component {
     render() {
       const rows = [];
       let lastEntryName = null;
@@ -11,7 +11,7 @@ export default class ProductTable extends React.Component {
       this.props.entries.forEach((entry) => {
         if (entry.name !== lastEntryName) {
         rows.push(
-            <ListGroup.Item>
+            <ListGroup.Item className="listItem">
                 <FriendEntry
                     name={entry.name}
                     avatar={entry.avatar} />

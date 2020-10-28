@@ -9,7 +9,7 @@ export default class TopNavbar extends React.Component {
         return (
             <div className="topRow">
                     <BrowserRouter>
-                        <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+                        <Navbar className="Navbar" bg="dark" variant="dark" expand="lg" sticky="top">
                             <Navbar.Brand href="/home">
                                     Fitness App
                             </Navbar.Brand>
