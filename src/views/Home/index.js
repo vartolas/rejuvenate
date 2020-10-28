@@ -8,7 +8,8 @@ export default class Home extends React.Component {
         return (
             <div id="homeContainer">
                 <h1>This is the home page</h1>
-                <SpanLink to="/profile" name="profile"/>
+                <SpanLink to="/profile" name="profile" />
+                <SpanLink to="/" name="sign out" />
             </div>    
         );
     }
