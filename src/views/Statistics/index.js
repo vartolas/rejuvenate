@@ -59,30 +59,23 @@ export default class Statistics extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            user_stats: get_user_stats(user)
+            user_stats: get_user_stats(user),
         };
-        this.num_stats = 0;
+        this.num_stat_ids = 0;
+       
     }
+
+    new_stat_id = () => this.num_stat_ids++;
+
     render(){
         return (
             <div id="statViewContainer">
                 {this.state.user_stats.map(category => (
                     <div className="categoryContainer">
                     <span className="categoryTitle">{category.category}</span>
-                        <div className="statsContainer">
-                            {category.stats.map(stat => (
-                                    <Statistic id={this.num_stats++}
-                                        title={stat.title} 
-                                        type={stat.type} 
-                                        data={stat.data}/>
-                                ))
-                            }
-                            <div className="addStatButtonTableContainer">
-                                <Link to="/statistics/create">
-                                    <button className="addStatButton">+</button>
-                                </Link>
-                            </div>
-                        </div>     
+                        <StatChartsContainer 
+                            stats={category.stats}
+                            new_stat_id={this.new_stat_id}/>
                     </div>
                     ))
                 }    
@@ -91,7 +84,36 @@ export default class Statistics extends React.Component {
     }
 }
 
-class Statistic extends React.Component {
+class StatChartsContainer extends React.Component {
+    constructor (props){
+        super(props);
+        this.state = {
+            stats: this.props.stats
+        }
+        this.new_stat_id = this.props.new_stat_id;
+    }
+
+    render(){
+        return (
+            <div className="statsContainer">
+                {this.state.stats.map(stat => (
+                        <StatChart id={this.new_stat_id()}
+                            title={stat.title} 
+                            type={stat.type} 
+                            data={stat.data}/>
+                    ))
+                }
+                <div className="addStatButtonTableContainer">
+                    <Link to="/statistics/create">
+                        <button className="addStatButton">+</button>
+                    </Link>
+                </div>
+            </div> 
+        );
+    }
+}
+
+class StatChart extends React.Component {
     constructor(props){
         super(props);
         this.state = {
