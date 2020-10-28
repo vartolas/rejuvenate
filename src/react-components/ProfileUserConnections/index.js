@@ -144,11 +144,11 @@ export default class ProfileUserConnections extends React.Component {
     let listItems;
     if (this.state.showingFollowers) {
       listItems = followers.map((f) => {
-        return (<SmallProfileBar isFollower={ true } name={ f.name } username={ f.username } imgSrc={ f.profilePicSrc } />);
+        return (<SmallProfileBar key={followers.indexOf(f)} isFollower={ true } name={ f.name } username={ f.username } imgSrc={ f.profilePicSrc } />);
       });
     } else {
       listItems = following.map((f) => {
-        return(<SmallProfileBar  isFollower={ false } name={ f.name } username={ f.username } imgSrc={ f.profilePicSrc } />);
+        return(<SmallProfileBar key={followers.indexOf(f)} isFollower={ false } name={ f.name } username={ f.username } imgSrc={ f.profilePicSrc } />);
       });
     }
 

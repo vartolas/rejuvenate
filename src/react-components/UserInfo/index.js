@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles.css';
 
-import SpanLink from '../../react-components/SpanLink';
 import FavouriteThing from '../../react-components/FavouriteThing';
 export default class UserInfo extends React.Component {
 
@@ -14,19 +13,18 @@ export default class UserInfo extends React.Component {
       profilePic: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
       numFollowers: 80,
       numFollowing: 61,
-      bio: "Hi, my name is John and I like to run. Bananas are my \
-      favourite fruit because they're good in smoothies. I like drinking\
-      smoothies."
+      bio: "Hi, my name is John and I like to run. Bananas are my " +
+      "favourite fruit because they're good in smoothies. I like drinking" +
+      "smoothies."
     }
 
     const { firstName, lastName, username, numFollowers, numFollowing, bio, profilePic } = userInfo;
-    const { isEditable } = this.props;
 
     return (
       <div id='userInfo'>
         { /* Need to pull image, name, username, list of followers, list of users following, bio */ }
         <div className='userInfoComponent' id='userInfoMain'>
-          <img src={ profilePic } />
+          <img src={ profilePic } alt='profile pic'/>
           <h1>{ firstName + " " + lastName }</h1>
           <h3>@{ username }</h3>
           <ul>
