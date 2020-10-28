@@ -1,4 +1,5 @@
 #homeContainer {
+  height: 93vh;
   overflow-y: hidden;
   display: flex;
   flex-direction: row;
@@ -6,7 +7,6 @@
 
 #friendListContainer {
   width: 25%;
-  height: 95vh;
   position: relative;
   background-color: #323f45;
   text-align: center;
@@ -15,7 +15,6 @@
 
 #postListContainer {
   width: 75%;
-  height: 95vh;
   position: relative;
   background-color: #323f45;
   overflow-y: scroll;
