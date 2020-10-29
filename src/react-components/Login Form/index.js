@@ -18,6 +18,8 @@ export default class LoginForm extends React.Component {
         this.processCredentials = this.processCredentials.bind(this);
         this.displayError = this.displayError.bind(this);
     }
+    // TODO: Make LoginForm a superclass of UserLoginForm and AdminLoginForm.
+    // TODO: Admin forms should accept "admin" for the username and password.
 
     render() {
         return (
@@ -43,8 +45,8 @@ export default class LoginForm extends React.Component {
         );
     }
 
-    // Use arrow functions so that you don't have to write something.bind(this).
-    // for every function you create.
+    // TODO: Use arrow functions so that you don't have to write something.bind(this).
+    // TODO: for every function you create.
     updateUsername(e) {
         e.preventDefault();
         this.setState({ username: e.target.value });
