@@ -1,8 +1,9 @@
-#navPlaceholder {
-  height: 50px;
-  color: white;
-  text-align: center;
-  background-color: rgb(100, 100, 110);
+#profileContainer {
+  height: 93vh;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: row;
+  background-color: #1e272b;
 }
 
 #userPosts {
@@ -10,13 +11,25 @@
   width: 400px;
   float: left;
   color: white;
-  padding: 5px;
+  padding: 15px;
   text-align: center;
+  color: rgb(200, 200, 210);
 }
 
 #userStatsLinks {
   height: 215px;
   width: 300px;
+  padding: 15px;
+}
+
+#userStatsLinks:hover {
+  background-color: #38474e;
+  cursor: pointer;
+}
+
+#userStatsLinks span {
+  color: rgb(200, 200, 210);
+  text-decoration: none;
 }
 
 #secondProfilePageBar {
@@ -28,7 +41,6 @@
 }
 
 .profilePageComp {
-  background-color: rgb(100, 100, 110);
+  background-color: #323f45;
   margin: 10px 10px 0 0;
-
 }
