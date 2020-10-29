@@ -1,18 +1,11 @@
 import './styles.css';
-import Form from '../Form';
+import UserForm from '../User Form';
 import React from 'react';
 
 const CORRECT_REGULAR_USER_USERNAME = "user";
 const CORRECT_REGULAR_USER_PASSWORD = "user";
 
-export default class UserRegisterForm extends Form {
-    processCredentials() {
-        return this.state.username !== '' &&
-            this.state.password !== '' &&
-            this.state.username === CORRECT_REGULAR_USER_USERNAME &&
-            this.state.password === CORRECT_REGULAR_USER_PASSWORD;
-    }
-
+export default class UserRegisterForm extends UserForm {
     displayError() {
         if (this.state.newUsername === '') {
             return <p>{this.state.errorMessages.missingUsername}</p>;
