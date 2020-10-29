@@ -2,7 +2,7 @@
   width: 95%;
   margin-left: 2.5%;
   height: 50px;
-  background-color: rgb(120, 120, 130);
+  background-color: #38474e;
   margin-bottom: 10px;
 }
 
@@ -11,7 +11,7 @@
   height: 40px;
   width: 40px;
   float: left;
-  border: 2px solid black;
+  border: 2px solid #1e272b;
 }
 
 #smallProfileInfo {
@@ -21,27 +21,28 @@
 }
 
 #smallProfileName {
+  color: rgb(200, 200, 210);
   margin: 0;
 }
 
 #smallProfileUsername {
-  color: rgb(40, 40, 40);
+  color: #647d88;
   margin: 0;
 }
 
 #unfollowButtonSmall {
   float: right;
-  margin-top: 10px;
-  margin-right: 5px;
-  height: 30px;
-  width: 60px;
+  margin-top: 18px;
+  margin-right: 7px;
   font-size: 12px;
   text-align: center;
-  background-color: pink;
+  color: rgb(200, 200, 200);
+  text-decoration: underline;
 }
 
 #unfollowButtonSmall:hover {
   cursor: pointer;
+  color: white;
 }
 
 #unfollowButtonSmall:focus {

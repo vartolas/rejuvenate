@@ -1,7 +1,7 @@
 #userConnections {
   height: 480px;
   width: 300px;
-  background-color: rgb(100, 100, 110);
+  background-color: #323f45;
   overflow-y: scroll;
   padding-top: 10px;
 }
@@ -9,7 +9,8 @@
 #userConnectionsNav {
   height: 30px;
   width: 100%;
-  background-color: rgb(150, 150, 160);
+  background-color: #647d88;
+  color: #323f45;
   position: relative;
 }
 
@@ -29,12 +30,12 @@
   box-sizing: border-box;
   position: relative;
   font-size: 16px;
-  padding-top: 10px;
+  padding-top: 6px;
 }
 
 #userConnectionsNav li:hover {
   cursor: pointer;
-  background-color: rgb(110, 110, 120);
+  /* background-color: rgb(110, 110, 120); */
 }
 
 /* .pushTextDown {
@@ -42,5 +43,5 @@
 } */
 
 .blackBottomBorder {
-  border-bottom: solid 2px black;
+  border-bottom: solid 2px #323f45;
 }
