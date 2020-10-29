@@ -56,19 +56,8 @@ export default class LoginForm extends React.Component {
     // This is an abstract class.
     processCredentials() { }
 
-    displayError() {
-        if (this.state.username === '') {
-            return <p>{this.state.errorMessages.missingUsername}</p>;
-        } else if (this.state.password === '') {
-            return <p>{this.state.errorMessages.missingPassword}</p>;
-        } else if (this.state.username !== CORRECT_REGULAR_USER_USERNAME) {
-            return <p>{this.state.errorMessages.incorrectUsername}</p>;
-        } else if (this.state.password !== CORRECT_REGULAR_USER_PASSWORD) {
-            return <p>{this.state.errorMessages.incorrectPassword}</p>;
-        } else {
-            return <p>{this.state.errorMessages.correctCredentials}</p>;
-        }
-    }
+    // This is an abstract class.
+    displayError() { }
 
     // TODO: for password reset page
     // displayError() {
