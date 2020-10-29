@@ -17,6 +17,8 @@ export default class Login extends React.Component {
                 <SpanLink to="/register" name="Sign Up" />
                 <br></br>
                 <SpanLink to="/password reset" name="Reset Password" />
+                <br></br>
+                <SpanLink to="/admin" name="Log in as an Admin" />
             </div>
         );
     }

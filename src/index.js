@@ -4,21 +4,23 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 //views 
 import Login from './views/Login';
-import Home from './views/Home';
-import Profile from './views/Profile';
 import Register from './views/Register';
 import PasswordReset from './views/Password Reset';
+import AdminLogin from './views/Admin Login';
+import Home from './views/Home';
+import Profile from './views/Profile';
 
 class App extends React.Component{
-    render(){
+    render() {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route exact path="/"  component={Login}/>
+                    <Route exact path="/" component={Login} />
+                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/password reset" component={PasswordReset} />
+                    <Route exact path="/admin" component={AdminLogin} />
                     <Route exact path="/home" component={Home}/>
-                    <Route exact path="/register" component={Register}/>
                     <Route exact path="/profile" component={Profile} />
-                    <Route exact path="/password reset" component={PasswordReset}/>
                 </Switch>
             </BrowserRouter>
         );
