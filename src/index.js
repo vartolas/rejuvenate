@@ -64,8 +64,7 @@ class AppLoginWrapper extends React.Component {
                     <Route exact path="/admin" component={AdminLogin} />
                     <Route exact path="/admin register" component={AdminRegister} />
                     <Route exact path="/admin password reset" component={AdminPasswordReset} />
-                    <Route exact path="/home" component={Home} />
-                    <Route exact path="/profile" component={Profile} />
+                    <Route path="/" component={App} />
                 </Switch>
             </BrowserRouter>
         );
