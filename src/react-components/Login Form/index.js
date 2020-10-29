@@ -16,6 +16,11 @@ export default class LoginForm extends React.Component {
                 missingPassword: "Password is missing.",
                 incorrectUsername: "Username is incorrect.",
                 incorrectPassword: "Password is incorrect.",
+                nonexistingUsername: "New username does not exist.",
+                existingUsername: "New username already exists.",
+                weakPassword: "New password is not strong enough.",
+                strongPasswordForPasswordReset: "This existing username has a strong enough password.",
+                strongPasswordForRegistration: "This new username has a strong enough password.",
                 correctCredentials: "Username and password are correct."
             }
         };
@@ -62,30 +67,30 @@ export default class LoginForm extends React.Component {
     // TODO: for password reset page
     // displayError() {
     //     if (this.state.newUsername === '') {
-    //         return <p>New username is missing.</p>;
+    //         return <p>{this.state.errorMessages.missingUsername}</p>;
     //     } else if (this.state.newPassword === '') {
-    //         return <p>New password is missing.</p>;
+    //         return <p>{this.state.errorMessages.missingPassword}</p>;
     //     } else if (this.state.newUsername !== CORRECT_REGULAR_USER_USERNAME) {
-    //         return <p>New username does not exist.</p>;
+    //         return <p>{this.state.errorMessages.nonexistingUsername}</p>;
     //     } else if (this.state.newPassword !== CORRECT_REGULAR_USER_PASSWORD) {
-    //         return <p>New password is not strong enough.</p>;
+    //         return <p>{this.state.errorMessages.weakPassword}</p>;
     //     } else {
-    //         return <p>This existing username has a strong enough password.</p>;
+    //         return <p>{this.state.errorMessages.strongPasswordForPasswordReset}</p>;
     //     }
     // }
 
     // TODO: for register page
     // displayError() {
     //     if (this.state.newUsername === '') {
-    //         return <p>New username is missing.</p>;
+    //         return <p>{this.state.errorMessages.missingUsername}</p>;
     //     } else if (this.state.newPassword === '') {
-    //         return <p>New password is missing.</p>;
+    //         return <p>{this.state.errorMessages.missingPassword}</p>;
     //     } else if (this.state.newUsername !== CORRECT_REGULAR_USER_USERNAME) {
-    //         return <p>New username already exists.</p>;
+    //         return <p>{this.state.errorMessages.existingUsername}</p>;
     //     } else if (this.state.newPassword !== CORRECT_REGULAR_USER_PASSWORD) {
-    //         return <p>New password is not strong enough.</p>;
+    //         return <p>{this.state.errorMessages.weakPassword}</p>;
     //     } else {
-    //         return <p>This new username has a strong enough password.</p>;
+    //         return <p>{this.state.errorMessages.strongPasswordForRegistration}</p>;
     //     }
     // }
 }
