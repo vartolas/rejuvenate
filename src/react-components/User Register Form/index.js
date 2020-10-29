@@ -1,10 +1,11 @@
 import './styles.css';
-import LoginForm from '../Login Form';
+import Form from '../Form';
+import React from 'react';
 
 const CORRECT_REGULAR_USER_USERNAME = "user";
 const CORRECT_REGULAR_USER_PASSWORD = "user";
 
-export default class UserRegisterForm extends LoginForm {
+export default class UserRegisterForm extends Form {
     processCredentials() {
         return this.state.username !== '' &&
             this.state.password !== '' &&
