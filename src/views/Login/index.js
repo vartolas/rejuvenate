@@ -9,9 +9,13 @@ export default class Login extends React.Component {
             <div id="loginContainer">
                 <h1>This is the login page</h1>
                 <br></br>
-                <LoginForm label1="Username" label2="Password" successfulLoginLink="/home" failureLoginLink="/" />
+                <LoginForm label1="Username" label2="Password"
+                    successfulLoginLink="/home" failureLoginLink="/"
+                    submitButtonName="Log in"
+                />
                 <br></br>
-                <SpanLink to="/register" name="Sign Up"/>
+                <SpanLink to="/register" name="Sign Up" />
+                <br></br>
                 <SpanLink to="/password reset" name="Reset Password" />
             </div>
         );

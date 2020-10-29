@@ -35,9 +35,10 @@ export default class LoginForm extends React.Component {
                             value={this.props.password} onChange={this.updatePassword} />
                     </label>
                 </div>
-                <br></br>
-                <input type="submit" value="Log in" />
+                {/* TODO: Add a prop that lets you use a predefined set of error messages for
+                the login page, password reset page, and register page. */}
                 { this.displayError() }
+                <input type="submit" value={this.props.submitButtonName} />
             </form>
         );
     }
@@ -74,4 +75,48 @@ export default class LoginForm extends React.Component {
             return <p>Username and password are correct.</p>;
         }
     }
+
+    // TODO: for password reset page
+    // processCredentials() {
+    //     return this.state.username !== '' &&
+    //         this.state.password !== '' &&
+    //         this.state.username === CORRECT_REGULAR_USER_USERNAME &&
+    //         this.state.password === CORRECT_REGULAR_USER_PASSWORD;
+    // }
+
+    // displayError() {
+    //     if (this.state.newUsername === '') {
+    //         return <p>New username is missing.</p>;
+    //     } else if (this.state.newPassword === '') {
+    //         return <p>New password is missing.</p>;
+    //     } else if (this.state.newUsername !== CORRECT_REGULAR_USER_USERNAME) {
+    //         return <p>New username does not exist.</p>;
+    //     } else if (this.state.newPassword !== CORRECT_REGULAR_USER_PASSWORD) {
+    //         return <p>New password is not strong enough.</p>;
+    //     } else {
+    //         return <p>This existing username has a strong enough password.</p>;
+    //     }
+    // }
+
+    // TODO: for register page
+    // processCredentials() {
+    //     return this.state.username !== '' &&
+    //         this.state.password !== '' &&
+    //         this.state.username === CORRECT_REGULAR_USER_USERNAME &&
+    //         this.state.password === CORRECT_REGULAR_USER_PASSWORD;
+    // }
+
+    // displayError() {
+    //     if (this.state.newUsername === '') {
+    //         return <p>New username is missing.</p>;
+    //     } else if (this.state.newPassword === '') {
+    //         return <p>New password is missing.</p>;
+    //     } else if (this.state.newUsername !== CORRECT_REGULAR_USER_USERNAME) {
+    //         return <p>New username already exists.</p>;
+    //     } else if (this.state.newPassword !== CORRECT_REGULAR_USER_PASSWORD) {
+    //         return <p>New password is not strong enough.</p>;
+    //     } else {
+    //         return <p>This new username has a strong enough password.</p>;
+    //     }
+    // }
 }
