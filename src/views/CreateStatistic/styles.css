@@ -1,13 +1,13 @@
-#statViewContainer {
+#createStatViewContainer {
     position: absolute;
     width: 100%;
     background-color: rgb(20, 17, 27);
+    color: white;
 }
 
 .categoryContainer {
     background-color: rgb(45,60,75);
     margin: 20px;
-    border-radius: 10px;
 }
 
 .statsContainer {
@@ -29,13 +29,7 @@
     background-color: rgb(70, 90, 110);
     border: 2px solid black;
     margin: 30px;
-    transition: all .1s ease-in-out;
     
-    
-}
-.chartContainer:hover {
-    transform: scale(1.05);
-    cursor: pointer;
 }
 .categoryTitle {
     display: block;
@@ -45,6 +39,11 @@
     
     font-weight: bold;
     text-align: left;
+}
+
+.addStatButtonTableContainer {
+    height: 100%;
+    display: table;
 }
 
 .addStatButton {
@@ -70,30 +69,21 @@
   }
 
 .statsContainer::-webkit-scrollbar {
-    min-height: 10px;
+    max-width: 5px;
+    height: 20px;
   }
   
   /* Track */
   .statsContainer::-webkit-scrollbar-track {
     background: #f1f1f1; 
-    border-radius: 10px;
   }
    
   /* Handle */
   .statsContainer::-webkit-scrollbar-thumb {
     background: rgb(115, 116, 180); 
-    border-radius: 10px;
   }
   
   /* Handle on hover */
   .statsContainer::-webkit-scrollbar-thumb:hover {
     background: #555; 
-  }
-
-  button {
-      outline: none;
-  }
-
-  button:hover {
-      cursor: pointer;
   }

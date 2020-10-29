@@ -1,14 +1,34 @@
 import React from 'react';
 import './styles.css';
 
+import UserInfo from '../../react-components/UserInfo'
 import SpanLink from '../../react-components/SpanLink';
+import ProfileUserConnections from '../../react-components/ProfileUserConnections';
+
 export default class Profile extends React.Component {
     render(){
-        return (
-            <div id="profileContainer">
-                <h1>This is the profile page</h1>
-                <SpanLink to="/home" name="home"/>
-            </div>    
-        );
+
+      // Need to check whether this profile is the profile of the logged-in user.
+      const profileIsEditable = false;
+
+      return (
+          <div id="profile">
+
+            <UserInfo isEditable={ profileIsEditable }/>
+
+            <div id='secondProfilePageBar'>
+              <ProfileUserConnections />
+              <div className='profilePageComp' id='userStatsLinks'>
+                <SpanLink to='/statistics' name="This div will be a nicer-looking link to this user's stats." />
+              </div>
+            </div>
+
+            <div className='profilePageComp' id='userPosts'>
+              This div will contain this user's posts. (It will also fit to the rest of the page.)
+            </div>
+
+          </div>
+
+      );
     }
 }
