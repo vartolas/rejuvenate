@@ -1,6 +1,6 @@
+import React from 'react';
 import './styles.css';
 import UserForm from '../User Form';
-import React from 'react';
 
 const CORRECT_REGULAR_USER_USERNAME = "user";
 const CORRECT_REGULAR_USER_PASSWORD = "user";
