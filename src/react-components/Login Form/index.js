@@ -79,13 +79,6 @@ export default class LoginForm extends React.Component {
     }
 
     // TODO: for password reset page
-    // processCredentials() {
-    //     return this.state.username !== '' &&
-    //         this.state.password !== '' &&
-    //         this.state.username === CORRECT_REGULAR_USER_USERNAME &&
-    //         this.state.password === CORRECT_REGULAR_USER_PASSWORD;
-    // }
-
     // displayError() {
     //     if (this.state.newUsername === '') {
     //         return <p>New username is missing.</p>;
@@ -101,13 +94,6 @@ export default class LoginForm extends React.Component {
     // }
 
     // TODO: for register page
-    // processCredentials() {
-    //     return this.state.username !== '' &&
-    //         this.state.password !== '' &&
-    //         this.state.username === CORRECT_REGULAR_USER_USERNAME &&
-    //         this.state.password === CORRECT_REGULAR_USER_PASSWORD;
-    // }
-
     // displayError() {
     //     if (this.state.newUsername === '') {
     //         return <p>New username is missing.</p>;

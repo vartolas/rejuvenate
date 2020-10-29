@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import SpanLink from '../../react-components/SpanLink';
-import LoginForm from '../../react-components/Login Form';
+import UserLoginForm from '../../react-components/User Login Form';
 
 export default class Login extends React.Component {
     render() {
@@ -9,7 +9,7 @@ export default class Login extends React.Component {
             <div id="loginContainer">
                 <h1>This is the login page</h1>
                 <br></br>
-                <LoginForm label1="Username" label2="Password"
+                <UserLoginForm label1="Username" label2="Password"
                     successfulLoginLink="/home" failureLoginLink="/"
                     submitButtonName="Log in"
                 />
