@@ -15,7 +15,7 @@ export default class AdminLogin extends React.Component {
                     submitButtonName="Log in"
                 />
                 <br></br>
-                <SpanLink to="/admin" name="Sign Up" />
+                <SpanLink to="/admin register" name="Sign Up" />
                 <br></br>
                 <SpanLink to="/admin" name="Reset Password" />
                 <br></br>
