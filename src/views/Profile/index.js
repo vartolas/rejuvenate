@@ -6,20 +6,19 @@ import SpanLink from '../../react-components/SpanLink';
 import ProfileUserConnections from '../../react-components/ProfileUserConnections';
 
 export default class Profile extends React.Component {
-    render(){
-
+    render() {
       // Need to check whether this profile is the profile of the logged-in user.
       const profileIsEditable = false;
 
       return (
-          <div id="profile">
+          <div id="profileContainer">
 
             <UserInfo isEditable={ profileIsEditable }/>
 
             <div id='secondProfilePageBar'>
               <ProfileUserConnections />
               <div className='profilePageComp' id='userStatsLinks'>
-                <SpanLink to='/statistics' name="This div will be a nicer-looking link to this user's stats." />
+                <SpanLink to='/statistics' name="This entire div will be a nicer-looking link to this user's stats. For now, its only this link that takes you there." />
               </div>
             </div>
 

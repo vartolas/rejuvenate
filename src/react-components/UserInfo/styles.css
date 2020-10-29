@@ -1,8 +1,7 @@
 #userInfo {
   height: 745px;
   width: 350px;
-  margin-top: 10px;
-  margin-right: 10px;
+  margin: 10px;
   float: left;
   position: relative;
 }
@@ -10,7 +9,7 @@
 .userInfoComponent {
   margin-bottom: 10px;
   padding: 10px;
-  background-color: rgb(100, 100, 110);
+  background-color: #323f45;
 }
 
 #userInfoMain img {
@@ -19,7 +18,7 @@
   width: 200px;
   margin-top: 25px;
   margin-left: 58px;
-  border: 7px solid rgb(20, 20, 20);
+  border: 7px solid #1e272b;
 }
 
 #userInfoMain h1 {
@@ -27,17 +26,19 @@
   margin: 0;
   margin-top: 5px;
   font-size: 38px;
+  color: rgb(200, 200, 210);
 }
 
 #userInfoMain h3 {
   text-align: center;
   margin: 5px;
-  color: rgb(40, 40, 40);
+  color: #647d88;
 }
 
 #userInfoMain ul {
   height: 40px;
-  margin-top: 20px;
+  margin-top: 15px;
+  margin-bottom: 22px;
   font-size: 16px;
   text-align: center;
   box-sizing: border-box;
@@ -47,13 +48,14 @@
 #userInfoMain li {
   list-style: none;
   width: 50%;
-  height: 100%;
+  height: 50px;
   float: left;
+  color: #647d88;
 }
 
 #userInfoMain li:hover{
   cursor: pointer;
-  background-color: rgb(120, 120, 130);
+  background-color: #38474e;
 }
 
 #userInfoMain .follow-amount {
@@ -61,25 +63,27 @@
 }
 
 #bio {
-  background-color: rgb(120, 120, 130);
+  background-color: #38474e;
   padding: 2px 15px;
-  overflow-y: scroll;
+  overflow-y: hidden;
   height: 100px;
+  font-size: 14px;
+  color: rgb(200, 200, 210);
 }
 
 #favouriteThings {
   padding: 10px;
-  height: 195px;
+  height: 215px;
 
 }
 
 #favouriteThingsContainer {
   width: 310px;
-  height: 130px;
+  height: 140px;
   margin: 0;
   padding: 10px;
   padding-right: 0;
-  background-color: rgb(120, 120, 130);
+  background-color: #38474e;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
@@ -88,4 +92,5 @@
 #favouriteThings p {
   font-size: 24px;
   margin: 5px 0 10px 5px;
+  color: rgb(200, 200, 210);
 }

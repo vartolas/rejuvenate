@@ -6,7 +6,7 @@ export default class SmallProfileBar extends React.Component {
   getUnfollowButton() {
     if (!this.props.isFollower) {
       return (
-        <button id='unfollowButtonSmall'>Unfollow</button>
+        <a id='unfollowButtonSmall'>Unfollow</a>
       )
     }
   }
@@ -19,8 +19,8 @@ export default class SmallProfileBar extends React.Component {
         <div id='smallProfileBar'>
           <img id='smallProfileImg' src={ imgSrc } alt='profile pic'/>
           <div id='smallProfileInfo'>
-            <h3 id='smallProfileName'>{ name }</h3>
-            <h4 id='smallProfileUsername'>@{ username }</h4>
+            <h5 id='smallProfileName'>{ name }</h5>
+            <h6 id='smallProfileUsername'>@{ username }</h6>
           </div>
           { this.getUnfollowButton() }
         </div>
