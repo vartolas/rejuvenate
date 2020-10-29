@@ -20,7 +20,7 @@ export default class TopNavbar extends React.Component {
                                     <Nav.Link href="/addFriend">Add Friend</Nav.Link>
                                     <NavDropdown title="Stats" id="basic-nav-dropdown">
                                         <NavDropdown.Item href="/recordStatistics">Record Stats</NavDropdown.Item>
-                                        <NavDropdown.Item href="/viewStatistics">View Stats</NavDropdown.Item>
+                                        <NavDropdown.Item href="/statistics">View Stats</NavDropdown.Item>
                                     </NavDropdown>
                                     <Nav.Link href="/setting">Setting</Nav.Link>
                                     <Nav.Link href="/">Sign Out</Nav.Link>

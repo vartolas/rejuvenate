@@ -7,7 +7,7 @@ export default class AddFriend extends React.Component {
     render(){
         return (
             <div id="addFriendContainer">
-                <h1>This is the setting page</h1>
+                <h1>This is the add friend page</h1>
             </div>    
         );
     }
