@@ -1,6 +1,5 @@
 import React from 'react';
 import './styles.css';
-import SpanLink from '../../react-components/SpanLink';
 import AdminLoginForm from '../../react-components/Admin Login Form';
 
 export default class AdminLogin extends React.Component {
@@ -15,9 +14,13 @@ export default class AdminLogin extends React.Component {
                     submitButtonName="Log in"
                 />
                 <br></br>
-                <SpanLink to="/admin register" name="Sign Up" />
+                <form action="/admin register">
+                    <input type="submit" value="Sign Up" />
+                </form>
                 <br></br>
-                <SpanLink to="/admin password reset" name="Reset Password" />
+                <form action="/admin password reset">
+                    <input type="submit" value="Reset Password" />
+                </form>
                 <br></br>
                 <form action="/">
                     <input type="submit" value="Go Back" />

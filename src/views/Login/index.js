@@ -1,6 +1,5 @@
 import React from 'react';
 import './styles.css';
-import SpanLink from '../../react-components/SpanLink';
 import UserLoginForm from '../../react-components/User Login Form';
 
 export default class Login extends React.Component {
@@ -14,11 +13,17 @@ export default class Login extends React.Component {
                     submitButtonName="Log in"
                 />
                 <br></br>
-                <SpanLink to="/register" name="Sign Up" />
+                <form action="/register">
+                    <input type="submit" value="Sign Up" />
+                </form>
                 <br></br>
-                <SpanLink to="/password reset" name="Reset Password" />
+                <form action="/password reset">
+                    <input type="submit" value="Reset Password" />
+                </form>
                 <br></br>
-                <SpanLink to="/admin" name="Log in as an Admin" />
+                <form action="/admin">
+                    <input type="submit" value="Login in as Admin" />
+                </form>
             </div>
         );
     }
