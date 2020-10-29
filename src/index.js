@@ -8,6 +8,7 @@ import Register from './views/Register';
 import PasswordReset from './views/Password Reset';
 import AdminLogin from './views/Admin Login';
 import AdminRegister from './views/Admin Register';
+import AdminPasswordReset from './views/Admin Password Reset';
 import Home from './views/Home';
 import Profile from './views/Profile';
 
@@ -21,6 +22,7 @@ class App extends React.Component{
                     <Route exact path="/password reset" component={PasswordReset} />
                     <Route exact path="/admin" component={AdminLogin} />
                     <Route exact path="/admin register" component={AdminRegister} />
+                    <Route exact path="/admin password reset" component={AdminPasswordReset} />
                     <Route exact path="/home" component={Home} />
                     <Route exact path="/profile" component={Profile} />
                 </Switch>

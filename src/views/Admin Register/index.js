@@ -8,6 +8,7 @@ export default class AdminRegister extends React.Component {
             <div id="adminRegisterContainer">
                 <h1>This is the admin register page</h1>
                 <br></br>
+                {/* TODO: Add an admin home page. */}
                 <AdminRegisterForm label1="New Username" label2="New Password"
                     successfulLoginLink="/admin" failureLoginLink="/admin register"
                     submitButtonName="Register"
