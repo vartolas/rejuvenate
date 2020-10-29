@@ -12,14 +12,7 @@ export default class LoginForm extends React.Component {
             username: '',
             password: ''
         };
-        // controlled components
-        this.updateUsername = this.updateUsername.bind(this);
-        this.updatePassword = this.updatePassword.bind(this);
-        this.processCredentials = this.processCredentials.bind(this);
-        this.displayError = this.displayError.bind(this);
     }
-    // TODO: Make LoginForm a superclass of UserLoginForm and AdminLoginForm.
-    // TODO: Admin forms should accept "admin" for the username and password.
 
     render() {
         return (
@@ -45,24 +38,18 @@ export default class LoginForm extends React.Component {
         );
     }
 
-    // TODO: Use arrow functions so that you don't have to write something.bind(this).
-    // TODO: for every function you create.
-    updateUsername(e) {
+    updateUsername = (e) => {
         e.preventDefault();
         this.setState({ username: e.target.value });
     }
 
-    updatePassword(e) {
+    updatePassword = (e) => {
         e.preventDefault();
         this.setState({ password: e.target.value });
     }
 
-    processCredentials() {
-        return this.state.username !== '' &&
-            this.state.password !== '' &&
-            this.state.username === CORRECT_REGULAR_USER_USERNAME &&
-            this.state.password === CORRECT_REGULAR_USER_PASSWORD;
-    }
+    // This is an abstract class.
+    processCredentials() { }
 
     displayError() {
         if (this.state.username === '') {
