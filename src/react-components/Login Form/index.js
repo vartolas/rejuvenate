@@ -1,9 +1,6 @@
 import React from 'react';
 import './styles.css';
 
-const CORRECT_REGULAR_USER_USERNAME = "user";
-const CORRECT_REGULAR_USER_PASSWORD = "user";
-
 export default class LoginForm extends React.Component {
     // I found this helpful: https://reactjs.org/docs/forms.html
     constructor(props) {
@@ -63,34 +60,4 @@ export default class LoginForm extends React.Component {
 
     // This is an abstract class.
     displayError() { }
-
-    // TODO: for password reset page
-    // displayError() {
-    //     if (this.state.newUsername === '') {
-    //         return <p>{this.state.errorMessages.missingUsername}</p>;
-    //     } else if (this.state.newPassword === '') {
-    //         return <p>{this.state.errorMessages.missingPassword}</p>;
-    //     } else if (this.state.newUsername !== CORRECT_REGULAR_USER_USERNAME) {
-    //         return <p>{this.state.errorMessages.nonexistingUsername}</p>;
-    //     } else if (this.state.newPassword !== CORRECT_REGULAR_USER_PASSWORD) {
-    //         return <p>{this.state.errorMessages.weakPassword}</p>;
-    //     } else {
-    //         return <p>{this.state.errorMessages.strongPasswordForPasswordReset}</p>;
-    //     }
-    // }
-
-    // TODO: for register page
-    // displayError() {
-    //     if (this.state.newUsername === '') {
-    //         return <p>{this.state.errorMessages.missingUsername}</p>;
-    //     } else if (this.state.newPassword === '') {
-    //         return <p>{this.state.errorMessages.missingPassword}</p>;
-    //     } else if (this.state.newUsername !== CORRECT_REGULAR_USER_USERNAME) {
-    //         return <p>{this.state.errorMessages.existingUsername}</p>;
-    //     } else if (this.state.newPassword !== CORRECT_REGULAR_USER_PASSWORD) {
-    //         return <p>{this.state.errorMessages.weakPassword}</p>;
-    //     } else {
-    //         return <p>{this.state.errorMessages.strongPasswordForRegistration}</p>;
-    //     }
-    // }
 }
