@@ -10,7 +10,14 @@ export default class LoginForm extends React.Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            errorMessages: {
+                missingUsername: "Username is missing.",
+                missingPassword: "Password is missing.",
+                incorrectUsername: "Username is incorrect.",
+                incorrectPassword: "Password is incorrect.",
+                correctCredentials: "Username and password are correct."
+            }
         };
     }
 
@@ -30,8 +37,6 @@ export default class LoginForm extends React.Component {
                             value={this.props.password} onChange={this.updatePassword} />
                     </label>
                 </div>
-                {/* TODO: Add a prop that lets you use a predefined set of error messages for
-                the login page, password reset page, and register page. */}
                 { this.displayError() }
                 <input type="submit" value={this.props.submitButtonName} />
             </form>
@@ -53,15 +58,15 @@ export default class LoginForm extends React.Component {
 
     displayError() {
         if (this.state.username === '') {
-            return <p>Username is missing.</p>;
+            return <p>{this.state.errorMessages.missingUsername}</p>;
         } else if (this.state.password === '') {
-            return <p>Password is missing.</p>;
+            return <p>{this.state.errorMessages.missingPassword}</p>;
         } else if (this.state.username !== CORRECT_REGULAR_USER_USERNAME) {
-            return <p>Username is incorrect.</p>;
+            return <p>{this.state.errorMessages.incorrectUsername}</p>;
         } else if (this.state.password !== CORRECT_REGULAR_USER_PASSWORD) {
-            return <p>Password is incorrect.</p>;
+            return <p>{this.state.errorMessages.incorrectPassword}</p>;
         } else {
-            return <p>Username and password are correct.</p>;
+            return <p>{this.state.errorMessages.correctCredentials}</p>;
         }
     }
 
