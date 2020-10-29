@@ -1,0 +1,10 @@
+.userEntryContainer {
+  background-color: #323f45;
+}
+
+.friendListItem {
+  background-color: #323f45;
+  border-radius: 3%;
+  border-width: 4px;
+  border-color: #38474e;
+}

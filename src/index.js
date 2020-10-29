@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 //views 
 import Login from './views/Login';
@@ -10,14 +11,20 @@ import Register from './views/Register';
 import PasswordReset from './views/Password Reset';
 import Statistics from './views/Statistics';
 import CreateStatistic from './views/CreateStatistic';
+import AddFriend from './views/AddFriend';
+import RecordStatistics from './views/RecordStatistics';
+import Setting from './views/Setting';
+
+import TopNavbar from './react-components/TopNavbar';
 
 import './index.css';
-
 var user = null;
 
 class App extends React.Component{
     render(){
         return (
+                <>
+                <TopNavbar/>
                 <BrowserRouter>
                     <Switch>
                         <Route exact path="/home" component={Home}/>
@@ -26,8 +33,12 @@ class App extends React.Component{
                         <Route exact path="/password reset" component={PasswordReset}/>
                         <Route exact path="/statistics" component={Statistics}/>
                         <Route exact path="/statistics/create" component={CreateStatistic}/>
+                        <Route exact path="/addFriend" component={AddFriend}/>
+                        <Route exact path="/recordStatistics" component={RecordStatistics}/>
+                        <Route exact path="/setting" component={Setting}/>
                     </Switch>
                 </BrowserRouter>
+                </>
         );
     }
     

@@ -1,5 +1,39 @@
 #homeContainer {
-    width: 100%;
-    height: 100%;
-    text-align: center;
+  height: 93vh;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+#friendListContainer {
+  width: 25%;
+  position: relative;
+  background-color: #323f45;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+#postListContainer {
+  width: 75%;
+  position: relative;
+  background-color: #323f45;
+  overflow-y: scroll;
+}
+
+#circleIcon {
+  color: #647d88;
+  size: 200px;
+}
+
+#postButton {
+  color: #647d88;
+  size: 200px;
+}
+
+#postButtonContainer {
+  position: fixed;
+  bottom: 60px;
+  border-radius: 50%;
+  right: 50%;
+  background-color: #1e272b;
 }
