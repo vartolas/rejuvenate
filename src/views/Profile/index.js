@@ -6,8 +6,7 @@ import SpanLink from '../../react-components/SpanLink';
 import ProfileUserConnections from '../../react-components/ProfileUserConnections';
 
 export default class Profile extends React.Component {
-    render(){
-
+    render() {
       // Need to check whether this profile is the profile of the logged-in user.
       const profileIsEditable = false;
 

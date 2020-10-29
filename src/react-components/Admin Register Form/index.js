@@ -12,11 +12,11 @@ export default class AdminRegisterForm extends AdminForm {
         } else if (this.state.password === '') {
             return <p>{this.state.errorMessages.missingPassword}</p>;
         } else if (this.state.username !== CORRECT_ADMIN_USERNAME) {
-            return <p>{this.state.errorMessages.nonexistingUsername}</p>;
+            return <p>{this.state.errorMessages.existingUsername}</p>;
         } else if (this.state.password !== CORRECT_ADMIN_PASSWORD) {
             return <p>{this.state.errorMessages.weakPassword}</p>;
         } else {
-            return <p>{this.state.errorMessages.strongPasswordForPasswordReset}</p>;
+            return <p>{this.state.errorMessages.strongPasswordForRegistration}</p>;
         }
     }
 }
