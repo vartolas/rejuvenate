@@ -19,3 +19,21 @@
   background-color: #323f45;
   overflow-y: scroll;
 }
+
+#circleIcon {
+  color: #647d88;
+  size: 200px;
+}
+
+#postButton {
+  color: #647d88;
+  size: 200px;
+}
+
+#postButtonContainer {
+  position: fixed;
+  bottom: 60px;
+  border-radius: 50%;
+  right: 50%;
+  background-color: #1e272b;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.css';
-
+import {IconButton} from '@material-ui/core';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 // import SpanLink from '../../react-components/SpanLink';
 // import TopNavbar from '../../react-components/TopNavbar';
 // import UserEntry from '../../react-components/FreindEntry';
@@ -42,6 +43,11 @@ export default class Home extends React.Component {
                 </div>
                 <div id="postListContainer">
                     <PostList entries={posts}/>
+                </div>
+                <div id="postButtonContainer">
+                    <IconButton id="postButton">
+                        <AddCircleIcon id="cicleIcon" style={{fontSize:60}}/>
+                    </IconButton>
                 </div>
             </div>
         );
