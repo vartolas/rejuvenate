@@ -21,7 +21,8 @@ export default class LoginForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.processCredentials} action={this.processCredentials() ? "/home" : "/"}>
+            <form onSubmit={this.processCredentials} action={this.processCredentials() ?
+                this.props.successfulLoginLink : this.props.failureLoginLink} >
                 <div>
                     <label>
                         {this.props.label1}: <input type="text" name="username"
