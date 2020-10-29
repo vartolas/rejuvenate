@@ -9,7 +9,7 @@ export default class PostList extends React.Component {
       
       this.props.entries.forEach((entry) => {
         rows.push(
-            <ListGroup.Item className="listItem">
+            <ListGroup.Item className="postListItem">
                 <PostEntry
                     tag={entry.tag}
                     content={entry.content}

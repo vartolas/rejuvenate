@@ -11,19 +11,31 @@ export default class PostEntry extends React.Component {
 
         comments.forEach((usercomment) => {
             commentrows.push(
-                <ListGroup.Item className="listItem">
+                <ListGroup.Item className="commentListItem">
                     <div className="commentuser">{usercomment.user}</div>
                     <div className="comment">{usercomment.comment}</div>
                 </ListGroup.Item>
             );
         });
+
+        const image = [];
+
+        if (content.picture == ""){
+            image.push(<img className='noimg' src={content.picture}/>);
+        }
+        else{
+            image.push(<img className='img' src={content.picture}/>);
+        }
         
         return (
             <div className="PostEntryContainer">
                 <div className="tag">{tag}</div>
+                <div className="user">
+                    <img className="avatar" src={user.avatar}/>
+                    <div className="username">{user.username}</div>
+                </div>
                 <div className="text">{content.text}</div>
-                <img className="img" src={content.picture}/>
-                <div className="user">{user}</div>
+                <div className="imageContainer">{image}</div>
                 <div className="likes">{likes}</div>
                 <ListGroup className="commentSection">{commentrows}</ListGroup>
             </div>
