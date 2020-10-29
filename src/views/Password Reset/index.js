@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import UserLoginForm from '../../react-components/User Login Form';
+import UserPasswordResetForm from '../../react-components/User Password Reset Form';
 
 export default class PasswordReset extends React.Component {
     render() {
@@ -8,7 +8,7 @@ export default class PasswordReset extends React.Component {
             <div id="passwordResetContainer">
                 <h1>This is the password reset page</h1>
                 <br></br>
-                <UserLoginForm label1="Existing Username" label2="New Password"
+                <UserPasswordResetForm label1="Existing Username" label2="New Password"
                     successfulLoginLink="/home" failureLoginLink="/password reset"
                     submitButtonName="Reset Password"
                 />

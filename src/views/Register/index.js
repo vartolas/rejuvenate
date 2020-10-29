@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import UserLoginForm from '../../react-components/User Login Form';
+import UserRegisterForm from '../../react-components/User Register Form';
 
 export default class Register extends React.Component {
     render() {
@@ -8,7 +8,7 @@ export default class Register extends React.Component {
             <div id="registerContainer">
                 <h1>This is the register page</h1>
                 <br></br>
-                <UserLoginForm label1="New Username" label2="New Password"
+                <UserRegisterForm label1="New Username" label2="New Password"
                     successfulLoginLink="/home" failureLoginLink="/register"
                     submitButtonName="Register"
                 />
