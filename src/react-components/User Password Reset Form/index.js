@@ -2,8 +2,7 @@ import React from 'react';
 import './styles.css';
 import UserForm from '../User Form';
 
-const CORRECT_REGULAR_USER_USERNAME = "user";
-const CORRECT_REGULAR_USER_PASSWORD = "user";
+import { CORRECT_REGULAR_USER_USERNAME, CORRECT_REGULAR_USER_PASSWORD } from "../User Form";
 
 export default class UserPasswordResetForm extends UserForm {
     displayError() {

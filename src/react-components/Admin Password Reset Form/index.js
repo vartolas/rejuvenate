@@ -2,8 +2,7 @@ import React from "react";
 import './styles.css';
 import AdminForm from '../Admin Form';
 
-const CORRECT_ADMIN_USERNAME = "admin";
-const CORRECT_ADMIN_PASSWORD = "admin";
+import { CORRECT_ADMIN_USERNAME, CORRECT_ADMIN_PASSWORD } from '../Admin Form';
 
 export default class AdminPasswordResetForm extends AdminForm {
     displayError() {
