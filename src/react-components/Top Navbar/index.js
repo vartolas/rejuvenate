@@ -1,8 +1,7 @@
 import React from 'react';
 import './styles.css';
-import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import {Navbar,Nav,NavDropdown} from 'react-bootstrap'
-import { LinkContainer } from "react-router-bootstrap";
 
 export default class TopNavbar extends React.Component {
     render(){

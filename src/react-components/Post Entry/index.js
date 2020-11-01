@@ -18,7 +18,7 @@ export default class PostEntry extends React.Component {
         });
 
         const image = [];
-        if (content.picture == "") {
+        if (content.picture === "") {
             image.push(<img className='noimg' src={content.picture}/>);
         } else {
             image.push(<img className='img' src={content.picture}/>);

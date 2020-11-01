@@ -1,9 +1,9 @@
 import React from 'react';
 import './styles.css';
 
-import UserInfo from '../../react-components/UserInfo'
-import SpanLink from '../../react-components/SpanLink';
-import ProfileUserConnections from '../../react-components/ProfileUserConnections';
+import UserInfo from '../../react-components/User Info'
+import SpanLink from '../../react-components/Span Link';
+import ProfileUserConnections from '../../react-components/Profile User Connections';
 
 export default class Profile extends React.Component {
     render() {

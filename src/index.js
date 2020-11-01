@@ -14,12 +14,12 @@ import AdminPasswordReset from './views/Admin Password Reset';
 import Home from './views/Home';
 import Profile from './views/Profile';
 import Statistics from './views/Statistics';
-import CreateStatistic from './views/CreateStatistic';
-import AddFriend from './views/AddFriend';
-import RecordStatistics from './views/RecordStatistics';
+import CreateStatistic from './views/Create Statistic';
+import AddFriend from './views/Add Friend';
+import RecordStatistics from './views/Record Statistics';
 import Setting from './views/Setting';
 
-import TopNavbar from './react-components/TopNavbar';
+import TopNavbar from './react-components/Top Navbar';
 
 import './index.css';
 var user = null;
