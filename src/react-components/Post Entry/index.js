@@ -19,16 +19,16 @@ export default class PostEntry extends React.Component {
 
         const image = [];
         if (content.picture === "") {
-            image.push(<img className='noimg' src={content.picture}/>);
+            image.push(<img className='noimg' src={content.picture} alt="" />);
         } else {
-            image.push(<img className='img' src={content.picture}/>);
+            image.push(<img className='img' src={content.picture} alt="" />);
         }
         
         return (
             <div className="PostEntryContainer">
                 <div className="tag">{tag}</div>
                 <div className="user">
-                    <img className="avatar" src={user.avatar}/>
+                    <img className="avatar" src={user.avatar} alt="" />
                     <div className="username">{user.username}</div>
                 </div>
                 <div className="text">{content.text}</div>

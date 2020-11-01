@@ -6,7 +6,7 @@ export default class FriendEntry extends React.Component {
         const {name, avatar} = this.props;
         return (
             <div className="friendEntryContainer">
-                <img className='avatar' src={avatar} />
+                <img className='avatar' src={avatar} alt=""/>
                 <div className="username">{name}</div>
             </div>
         );
