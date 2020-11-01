@@ -20,7 +20,7 @@ export default class Form extends React.Component {
                 <FormField label="Username" value={this.props.username} onChange={this.updateUsername} />
                 <FormField label="Password" value={this.props.password} onChange={this.updatePassword} />
                 { this.displayError() }
-                <input type="submit" value={this.props.submitButtonName} />
+                <input type="submit" value="Log In" />
             </form>
         );
     }
