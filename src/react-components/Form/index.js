@@ -14,11 +14,12 @@ export default class Form extends React.Component {
     }
 
     render() {
+        const { successfulLoginLink, failureLoginLink, username, password } = this.props;
         return (
-            <form onSubmit={this.processCredentials} action={this.processCredentials() ?
-                this.props.successfulLoginLink : this.props.failureLoginLink} >
-                <FormField label="Username" value={this.props.username} onChange={this.updateUsername} />
-                <FormField label="Password" value={this.props.password} onChange={this.updatePassword} />
+            <form onSubmit={this.processCredentials} action={
+                this.processCredentials() ? successfulLoginLink : failureLoginLink} >
+                <FormField label="Username" value={username} onChange={this.updateUsername} />
+                <FormField label="Password" value={password} onChange={this.updatePassword} />
                 { this.displayError() }
                 <input type="submit" value="Log In" />
             </form>
