@@ -7,19 +7,7 @@ export default class Form extends React.Component {
         super(props);
         this.state = {
             username: '',
-            password: '',
-            errorMessages: {
-                missingUsername: "Username is missing.",
-                missingPassword: "Password is missing.",
-                incorrectUsername: "Username is incorrect.",
-                incorrectPassword: "Password is incorrect.",
-                nonexistingUsername: "New username does not exist.",
-                existingUsername: "New username already exists.",
-                weakPassword: "New password is not strong enough.",
-                strongPasswordForPasswordReset: "This existing username has a strong enough password.",
-                strongPasswordForRegistration: "This new username has a strong enough password.",
-                correctCredentials: "Username and password are correct."
-            }
+            password: ''
         };
     }
 
@@ -61,3 +49,14 @@ export default class Form extends React.Component {
     // This is an abstract class.
     displayError() { }
 }
+
+export const MISSING_USERNAME_ERROR_MSG = "Username is missing.";
+export const MISSING_PASSWORD_ERROR_MSG = "Password is missing.";
+export const INCORRECT_USERNAME_ERROR_MSG = "Username is incorrect.";
+export const INCORRECT_PASSWORD_ERROR_MSG = "Password is incorrect.";
+export const NONEXISTING_USERNAME_ERROR_MSG = "New username does not exist.";
+export const EXISTING_USERNAME_ERROR_MSG = "New username already exists.";
+export const WEAK_PASSWORD_ERROR_MSG = "New password is not strong enough.";
+export const STRONG_PASSWORD_FOR_PASSWORD_RESET_MSG = "This existing username has a strong enough password.";
+export const STRONG_PASSWORD_FOR_REGISTRATION_MSG = "This new username has a strong enough password.";
+export const CORRECT_CREDENTIALS_MSG = "Username and password are correct.";
