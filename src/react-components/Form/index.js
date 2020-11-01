@@ -1,6 +1,8 @@
 import React from 'react';
 import './styles.css';
 
+import FormField from '../Form Field';
+
 export default class Form extends React.Component {
     // I found this helpful: https://reactjs.org/docs/forms.html
     constructor(props) {
@@ -15,18 +17,8 @@ export default class Form extends React.Component {
         return (
             <form onSubmit={this.processCredentials} action={this.processCredentials() ?
                 this.props.successfulLoginLink : this.props.failureLoginLink} >
-                <div>
-                    <label>
-                        {this.props.label1}: <input type="text" name="username"
-                            value={this.props.username} onChange={this.updateUsername} />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        {this.props.label2}: <input type="text" name="password"
-                            value={this.props.password} onChange={this.updatePassword} />
-                    </label>
-                </div>
+                <FormField label="Username" value={this.props.username} onChange={this.updateUsername} />
+                <FormField label="Password" value={this.props.password} onChange={this.updatePassword} />
                 { this.displayError() }
                 <input type="submit" value={this.props.submitButtonName} />
             </form>
