@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-import FavouriteThing from '../../react-components/FavouriteThing';
+import FavouriteThing from '../Favourite Thing';
 export default class UserInfo extends React.Component {
 
   render(){

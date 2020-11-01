@@ -1,5 +1,5 @@
 import React from 'react';
-import FriendEntry from '../FreindEntry';
+import FriendEntry from '../Friend Entry';
 import {ListGroup} from 'react-bootstrap';
 import './styles.css';
 
