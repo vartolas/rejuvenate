@@ -1,5 +1,5 @@
 import React from 'react';
-import PostEntry from '../PostEntry';
+import PostEntry from '../Post Entry';
 import {ListGroup} from 'react-bootstrap';
 import './styles.css';
 
