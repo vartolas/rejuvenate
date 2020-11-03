@@ -1,9 +1,6 @@
 import './styles.css';
 import Form from '../Form';
 
-const CORRECT_ADMIN_USERNAME = "admin";
-const CORRECT_ADMIN_PASSWORD = "admin";
-
 export default class AdminForm extends Form {
     processCredentials() {
         return this.state.username !== '' &&
@@ -12,3 +9,6 @@ export default class AdminForm extends Form {
             this.state.password === CORRECT_ADMIN_PASSWORD;
     }
 }
+
+export const CORRECT_ADMIN_USERNAME = "admin";
+export const CORRECT_ADMIN_PASSWORD = "admin";

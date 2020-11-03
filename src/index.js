@@ -12,14 +12,15 @@ import AdminRegister from './views/Admin Register';
 import AdminPasswordReset from './views/Admin Password Reset';
 
 import Home from './views/Home';
+import AdminHome from './views/Admin Home';
 import Profile from './views/Profile';
 import Statistics from './views/Statistics';
-import CreateStatistic from './views/CreateStatistic';
-import AddFriend from './views/AddFriend';
-import RecordStatistics from './views/RecordStatistics';
+import CreateStatistics from './views/Create Statistic';
+import AddFriend from './views/Add Friend';
+import RecordStatistics from './views/Record Statistics';
 import Setting from './views/Setting';
 
-import TopNavbar from './react-components/TopNavbar';
+import TopNavbar from './react-components/Top Navbar';
 
 import './index.css';
 var user = null;
@@ -27,6 +28,7 @@ var user = null;
 class App extends React.Component{
     render() {
         return (
+<<<<<<< HEAD
                 <>
                 <TopNavbar/>
                 <BrowserRouter>
@@ -42,18 +44,36 @@ class App extends React.Component{
                     </Switch>
                 </BrowserRouter>
                 </>
+=======
+            <>
+            <TopNavbar/>
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path="/home" component={Home}/>
+                    <Route exact path="/admin home" component={AdminHome} />
+                    <Route exact path="/profile" component={Profile} />
+                    <Route exact path="/password reset" component={PasswordReset}/>
+                    <Route exact path="/statistics" component={Statistics}/>
+                    <Route exact path="/statistics/create" component={CreateStatistics}/>
+                    <Route exact path="/addFriend" component={AddFriend}/>
+                    <Route exact path="/recordStatistics" component={RecordStatistics}/>
+                    <Route exact path="/setting" component={Setting}/>
+                </Switch>
+            </BrowserRouter>
+            </>
+>>>>>>> e6bd17d3e252a8f8136cc0359f58934f0379b43d
         );
     }
     
     componentDidMount() {
-        if(user == null){
+        if (user == null) {
             console.log("user not logged in");
         }
     }
 }
 
 class AppLoginWrapper extends React.Component {
-    render () {
+    render() {
         return (
             <BrowserRouter>
                 <Switch>

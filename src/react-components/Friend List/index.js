@@ -1,5 +1,5 @@
 import React from 'react';
-import FriendEntry from '../FreindEntry';
+import FriendEntry from '../Friend Entry';
 import {ListGroup} from 'react-bootstrap';
 import './styles.css';
 
@@ -10,13 +10,11 @@ export default class FriendList extends React.Component {
       
       this.props.entries.forEach((entry) => {
         if (entry.name !== lastEntryName) {
-        rows.push(
-            <ListGroup.Item className="friendListItem">
-                <FriendEntry
-                    name={entry.name}
-                    avatar={entry.avatar} />
-            </ListGroup.Item>
-        );
+            rows.push(
+                <ListGroup.Item className="friendListItem">
+                    <FriendEntry name={entry.name} avatar={entry.avatar} />
+                </ListGroup.Item>
+            );
         }}
     );
     return (

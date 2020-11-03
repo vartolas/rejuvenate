@@ -5,8 +5,8 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 // import SpanLink from '../../react-components/SpanLink';
 // import TopNavbar from '../../react-components/TopNavbar';
 // import UserEntry from '../../react-components/FreindEntry';
-import FriendList from '../../react-components/FriendList';
-import PostList from '../../react-components/PostList';
+import FriendList from '../../react-components/Friend List';
+import PostList from '../../react-components/Post List';
 
 export default class Home extends React.Component {
       
