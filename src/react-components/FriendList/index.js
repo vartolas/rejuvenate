@@ -1,6 +1,7 @@
 import React from 'react';
 import FriendEntry from '../FreindEntry';
 import {ListGroup} from 'react-bootstrap';
+import { v4 as uuid } from 'uuid';
 import './styles.css';
 
 export default class FriendList extends React.Component {
@@ -11,7 +12,7 @@ export default class FriendList extends React.Component {
       this.props.entries.forEach((entry) => {
         if (entry.name !== lastEntryName) {
         rows.push(
-            <ListGroup.Item className="friendListItem">
+            <ListGroup.Item className="friendListItem" key={uuid()}>
                 <FriendEntry
                     name={entry.name}
                     avatar={entry.avatar} />
