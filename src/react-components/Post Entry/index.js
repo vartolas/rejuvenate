@@ -1,5 +1,6 @@
 import React from 'react';
 import {ListGroup} from 'react-bootstrap';
+import { v4 as uuid } from 'uuid';
 
 import './styles.css';
 
@@ -7,21 +8,28 @@ export default class PostEntry extends React.Component {
     render() {
         const {tag, content, user, comments, likes} = this.props;
         const commentRows = [];
+        let showcomments=[];
 
-        comments.forEach((userComment) => {
+        if (comments.length > 3){
+            showcomments = comments.slice(0, 3);
+        }
+        else{
+            showcomments = comments;
+        }
+        
+        showcomments.forEach((usercomment) => {
             commentRows.push(
-                <ListGroup.Item className="commentListItem">
-                    <div className="commentuser">{userComment.user}</div>
-                    <div className="comment">{userComment.comment}</div>
+                <ListGroup.Item className="commentListItem" key={uuid()}>
+                    <div className="commentuser">{usercomment.user}</div>
+                    <div className="comment">{usercomment.comment}</div>
                 </ListGroup.Item>
             );
         });
 
         const image = [];
-        if (content.picture === "") {
-            image.push(<img className='noimg' src={content.picture} alt="" />);
-        } else {
-            image.push(<img className='img' src={content.picture} alt="" />);
+
+        if (content.have_pic){
+            image.push(<img className='img' src={content.picture} key={uuid()}/>);
         }
         
         return (
