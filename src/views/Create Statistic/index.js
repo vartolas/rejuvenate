@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SpanLink from '../../react-components/SpanLink';
+import SpanLink from '../../react-components/Span Link';
 
 import './styles.css';
 

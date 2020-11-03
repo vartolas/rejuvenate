@@ -1,5 +1,5 @@
 import React from 'react';
-import PostEntry from '../PostEntry';
+import PostEntry from '../Post Entry';
 import {ListGroup} from 'react-bootstrap';
 import { v4 as uuid } from 'uuid';
 import './styles.css';

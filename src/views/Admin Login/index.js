@@ -8,9 +8,8 @@ export default class AdminLogin extends React.Component {
             <div id="adminLoginContainer">
                 <h1>This is the admin login page</h1>
                 <br></br>
-                {/* TODO: Add an admin home page. */}
                 <AdminLoginForm label1="Username" label2="Password"
-                    successfulLoginLink="/admin" failureLoginLink="/admin"
+                    successfulLoginLink="/admin home" failureLoginLink="/admin"
                     submitButtonName="Log in"
                 />
                 <br></br>
