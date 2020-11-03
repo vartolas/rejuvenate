@@ -8,9 +8,7 @@ export default class PostEntry extends React.Component {
     render() {
         const {tag, content, user, comments, likes} = this.props;
         const commentRows = [];
-
         let showcomments=[];
-        const commentrows=[];
 
         if (comments.length > 3){
             showcomments = comments.slice(0, 3);
@@ -18,8 +16,9 @@ export default class PostEntry extends React.Component {
         else{
             showcomments = comments;
         }
+        
         showcomments.forEach((usercomment) => {
-            commentrows.push(
+            commentRows.push(
                 <ListGroup.Item className="commentListItem" key={uuid()}>
                     <div className="commentuser">{usercomment.user}</div>
                     <div className="comment">{usercomment.comment}</div>
@@ -32,9 +31,6 @@ export default class PostEntry extends React.Component {
         if (content.have_pic){
             image.push(<img className='img' src={content.picture} key={uuid()}/>);
         }
-        // else{
-        //     image.push(<img className='img' src={content.picture}/>);
-        // }
         
         return (
             <div className="PostEntryContainer">
