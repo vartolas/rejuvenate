@@ -37,7 +37,7 @@ export default class UserInfo extends React.Component {
         </div>
         <div className='userInfoComponent' id='favouriteThings'>
           { /* Need to pull favourite things here, and use the user's name */ }
-          <p>{ firstName }'s Favourites</p>
+          <h4>{ firstName }'s Favourites</h4>
           { /* These images are just placeholders for now and should NOT be submitted!! */ }
           <div id='favouriteThingsContainer'>
             <FavouriteThing name='Bananas' imgSrc='https://pixy.org/src/442/thumbs350/4428098.jpg'/>
