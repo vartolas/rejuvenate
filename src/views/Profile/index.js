@@ -15,16 +15,23 @@ export default class Profile extends React.Component {
 
             <UserInfo isEditable={ profileIsEditable }/>
 
-            <div id='secondProfilePageBar'>
-              <ProfileUserConnections />
+            {/*
               <div className='profilePageComp' id='userStatsLinks'>
                 <SpanLink to='/statistics' name="This entire div will be a nicer-looking link to this user's stats. For now, its only this link that takes you there." />
               </div>
+            */}
+
+            <div id='middleProfilePageBar'>
+              <div className='profilePageComp' id='userStatsPreview'>
+                A preview of this user's stats goes here.
+              </div>
+
+              <div className='profilePageComp' id='userPosts'>
+                This user's posts go here.
+              </div>
             </div>
 
-            <div className='profilePageComp' id='userPosts'>
-              This div will contain this user's posts. (It will also fit to the rest of the page.)
-            </div>
+            <ProfileUserConnections />
 
           </div>
 

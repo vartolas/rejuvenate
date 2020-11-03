@@ -1,5 +1,9 @@
 #userConnections {
-  height: 480px;
+  margin: 10px 10px 0 0;
+}
+
+#userConnectionsList {
+  height: 705px;
   width: 300px;
   background-color: #323f45;
   overflow-y: scroll;
