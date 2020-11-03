@@ -74,7 +74,6 @@
 #favouriteThings {
   padding: 10px;
   height: 215px;
-
 }
 
 #favouriteThingsContainer {
@@ -89,8 +88,9 @@
   white-space: nowrap;
 }
 
-#favouriteThings p {
-  font-size: 24px;
+#favouriteThings h4 {
+  font-size: 20px;
   margin: 5px 0 10px 5px;
   color: rgb(200, 200, 210);
+  font-weight: normal;
 }

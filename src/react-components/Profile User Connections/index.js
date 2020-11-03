@@ -85,6 +85,31 @@ export default class ProfileUserConnections extends React.Component {
         name: "Mats Sundin",
         username: "sundinthequeen",
         profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "George Clooney",
+        username: "curiousgeorge00",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Pen Pencilman",
+        username: "pennythepencil",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Jim Lu",
+        username: "jimmmmlu",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Bart Baker",
+        username: "bartismart",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Ivan Lendl",
+        username: "lendlivan",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
       }
     ]
 
@@ -138,6 +163,31 @@ export default class ProfileUserConnections extends React.Component {
         name: "Mats Sundin",
         username: "sundinthequeen",
         profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "George Clooney",
+        username: "curiousgeorge00",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Pen Pencilman",
+        username: "pennythepencil",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Jim Lu",
+        username: "jimmmmlu",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Bart Baker",
+        username: "bartismart",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Ivan Lendl",
+        username: "lendlivan",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
       }
     ]
 
@@ -163,9 +213,9 @@ export default class ProfileUserConnections extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id='userConnections'>
         { this.renderNavBar() }
-        <div id='userConnections'>
+        <div id='userConnectionsList'>
           { this.renderUserConnections() }
         </div>
       </div>
