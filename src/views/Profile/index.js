@@ -1,10 +1,10 @@
 import React from 'react';
 import './styles.css';
 
-import UserInfo from '../../react-components/User Info'
-import SpanLink from '../../react-components/Span Link';
-import ProfileUserConnections from '../../react-components/Profile User Connections';
-import PostList from '../../react-components/Post List';
+import UserInfo from '../../react-components/UserInfo'
+import SpanLink from '../../react-components/SpanLink';
+import ProfileUserConnections from '../../react-components/ProfileUserConnections';
+import PostList from '../../react-components/PostList';
 
 // Need to pull this user's posts from somewhere.
 const posts = [

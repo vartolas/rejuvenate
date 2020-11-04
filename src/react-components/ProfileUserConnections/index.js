@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-import SmallProfileBar from '../Small Profile Bar';
+import SmallProfileBar from '../SmallProfileBar';
 
 export default class ProfileUserConnections extends React.Component {
 

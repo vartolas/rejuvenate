@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import AdminLoginForm from '../../react-components/Admin Login Form';
+import AdminLoginForm from '../../react-components/AdminLoginForm';
 
 export default class AdminLogin extends React.Component {
     render() {

@@ -1,8 +1,8 @@
 import React from 'react';
 import './styles.css';
-import UserForm from '../User Form';
+import UserForm from '../UserForm';
 
-import { CORRECT_REGULAR_USER_USERNAME, CORRECT_REGULAR_USER_PASSWORD } from "../User Form";
+import { CORRECT_REGULAR_USER_USERNAME, CORRECT_REGULAR_USER_PASSWORD } from "../UserForm";
 import {
     MISSING_USERNAME_ERROR_MSG, MISSING_PASSWORD_ERROR_MSG,
     INCORRECT_USERNAME_ERROR_MSG, INCORRECT_PASSWORD_ERROR_MSG,

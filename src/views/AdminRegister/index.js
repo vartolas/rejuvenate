@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import AdminRegisterForm from '../../react-components/Admin Register Form';
+import AdminRegisterForm from '../../react-components/AdminRegisterForm';
 
 export default class AdminRegister extends React.Component {
     render() {
@@ -16,7 +16,7 @@ export default class AdminRegister extends React.Component {
                 <form action="/admin">
                     <input type="submit" value="Go Back" />
                 </form>
-            </div>    
+            </div>
         );
     }
 }

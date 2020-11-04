@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import AdminPasswordResetForm from '../../react-components/Admin Password Reset Form';
+import AdminPasswordResetForm from '../../react-components/AdminPasswordResetForm';
 
 export default class AdminPasswordReset extends React.Component {
     render() {
@@ -16,7 +16,7 @@ export default class AdminPasswordReset extends React.Component {
                 <form action="/admin">
                     <input type="submit" value="Go Back" />
                 </form>
-            </div>    
+            </div>
         );
     }
 }
