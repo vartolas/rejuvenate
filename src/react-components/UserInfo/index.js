@@ -2,28 +2,41 @@ import React from 'react';
 import './styles.css';
 
 import FavouriteThing from '../FavouriteThing';
+
 export default class UserInfo extends React.Component {
 
-  render(){
-    // Must pull this data from somewhere.
-    const userInfo = {
-      firstName: 'John',
-      lastName: 'Doe',
-      username: 'johndoethebroe99',
-      profilePic: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-      numFollowers: 80,
-      numFollowing: 61,
-      bio: "Hi, my name is John and I like to run. Bananas are my " +
-      "favourite fruit because they're good in smoothies. I like drinking " +
-      "smoothies."
-    }
 
-    const { firstName, lastName, username, numFollowers, numFollowing, bio, profilePic } = userInfo;
+
+  displayViewableBio() {
+    const { firstName, lastName, username, profilePic, numFollowers, numFollowing, bio } = this.props.user;
+
+    return (
+      <div id='bio'>
+          <p>{ bio }</p>
+      </div>
+
+    )
+  }
+
+  // displayEditableBio() {
+  //   const { firstName, lastName, username, profilePic, bio } = this.props.user;
+  //
+  //   return (
+  //     <div>
+  //       <textarea id='bio' type='text'>{ bio }</textarea>
+  //     </div>
+  //   )
+  // }
+
+  render(){
+    const { firstName, lastName, username, profilePic, numFollowers, numFollowing, bio } = this.props.user;
+
 
     return (
       <div id='userInfo'>
         { /* Need to pull image, name, username, list of followers, list of users following, bio */ }
         <div className='userInfoComponent' id='userInfoMain'>
+          <span href='' id='editProfileText'>Edit Profile</span>
           <img src={ profilePic } alt='profile pic'/>
           <h1>{ firstName + " " + lastName }</h1>
           <h3>@{ username }</h3>
@@ -31,9 +44,7 @@ export default class UserInfo extends React.Component {
             <li><b>Followers</b><br /><span className='follow-amount'>{ numFollowers }</span></li>
             <li><b>Following</b><br /><span className='follow-amount'>{ numFollowing }</span></li>
           </ul>
-          <div id='bio'>
-            <p>{ bio }</p>
-          </div>
+          {this.props.profileIsEditable ? this.displayViewableBio() : this.displayViewableBio() }
         </div>
         <div className='userInfoComponent' id='favouriteThings'>
           { /* Need to pull favourite things here, and use the user's name */ }

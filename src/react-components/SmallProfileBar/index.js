@@ -6,7 +6,7 @@ export default class SmallProfileBar extends React.Component {
   getUnfollowButton() {
     if (!this.props.isFollower) {
       return (
-        <a id='unfollowButtonSmall'>Unfollow</a>
+        <span onClick={ () => this.props.unfollow(this.props.user) } id='unfollowButtonSmall'>Unfollow</span>
       )
     }
   }

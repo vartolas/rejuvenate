@@ -6,42 +6,233 @@ import SpanLink from '../../react-components/SpanLink';
 import ProfileUserConnections from '../../react-components/ProfileUserConnections';
 import PostList from '../../react-components/PostList';
 
-// Need to pull this user's posts from somewhere.
-const posts = [
-    {tag: 'Advice/Fitness', content: {text:'What do you guys think of my new kicks?!', picture:'https://www.womenshealthsa.co.za/wp-content/uploads/2019/03/PUMA-Hybrid-NX-TZ.jpg'},
-        user:{ username:'John Doe', avatar:'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'},
-        comments: [{user:'Cathy', comment: "Looks like you figured out how to post a pic!"}, {user:'Spiderman', comment: 'Fresh! Where from? I might have to get myself a pair!'}], likes: '12'},
-    {tag: 'General', content: {text:'I can\'t quite figure out how to post a picture... I wanna show off my new shoes!', picture:''},
-        user:{ username:'John Doe', avatar:'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'},
-        comments: [{user:'Cathy', comment: "Click the 'Add Image' icon!"}, {user:'Auston', comment: "Cmonnnn Jon it's right there"}], likes: '1'},
-  ];
+// Need to pull this user's information from somewhere.
+const user = {
+  firstName: 'John',
+  lastName: 'Doe',
+  username: 'johndoethebroe99',
+  profilePic: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+  bio: "Hi, my name is John and I like to run. Bananas are my " +
+  "favourite fruit because they're good in smoothies. I like drinking " +
+  "smoothies.",
+  posts: [
+      {
+        tag: 'Advice/Fitness',
+        content: {
+          text:'What do you guys think of my new kicks?!',
+          have_pic: true,
+          picture:'https://www.womenshealthsa.co.za/wp-content/uploads/2019/03/PUMA-Hybrid-NX-TZ.jpg'
+        },
+        user: {
+          username:'John Doe',
+          avatar:'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+        },
+        comments: [
+          {user:'Cathy', comment: "Looks like you figured out how to post a pic!"},
+          {user:'Spiderman', comment: 'Fresh! Where from? I might have to get myself a pair!'}
+        ],
+        likes: '12'
+      },
+      {
+        tag: 'Help',
+        content: {
+          text:'How do I post a picture?! I NEED to show off my new kicks!!!!!',
+          have_pic: false,
+          picture:''
+        },
+        user: {
+          username:'John Doe',
+          avatar:'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+        },
+        comments: [
+          {user:'Cathy', comment: "Click on 'add image' after clicking the '+' icon on the home page!"}
+        ],
+        likes: '1'
+      }
+      ],
+  following: [
+      {
+        name: "Demar DeRozan",
+        username: "dbo_10",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Kyle Lowry",
+        username: "bigklo7",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Neil Armstrong",
+        username: "spacelover00_",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "JJ Smith",
+        username: "jjjjssssmith",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Simona Halep",
+        username: "imi_place_tenisul",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Walter White",
+        username: "heisenberg1963",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Jesse Pinkman",
+        username: "yoyospicyyo",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Spiderman",
+        username: "spidey_99",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Auston Matthews",
+        username: "hitemwiththe4",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Mats Sundin",
+        username: "sundinthequeen",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "George Clooney",
+        username: "curiousgeorge00",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Pen Pencilman",
+        username: "pennythepencil",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Jim Lu",
+        username: "jimmmmlu",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Bart Baker",
+        username: "bartismart",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Ivan Lendl",
+        username: "lendlivan",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      }
+    ],
+  followers: [
+      {
+        name: "Steve Jones",
+        username: "jonesinator10984",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Jonathan Peters",
+        username: "johnthemon",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Mathy Cathy",
+        username: "catlover22",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Jessica Pearson",
+        username: "jessicaisthebestsica",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Harvey Spector",
+        username: "bestcloserinthecity",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Walter White",
+        username: "heisenberg1963",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Jesse Pinkman",
+        username: "yoyospicyyo",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Wonder Woman",
+        username: "wonderwoman",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Auston Matthews",
+        username: "hitemwiththe4",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Mats Sundin",
+        username: "sundinthequeen",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "George Clooney",
+        username: "curiousgeorge00",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Pen Pencilman",
+        username: "pennythepencil",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      },
+      {
+        name: "Jim Lu",
+        username: "jimmmmlu",
+        profilePicSrc: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+      }
+    ],
+  numFollowers: 13,
+  numFollowing: 15
+}
 
 export default class Profile extends React.Component {
 
+    state = user;
+
+    unfollow(followee) {
+      // MODIFIES STATE OUTSIDE OF SETSTATE. IS THIS OK?
+      this.state.following.splice(this.state.following.indexOf(followee), 1);
+      this.setState((state, props) => ({
+        numFollowing: state.numFollowing - 1
+      }));
+    }
+
     render() {
-      // Need to check whether this profile is the profile of the logged-in user.
-      const profileIsEditable = false;
-
       return (
-          <div id="profileContainer">
 
-            <UserInfo isEditable={ profileIsEditable }/>
+        <div id="profileContainer">
 
-            <div id='middleProfilePageBar'>
-              <div className='profilePageComp' id='userStatsPreview'>
-                <h4>John's Pinned Stats</h4>
-                <a href=''>See more of John's stats</a>
-              </div>
+          <UserInfo profileIsEditable={ true } user={ this.state } />
 
-              <div className='profilePageComp' id='userPosts'>
-                <PostList entries={posts} />
-              </div>
+          <div id='middleProfilePageBar'>
+            <div className='profilePageComp' id='userStatsPreview'>
+              <h4>John's Pinned Stats</h4>
+              <span id='viewMoreStatsText'>See more of John's stats</span>
             </div>
 
-            <ProfileUserConnections />
-
+            <div className='profilePageComp' id='userPosts'>
+              <PostList entries={ this.state.posts } />
+            </div>
           </div>
 
-      );
+          <ProfileUserConnections followers={ this.state.followers } following={ this.state.following } unfollow={ this.unfollow.bind(this) }/>
+
+
+        </div>
+      )
+
     }
 }
