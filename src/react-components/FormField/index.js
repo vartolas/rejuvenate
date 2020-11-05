@@ -7,7 +7,7 @@ export default class FormField extends React.Component {
         return (
             <div>
                 <label>
-                    {label}: <input type="text" value={value} onChange={onChange} />
+                    <input type="text" value={value} onChange={onChange} placeholder={label}/>
                 </label>
             </div>
         );
