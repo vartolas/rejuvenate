@@ -28,23 +28,6 @@ var user = null;
 class App extends React.Component{
     render() {
         return (
-<<<<<<< HEAD
-                <>
-                <TopNavbar/>
-                <BrowserRouter>
-                    <Switch>
-                        <Route exact path="/home" component={Home}/>
-                        <Route exact path="/profile" component={Profile} />
-                        <Route exact path="/password reset" component={PasswordReset}/>
-                        <Route exact path="/statistics" component={Statistics}/>
-                        <Route exact path="/statistics/create" component={CreateStatistic}/>
-                        <Route exact path="/addFriend" component={AddFriend}/>
-                        <Route exact path="/recordStatistics" component={RecordStatistics}/>
-                        <Route exact path="/setting" component={Setting}/>
-                    </Switch>
-                </BrowserRouter>
-                </>
-=======
             <>
             <TopNavbar/>
             <BrowserRouter>
@@ -55,13 +38,13 @@ class App extends React.Component{
                     <Route exact path="/password reset" component={PasswordReset}/>
                     <Route exact path="/statistics" component={Statistics}/>
                     <Route exact path="/statistics/create" component={CreateStatistics}/>
+                    <Route exact path="/statistics/edit" component={Statistics}/>
                     <Route exact path="/addFriend" component={AddFriend}/>
                     <Route exact path="/recordStatistics" component={RecordStatistics}/>
                     <Route exact path="/setting" component={Setting}/>
                 </Switch>
             </BrowserRouter>
             </>
->>>>>>> e6bd17d3e252a8f8136cc0359f58934f0379b43d
         );
     }
     

@@ -122,14 +122,15 @@ class StatChart extends React.Component {
             type: this.props.type,
             data: this.props.data,
             chart: null,
-            
         };
     }
     render(){
         return (
-            <div className="chartContainer">
-                <canvas className="chartCanvas" id={this.state.id}></canvas>
-            </div>    
+            <Link to="/recordStatistics">
+                <div className="chartContainer" onClick={this.handleClick}>
+                    <canvas className="chartCanvas" id={this.state.id}></canvas>
+                </div>    
+            </Link>
         );
     }
 
@@ -158,7 +159,9 @@ class StatChart extends React.Component {
             options: options,
         });
     }
+
 }
+
 
 const options = {
     responsive: true,
@@ -191,7 +194,7 @@ const options = {
 
         yAxes: [{
             scale: {
-                labelString: "X Axis"
+                labelString: "Y Axis"
             },
             display: true,
             gridLines: {
