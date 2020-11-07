@@ -38,19 +38,47 @@ export default class Login extends React.Component {
         this.setState({ password: e.target.value });
     }
 
-    // This is an abstract class.
-    processCredentials() { }
+    processCredentials() {
+        return this.state.username !== '' &&
+            this.state.password !== '' &&
+            ((this.state.username === CORRECT_REGULAR_USER_USERNAME &&
+                this.state.password === CORRECT_REGULAR_USER_PASSWORD) ||
+            (this.state.username === CORRECT_ADMIN_USERNAME &&
+                this.state.password === CORRECT_ADMIN_PASSWORD));
+    }
 
-    // This is an abstract class.
-    displayError() { }
+    displayError() { 
+        if (this.state.username === '') {
+            return <p>{MISSING_USERNAME_ERROR_MSG}</p>;
+        } else if (this.state.password === '') {
+            return <p>{MISSING_PASSWORD_ERROR_MSG}</p>;
+        } else if (this.state.username !== CORRECT_REGULAR_USER_USERNAME && this.state.username !== CORRECT_ADMIN_USERNAME) {
+            return <p>{INCORRECT_USERNAME_ERROR_MSG}</p>;
+        } else if (this.state.password !== CORRECT_REGULAR_USER_PASSWORD && this.state.username !== CORRECT_ADMIN_PASSWORD) {
+            return <p>{INCORRECT_PASSWORD_ERROR_MSG}</p>;
+        } else {
+            return <p>{CORRECT_CREDENTIALS_MSG}</p>;
+        }
+    }
+
+    logIn() {
+        if (this.state.username === CORRECT_REGULAR_USER_USERNAME &&
+            this.state.password === CORRECT_REGULAR_USER_PASSWORD) {
+            return "/home";
+        } else if (this.state.username === CORRECT_ADMIN_USERNAME &&
+            this.state.password === CORRECT_ADMIN_PASSWORD) {
+            return "/admin home";
+        } else {
+            return "/";
+        }
+    }
 
     render() {
         return (
             <div id="loginContainer">
                 <h1>Rejuvenate</h1>
                 <div id="loginComponent">
-                    <form onSubmit={this.processCredentials} action={
-                        this.processCredentials() ? "/home" : "/"} >
+                    <form onSubmit={this.processCredentials} action={this.logIn()} >
                         <div>
                             <label>
                                 <input type="text" value={this.state.username} onChange={this.updateUsername} placeholder="Username"/>
@@ -61,7 +89,6 @@ export default class Login extends React.Component {
                                 <input type="text" value={this.state.password} onChange={this.updatePassword} placeholder="Password"/>
                             </label>
                         </div>
-                        <br></br>
                         { this.displayError() }
                         <input type="submit" value="Log In" />
                     </form>
