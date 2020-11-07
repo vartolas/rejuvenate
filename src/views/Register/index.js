@@ -78,7 +78,7 @@ export default class Register extends React.Component {
             <div id="registerContainer">
                 <h1>Rejuvenate</h1>
                 <div id="registerComponent">
-                    <form onSubmit={this.processCredentials()} action={this.logIn()} >
+                    <form onSubmit={this.processCredentials} action={this.logIn()} >
                         <div>
                             <label>
                                 <input type="text" value={this.state.username} onChange={this.updateUsername} placeholder="New Username"/>
