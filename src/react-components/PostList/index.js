@@ -17,7 +17,7 @@ export default class PostList extends React.Component {
                     picture={entry.picture}
                     user={entry.user}
                     comments={entry.comments}
-                    like={entry.likes}
+                    likes={entry.likes}
                     />
             </ListGroup.Item>
         );

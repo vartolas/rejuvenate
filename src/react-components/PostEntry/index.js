@@ -1,10 +1,32 @@
 import React from 'react';
 import {ListGroup} from 'react-bootstrap';
 import { v4 as uuid } from 'uuid';
+import {IconButton} from '@material-ui/core';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import './styles.css';
 
 export default class PostEntry extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            liked: false,
+        };
+    }
+
+    handleLike(){
+        if (this.state.liked){
+            this.setState({
+                liked: false,
+            })
+        }else{
+            this.setState({
+                liked: true,
+            })
+        }
+    }
+
     render() {
         const {tag, content, user, comments, likes} = this.props;
         const commentRows = [];
@@ -41,7 +63,13 @@ export default class PostEntry extends React.Component {
                 </div>
                 <div className="text">{content.text}</div>
                 <div className="imageContainer">{image}</div>
-                <div className="likes">{likes}</div>
+
+                <div className="likes">
+                    <IconButton className="likeButton" onClick={this.handleLike.bind(this)}>
+                        {this.state.liked ? <FavoriteIcon className="filledLikeIcon"/> : <FavoriteBorderIcon className="likeIcon"/> }
+                    </IconButton>
+                    <div className="likeNum">{likes}</div>
+                </div>
                 <ListGroup className="commentSection">{commentRows}</ListGroup>
             </div>
         );

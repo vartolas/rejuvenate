@@ -35,18 +35,47 @@
 }
 
 .img {
-  padding-top: 15px;
-  padding-left: 60px;
-  padding-bottom: 30px;
-  max-width: 90%;
-  max-height: 90%;
-  min-width: 20%;
-  min-height: 20%;
+	padding-top: 15px;
+	padding-left: 60px;
+	padding-bottom: 30px;
+	max-width: 90%;
+	max-height: 90%;
+	min-width: 20%;
+	min-height: 20%;
 }
 
 .noimg {
-  width: 0px;
-  height: 0px;
+	width: 0px;
+	height: 0px;
+}
+
+.likes {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.likeButton {
+	color: #ffffff;
+}
+
+.likeIcon {
+	color: #ffffff;
+}
+
+.filledLikeIcon {
+	color: #ffffff;
+}
+
+.likeNum {
+	display: flex;
+	flex-direction: column;
+	color: #ffffff;
+	font-size: large;
+	font-weight: bold;
+	margin-right: 4%;
+	margin-bottom: 11px;
+	justify-content: flex-end;
 }
 
 .commentListItem {
