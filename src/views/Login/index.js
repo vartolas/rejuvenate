@@ -6,9 +6,11 @@ export default class Login extends React.Component {
     render() {
         return (
             <div id="loginContainer">
+                <h1>Rejuvenate</h1>
                 <div id="loginComponent">
-                    <UserLoginForm label1="Username" label2="Password"
-                        successfulLoginLink="/home" failureLoginLink="/"
+                    <UserLoginForm
+                        successfulLoginLink="/home"
+                        failureLoginLink="/"
                         submitButtonName="Log in"
                     />
                     <br></br>
