@@ -100,7 +100,6 @@ export default class Login extends React.Component {
                     <form action="/password reset">
                         <input type="submit" value="Reset Password" />
                     </form>
-                    <br></br>
                 </div>
             </div>
         );
