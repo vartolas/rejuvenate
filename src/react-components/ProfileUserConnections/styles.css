@@ -1,0 +1,51 @@
+#userConnections {
+  margin: 10px 10px 0 0;
+}
+
+#userConnectionsList {
+  height: 705px;
+  width: 300px;
+  background-color: #323f45;
+  overflow-y: scroll;
+  padding-top: 10px;
+}
+
+#userConnectionsNav {
+  height: 30px;
+  width: 100%;
+  background-color: #647d88;
+  color: #323f45;
+  position: relative;
+}
+
+#userConnectionsNav ul {
+  margin: 0;
+  text-align: center;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#userConnectionsNav li {
+  list-style: none;
+  width: 50%;
+  height: 100%;
+  float: left;
+  box-sizing: border-box;
+  position: relative;
+  font-size: 16px;
+  padding-top: 6px;
+}
+
+#userConnectionsNav li:hover {
+  cursor: pointer;
+  /* background-color: rgb(110, 110, 120); */
+}
+
+/* .pushTextDown {
+  margin-top: 10px;
+} */
+
+.blackBottomBorder {
+  border-bottom: solid 2px #323f45;
+}

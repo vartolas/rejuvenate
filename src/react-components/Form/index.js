@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-import FormField from '../Form Field';
+import FormField from '../FormField';
 
 export default class Form extends React.Component {
     // I found this helpful: https://reactjs.org/docs/forms.html
