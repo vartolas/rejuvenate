@@ -13,8 +13,8 @@ const user = {
   username: 'johndoethebroe99',
   profilePic: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
   bio: "Hi, my name is John and I like to run. Bananas are my " +
-  "favourite fruit because they're good in smoothies. I like drinking " +
-  "smoothies.",
+  "favourite fruit because they're easy to pack.",
+  favouriteThings: ['Bananas', 'Jogging', 'Hockey', 'Salads'],
   posts: [
       {
         tag: 'Advice/Fitness',
@@ -210,12 +210,24 @@ export default class Profile extends React.Component {
       }));
     }
 
+    setFavourites(a) {
+      this.setState({favouriteThings: a});
+    }
+
+    setBio(newBio) {
+      this.setState({bio: newBio});
+    }
+
+    updateFavouriteThings(newFavouriteThings) {
+      this.setState({favouriteThings: newFavouriteThings});
+    }
+
     render() {
       return (
 
         <div id="profileContainer">
 
-          <UserInfo profileIsEditable={ true } user={ this.state } />
+          <UserInfo user={ this.state } setFavourites={ this.setFavourites.bind(this) } setBio={ this.setBio.bind(this) } updateFavouriteThings={ this.updateFavouriteThings.bind(this) }/>
 
           <div id='middleProfilePageBar'>
             <div className='profilePageComp' id='userStatsPreview'>
