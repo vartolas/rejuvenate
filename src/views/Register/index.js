@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import UserRegisterForm from '../../react-components/User Register Form';
+import UserRegisterForm from '../../react-components/UserRegisterForm';
 
 export default class Register extends React.Component {
     render() {
@@ -16,7 +16,7 @@ export default class Register extends React.Component {
                 <form action="/">
                     <input type="submit" value="Go Back" />
                 </form>
-            </div>    
+            </div>
         );
     }
 }

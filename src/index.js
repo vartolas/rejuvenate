@@ -3,24 +3,24 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//views 
+//views
 import Login from './views/Login';
 import Register from './views/Register';
-import PasswordReset from './views/Password Reset';
-import AdminLogin from './views/Admin Login';
-import AdminRegister from './views/Admin Register';
-import AdminPasswordReset from './views/Admin Password Reset';
+import PasswordReset from './views/PasswordReset';
+import AdminLogin from './views/AdminLogin';
+import AdminRegister from './views/AdminRegister';
+import AdminPasswordReset from './views/AdminPasswordReset';
 
 import Home from './views/Home';
-import AdminHome from './views/Admin Home';
+import AdminHome from './views/AdminHome';
 import Profile from './views/Profile';
 import Statistics from './views/Statistics';
-import CreateStatistics from './views/Create Statistic';
-import AddFriend from './views/Add Friend';
-import RecordStatistics from './views/Record Statistics';
+import CreateStatistics from './views/CreateStatistic';
+import AddFriend from './views/AddFriend';
+import RecordStatistics from './views/RecordStatistics';
 import Setting from './views/Setting';
 
-import TopNavbar from './react-components/Top Navbar';
+import TopNavbar from './react-components/TopNavbar';
 
 import './index.css';
 var user = null;
@@ -64,7 +64,7 @@ class App extends React.Component{
 >>>>>>> e6bd17d3e252a8f8136cc0359f58934f0379b43d
         );
     }
-    
+
     componentDidMount() {
         if (user == null) {
             console.log("user not logged in");
@@ -91,4 +91,3 @@ class AppLoginWrapper extends React.Component {
 }
 
 ReactDOM.render(<AppLoginWrapper/>, document.getElementById('root'));
-

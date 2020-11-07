@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import UserLoginForm from '../../react-components/User Login Form';
+import UserLoginForm from '../../react-components/UserLoginForm';
 
 export default class Login extends React.Component {
     render() {
