@@ -7,9 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './views/Login';
 import Register from './views/Register';
 import PasswordReset from './views/PasswordReset';
-import AdminLogin from './views/AdminLogin';
-import AdminRegister from './views/AdminRegister';
-import AdminPasswordReset from './views/AdminPasswordReset';
 
 import Home from './views/Home';
 import CreatePost from './views/CreatePost';
@@ -64,9 +61,6 @@ class AppLoginWrapper extends React.Component {
                     <Route exact path="/" component={Login} />
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/password reset" component={PasswordReset} />
-                    <Route exact path="/admin" component={AdminLogin} />
-                    <Route exact path="/admin register" component={AdminRegister} />
-                    <Route exact path="/admin password reset" component={AdminPasswordReset} />
                     <Route path="/" component={App} />
                 </Switch>
             </BrowserRouter>
