@@ -41,6 +41,7 @@ export default class Register extends React.Component {
         this.setState({ password: e.target.value });
     }
 
+    // TODO: I may not need this function.
     processCredentials() {
         return this.state.username !== '' &&
             this.state.password !== '' &&
@@ -50,6 +51,7 @@ export default class Register extends React.Component {
                 this.state.password === CORRECT_ADMIN_PASSWORD));
     }
 
+    // TODO: In phase 2, we plan on verifying user/admin credentials against a database.
     displayError() {
         if (this.state.username === '') {
             return <p>{MISSING_USERNAME_ERROR_MSG}</p>;
@@ -61,6 +63,28 @@ export default class Register extends React.Component {
             return <p>{WEAK_PASSWORD_ERROR_MSG}</p>;
         } else {
             return <p>{STRONG_PASSWORD_FOR_REGISTRATION_MSG}</p>;
+        }
+    }
+
+    // TODO: In phase 2, we plan on verifying user/admin credentials against a database.
+    displayUsernameError() {
+        if (this.state.username === '') {
+            return MISSING_USERNAME_ERROR_MSG;
+        } else if (this.state.username !== CORRECT_REGULAR_USER_USERNAME && this.state.username !== CORRECT_ADMIN_USERNAME) {
+            return EXISTING_USERNAME_ERROR_MSG;
+        } else {
+            return '';
+        }
+    }
+
+    // TODO: In phase 2, we plan on verifying user/admin credentials against a database.
+    displayPasswordError() {
+        if (this.state.password === '') {
+            return MISSING_PASSWORD_ERROR_MSG;
+        } else if (this.state.password !== CORRECT_REGULAR_USER_PASSWORD && this.state.username !== CORRECT_ADMIN_PASSWORD) {
+            return WEAK_PASSWORD_ERROR_MSG;
+        } else {
+            return '';
         }
     }
 
@@ -82,27 +106,25 @@ export default class Register extends React.Component {
                 <h1>Rejuvenate</h1>
                 <div id="registerComponent">
                     <FormControl>
-                        {/* <TextField
-                            error
-                            id="standard-error-helper-text"
-                            label="Username"
-                            helperText={MISSING_USERNAME_ERROR_MSG}
-                        /> */}
                         <TextField
-                            id="standard-username-input"
+                            id="usernameTextbox"
                             value={this.state.username}
                             onChange={this.updateUsername}
                             label="New Username"
+                            error={!this.state.username}
+                            helperText={this.displayUsernameError()}
                         />
                         <TextField
-                            id="standard-password-input"
+                            id="passwordTextbox"
                             value={this.state.password}
                             onChange={this.updatePassword}
                             label="New Password"
                             type="password"
+                            error={!this.state.password}
+                            helperText={this.displayPasswordError()}
                         />
                         <br></br>
-                        <Button href={this.logIn().toString()} variant="contained" color="primary" disableElevation >
+                        <Button href={this.logIn().toString()} variant="contained" color="primary" disableElevation>
                             Register
                         </Button>
                         <br></br>
@@ -111,7 +133,6 @@ export default class Register extends React.Component {
                         </Button>
                         <br></br>
                     </FormControl>
-                    { this.displayError() }
                 </div>
             </div>
         );
