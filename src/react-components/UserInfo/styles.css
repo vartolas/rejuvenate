@@ -53,10 +53,10 @@
   color: #647d88;
 }
 
-#userInfoMain li:hover{
+/* #userInfoMain li:hover{
   cursor: pointer;
   background-color: #38474e;
-}
+} */
 
 #userInfoMain .follow-amount {
   font-size: 20px;

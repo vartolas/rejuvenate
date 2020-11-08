@@ -4,13 +4,20 @@
   height: 50px;
   background-color: #38474e;
   margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+#smallProfileBar:hover {
+  cursor: pointer;
+  background-color: #48575e;
 }
 
 #smallProfileImg {
-  margin: 3px;
+  margin: 5px;
   height: 40px;
   width: 40px;
   float: left;
+  border-radius: 50%;
   border: 2px solid #1e272b;
 }
 

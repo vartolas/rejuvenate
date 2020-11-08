@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.css';
 import {BrowserRouter} from 'react-router-dom';
 import {Navbar,Nav,NavDropdown} from 'react-bootstrap'
+import SearchBar from '../../react-components/SearchBar';
 
 export default class TopNavbar extends React.Component {
     render(){
@@ -12,6 +13,7 @@ export default class TopNavbar extends React.Component {
                         <Navbar.Brand href="/home">Fitness App</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
+                        <SearchBar />
                         <Nav className="navContent">
                             <Nav.Link href="/profile">Profile</Nav.Link>
                             <Nav.Link href="/addFriend">Add Friend</Nav.Link>
