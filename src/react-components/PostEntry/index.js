@@ -1,77 +1,98 @@
-import React from 'react';
-import {ListGroup} from 'react-bootstrap';
-import { v4 as uuid } from 'uuid';
-import {IconButton} from '@material-ui/core';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import React from "react";
+import { ListGroup } from "react-bootstrap";
+import { v4 as uuid } from "uuid";
+import { IconButton } from "@material-ui/core";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { addLike, removeLike } from "../../actions/post";
+import { getCurrentUser, getUsers } from "../../userData";
 
-import './styles.css';
+import "./styles.css";
 
 export default class PostEntry extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            liked: false,
-        };
-    }
+	constructor(props) {
+		super(props);
+		const likes = this.props.entry.likes;
+		const currentUid = getCurrentUser();
+		this.state = {
+			liked: likes.includes(currentUid),
+			currentUid: currentUid,
+		};
+	}
 
-    handleLike(){
-        if (this.state.liked){
-            this.setState({
-                liked: false,
-            })
-        }else{
-            this.setState({
-                liked: true,
-            })
-        }
-    }
+	handleLike() {
+		if (this.state.liked) {
+			this.setState({
+				liked: false,
+			});
+			removeLike(
+				this.props.entry,
+				this.props.listComponent,
+				this.state.currentUid
+			);
+		} else {
+			this.setState({
+				liked: true,
+			});
+			addLike(
+				this.props.entry,
+				this.props.listComponent,
+				this.state.currentUid
+			);
+		}
+	}
 
-    render() {
-        const {tag, content, user, comments, likes} = this.props;
-        const commentRows = [];
-        let showcomments=[];
+	render() {
+		const { tag, content, uid, comments, likes } = this.props.entry;
+		const users = getUsers();
+		const user = users[uid];
+		const commentRows = [];
+		let showcomments = [];
 
-        if (comments.length > 3){
-            showcomments = comments.slice(0, 3);
-        }
-        else{
-            showcomments = comments;
-        }
-        
-        showcomments.forEach((usercomment) => {
-            commentRows.push(
-                <ListGroup.Item className="commentListItem" key={uuid()}>
-                    <div className="commentuser">{usercomment.user}</div>
-                    <div className="comment">{usercomment.comment}</div>
-                </ListGroup.Item>
-            );
-        });
+		if (comments.length > 3) {
+			showcomments = comments.slice(0, 3);
+		} else {
+			showcomments = comments;
+		}
 
-        const image = [];
+		showcomments.forEach((usercomment) => {
+			const commentUser = users[usercomment.uid];
+			commentRows.push(
+				<ListGroup.Item className="commentListItem" key={uuid()}>
+					<div className="commentuser">{commentUser.username}</div>
+					<div className="comment">{usercomment.comment}</div>
+				</ListGroup.Item>
+			);
+		});
 
-        if (content.have_pic){
-            image.push(<img className='img' src={content.picture} key={uuid()}/>);
-        }
-        
-        return (
-            <div className="PostEntryContainer">
-                <div className="tag">{tag}</div>
-                <div className="user">
-                    <img className="avatar" src={user.avatar} alt="" />
-                    <div className="username">{user.username}</div>
-                </div>
-                <div className="text">{content.text}</div>
-                <div className="imageContainer">{image}</div>
+		const image = [];
 
-                <div className="likes">
-                    <IconButton className="likeButton" onClick={this.handleLike.bind(this)}>
-                        {this.state.liked ? <FavoriteIcon className="filledLikeIcon"/> : <FavoriteBorderIcon className="likeIcon"/> }
-                    </IconButton>
-                    <div className="likeNum">{likes}</div>
-                </div>
-                <ListGroup className="commentSection">{commentRows}</ListGroup>
-            </div>
-        );
-    }
+		if (content.have_pic === 1) {
+			image.push(<img className="img" src={content.picture} key={uuid()} />);
+		}
+
+		return (
+			<div className="PostEntryContainer">
+				<div className="tag">{tag}</div>
+				<div className="user">
+					<img className="avatar" src={user.profilePic} alt="" />
+					<div className="username">{user.username}</div>
+				</div>
+				<div className="text">{content.text}</div>
+				<div className="imageContainer">{image}</div>
+
+				<div className="likes">
+					<IconButton className="likeButton" onClick={() => this.handleLike()}>
+						{this.state.liked ? (
+							<FavoriteIcon className="filledLikeIcon" />
+						) : (
+							<FavoriteBorderIcon className="likeIcon" />
+						)}
+					</IconButton>
+					<div className="likeNum">{likes.length}</div>
+				</div>
+				<ListGroup className="commentSection">{commentRows}</ListGroup>
+			</div>
+		);
+	}
 }
