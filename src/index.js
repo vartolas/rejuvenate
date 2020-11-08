@@ -12,6 +12,7 @@ import AdminRegister from './views/AdminRegister';
 import AdminPasswordReset from './views/AdminPasswordReset';
 
 import Home from './views/Home';
+import CreatePost from './views/CreatePost';
 import AdminHome from './views/AdminHome';
 import Profile from './views/Profile';
 import Statistics from './views/Statistics';
@@ -33,6 +34,7 @@ class App extends React.Component{
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/home" component={Home}/>
+                    <Route exact path="/home/create" component={CreatePost}/>
                     <Route exact path="/admin home" component={AdminHome} />
                     <Route exact path="/profile" component={Profile} />
                     <Route exact path="/password reset" component={PasswordReset}/>
