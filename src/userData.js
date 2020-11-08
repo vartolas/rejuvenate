@@ -16,10 +16,14 @@ export function getFavouriteThings() {
 }
 
 // The key of the user whose profile page was last displayed (or is otherwise being displayed).
-export function getCurrentUser() {
-	const currentUser = 0;
+const currentUser = 0;
 
-	return currentUser;
+export function setCurrentUser(id) {
+  currentUser = id;
+}
+
+export function getCurrentUser() {
+  return currentUser;
 }
 
 // The user with key 0 is the logged-in user.
