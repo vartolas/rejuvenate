@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.css';
+import '../../userData.js'
 
 import SmallProfileBar from '../../react-components/SmallProfileBar';
 
