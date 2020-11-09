@@ -1,0 +1,89 @@
+.createPostContainer {
+	width: 100%;
+	height: 46vh;
+	background-color: #323f45;
+}
+
+.createPost {
+	width: 86%;
+	margin-left: 6%;
+}
+
+.tagLabel {
+	margin-top: 1%;
+	font-size: large;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.tagSelect {
+	width: 20%;
+}
+
+.contentLabel {
+	font-size: large;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.contentInput {
+	width: 100%;
+}
+
+.inputPicture {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputPicture + label {
+	margin-top: 1%;
+	width: 140px;
+	height: 26px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border: solid 1px transparent;
+	background: #ffffff;
+	color: black;
+	font-size: 14px;
+	font-weight: 300;
+	padding: 2px 12px;
+	text-decoration: none;
+	transition: all 0.1s ease-in-out;
+	margin-bottom: 1%;
+}
+
+.inputPicture:focus + label,
+.inputPicture + label:hover {
+	background-color: transparent;
+	transition: all 0.1s ease-in-out;
+	border-color: #fff;
+	color: #fff;
+	cursor: pointer; /* "hand" cursor */
+}
+
+.postButton {
+	margin-top: 1%;
+	margin-left: 26%;
+	display: block;
+	width: 400px;
+	height: 40px;
+	border-radius: 18px;
+	background-color: #fff;
+	border: solid 1px transparent;
+	color: #323f45;
+	font-size: 18px;
+	font-weight: 300;
+	cursor: pointer;
+	transition: all 0.1s ease-in-out;
+}
+
+.postButton:hover {
+	background-color: transparent;
+	border-color: #fff;
+	transition: all 0.1s ease-in-out;
+}

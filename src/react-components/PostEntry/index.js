@@ -1,49 +1,128 @@
-import React from 'react';
-import {ListGroup} from 'react-bootstrap';
-import { v4 as uuid } from 'uuid';
+import React from "react";
+import { ListGroup, Form, Button } from "react-bootstrap";
+import { v4 as uuid } from "uuid";
+import { IconButton } from "@material-ui/core";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { addLike, removeLike, addComment } from "../../actions/post";
+import { getLoggInUser, getUsers } from "../../userData";
 
-import './styles.css';
+import "./styles.css";
 
 export default class PostEntry extends React.Component {
-    render() {
-        const {tag, content, user, comments, likes} = this.props;
-        const commentRows = [];
-        let showcomments=[];
+	constructor(props) {
+		super(props);
+		const likes = this.props.entry.likes;
+		const currentUid = getLoggInUser();
+		this.state = {
+			liked: likes.includes(currentUid),
+			currentUid: currentUid,
+		};
+	}
 
-        if (comments.length > 3){
-            showcomments = comments.slice(0, 3);
-        }
-        else{
-            showcomments = comments;
-        }
-        
-        showcomments.forEach((usercomment) => {
-            commentRows.push(
-                <ListGroup.Item className="commentListItem" key={uuid()}>
-                    <div className="commentuser">{usercomment.user}</div>
-                    <div className="comment">{usercomment.comment}</div>
-                </ListGroup.Item>
-            );
-        });
+	handleLike() {
+		if (this.state.liked) {
+			removeLike(
+				this.props.entry,
+				this.props.listComponent,
+				this.state.currentUid
+			);
+			this.setState({
+				liked: false,
+			});
+		} else {
+			addLike(
+				this.props.entry,
+				this.props.listComponent,
+				this.state.currentUid
+			);
+			this.setState({
+				liked: true,
+			});
+		}
+	}
 
-        const image = [];
+	onKeyUp(event) {
+		if (event.key === "Enter") {
+			const commentText = event.target.value;
+			addComment(
+				this.props.entry,
+				this.props.listComponent,
+				commentText,
+				this.state.currentUid
+			);
+		}
+	}
 
-        if (content.have_pic){
-            image.push(<img className='img' src={content.picture} key={uuid()}/>);
-        }
-        
-        return (
-            <div className="PostEntryContainer">
-                <div className="tag">{tag}</div>
-                <div className="user">
-                    <img className="avatar" src={user.avatar} alt="" />
-                    <div className="username">{user.username}</div>
-                </div>
-                <div className="text">{content.text}</div>
-                <div className="imageContainer">{image}</div>
-                <div className="likes">{likes}</div>
-                <ListGroup className="commentSection">{commentRows}</ListGroup>
-            </div>
-        );
-    }
+	render() {
+		const { tag, content, uid, comments, likes } = this.props.entry;
+		const users = getUsers();
+		let user = null;
+		Object.keys(users).forEach((key) => {
+			if (key === uid.toString()) {
+				user = users[key];
+			}
+		});
+		const commentRows = [];
+		let showcomments = [];
+
+		//Setting the maximum number of posts to 3.
+
+		// if (comments.length > 3) {
+		// 	showcomments = comments.slice(0, 3);
+		// } else {
+		// 	showcomments = comments;
+		// }
+
+		//Remove this if there is a maxmum number of posts
+		showcomments = comments;
+
+		showcomments.forEach((usercomment) => {
+			const commentUser = users[usercomment.uid];
+			commentRows.push(
+				<ListGroup.Item className="commentListItem" key={uuid()}>
+					<div className="commentuser">{commentUser.username}</div>
+					<div className="comment">{usercomment.comment}</div>
+				</ListGroup.Item>
+			);
+		});
+
+		const image = [];
+
+		if (content.have_pic === 1) {
+			image.push(<img className="img" src={content.picture} key={uuid()} />);
+		}
+
+		return (
+			<div className="postEntryContainer">
+				<div className="tag">{tag}</div>
+				<div className="user">
+					<img className="avatar" src={user.profilePic} alt="" />
+					<div className="username">{user.username}</div>
+				</div>
+				<div className="text">{content.text}</div>
+				<div className="imageContainer">{image}</div>
+
+				<div className="likes">
+					<IconButton className="likeButton" onClick={() => this.handleLike()}>
+						{this.state.liked ? (
+							<FavoriteIcon className="filledLikeIcon" />
+						) : (
+							<FavoriteBorderIcon className="likeIcon" />
+						)}
+					</IconButton>
+					<div className="likeNum">{likes.length}</div>
+				</div>
+				<div className="comments">
+					<ListGroup className="commentSection">{commentRows}</ListGroup>
+					<Form.Control
+						className="commentInput"
+						type="text"
+						placeholder="Write Your Comment!"
+						onKeyPress={this.onKeyUp.bind(this)}
+					/>
+				</div>
+			</div>
+		);
+	}
 }
