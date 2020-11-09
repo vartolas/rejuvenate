@@ -19,10 +19,6 @@ export default class ViewableProfile extends React.Component {
       this.forceUpdate()
     }
 
-    componentDidMount() {
-      console.log("did mount")
-    }
-
     getStateObject() {
       // Set up initial profile state.
       const users = getUsers();
@@ -68,8 +64,6 @@ export default class ViewableProfile extends React.Component {
     setStateOutsideConstructor() {
       this.setState(this.getStateObject());
       console.log("set state outside")
-      console.log(this.state, this.props)
-
     }
 
     unfollow(followee) {
@@ -91,15 +85,46 @@ export default class ViewableProfile extends React.Component {
       this.setState({favouriteThings: newFavouriteThings});
     }
 
+    getIndexOfLoggedInUserInFollowersList() {
+      let indexOfLoggedInUser = -1;
+      for (let i = 0; i < this.state.followers.length; i++) {
+        if (this.state.followers[i].uid == 0) {
+          indexOfLoggedInUser = i;
+        }
+      }
+      return indexOfLoggedInUser;
+    }
 
+    toggleFollow() {
+      const indexOfLoggedInUser = this.getIndexOfLoggedInUserInFollowersList()
+
+      const newFollowers = this.state.followers;
+      if (indexOfLoggedInUser != -1) {
+        newFollowers.splice(indexOfLoggedInUser, 1);
+      } else {
+        const loggedInUser = getUsers()[0];
+        newFollowers.push({
+          uid: 0,
+          name: loggedInUser.firstName + " " + loggedInUser.lastName,
+          username: loggedInUser.username,
+          imgSrc: loggedInUser.profilePic
+        })
+      }
+
+      let delta = 1;
+      if (indexOfLoggedInUser != -1) {
+        delta = -1;
+      }
+
+      this.setState({ followers: newFollowers, numFollowers: this.state.numFollowers + delta });
+    }
 
     render() {
-
 
       return (
         <div id="profileContainer">
 
-          <ViewableUserInfo user={ this.state } />
+          <ViewableUserInfo canFollow={ this.getIndexOfLoggedInUserInFollowersList() === -1 ? true : false } toggleFollow={ this.toggleFollow.bind(this) } user={ this.state } />
 
           <div id='middleProfilePageBar'>
             <div className='profilePageComp' id='userStatsPreview'>

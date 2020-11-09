@@ -37,10 +37,13 @@ export default class ViewableUserInfo extends React.Component {
           <img src={ profilePic } alt='profile pic'/>
           <h1>{ firstName + " " + lastName }</h1>
           <h3>@{ username }</h3>
-          <ul>
+          <div onClick={ this.props.toggleFollow } id='profileFollowButton'>{ this.props.canFollow ? 'Follow' : 'Unfollow' }</div>
+          {/*
+            <ul>
             <li><b>Followers</b><br /><span className='follow-amount'>{ numFollowers }</span></li>
             <li><b>Following</b><br /><span className='follow-amount'>{ numFollowing }</span></li>
           </ul>
+          */}
           { this.displayViewableBio() }
         </div>
         <div className='userInfoComponent' id='favouriteThings'>

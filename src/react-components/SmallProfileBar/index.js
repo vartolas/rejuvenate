@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import { Link } from "react-router-dom";
+import { Link, refresh } from "react-router-dom";
 
 export default class SmallProfileBar extends React.Component {
 
@@ -23,7 +23,7 @@ export default class SmallProfileBar extends React.Component {
 
     return (
       <div>
-        <Link to={linkTarget}>
+        <Link onClick={ () => {this.forceUpdate()} } to={linkTarget}>
           <div id='smallProfileBar'>
             <img id='smallProfileImg' src={ imgSrc } alt='profile pic'/>
             <div id='smallProfileInfo'>
