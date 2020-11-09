@@ -10,12 +10,13 @@ import PasswordReset from "./views/PasswordReset";
 
 import Home from "./views/Home";
 import AdminHome from "./views/AdminHome";
-import Profile from "./views/Profile";
+import EditableProfile from "./views/EditableProfile";
+import ViewableProfile from "./views/ViewableProfile";
 import Statistics from "./views/Statistics";
 import CreateStatistics from "./views/CreateStatistic";
 import AddFriend from "./views/AddFriend";
 import RecordStatistics from "./views/RecordStatistics";
-import Setting from "./views/Setting";
+import Settings from "./views/Settings";
 
 import TopNavbar from "./react-components/TopNavbar";
 
@@ -31,7 +32,8 @@ class App extends React.Component {
 					<Switch>
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/admin home" component={AdminHome} />
-						<Route exact path="/profile" component={Profile} />
+						<Route exact path="/userProfile" component={EditableProfile} />
+            <Route exact path="/otherUserProfile" component={ViewableProfile} />
 						<Route exact path="/password reset" component={PasswordReset} />
 						<Route exact path="/statistics" component={Statistics} />
 						<Route
@@ -45,7 +47,7 @@ class App extends React.Component {
 							path="/recordStatistics"
 							component={RecordStatistics}
 						/>
-						<Route exact path="/setting" component={Setting} />
+						<Route exact path="/settings" component={Settings} />
 					</Switch>
 				</BrowserRouter>
 			</>

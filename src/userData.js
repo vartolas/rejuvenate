@@ -1,4 +1,4 @@
-export function getFavouriteThings() {
+export function getFavouriteThingsToImages() {
 	const favouriteThings = {
 		Bananas: "https://pixy.org/src/442/thumbs350/4428098.jpg",
 		Hockey: "https://pixy.org/src/428/4282288.jpeg",
@@ -9,10 +9,15 @@ export function getFavouriteThings() {
 		"Push-ups": "https://pixy.org/src/183/thumbs350/1830402.jpg",
 		Biking: "https://pixy.org/src/336/thumbs350/3368963.jpg",
 		Basketball: "https://pixy.org/src/76/760790.jpg",
-		Smoothies: "https://pixy.org/src2/582/5823753.jpg",
+		Smoothies: "https://pixy.org/src/395/thumbs350/3957381.jpg",
 	};
 
 	return favouriteThings;
+}
+
+export function getFavouriteThings() {
+  return ["Bananas", "Hockey", "Salads", "Jogging", "Skiing", "Tennis", "Push-ups",
+          "Biking", "Basketball", "Smoothies"];
 }
 
 // The key of the user whose profile page was last displayed (or is otherwise being displayed).
@@ -33,9 +38,14 @@ export function getLoggInUser() {
 	return loggedInUser;
 }
 
+export function getUsersAsList() {
+  return Object.values(users);
+}
+
 // The user with key 0 is the logged-in user.
 let users = {
-	0: {
+	'0': {
+    uid: 0,
 		firstName: "John",
 		lastName: "Doe",
 		username: "user",
@@ -90,7 +100,8 @@ let users = {
 		numFollowing: 2,
 		numFollowers: 2,
 	},
-	1: {
+	'1': {
+    uid: 1,
 		firstName: "Cathy",
 		lastName: "Jones",
 		username: "basketballfan23",
@@ -117,7 +128,8 @@ let users = {
 		numFollowing: 3,
 		numFollowers: 2,
 	},
-	2: {
+	'2': {
+    uid: 2,
 		firstName: "Jim",
 		lastName: "Lu",
 		username: "jimmmmlu",
@@ -128,10 +140,11 @@ let users = {
 		posts: [],
 		following: [3],
 		followers: [2, 3],
-		numFollowing: 2,
-		numFollowers: 1,
+		numFollowing: 1,
+		numFollowers: 2,
 	},
-	3: {
+	'3': {
+    uid: 3,
 		firstName: "Nikolas",
 		lastName: "Karlsson",
 		username: "nikolas.karlsson",
@@ -151,7 +164,7 @@ let users = {
 				comments: [
 					{ uid: 0, comment: "Im still in bed lol" },
 					{ uid: 1, comment: "Cool!" },
-					{ uid: 3, comment: "So much snow... where r u?" },
+					{ uid: 2, comment: "So much snow... where r u?" },
 				],
 				likes: [0, 1, 2, 3],
 			},
@@ -176,7 +189,8 @@ let users = {
 		numFollowing: 4,
 		numFollowers: 4,
 	},
-	4: {
+	'4': {
+    uid: 4,
 		firstName: "Jennifer",
 		lastName: "Jones",
 		username: "jennifer9375082",
