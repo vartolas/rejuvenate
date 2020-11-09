@@ -1,11 +1,8 @@
 import React from 'react';
 
-<<<<<<< HEAD:src/views/Create Statistic/index.js
-import SpanLink from '../../react-components/Span Link';
-import {useHistory} from 'react-router-dom';
-=======
 import SpanLink from '../../react-components/SpanLink';
->>>>>>> bfc257c1e914f39ed8b4227f8c023077da1c30ad:src/views/CreateStatistic/index.js
+import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 import './styles.css';
 
@@ -45,8 +42,9 @@ export default class CreateStatistic extends React.Component {
 
                         <label>Insert Data Below</label>
                     </form>
-<<<<<<< HEAD:src/views/Create Statistic/index.js
+
                     <button onClick={this.createStatistic}>Create</button>
+                
                     <div>
                         {this.state.createStatState()}
                     </div>
@@ -98,11 +96,3 @@ function Successfull () {
     );
 }
 
-=======
-                <SpanLink to="/statistics" name="return"/>
-
-            </div>
-        );
-    }
-}
->>>>>>> bfc257c1e914f39ed8b4227f8c023077da1c30ad:src/views/CreateStatistic/index.js

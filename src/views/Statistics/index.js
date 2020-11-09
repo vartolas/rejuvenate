@@ -13,27 +13,36 @@ function get_user_stats(user){
         {
             category: 'Fitness',
             stats: [
-                {
+                {   
+                    id: 1, //id assigned by database code
                     type: 'scatter',
                     title: "Jogging Distance Stats",
+                    xAxes: "day",
+                    yAxes: "distance ran",
                     data: [{x: 1, y: 1}, {x: 2, y: 5}, {x: 3, y: 3}, {x: 4, y: 4}, {x: 5, y: 5}]
                 },
                 {
-                    catgory: 'fitness',
+                    id: 2,
                     type: 'scatter',
                     title: "Bench Press Stats",
+                    xAxes: "day",
+                    yAxes: "kg pressed",
                     data: [{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 5}, {x: 4, y: 4}, {x: 5, y: 5}]
                 },
                 {
-                    catgory: 'fitness',
+                    id: 3,
                     type: 'scatter',
                     title: "Squat PR",
+                    xAxes: "day",
+                    yAxes: "kg squatted",
                     data: [{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 5}, {x: 4, y: 4}, {x: 5, y: 5}]
                 },
                 {
-                    catgory: 'fitness',
+                    id: 4,
                     type: 'scatter',
                     title: "Deadlift PR",
+                    xAxes: "day",
+                    yAxes: "kg deadlifted",
                     data: [{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 5}, {x: 4, y: 4}, {x: 5, y: 5}]
                 },
 
@@ -45,6 +54,8 @@ function get_user_stats(user){
                 {
                     type: 'scatter',
                     title: "Calories in the day",
+                    xAxes: "day",
+                    yAxes: "calories",
                     data: [{x: 1, y: 1}, {x: 2, y: 2}, {x: 3, y: 3}, {x: 4, y: 2}, {x: 5, y: 2}]
                 }
             ]
@@ -61,21 +72,21 @@ export default class Statistics extends React.Component {
         this.state = {
             user_stats: get_user_stats(user),
         };
-        this.num_stat_ids = 0;
+        this.num_canvas_ids = 0;
        
     }
 
-    new_stat_id = () => this.num_stat_ids++;
+    new_canvas_id = () => "statCanvas".concat(++this.num_canvas_ids);
 
     render(){
         return (
             <div id="statViewContainer">
                 {this.state.user_stats.map(category => (
-                    <div className="categoryContainer">
+                    <div key={category.category} className="categoryContainer">
                     <span className="categoryTitle">{category.category}</span>
                         <StatChartsContainer 
                             stats={category.stats}
-                            new_stat_id={this.new_stat_id}/>
+                            new_canvas_id={this.new_canvas_id}/>
                     </div>
                     ))
                 }    
@@ -90,18 +101,23 @@ class StatChartsContainer extends React.Component {
         this.state = {
             stats: this.props.stats
         }
-        this.new_stat_id = this.props.new_stat_id;
+        this.new_canvas_id = this.props.new_canvas_id;
     }
 
     render(){
         return (
             <div className="statsContainer">
-                {this.state.stats.map(stat => (
-                        <StatChart id={this.new_stat_id()}
-                            title={stat.title} 
-                            type={stat.type} 
-                            data={stat.data}/>
-                    ))
+                {this.state.stats.map(stat => {
+                    var id = this.new_canvas_id();
+                    return (
+                        <div key={id}>
+                            <Link to="/recordStatistics">
+                                <StatChart id={id}
+                                    stat={stat}/>
+                            </Link>
+                        </div>
+                    )}
+                    )
                 }
                 <div className="addStatButtonTableContainer">
                     <Link to="/statistics/create">
@@ -113,36 +129,39 @@ class StatChartsContainer extends React.Component {
     }
 }
 
-class StatChart extends React.Component {
+export class StatChart extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             id: this.props.id,
-            title: this.props.title,
-            type: this.props.type,
-            data: this.props.data,
+            
             chart: null,
         };
+        this.stat = this.props.stat;
     }
     render(){
         return (
-            <Link to="/recordStatistics">
-                <div className="chartContainer" onClick={this.handleClick}>
+                <div className="chartContainer">
                     <canvas className="chartCanvas" id={this.state.id}></canvas>
                 </div>    
-            </Link>
         );
     }
-
+    componentDidUpdate(){
+        this.drawChart();
+    }
     componentDidMount(){
+        this.drawChart();
+    }
+
+    drawChart(){
         var ctx = document.getElementById(this.state.id).getContext('2d');
         this.chart = new Chart(ctx, {
-            type: this.state.type, 
+            type: this.stat.type, 
             data: {
                 datasets: [
                     {
-                        label: this.state.title,
-                        data: this.state.data,
+                        label: this.stat.title,
+                        data: this.stat.data,
                         backgroundColor: 'white',
                         borderColor: 'white',
                         pointBackgroundColor: 'white',
@@ -156,54 +175,53 @@ class StatChart extends React.Component {
                 ]
             }, 
             
-            options: options,
+            options:  {
+                responsive: true,
+                aspectRatio: 1.25,
+                scaleFontColor: 'white',
+                
+                legend: {
+                    onClick: null,
+                    labels: {
+                        fontColor: "white",
+                        boxWidth: 0,
+                    }
+                },
+                scales: {
+                    xAxes: [{ 
+                        scaleLabel: {
+                            display: true,
+                            labelString: this.stat.xAxes,
+                            fontColor: "white"
+                        },
+                        gridLines: {
+                            display: false,
+                        },
+                        ticks: {
+                            display: true,
+                            fontColor: "white", // this here
+                        },
+                        
+                    }],
+            
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: this.stat.yAxes,
+                            fontColor: "white"
+                        },
+                        display: true,
+                        gridLines: {
+                            display: false,
+                        },
+                        ticks: {
+                            display: true,
+                            fontColor: "white",
+                        }
+                    }],
+                }
+            },
         });
     }
 
 }
-
-
-const options = {
-    responsive: true,
-    aspectRatio: 1.25,
-    scaleFontColor: 'white',
-    
-    legend: {
-        onClick: null,
-        labels: {
-            fontColor: "white",
-            boxWidth: 0,
-        }
-    },
-    scales: {
-        xAxes: [{ 
-            scaleLabel: {
-                display: true,
-                labelString: "X axis",
-                fontColor: "white"
-            },
-            gridLines: {
-                display: false,
-            },
-            ticks: {
-                display: true,
-                fontColor: "white", // this here
-            },
-            
-        }],
-
-        yAxes: [{
-            scale: {
-                labelString: "Y Axis"
-            },
-            display: true,
-            gridLines: {
-                display: false,
-            },
-            ticks: {
-                display: true,
-                fontColor: "white",
-            }
-        }],
-    }
-};

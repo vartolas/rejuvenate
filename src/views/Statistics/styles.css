@@ -17,9 +17,24 @@
     overflow-x: auto;
     overflow-y: hidden;
 }
+
+.statsContainer .chartContainer {
+    transition: all .1s ease-in-out;
+}
+
+.statsContainer .chartContainer:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.statsContainer a {
+  cursor: default;
+}
+
 .chartCanvas {
     width: 100%;
 }
+
 
 .chartContainer {
     border-radius: 10%;
@@ -30,14 +45,9 @@
     background-color: rgb(70, 90, 110);
     border: 2px solid black;
     margin: 30px;
-    transition: all .1s ease-in-out;
-    
     
 }
-.chartContainer:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-}
+
 .categoryTitle {
     display: block;
     font-size: 30px;
