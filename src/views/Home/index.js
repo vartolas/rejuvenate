@@ -72,8 +72,6 @@ export default class Home extends React.Component {
 		const value = target.value;
 		const name = target.name;
 
-		// log(name)
-
 		// 'this' is bound to the Queue component in this arrow function.
 		//  In arrow functinos, 'this' is bound to the enclosing lexical function/global scope
 		//  where it is *defined*.  This is different than 'this' in normal functions,
@@ -91,68 +89,6 @@ export default class Home extends React.Component {
 	}
 
 	render() {
-		// const friends = [
-		// 	{
-		// 		name: "Ben",
-		// 		avatar:
-		// 			"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-		// 	},
-		// 	{
-		// 		name: "Jack",
-		// 		avatar:
-		// 			"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-		// 	},
-		// 	{
-		// 		name: "Abby",
-		// 		avatar:
-		// 			"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-		// 	},
-		// 	{
-		// 		name: "George",
-		// 		avatar:
-		// 			"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-		// 	},
-		// 	{
-		// 		name: "Olivia",
-		// 		avatar:
-		// 			"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-		// 	},
-		// 	{
-		// 		name: "Emily",
-		// 		avatar:
-		// 			"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-		// 	},
-		// 	{
-		// 		name: "User",
-		// 		avatar:
-		// 			"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-		// 	},
-		// 	{
-		// 		name: "User",
-		// 		avatar:
-		// 			"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-		// 	},
-		// 	{
-		// 		name: "User",
-		// 		avatar:
-		// 			"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-		// 	},
-		// 	{
-		// 		name: "User",
-		// 		avatar:
-		// 			"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-		// 	},
-		// 	{
-		// 		name: "User",
-		// 		avatar:
-		// 			"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-		// 	},
-		// 	{
-		// 		name: "User",
-		// 		avatar:
-		// 			"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-		// 	},
-		// ];
 		return (
 			<div id="homeContainer">
 				<div id="friendListContainer">
