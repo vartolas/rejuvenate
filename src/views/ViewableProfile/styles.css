@@ -53,3 +53,7 @@
   color: rgb(200, 200, 210);
   font-weight: normal;
 }
+
+#topRightMargin10px {
+  margin: 10px 10px 0 0;
+}

@@ -136,9 +136,9 @@ export default class ViewableProfile extends React.Component {
               <PostList posts={ this.state.posts } />
             </div>
           </div>
-
-          <ProfileUserConnections numFollowers={ this.state.numFollowers } numFollowing={ this.state.numFollowing } followers={ this.state.followers } following={ this.state.following } unfollow={ this.unfollow.bind(this) }/>
-
+          <div id='topRightMargin10px'>
+          <ProfileUserConnections canUnfollow={ false } numFollowers={ this.state.numFollowers } numFollowing={ this.state.numFollowing } followers={ this.state.followers } following={ this.state.following } unfollow={ this.unfollow.bind(this) }/>
+          </div>
 
         </div>
       )
