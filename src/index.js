@@ -15,7 +15,7 @@ import Statistics from "./views/Statistics";
 import CreateStatistics from "./views/CreateStatistic";
 import AddFriend from "./views/AddFriend";
 import RecordStatistics from "./views/RecordStatistics";
-import Setting from "./views/Setting";
+import Settings from "./views/Settings";
 
 import TopNavbar from "./react-components/TopNavbar";
 
@@ -45,7 +45,7 @@ class App extends React.Component {
 							path="/recordStatistics"
 							component={RecordStatistics}
 						/>
-						<Route exact path="/setting" component={Setting} />
+						<Route exact path="/settings" component={Settings} />
 					</Switch>
 				</BrowserRouter>
 			</>
