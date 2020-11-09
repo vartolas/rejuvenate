@@ -23,6 +23,7 @@ import TopNavbar from "./react-components/TopNavbar";
 import "./index.css";
 var user = null;
 
+
 class App extends React.Component {
 	render() {
 		return (
@@ -35,6 +36,8 @@ class App extends React.Component {
 						<Route exact path="/userProfile" component={EditableProfile} />
             <Route exact path="/otherUserProfile" component={ViewableProfile} />
 						<Route exact path="/password reset" component={PasswordReset} />
+            <Route exact path="/recordStatistics" component={RecordStatistics}/>
+            <Route exact path="/statistics/create" component={CreateStatistics}/>
 						<Route exact path="/statistics" component={Statistics} />
 						<Route
 							exact

@@ -9,10 +9,6 @@ app.get('/', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-//here we can make get requests to our api from databases
-//we would use something like
-//app.get(<api endpoint>, (req, res) => { handle response here });
-
 app.listen(PORT, () => {
     console.log(`server listeing at http://localhost:${PORT}...`);
 })
