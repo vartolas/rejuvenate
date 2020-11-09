@@ -77,7 +77,7 @@ export default class PostEntry extends React.Component {
 		}
 
 		return (
-			<div className="PostEntryContainer">
+			<div className="postEntryContainer">
 				<div className="tag">{tag}</div>
 				<div className="user">
 					<img className="avatar" src={user.profilePic} alt="" />

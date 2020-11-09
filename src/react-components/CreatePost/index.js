@@ -50,7 +50,6 @@ export default class CreatePost extends React.Component {
 							id="file"
 							className="inputPicture"
 							value={picture}
-							onChange={handleInputChange}
 						/>
 						<label for="file">Choose Picture</label>
 					</Form.Group>
