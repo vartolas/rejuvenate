@@ -1,23 +1,8 @@
 import React from 'react';
 import './styles.css';
+import { getFavouriteThings, getFavouriteThingsToImages } from '../../userData.js';
 
 import FavouriteThing from '../FavouriteThing';
-
-
-// Temporary; we should be pulling the corresponding links from somewhere else.
-const FAVOURITE_THING_NAME_TO_IMG_SRC = {
-  'Bananas': 'https://pixy.org/src/442/thumbs350/4428098.jpg',
-  'Hockey': 'https://pixy.org/src/428/4282288.jpeg',
-  'Salads': 'https://pixy.org/src/419/4197778.jpeg',
-  'Jogging': 'https://pixy.org/src/86/865694.jpg',
-  'Skiing': 'https://pixy.org/src/107/1074423.jpg',
-  'Tennis': 'https://pixy.org/src/183/thumbs350/1838426.jpg',
-  'Push-ups': 'https://pixy.org/src/183/thumbs350/1830402.jpg',
-  'Biking': 'https://pixy.org/src/336/thumbs350/3368963.jpg'
-}
-
-const FAVOURITE_THINGS = ['Bananas', 'Hockey', 'Salads', 'Jogging', 'Skiing',
- 'Tennis', 'Push-ups', 'Biking']
 
 export default class UserInfo extends React.Component {
   state = {
@@ -97,7 +82,7 @@ export default class UserInfo extends React.Component {
         <div onClick={ this.enableAddingFavourites.bind(this) } id='addFavouriteThingsButton'><span id='plusSymbol'>+</span></div>
         {
           this.props.user.favouriteThings.map((f, index) => {
-              return(<FavouriteThing key={ index } onEditableButtonClick={ this.removeFavourite.bind(this) } addable={ false } removable={ true } index={ index } name={ f } imgSrc={ FAVOURITE_THING_NAME_TO_IMG_SRC[f] }/>)
+              return(<FavouriteThing key={ index } onEditableButtonClick={ this.removeFavourite.bind(this) } addable={ false } removable={ true } index={ index } name={ f } imgSrc={ getFavouriteThingsToImages()[f] }/>)
           })
         }
       </div>
@@ -105,12 +90,12 @@ export default class UserInfo extends React.Component {
   }
 
   displayAddableFavourites() {
-    const unusedFavs = FAVOURITE_THINGS.filter( f => !(this.props.user.favouriteThings.includes(f)));
+    const unusedFavs = getFavouriteThings().filter( f => !(this.props.user.favouriteThings.includes(f)));
     return (
       <div>
         {
           unusedFavs.map((f, index) => {
-              return(<FavouriteThing key={ index } onEditableButtonClick={ this.addFavourite.bind(this) } setFavourites={ this.props.setFavourites } addable={ true } removable={ false } index={ index } name={ f } imgSrc={ FAVOURITE_THING_NAME_TO_IMG_SRC[f] }/>)
+              return(<FavouriteThing key={ index } onEditableButtonClick={ this.addFavourite.bind(this) } setFavourites={ this.props.setFavourites } addable={ true } removable={ false } index={ index } name={ f } imgSrc={ getFavouriteThingsToImages()[f] }/>)
           })
         }
       </div>
@@ -122,18 +107,15 @@ export default class UserInfo extends React.Component {
       <div>
         {
           this.props.user.favouriteThings.map((f, index) => {
-              return(<FavouriteThing key={ index } setFavourites={ this.props.setFavourites } addable={ false } removable={ false } index={ index } name={ f } imgSrc={ FAVOURITE_THING_NAME_TO_IMG_SRC[f] }/>)
+              return(<FavouriteThing key={ index } setFavourites={ this.props.setFavourites } addable={ false } removable={ false } index={ index } name={ f } imgSrc={ getFavouriteThingsToImages()[f] }/>)
           })
         }
       </div>
     )
   }
 
-
-
   render(){
     const { firstName, lastName, username, profilePic, numFollowers, numFollowing, bio, favouriteThings } = this.props.user;
-
 
     return (
       <div id='userInfo'>

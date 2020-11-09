@@ -15,7 +15,7 @@ export default class TopNavbar extends React.Component {
                         <Navbar.Collapse id="basic-navbar-nav">
                         <SearchBar />
                         <Nav className="navContent">
-                            <Nav.Link href="/profile">Profile</Nav.Link>
+                            <Nav.Link href="/userProfile">Profile</Nav.Link>
                             <NavDropdown title="Statistics" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="/recordStatistics">Record Statistics</NavDropdown.Item>
                                 <NavDropdown.Item href="/statistics">View Statistics</NavDropdown.Item>
