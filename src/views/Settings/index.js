@@ -13,10 +13,12 @@ export const CORRECT_ADMIN_PASSWORD = "admin";
 export const MISSING_USERNAME_ERROR_MSG = "Username is missing.";
 export const MISSING_PASSWORD_ERROR_MSG = "Password is missing.";
 export const EXISTING_USERNAME_ERROR_MSG = "New username already exists.";
-export const WEAK_PASSWORD_ERROR_MSG = "New password is not strong enough.";
-export const STRONG_PASSWORD_FOR_REGISTRATION_MSG = "This new username has a strong enough password.";
+export const NONEXISTING_USERNAME_ERROR_MSG = "New username does not exist.";
 
-export default class Register extends React.Component {
+export const WEAK_PASSWORD_ERROR_MSG = "New password is not strong enough.";
+export const STRONG_PASSWORD_FOR_PASSWORD_RESET_MSG = "This existing username has a strong enough password.";
+
+export default class Setting extends React.Component {
     // I found this helpful: 
     // - https://reactjs.org/docs/forms.html
     // - https://material-ui.com/components/text-fields/
@@ -45,66 +47,59 @@ export default class Register extends React.Component {
     processCredentials() {
         return this.state.username !== '' &&
             this.state.password !== '' &&
-            ((this.state.username === CORRECT_REGULAR_USER_USERNAME &&
-                this.state.password === CORRECT_REGULAR_USER_PASSWORD) ||
-            (this.state.username === CORRECT_ADMIN_USERNAME &&
-                this.state.password === CORRECT_ADMIN_PASSWORD));
-    }
-
-    // TODO: In phase 2, we plan on verifying user/admin credentials against a database.
-    displayError() {
-        if (this.state.username === '') {
-            return <p>{MISSING_USERNAME_ERROR_MSG}</p>;
-        } else if (this.state.password === '') {
-            return <p>{MISSING_PASSWORD_ERROR_MSG}</p>;
-        } else if (this.state.username !== CORRECT_REGULAR_USER_USERNAME && this.state.username !== CORRECT_ADMIN_USERNAME) {
-            return <p>{EXISTING_USERNAME_ERROR_MSG}</p>;
-        } else if (this.state.password !== CORRECT_REGULAR_USER_PASSWORD && this.state.username !== CORRECT_ADMIN_PASSWORD) {
-            return <p>{WEAK_PASSWORD_ERROR_MSG}</p>;
-        } else {
-            return <p>{STRONG_PASSWORD_FOR_REGISTRATION_MSG}</p>;
-        }
+            ((this.state.username !== CORRECT_REGULAR_USER_USERNAME &&
+                this.state.password !== CORRECT_REGULAR_USER_PASSWORD) ||
+            (this.state.username !== CORRECT_ADMIN_USERNAME &&
+                this.state.password !== CORRECT_ADMIN_PASSWORD));
     }
 
     // TODO: In phase 2, we plan on verifying user/admin credentials against a database.
     displayUsernameError() {
         if (this.state.username === '') {
             return MISSING_USERNAME_ERROR_MSG;
-        } else if (this.state.username !== CORRECT_REGULAR_USER_USERNAME && this.state.username !== CORRECT_ADMIN_USERNAME) {
+        } else if (this.state.username === CORRECT_REGULAR_USER_USERNAME || this.state.username === CORRECT_ADMIN_USERNAME) {
             return EXISTING_USERNAME_ERROR_MSG;
         } else {
             return '';
         }
     }
-
+    
     // TODO: In phase 2, we plan on verifying user/admin credentials against a database.
     displayPasswordError() {
         if (this.state.password === '') {
             return MISSING_PASSWORD_ERROR_MSG;
-        } else if (this.state.password !== CORRECT_REGULAR_USER_PASSWORD && this.state.username !== CORRECT_ADMIN_PASSWORD) {
+        } else if (this.state.password === CORRECT_REGULAR_USER_PASSWORD || this.state.password === CORRECT_ADMIN_PASSWORD) {
             return WEAK_PASSWORD_ERROR_MSG;
         } else {
             return '';
         }
     }
 
-    logIn() {
-        if (this.state.username === CORRECT_REGULAR_USER_USERNAME &&
-            this.state.password === CORRECT_REGULAR_USER_PASSWORD) {
-            return "/home";
-        } else if (this.state.username === CORRECT_ADMIN_USERNAME &&
-            this.state.password === CORRECT_ADMIN_PASSWORD) {
-            return "/admin home";
+    changeUsername() {
+        if (this.state.username !== CORRECT_REGULAR_USER_USERNAME && this.state.username !== CORRECT_ADMIN_USERNAME) {
+            return '/settings';
         } else {
-            return "/register";
+            return '/settings';
         }
+    }
+
+    changePassword() {
+        if (this.state.password !== CORRECT_REGULAR_USER_PASSWORD && this.state.password !== CORRECT_ADMIN_PASSWORD) {
+            return '/settings';
+        } else {
+            return '/settings';
+        }
+    }
+
+    changeProfilePicture() {
+        return '/settings';
     }
 
     render() {
         return (
-            <div id="registerContainer">
-                <h1>Rejuvenate</h1>
-                <div id="registerComponent">
+            <div id="settingsContainer">
+                <h1>Settings</h1>
+                <div id="settingsComponent">
                     <FormControl>
                         <TextField
                             id="usernameTextbox"
@@ -123,18 +118,44 @@ export default class Register extends React.Component {
                             error={!this.state.password}
                             helperText={this.displayPasswordError()}
                         />
+                        {/* TODO: make proper upload photo (change profile pic) */}
+                        <span>
+                            <input
+                                type="file"
+                                name="picture"
+                                id="file"
+                                className="inputPicture"
+                            />
+                            <label for="file">Choose New Profile Picture</label>
+                        </span>
                         <br></br>
-                        <Button href={this.logIn().toString()} variant="contained" color="primary" disableElevation>
-                            Register
+                        <Button
+                            href={this.changeUsername().toString()}
+                            variant="contained"
+                            color="primary"
+                            disableElevation>
+                            Change Username
                         </Button>
                         <br></br>
-                        <Button href="/" variant="contained" color="primary" disableElevation>
-                            Go Back
+                        <Button href={this.changePassword().toString()}
+                            variant="contained"
+                            color="primary"
+                            disableElevation>
+                            Change Password
                         </Button>
                         <br></br>
+                        <Button
+                            href={this.changeProfilePicture().toString()}
+                            variant="contained"
+                            color="primary"
+                            className="changeProfilePictureButton"                                
+                            name="picture"
+                        >
+                            Change Profile Picture
+                        </Button>
                     </FormControl>
                 </div>
-            </div>
+            </div>    
         );
     }
 }
