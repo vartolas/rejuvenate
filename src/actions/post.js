@@ -44,12 +44,12 @@ export const addPost = (postComponent) => {
 		likes: [],
 	};
 
-	console.log(post);
-
 	postList.splice(0, 0, post);
 	postComponent.setState({
+		tag: "General",
+		text: "",
+		have_pic: 0,
+		picture: "",
 		posts: postList,
 	});
-
-	console.log(postComponent.state.posts);
 };
