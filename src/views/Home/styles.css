@@ -3,17 +3,18 @@
 	overflow-y: hidden;
 	display: flex;
 	flex-direction: row;
+	background-color: #283035;
 }
 
 #friendListContainer {
-	width: 23%;
+	width: 22%;
 	position: relative;
 	background-color: #323f45;
 }
 
 #postListContainer {
-	width: 77%;
+	width: 78%;
 	position: relative;
-	background-color: #323f45;
+	background-color: #283035;
 	overflow-y: scroll;
 }
