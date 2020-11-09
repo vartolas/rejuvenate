@@ -37,7 +37,7 @@ export default class ViewableUserInfo extends React.Component {
           <img src={ profilePic } alt='profile pic'/>
           <h1>{ firstName + " " + lastName }</h1>
           <h3>@{ username }</h3>
-          <div onClick={ this.props.toggleFollow } id='profileFollowButton'>{ this.props.canFollow ? 'Follow' : 'Unfollow' }</div>
+          <div onClick={ this.props.toggleFollow } id='bigProfileButton'>{ this.props.canFollow ? 'Follow' : 'Unfollow' }</div>
           {/*
             <ul>
             <li><b>Followers</b><br /><span className='follow-amount'>{ numFollowers }</span></li>
@@ -49,7 +49,6 @@ export default class ViewableUserInfo extends React.Component {
         <div className='userInfoComponent' id='favouriteThings'>
           { /* Need to pull favourite things here, and use the user's name */ }
           <h4>{ firstName + "'s Favourites" }</h4>
-          { /* These images are just placeholders for now and should NOT be submitted!! */ }
           <div id='favouriteThingsContainer'>
             { this.displayUneditableFavourites() }
           </div>

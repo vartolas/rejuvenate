@@ -121,14 +121,16 @@ export default class UserInfo extends React.Component {
       <div id='userInfo'>
         { /* Need to pull image, name, username, list of followers, list of users following, bio */ }
         <div className='userInfoComponent' id='userInfoMain'>
-          <span onClick={ this.toggleEditState.bind(this) } id='editProfileText'>{ this.state.editable ? 'Save changes' : 'Edit profile' }</span>
           <img src={ profilePic } alt='profile pic'/>
           <h1>{ firstName + " " + lastName }</h1>
           <h3>@{ username }</h3>
-          <ul>
+          {
+            /*<ul>
             <li><b>Followers</b><br /><span className='follow-amount'>{ numFollowers }</span></li>
             <li><b>Following</b><br /><span className='follow-amount'>{ numFollowing }</span></li>
-          </ul>
+          </ul>*/
+          }
+          <div onClick={ this.toggleEditState.bind(this) } id='bigProfileButton'>{ this.state.editable ? 'Save changes' : 'Edit profile' }</div>
           {this.state.editable ? this.displayEditableBio() : this.displayViewableBio() }
         </div>
         <div className='userInfoComponent' id='favouriteThings'>
