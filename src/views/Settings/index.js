@@ -94,6 +94,7 @@ export default class Setting extends React.Component {
     render() {
         return (
             <div id="settingsContainer">
+                <h1>Settings</h1>
                 <div id="settingsComponent">
                     <FormControl>
                         <TextField

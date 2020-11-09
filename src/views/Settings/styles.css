@@ -5,6 +5,13 @@
   text-align: center;
 }
 
+#settingsContainer h1 {
+  color: white;
+  position: absolute;
+  top: 15%;
+  left: 45%;
+}
+
 #settingsComponent {
   border: solid 1px;
   border-radius: 2%;
