@@ -1,18 +1,31 @@
-export const addLike = (post, listComponent, uid) => {
-	const index = listComponent.state.posts.findIndex((entry) => entry === post);
+// import { getUsers, setLikes } from "../userData";
 
+export const addLike = (currentPost, listComponent, uid) => {
+	const index = listComponent.state.posts.findIndex(
+		(entry) => entry === currentPost
+	);
 	if (index !== -1) {
-		listComponent.state.posts[index].likes.push(uid);
+		const newPosts = listComponent.state.posts;
+		newPosts[index].likes.push(uid);
+
+		listComponent.setState({
+			posts: newPosts,
+		});
 	}
 };
 
-export const removeLike = (post, listComponent, uid) => {
-	const index = listComponent.state.posts.findIndex((entry) => entry === post);
-
+export const removeLike = (currentPost, listComponent, uid) => {
+	const index = listComponent.state.posts.findIndex(
+		(entry) => entry === currentPost
+	);
 	if (index !== -1) {
-		listComponent.state.posts[index].likes = listComponent.state.posts[
-			index
-		].likes.filter((user) => user !== uid);
+		let newPosts = listComponent.state.posts;
+		let newLikes = newPosts[index].likes;
+		newPosts[index].likes = newLikes.filter((user) => user !== uid);
+
+		listComponent.setState({
+			posts: newPosts,
+		});
 	}
 };
 
@@ -26,12 +39,9 @@ export const addPost = (postComponent) => {
 			have_pic: postComponent.state.have_pic,
 			picture: postComponent.state.picture,
 		},
-		user: {
-			username: postComponent.state.username,
-			avatar: postComponent.state.avatar,
-		},
+		uid: 0,
 		comments: [],
-		likes: "0",
+		likes: [],
 	};
 
 	console.log(post);

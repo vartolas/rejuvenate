@@ -5,7 +5,7 @@ import { IconButton } from "@material-ui/core";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { addLike, removeLike } from "../../actions/post";
-import { getCurrentUser, getUsers } from "../../userData";
+import { getLoggInUser, getUsers } from "../../userData";
 
 import "./styles.css";
 
@@ -13,7 +13,8 @@ export default class PostEntry extends React.Component {
 	constructor(props) {
 		super(props);
 		const likes = this.props.entry.likes;
-		const currentUid = getCurrentUser();
+		// console.log(likes);
+		const currentUid = getLoggInUser();
 		this.state = {
 			liked: likes.includes(currentUid),
 			currentUid: currentUid,
@@ -22,30 +23,35 @@ export default class PostEntry extends React.Component {
 
 	handleLike() {
 		if (this.state.liked) {
-			this.setState({
-				liked: false,
-			});
 			removeLike(
 				this.props.entry,
 				this.props.listComponent,
 				this.state.currentUid
 			);
-		} else {
 			this.setState({
-				liked: true,
+				liked: false,
 			});
+		} else {
 			addLike(
 				this.props.entry,
 				this.props.listComponent,
 				this.state.currentUid
 			);
+			this.setState({
+				liked: true,
+			});
 		}
 	}
 
 	render() {
 		const { tag, content, uid, comments, likes } = this.props.entry;
 		const users = getUsers();
-		const user = users[uid];
+		let user = null;
+		Object.keys(users).forEach((key) => {
+			if (key === uid.toString()) {
+				user = users[key];
+			}
+		});
 		const commentRows = [];
 		let showcomments = [];
 
