@@ -15,14 +15,13 @@ export default class ViewableProfile extends React.Component {
 	}
 
 	componentWillReceiveProps(newProps) {
-		this.setStateOutsideConstructor();
-		this.forceUpdate();
+		this.setStateOutsideConstructor(newProps);
 	}
 
-	getStateObject() {
+	getStateObject(uid) {
 		// Set up initial profile state.
 		const users = getUsers();
-		const user = users[this.props.location.state.uid];
+		const user = users[uid];
 
 		const followersList = [];
 		for (let i = 0; i < user.numFollowers; i++) {
@@ -56,13 +55,11 @@ export default class ViewableProfile extends React.Component {
 	}
 
 	setStateInsideConstructor() {
-		this.state = this.getStateObject();
-		console.log("Set state inside");
+		this.state = this.getStateObject(this.props.location.state.uid);
 	}
 
-	setStateOutsideConstructor() {
-		this.setState(this.getStateObject());
-		console.log("set state outside");
+	setStateOutsideConstructor(newProps) {
+		this.setState(this.getStateObject(newProps.location.state.uid));
 	}
 
 	unfollow(followee) {
@@ -144,14 +141,16 @@ export default class ViewableProfile extends React.Component {
 						<PostList posts={this.state.posts} listComponent={this} />
 					</div>
 				</div>
-
-				<ProfileUserConnections
-					numFollowers={this.state.numFollowers}
-					numFollowing={this.state.numFollowing}
-					followers={this.state.followers}
-					following={this.state.following}
-					unfollow={this.unfollow.bind(this)}
-				/>
+				<div id="topRightMargin10px">
+					<ProfileUserConnections
+						canUnfollow={false}
+						numFollowers={this.state.numFollowers}
+						numFollowing={this.state.numFollowing}
+						followers={this.state.followers}
+						following={this.state.following}
+						unfollow={this.unfollow.bind(this)}
+					/>
+				</div>
 			</div>
 		);
 	}

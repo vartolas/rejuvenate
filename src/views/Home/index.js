@@ -93,6 +93,7 @@ export default class Home extends React.Component {
 			<div id="homeContainer">
 				<div id="friendListContainer">
 					<ProfileUserConnections
+						canUnfollow={true}
 						followers={this.state.followers}
 						following={this.state.following}
 						unfollow={this.unfollow.bind(this)}
