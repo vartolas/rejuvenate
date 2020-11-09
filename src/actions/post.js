@@ -53,3 +53,23 @@ export const addPost = (postComponent) => {
 		posts: postList,
 	});
 };
+
+export const addComment = (currentPost, listComponent, commentText, userid) => {
+	const comment = {
+		uid: userid,
+		comment: commentText,
+	};
+
+	const index = listComponent.state.posts.findIndex(
+		(entry) => entry === currentPost
+	);
+
+	if (index !== -1) {
+		const newPosts = listComponent.state.posts;
+		newPosts[index].comments.push(comment);
+
+		listComponent.setState({
+			posts: newPosts,
+		});
+	}
+};

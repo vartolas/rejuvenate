@@ -1,10 +1,10 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
+import { ListGroup, Form, Button } from "react-bootstrap";
 import { v4 as uuid } from "uuid";
 import { IconButton } from "@material-ui/core";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import { addLike, removeLike } from "../../actions/post";
+import { addLike, removeLike, addComment } from "../../actions/post";
 import { getLoggInUser, getUsers } from "../../userData";
 
 import "./styles.css";
@@ -42,6 +42,18 @@ export default class PostEntry extends React.Component {
 		}
 	}
 
+	onKeyUp(event) {
+		if (event.key === "Enter") {
+			const commentText = event.target.value;
+			addComment(
+				this.props.entry,
+				this.props.listComponent,
+				commentText,
+				this.state.currentUid
+			);
+		}
+	}
+
 	render() {
 		const { tag, content, uid, comments, likes } = this.props.entry;
 		const users = getUsers();
@@ -54,11 +66,16 @@ export default class PostEntry extends React.Component {
 		const commentRows = [];
 		let showcomments = [];
 
-		if (comments.length > 3) {
-			showcomments = comments.slice(0, 3);
-		} else {
-			showcomments = comments;
-		}
+		//Setting the maximum number of posts to 3.
+
+		// if (comments.length > 3) {
+		// 	showcomments = comments.slice(0, 3);
+		// } else {
+		// 	showcomments = comments;
+		// }
+
+		//Remove this if there is a maxmum number of posts
+		showcomments = comments;
 
 		showcomments.forEach((usercomment) => {
 			const commentUser = users[usercomment.uid];
@@ -96,7 +113,15 @@ export default class PostEntry extends React.Component {
 					</IconButton>
 					<div className="likeNum">{likes.length}</div>
 				</div>
-				<ListGroup className="commentSection">{commentRows}</ListGroup>
+				<div className="comments">
+					<ListGroup className="commentSection">{commentRows}</ListGroup>
+					<Form.Control
+						className="commentInput"
+						type="text"
+						placeholder="Write Your Comment!"
+						onKeyPress={this.onKeyUp.bind(this)}
+					/>
+				</div>
 			</div>
 		);
 	}

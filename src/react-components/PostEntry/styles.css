@@ -108,3 +108,8 @@
 	color: #ffffff;
 	position: relative;
 }
+
+.commentInput {
+	margin-top: 2%;
+	width: 99%;
+}
