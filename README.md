@@ -1,6 +1,6 @@
 # Welcome to our Rejuvenate website! 💪 🏃 🥗 🍲 🛏️ 
 
-Here at Rejuvenate, we believe in sharing fitness, nutrtion, and sleep advice in our journey to good health.
+Here at Rejuvenate, we believe in sharing fitness, nutrition, and sleep advice in our journey to good health.
 
 # Login Page
 
@@ -46,7 +46,25 @@ You can reset an admin's passwrd with these credentials:
 
 # Home Page
 
-(TODO: insert jpg of home page)
+(TODO: insert jpg of create post corner)
+
+In the home page, you can post content in one of the following categories: "General," "Fitness," and "Recipe."
+Users also have the option to add a message to their post, or add images to their post. 
+
+```However, user photos cannot be saved because we don't have a backend yet.```
+
+(TODO: insert jpg of sample user post)
+
+You can like other people's posts, and other people can like your posts as well.
+You can also comment on other people's posts, ```although comments don't have the ability to track like counts yet.```
+
+(TODO: insert jpg of user's followers-following corner)
+
+On the left, the user can see who they follow, and who follows them.
+You can click on one of your followers or followees to visit their profile page.
+
+```However, to go from another user's page to yet another user's page, you must double click (single clicking won't work yet) to visit their profile page.```
+```It's also not possible to follow or unfollow users directly from the followers-following corners, since we don't have a Follow/Unfollow button yet.```
 
 # Profile Page
 
