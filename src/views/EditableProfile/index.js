@@ -78,7 +78,7 @@ export default class EditableProfile extends React.Component {
             </div>
           </div>
 
-          <ProfileUserConnections followers={ this.state.followers } following={ this.state.following } unfollow={ this.unfollow.bind(this) }/>
+          <ProfileUserConnections numFollowers={ this.state.numFollowers } numFollowing={ this.state.numFollowing } followers={ this.state.followers } following={ this.state.following } unfollow={ this.unfollow.bind(this) }/>
 
 
         </div>

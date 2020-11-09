@@ -14,8 +14,8 @@ export default class ProfileUserConnections extends React.Component {
       return (
         <div id='userConnectionsNav'>
           <ul>
-            <li className='blackBottomBorder' onClick={ () => this.setState({ showingFollowers: true }) }><span><b>Followers</b></span></li>
-            <li onClick={ () => this.setState({ showingFollowers: false }) }><span>Following</span></li>
+            <li className='blackBottomBorder' onClick={ () => this.setState({ showingFollowers: true }) }><span><b>Followers ({ this.props.numFollowers ? this.props.numFollowers : this.props.followers.length })</b></span></li>
+            <li onClick={ () => this.setState({ showingFollowers: false }) }>Following ({ this.props.numFollowing ? this.props.numFollowing : this.props.following.length })</li>
           </ul>
         </div>
       );
@@ -23,8 +23,8 @@ export default class ProfileUserConnections extends React.Component {
       return (
         <div id='userConnectionsNav'>
           <ul>
-            <li onClick={ () => this.setState({ showingFollowers: true }) }>Followers</li>
-            <li className='blackBottomBorder' onClick={ () => this.setState({ showingFollowers: false }) }><b>Following</b></li>
+            <li onClick={ () => this.setState({ showingFollowers: true }) }>Followers ({ this.props.numFollowers ? this.props.numFollowers : this.props.followers.length })</li>
+            <li className='blackBottomBorder' onClick={ () => this.setState({ showingFollowers: false }) }><b>Following ({ this.props.numFollowing ? this.props.numFollowing : this.props.following.length })</b></li>
           </ul>
         </div>
       );
