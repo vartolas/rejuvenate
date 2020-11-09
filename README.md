@@ -59,7 +59,7 @@ You can reset an admin's passwrd with these credentials:
 In the home page, you can post content in one of the following categories: "General," "Fitness," and "Recipe."
 Users also have the option to add a message to their post, or add images to their post. 
 
-```However, user photos cannot be saved because we don't have a backend yet.```
+```However, user cannot save uploaded photos because we don't have a backend yet.```
 
 (TODO: insert jpg of sample user post)
 
@@ -105,6 +105,11 @@ Users can view all of their statistics they wish to track in one of these follow
 # Settings Page
 
 (TODO: insert jpg of settings page)
+
+Users can change their username, password, or their profile picture.
+
+```However, user cannot save uploaded photos because we don't have a backend yet.```
+```Also, the "change profile picture" button disappears into the white when you click on it, and after you choose a photo for your profile picture.```
 
 # Admin Home Page
 
