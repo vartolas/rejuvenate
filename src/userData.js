@@ -99,6 +99,58 @@ let users = {
 		followers: [1, 3],
 		numFollowing: 2,
 		numFollowers: 2,
+		stats: [
+			{
+				category: 'Fitness',
+				stats: [
+					{   
+						id: 1, //id assigned by database code
+						type: 'scatter',
+						title: "Jogging Distance Stats",
+						xAxes: "day",
+						yAxes: "distance ran",
+						data: [{x: 1, y: 1}, {x: 2, y: 5}, {x: 3, y: 3}, {x: 4, y: 4}, {x: 5, y: 5}]
+					},
+					{
+						id: 2,
+						type: 'scatter',
+						title: "Bench Press Stats",
+						xAxes: "day",
+						yAxes: "kg pressed",
+						data: [{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 5}, {x: 4, y: 4}, {x: 5, y: 5}]
+					},
+					{
+						id: 3,
+						type: 'scatter',
+						title: "Squat PR",
+						xAxes: "day",
+						yAxes: "kg squatted",
+						data: [{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 5}, {x: 4, y: 4}, {x: 5, y: 5}]
+					},
+					{
+						id: 4,
+						type: 'scatter',
+						title: "Deadlift PR",
+						xAxes: "day",
+						yAxes: "kg deadlifted",
+						data: [{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 5}, {x: 4, y: 4}, {x: 5, y: 5}]
+					},
+	
+			 ]
+			},
+			{
+				category: 'Nutriton',
+				stats: [
+					{
+						type: 'scatter',
+						title: "Calories in the day",
+						xAxes: "day",
+						yAxes: "calories",
+						data: [{x: 1, y: 1}, {x: 2, y: 2}, {x: 3, y: 3}, {x: 4, y: 2}, {x: 5, y: 2}]
+					}
+				]
+			}  
+		]
 	},
 	'1': {
     uid: 1,

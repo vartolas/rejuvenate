@@ -28,7 +28,7 @@ export default class RecordStatistics extends React.Component {
 
     render(){
         this.num_point_ids = 0;
-        console.log(this.state.stat.data)
+        
         return (
             
             <div id="recordStatViewContainer">
@@ -37,16 +37,16 @@ export default class RecordStatistics extends React.Component {
                 <h2>Add New Entry</h2>
                 <div id="addNewEntrySection">
                     
-                    <div>
+                    <div id="newDataPointSection">
                         <form>
-                            <table id="newDataPointSection">
+                            <table>
                                 <tbody>
                                     <tr>
                                         <td><span id="xAxesLabel">{this.state.stat.xAxes}</span> </td>
                                         <td><input id="newXEntryInput" type="text"></input></td>
                                     </tr>
                                     <tr>
-                                        <td><span id="yAxesLabel">{this.state.stat.xAxes}</span></td> 
+                                        <td><span id="yAxesLabel">{this.state.stat.yAxes}</span></td> 
                                         <td><input id="newYEntryInput" type="text"></input></td>
                                     </tr>
                                 </tbody>
@@ -60,25 +60,27 @@ export default class RecordStatistics extends React.Component {
                     </div> 
                 </div>
                 <div id="editEntriesSectionContainer">
-                <h2>Exisiting Entries</h2>
-                <div id="editExistingStatScroll">
-                    <div id="labelsContainer">
-                        <span id="xAxesLabel">{this.state.stat.xAxes}</span> 
-                        <span id="XAxesLabel">{this.state.stat.yAxes}</span>
-                    </div>
-                    {this.state.stat.data.map((point, index) => {
-                       console.log(point)
-                        var point_id = this.new_point_id();
-                        return (
-                        <div id={point_id} key={point_id} className="recordStatFormContainer">
-                            <form className="pointForm">
-                                <label>{point.x}</label>
-                                <label>{point.y}</label>
-                            </form>
-                            <button onClick={this.deletePoint(index).bind(this)}>-</button>
+                    <h2>Exisiting Entries</h2>
+                    <div id="editExistingStatContainer">
+                        <div id="labelsContainer">
+                            <span id="xAxesLabel">{this.state.stat.xAxes}</span> 
+                            <span id="XAxesLabel">{this.state.stat.yAxes}</span>
                         </div>
+                        <div id="editExistingStatScroll">
+                            {this.state.stat.data.map((point, index) => {
+                                
+                                var point_id = this.new_point_id();
+                                return (
+                                <div id={point_id} key={point_id} className="recordStatFormContainer">
+                                    <form className="pointForm">
+                                        <label>{point.x}</label>
+                                        <label>{point.y}</label>
+                                    </form>
+                                    <button onClick={this.deletePoint(index).bind(this)}>-</button>
+                                </div>
+                            )}
                         )}
-                    )}
+                    </div>
 
                 </div>
 
@@ -86,7 +88,7 @@ export default class RecordStatistics extends React.Component {
                     <button id="confirmAllChangesButton" onClick={this.handleConfirmAllChanges}>Confirm All Changes</button>
                 </Link>
 
-                <SpanLink to="/statistics/edit" name="edit statistic"/>
+                
             </div>
             </div>    
         );
@@ -118,7 +120,6 @@ export default class RecordStatistics extends React.Component {
 
     deletePoint(index, e){
         return function(e){
-            console.log(index)
             var new_stat = this.state.stat
             new_stat.data.splice(index,1)
             this.setState({stat: new_stat});

@@ -22,33 +22,43 @@ export default class CreateStatistic extends React.Component {
         return (
             <div id="createStatViewContainer">
                 <span id="createStatTitle">Create New Statistic</span>
-                <div id="createStatFormContainer">
-                    
-                    <form id="createStatForm">
-                        <label>Title:</label>
-                        <input id="createStatTitleInput" type="text"/><br/>
+                <div id="createStatSectionContainer">
+                    <div id="createStatFormContainer">
+                        
+                        <form id="createStatForm">
+                            <label>Category:</label>
+                            <select id="createStatTypeSelect" name="type">
+                                <option value="Nutrition">Nutrition</option>
+                                <option value="Fitness">Fitness</option>
+                            </select>
 
-                        <label>X-Axis label:</label>
-                        <input id="createStatX-AxisInput" type="text"/>
+                            <label>Title:</label>
+                            <input id="createStatTitleInput" type="text"/><br/>
 
-                        <label>Y-Axis label:</label>
-                        <input id="createStatY-AxisInput" type="text"/>
+                            <label>X-Axis label:</label>
+                            <input id="createStatX-AxisInput" type="text"/>
 
-                        <label>Type:</label>
-                        <select id="createStatTypeSelect" name="type">
-                            <option value="bar">Bar Graph</option>
-                            <option value="line">Line Graph</option>
-                        </select>
+                            <label>Y-Axis label:</label>
+                            <input id="createStatY-AxisInput" type="text"/>
 
-                        <label>Insert Data Below</label>
-                    </form>
+                            <label>Type:</label>
+                            <select id="createStatTypeSelect" name="type">
+                                <option value="bar">Bar Graph</option>
+                                <option value="line">Line Graph</option>
+                            </select>
 
-                    <button onClick={this.createStatistic}>Create</button>
-                
-                    <div>
-                        {this.state.createStatState()}
+                            <label>Insert Data Below</label>
+                        </form>
+                        <button onClick={this.createStatistic}>Create</button>
+                        <div>
+                            {this.state.createStatState()}
+                        </div>
+                        <SpanLink to="/statistics" name="return"/>
                     </div>
-                    <SpanLink to="/statistics" name="return"/>
+
+
+                    
+                    
                 </div>
             </div>
         );

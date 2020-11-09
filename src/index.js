@@ -34,10 +34,10 @@ class App extends React.Component {
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/admin home" component={AdminHome} />
 						<Route exact path="/userProfile" component={EditableProfile} />
-            <Route exact path="/otherUserProfile" component={ViewableProfile} />
+            			<Route exact path="/otherUserProfile" component={ViewableProfile} />
 						<Route exact path="/password reset" component={PasswordReset} />
-            <Route exact path="/recordStatistics" component={RecordStatistics}/>
-            <Route exact path="/statistics/create" component={CreateStatistics}/>
+            			<Route exact path="/recordStatistics" component={RecordStatistics}/>
+            			<Route exact path="/statistics/create" component={CreateStatistics}/>
 						<Route exact path="/statistics" component={Statistics} />
 						<Route
 							exact
