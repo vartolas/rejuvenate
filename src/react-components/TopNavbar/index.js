@@ -21,7 +21,7 @@ export default class TopNavbar extends React.Component {
                                 <NavDropdown.Item href="/recordStatistics">Record Stats</NavDropdown.Item>
                                 <NavDropdown.Item href="/statistics">View Stats</NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link href="/setting">Setting</Nav.Link>
+                            <Nav.Link href="/settings">Settings</Nav.Link>
                             <Nav.Link href="/">Sign Out</Nav.Link>
                         </Nav>
                         </Navbar.Collapse>
