@@ -16,6 +16,8 @@ Or the admin home page with these credentials:
 - username: admin
 - password: admin
 
+```Currently, any error messages (e.g. blank field or incorrect credentials) that occur will appear as the contents of the username and password fields are updated, as opposed to after the user presses the login button.```
+
 # Register Page
 
 (TODO: insert jpg of sign up page here)
@@ -30,6 +32,9 @@ You can sign up for a new admin account with these credentials:
 - username: admin
 - password: admin
 
+```The same "instant error message" problem occurs as the login page.```
+```Moreover, there is no "new email" field, confirm password field, or the ability to confirm the user's new password via a confirmation email.```
+
 # Reset Password Page
 
 (TODO: insert jpg of reset password here)
@@ -43,6 +48,9 @@ You can reset an admin's passwrd with these credentials:
 
 - username: admin
 - password: admin
+
+```The same "instant error message" problem occurs as the login page.```
+```Moreover, there is no "current email" field, confirm password field, or the ability to confirm the user's new password via a confirmation email.```
 
 # Home Page
 
