@@ -1,8 +1,10 @@
 .postEntryContainer {
+	margin-left: 1%;
 	border: 6px solid #38474e;
+	padding: 30px;
 	border-radius: 2%;
 	margin-bottom: 4%;
-	width: 99%;
+	width: 98%;
 	background-color: #38474e;
 	padding: 25px;
 }

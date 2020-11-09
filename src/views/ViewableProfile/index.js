@@ -1,12 +1,12 @@
-import React from 'react';
-import './styles.css';
+import React from "react";
+import "./styles.css";
 
-import ViewableUserInfo from '../../react-components/ViewableUserInfo'
-import SpanLink from '../../react-components/SpanLink';
-import ProfileUserConnections from '../../react-components/ProfileUserConnections';
-import PostList from '../../react-components/PostList';
+import ViewableUserInfo from "../../react-components/ViewableUserInfo";
+import SpanLink from "../../react-components/SpanLink";
+import ProfileUserConnections from "../../react-components/ProfileUserConnections";
+import PostList from "../../react-components/PostList";
 
-import { getUsers, getCurrentUser } from '../../userData.js';
+import { getUsers, getCurrentUser } from "../../userData.js";
 
 export default class ViewableProfile extends React.Component {
     constructor(props) {
@@ -133,7 +133,7 @@ export default class ViewableProfile extends React.Component {
             </div>
 
             <div className='profilePageComp' id='userPosts'>
-              <PostList posts={ this.state.posts } />
+              <PostList posts={ this.state.posts } listComponent={this}/>
             </div>
           </div>
           <div id='topRightMargin10px'>

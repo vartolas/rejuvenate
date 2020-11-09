@@ -74,7 +74,7 @@ export default class EditableProfile extends React.Component {
             </div>
 
             <div className='profilePageComp' id='userPosts'>
-              <PostList posts={ this.state.posts } />
+              <PostList posts={ this.state.posts } listComponent={this}/>
             </div>
           </div>
           <div id='topRightMargin10px'>
