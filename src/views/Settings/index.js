@@ -47,10 +47,10 @@ export default class Setting extends React.Component {
     processCredentials() {
         return this.state.username !== '' &&
             this.state.password !== '' &&
-            ((this.state.username === CORRECT_REGULAR_USER_USERNAME &&
-                this.state.password === CORRECT_REGULAR_USER_PASSWORD) ||
-            (this.state.username === CORRECT_ADMIN_USERNAME &&
-                this.state.password === CORRECT_ADMIN_PASSWORD));
+            ((this.state.username !== CORRECT_REGULAR_USER_USERNAME &&
+                this.state.password !== CORRECT_REGULAR_USER_PASSWORD) ||
+            (this.state.username !== CORRECT_ADMIN_USERNAME &&
+                this.state.password !== CORRECT_ADMIN_PASSWORD));
     }
 
     // TODO: In phase 2, we plan on verifying user/admin credentials against a database.
@@ -90,7 +90,11 @@ export default class Setting extends React.Component {
             return '/settings';
         }
     }
-    
+
+    changeProfilePicture() {
+        return '/settings';
+    }
+
     render() {
         return (
             <div id="settingsContainer">
@@ -114,15 +118,41 @@ export default class Setting extends React.Component {
                             error={!this.state.password}
                             helperText={this.displayPasswordError()}
                         />
+                        {/* TODO: make proper upload photo (change profile pic) */}
+                        <span>
+                            <input
+                                type="file"
+                                name="picture"
+                                id="file"
+                                className="inputPicture"
+                            />
+                            <label for="file">Choose New Profile Picture</label>
+                        </span>
                         <br></br>
-                        <Button href={this.changeUsername().toString()} variant="contained" color="primary" disableElevation>
+                        <Button
+                            href={this.changeUsername().toString()}
+                            variant="contained"
+                            color="primary"
+                            disableElevation>
                             Change Username
                         </Button>
                         <br></br>
-                        <Button href={this.changePassword().toString()} variant="contained" color="primary" disableElevation>
+                        <Button href={this.changePassword().toString()}
+                            variant="contained"
+                            color="primary"
+                            disableElevation>
                             Change Password
                         </Button>
                         <br></br>
+                        <Button
+                            href={this.changeProfilePicture().toString()}
+                            variant="contained"
+                            color="primary"
+                            className="changeProfilePictureButton"                                
+                            name="picture"
+                        >
+                            Change Profile Picture
+                        </Button>
                     </FormControl>
                 </div>
             </div>    
