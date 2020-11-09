@@ -2,6 +2,12 @@
 
 Here at Rejuvenate, we believe in sharing fitness, nutrition, and sleep advice in our journey to good health.
 
+# What Libraries Did We Use?
+
+- MaterialUI (to improve the appearance of the login page)
+- Bootstrap (for the navigation bar and add image buttons)
+- Chart.js (for creating bar graphs)
+
 # Login Page
 
 (TODO: insert jpg of login page here)
