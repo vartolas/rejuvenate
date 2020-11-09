@@ -13,7 +13,6 @@ export default class PostEntry extends React.Component {
 	constructor(props) {
 		super(props);
 		const likes = this.props.entry.likes;
-		// console.log(likes);
 		const currentUid = getLoggInUser();
 		this.state = {
 			liked: likes.includes(currentUid),

@@ -5,20 +5,6 @@ import { Form, Button } from "react-bootstrap";
 import "./styles.css";
 
 export default class CreatePost extends React.Component {
-	// constructor(props) {
-	// 	// When the componenet is created
-	// 	super(props);
-	// state = {
-	// 	tag: "General",
-	// 	text: "",
-	// 	have_pic: 0,
-	// 	picture: "",
-	// 	username: "MEEEEEE",
-	// 	avatar:
-	// 		"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-	// };
-	// }
-
 	render() {
 		const {
 			posts,
@@ -26,8 +12,6 @@ export default class CreatePost extends React.Component {
 			text,
 			have_pic,
 			picture,
-			username,
-			profilePic,
 			handleInputChange,
 			addPost,
 		} = this.props;
@@ -77,9 +61,6 @@ export default class CreatePost extends React.Component {
 						onClick={addPost}
 					>
 						Post
-					</Button>
-					<Button variant="primary" type="button" className="postButton">
-						Cancel
 					</Button>
 				</Form>
 			</div>

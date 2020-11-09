@@ -1,39 +1,37 @@
 #homeContainer {
-  height: 93vh;
-  overflow-y: hidden;
-  display: flex;
-  flex-direction: row;
+	height: 93vh;
+	overflow-y: hidden;
+	display: flex;
+	flex-direction: row;
 }
 
 #friendListContainer {
-  width: 25%;
-  position: relative;
-  background-color: #323f45;
-  text-align: center;
-  overflow-y: scroll;
+	width: 23%;
+	position: relative;
+	background-color: #323f45;
 }
 
 #postListContainer {
-  width: 75%;
-  position: relative;
-  background-color: #323f45;
-  overflow-y: scroll;
+	width: 77%;
+	position: relative;
+	background-color: #323f45;
+	overflow-y: scroll;
 }
 
 #circleIcon {
-  color: #647d88;
-  size: 200px;
+	color: #647d88;
+	size: 200px;
 }
 
 #postButton {
-  color: #647d88;
-  size: 200px;
+	color: #647d88;
+	size: 200px;
 }
 
 #postButtonContainer {
-  position: fixed;
-  bottom: 60px;
-  border-radius: 50%;
-  right: 50%;
-  background-color: #1e272b;
+	position: fixed;
+	bottom: 60px;
+	border-radius: 50%;
+	right: 50%;
+	background-color: #1e272b;
 }
