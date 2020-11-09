@@ -71,7 +71,6 @@ You can also comment on other people's posts, ```although comments don't have th
 On the left, the user can see who they follow, and who follows them.
 You can click on one of your followers or followees to visit their profile page.
 
-```However, to go from another user's page to yet another user's page, you must double click (single clicking won't work yet) to visit their profile page.```
 ```It's also not possible to follow or unfollow users directly from the followers-following corners, since we don't have a Follow/Unfollow button yet.```
 
 # Profile Page
@@ -85,7 +84,7 @@ On the left, you can view your profile picture, your bio, and your favourite act
 At the top center of the page, you can view sample charts for your favorite statistics.
 To see all of your statistics, click on the "See more of your stats" link.
 
-```We haven't figured out how other users can see all of your statistics yet.```
+```We haven't figured out how other users can see all of your statistics, or how you can all of another user's statistics yet.```
 
 Below, you can see all of your posts you've made.
 
@@ -100,6 +99,8 @@ Lastly, you can see your list of followers and followees, and access their profi
 # View Statistics Page
 
 (TODO: insert jpg of view statistics page)
+
+Users can view all of their statistics they wish to track in one of these following categories: "Fitness," "Nutrition," ```and "Sleep." (soon)```
 
 # Settings Page
 
