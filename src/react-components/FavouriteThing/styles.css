@@ -36,3 +36,51 @@
   width: 100%;
   text-align: center;
 }
+
+#removeFavouriteThingBtn {
+  width: 15px;
+  height: 15px;
+  background-color: #AAAAAA;
+  position: absolute;
+  top: 56px;
+  left: 35px;
+  z-index: 1;
+  border-radius: 50%;
+  text-align: center;
+}
+
+#removeFavouriteThingBtn:hover {
+  background-color: #DD8888;
+  cursor: pointer;
+}
+
+#addFavouriteThingBtn {
+  width: 15px;
+  height: 15px;
+  background-color: #AAAAAA;
+  position: absolute;
+  top: 56px;
+  left: 35px;
+  z-index: 1;
+  border-radius: 50%;
+  text-align: center;
+}
+
+#addFavouriteThingBtn:hover {
+  background-color: #88DD88;
+  cursor: pointer;
+}
+
+#addFavouriteThingText {
+  position: absolute;
+  top: -5px;
+  left: 2.5px;
+  font-weight: normal;
+}
+
+#removeFavouriteThingText {
+  position: absolute;
+  top: -5px;
+  left: 4px;
+  font-weight: normal;
+}
