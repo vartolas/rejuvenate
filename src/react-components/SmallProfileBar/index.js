@@ -30,7 +30,7 @@ export default class SmallProfileBar extends React.Component {
               <h5 id='smallProfileName'>{ name }</h5>
               <h6 id='smallProfileUsername'>@{ username }</h6>
             </div>
-            { this.getUnfollowButton() }
+            {/* this.getUnfollowButton() */}
           </div>
         </Link>
       </div>
