@@ -2,6 +2,8 @@
 
 Here at Rejuvenate, we believe in sharing fitness, nutrition, and sleep advice in our journey to good health.
 
+Whenever we are fetching data from src/userData.js, we are simulating fetching data from the database.
+
 # What Libraries Did We Use?
 
 - MaterialUI (to improve the appearance of the login page)
