@@ -2,8 +2,8 @@
 
 Here at Rejuvenate, we believe in sharing fitness, nutrition, and sleep advice in our journey to good health.
 
-Whenever we are fetching data from src/userData.js, we would be fetching data from the database.
-Whenever the fetched data is manipulated in the state, we would be send this manipulated data back to the server, so we can edit our database. 
+```Whenever we are fetching data from src/userData.js, we would be fetching data from the database.```
+```Whenever the fetched data is manipulated in the state, we would be send this manipulated data back to the server, so we can edit our database.```
 
 # What Libraries Did We Use?
 
