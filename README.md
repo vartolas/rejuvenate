@@ -66,23 +66,19 @@ and then clicking on the ```Reset Password``` button.
 
 # Home Page
 
-![Create Post Corner]()
-
-(TODO: insert jpg of create post corner)
+![Create Post Corner](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/CreatePostCorner.png)
 
 In the home page, you can post content in one of the following categories: "General," "Fitness," and "Recipe."
 Users also have the option to add a message to their post, or add images to their post. 
 
 ```However, user cannot save uploaded photos because we don't have a backend yet.```
 
-![Sample User Post]()
-
-(TODO: insert jpg of sample user post)
+![Sample User Post](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/SamplePost.png)
 
 You can like other people's posts, and other people can like your posts as well.
 You can also comment on other people's posts, ```although comments don't have the ability to track like counts yet.```
 
-(TODO: insert jpg of user's followers-following corner)
+![User Connections](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserConnections.png)
 
 On the left, the user can see who they follow, and who follows them. As well, you can unfollow users by clicking on the ```Unfollow``` button.
 You can click on one of your followers or followees to visit their profile page.
