@@ -10,7 +10,7 @@ Here at Rejuvenate, we believe in sharing fitness, nutrition, and sleep advice i
 
 # Login Page
 
-(TODO: insert jpg of login page here)
+![Login Page](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/LoginPage.png)
 
 You can log into the user home page with these credentials:
 
@@ -28,7 +28,7 @@ and then clicking on the ```Login``` button.
 
 # Register Page
 
-(TODO: insert jpg of sign up page here)
+![Register Page](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/RegisterPage.png)
 
 You can sign up for a new user account with these credentials:
 
@@ -47,7 +47,7 @@ and then clicking on the ```Register``` button.
 
 # Reset Password Page
 
-(TODO: insert jpg of reset password here)
+![Reset Password Page](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ResetPasswordPage.png)
 
 You can reset a user's passwrd with these credentials:
 
@@ -66,12 +66,16 @@ and then clicking on the ```Reset Password``` button.
 
 # Home Page
 
+![Create Post Corner]()
+
 (TODO: insert jpg of create post corner)
 
 In the home page, you can post content in one of the following categories: "General," "Fitness," and "Recipe."
 Users also have the option to add a message to their post, or add images to their post. 
 
 ```However, user cannot save uploaded photos because we don't have a backend yet.```
+
+![Sample User Post]()
 
 (TODO: insert jpg of sample user post)
 
@@ -84,7 +88,6 @@ On the left, the user can see who they follow, and who follows them. As well, yo
 You can click on one of your followers or followees to visit their profile page.
 
 At the top of the page in the navbar there is a search bar which allows users to search through all users on the plaform to view their profile and follow them.
-
 ```However, for now clicking on an user in the drop down of the search bar does not automatically redirect user to the desired user's profile page. The url is changed so going to url and hit enter would redirect the user to the desired profile page.```
 
 # Profile Page
