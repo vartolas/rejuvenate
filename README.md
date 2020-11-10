@@ -116,7 +116,7 @@ Once a user is satisfied with their changes, they can click, on the "confirm all
 
 # View Statistics Page
 
-![View Statistics](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ViewStatistic.png)
+![View Statistics](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ViewStatistics.png)
 
 Users can view all their statistics as nicely graphed charts on this page, orghanized by their category. click the "+" button to create a new statistic. click on any of the charts to navigate to the record statistic s page and edit the data for that chart/statistic
 
