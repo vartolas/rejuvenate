@@ -84,6 +84,7 @@ On the left, the user can see who they follow, and who follows them. As well, yo
 You can click on one of your followers or followees to visit their profile page.
 
 At the top of the page in the navbar there is a search bar which allows users to search through all users on the plaform to view their profile and follow them.
+
 ```However, for now clicking on an user in the drop down of the search bar does not automatically redirect user to the desired user's profile page. The url is changed so going to url and hit enter would redirect the user to the desired profile page.```
 
 # Profile Page
