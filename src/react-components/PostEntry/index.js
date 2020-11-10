@@ -56,7 +56,7 @@ export default class PostEntry extends React.Component {
 
 	displayRemoveButton() {
 		return(
-			<div id='removeButton' onClick={ () => this.props.removePost(this.props.entry.uid) }><span>x</span></div>
+			<div id='removeButton'><span>x</span></div>
 		)
 	}
 

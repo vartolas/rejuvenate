@@ -91,7 +91,7 @@ export default class Home extends React.Component {
 	render() {
 		return (
 			<div id="homeContainer">
-        <Link to='/admin dashboard'><div id="adminDashboardButton"></div></Link>
+        <Link to='/admin dashboard'><div id="adminDashboardButton">Go to admin dashboard</div></Link>
 				<div id="friendListContainer">
 					<ProfileUserConnections
 						canUnfollow={true}

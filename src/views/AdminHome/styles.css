@@ -21,10 +21,18 @@
 
 #adminDashboardButton {
   position: absolute;
-  width: 200px;
+  width: 295px;
   height: 200px;
-  background-color: blue;
+  background-color: #283035;
   z-index: 1;
   bottom: 10px;
   left: 10px;
+	text-align: center;
+	padding-top: 80px;
+	color: #AAAAAA;
+}
+
+#adminDashboardButton:hover {
+  background-color: #647d88;
+	color: #283035;
 }
