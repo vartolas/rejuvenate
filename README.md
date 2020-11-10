@@ -17,10 +17,12 @@ You can log into the user home page with these credentials:
 - username: user
 - password: user
 
-Or the admin home page with these credentials:
+or the admin home page with these credentials:
 
 - username: admin
 - password: admin
+
+and then clicking on the ```Login``` button.
 
 ```Currently, any error messages (e.g. blank field or incorrect credentials) that occur will appear as the contents of the username and password fields are updated, as opposed to after the user presses the login button.```
 
@@ -38,6 +40,8 @@ You can sign up for a new admin account with these credentials:
 - username: admin
 - password: admin
 
+and then clicking on the ```Register``` button.
+
 ```The same "instant error message" problem occurs as the login page.```
 ```Moreover, there is no "new email" field, confirm password field, or the ability to confirm the user's new password via a confirmation email.```
 
@@ -54,6 +58,8 @@ You can reset an admin's passwrd with these credentials:
 
 - username: admin
 - password: admin
+
+and then clicking on the ```Reset Password``` button.
 
 ```The same "instant error message" problem occurs as the login page.```
 ```Moreover, there is no "current email" field, confirm password field, or the ability to confirm the user's new password via a confirmation email.```
@@ -74,10 +80,8 @@ You can also comment on other people's posts, ```although comments don't have th
 
 (TODO: insert jpg of user's followers-following corner)
 
-On the left, the user can see who they follow, and who follows them.
+On the left, the user can see who they follow, and who follows them. As well, you can unfollow users by clicking on the ```Unfollow``` button.
 You can click on one of your followers or followees to visit their profile page.
-
-```It's also not possible to follow or unfollow users directly from the followers-following corners, since we don't have a Follow/Unfollow button yet.```
 
 # Profile Page
 
@@ -100,8 +104,8 @@ Lastly, you can see your list of followers and followees, and access their profi
 
 # Record Statistics Page
 
-(TODO: insert jpg of record statistics page)
 ![Add New Entry Corner](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/AddNewEntryCorner.png)
+
 
 # View Statistics Page
 
