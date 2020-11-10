@@ -130,12 +130,12 @@ export default class ViewableProfile extends React.Component {
 				/>
 
 				<div id="middleProfilePageBar">
-					<div className="profilePageComp" id="userStatsPreview">
+					{/* <div className="profilePageComp" id="userStatsPreview">
 						<h4>{this.state.firstName}'s Pinned Stats</h4>
 						<span id="viewMoreStatsText">
 							See more of {this.state.firstName}'s stats
 						</span>
-					</div>
+					</div> */}
 
 					<div className="profilePageComp" id="userPosts">
 						<PostList posts={this.state.posts} listComponent={this} />
