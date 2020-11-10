@@ -15,7 +15,6 @@ import EditableProfile from "./views/EditableProfile";
 import ViewableProfile from "./views/ViewableProfile";
 import Statistics from "./views/Statistics";
 import CreateStatistics from "./views/CreateStatistic";
-import AddFriend from "./views/AddFriend";
 import RecordStatistics from "./views/RecordStatistics";
 import Settings from "./views/Settings";
 
@@ -23,7 +22,6 @@ import TopNavbar from "./react-components/TopNavbar";
 
 import "./index.css";
 var user = null;
-
 
 class App extends React.Component {
 	render() {
@@ -36,17 +34,24 @@ class App extends React.Component {
 						<Route exact path="/admin home" component={AdminHome} />
 						<Route exact path="/admin dashboard" component={AdminDashboard} />
 						<Route exact path="/userProfile" component={EditableProfile} />
-            			<Route exact path="/otherUserProfile" component={ViewableProfile} />
+						<Route exact path="/otherUserProfile" component={ViewableProfile} />
 						<Route exact path="/password reset" component={PasswordReset} />
-            			<Route exact path="/recordStatistics" component={RecordStatistics}/>
-            			<Route exact path="/statistics/create" component={CreateStatistics}/>
+						<Route
+							exact
+							path="/recordStatistics"
+							component={RecordStatistics}
+						/>
+						<Route
+							exact
+							path="/statistics/create"
+							component={CreateStatistics}
+						/>
 						<Route exact path="/statistics" component={Statistics} />
 						<Route
 							exact
 							path="/statistics/create"
 							component={CreateStatistics}
 						/>
-						<Route exact path="/addFriend" component={AddFriend} />
 						<Route
 							exact
 							path="/recordStatistics"
