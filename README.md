@@ -146,13 +146,10 @@ Users can change their username, password, or their profile picture.
 
 # Admin Home Page
 
-(TODO: insert jpg of admin home page)
-
 ```Clicking on the top left hand corner where the name of the app is navigates the admin to regular user's home page, instead of admin's home page.```
 
 # Admin Dashboard Page
 
-(TODO: insert jpg of admin dashboard page)
 In the admin dashboard page, the admin can search through all users and posts, and delete unwanted ones. 
 To search for a post, the admin has to enter the prefix (first n characters) of the post content or its comment.
 
