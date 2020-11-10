@@ -49,12 +49,12 @@ and then clicking on the ```Register``` button.
 
 ![Reset Password Page](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ResetPasswordPage.png)
 
-You can reset a user's passwrd with these credentials:
+You can reset a user's password with these credentials:
 
 - username: user
 - password: user
 
-You can reset an admin's passwrd with these credentials:
+You can reset an admin's password with these credentials:
 
 - username: admin
 - password: admin
@@ -115,15 +115,17 @@ Users can add new entries to their data for this statistic by writing valid numb
 
 ![Existing Entries](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ExistingEntriesCorner.png)
 
-Users can see all of the exisitng entries for their statistic here, and delete any as necessary
+Users can see all of the existing entries for their statistic here, and delete any as necessary.
 
-Once a user is satisfied with their changes, they can click, on the "confirm all changes" button to commit their changes to the database (only a placeholder for now)
+Once a user is satisfied with their changes, they can click on the "confirm all changes" button to commit their changes to the database (only a placeholder for now) and go to the View Statistics page.
 
 # View Statistics Page
 
 ![View Statistics](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ViewStatistics.png)
 
-Users can view all their statistics as nicely graphed charts on this page, orghanized by their category. click the "+" button to create a new statistic. click on any of the charts to navigate to the record statistic s page and edit the data for that chart/statistic
+Users can view all their statistics as nicely graphed charts on this page, organized by their category.
+Click the "+" button to create a new statistic. 
+Click on any of the charts to navigate to the record statistics page and edit the data for that chart/statistic.
 
 # Create Statistic Page
 
@@ -133,18 +135,17 @@ Users can create their own statistic by navigating her via the "+" button on the
 
 # Settings Page
 
-(TODO: insert jpg of settings page)
+![Settings Page](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/SettingsPage.png)
 
 Users can change their username, password, or their profile picture.
 
 ```However, user cannot save uploaded photos because we don't have a backend yet.```
-```Also, the "change profile picture" button disappears into the white when you click on it, and after you choose a photo for your profile picture.```
 
 # Admin Home Page
 
 (TODO: insert jpg of admin home page)
 
-```Clicking on the top left hand corner where the name of the app is navigates the admin to regular user's home page, instead of admin's home page```
+```Clicking on the top left hand corner where the name of the app is navigates the admin to regular user's home page, instead of admin's home page.```
 
 # Admin Dashboard Page
 
