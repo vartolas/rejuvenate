@@ -100,7 +100,13 @@ Lastly, you can see your list of followers and followees, and access their profi
 
 # Record Statistics Page
 
-(TODO: insert jpg of record statistics page)
+(TODO: insert jpg of add new entry corner)
+
+
+(TODO: insert jpg of existing entries corner)
+
+
+
 
 # View Statistics Page
 
