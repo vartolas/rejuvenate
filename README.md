@@ -88,11 +88,13 @@ At the top of the page in the navbar there is a search bar which allows users to
 
 # Profile Page
 
-(TODO: insert jpg of left side of profile page)
+![Profile Picture and Bio](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ProfilePictureAndBio.png)
+
+![User Favourites](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserFavourites.png)
 
 On the left, you can view your profile picture, your bio, and your favourite activities.
 
-(TODO: insert jpg of middle of profile page)
+![User Pinned Statistics](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserPinnedStats.png)
 
 At the top center of the page, you can view sample charts for your favorite statistics.
 To see all of your statistics, click on the "See more of your stats" link.
@@ -101,9 +103,9 @@ To see all of your statistics, click on the "See more of your stats" link.
 
 Below, you can see all of your posts you've made.
 
-(TODO: insert jpg of right side of profile page)
+![User Profile Connections](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserConnectionsFollowing.png)
 
-Lastly, you can see your list of followers and followees, and access their profiles the same way as in the home page.
+Lastly, on the right you can see your list of followers and followees, and access their profiles the same way as in the home page.
 
 # Record Statistics Page
 
