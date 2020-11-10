@@ -101,6 +101,7 @@ Lastly, you can see your list of followers and followees, and access their profi
 # Record Statistics Page
 
 (TODO: insert jpg of add new entry corner)
+![Add new entry](./readme_images/AddNewCorner.png)
 
 
 (TODO: insert jpg of existing entries corner)
