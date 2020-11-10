@@ -14,7 +14,7 @@
 
 .statsContainer {
     
-  justify-content: left;
+    justify-content: left;
     display: flex;
     overflow-x: auto;
     overflow-y: hidden;

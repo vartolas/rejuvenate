@@ -100,13 +100,8 @@ Lastly, you can see your list of followers and followees, and access their profi
 
 # Record Statistics Page
 
-(TODO: insert jpg of add new entry corner)
-
-
-(TODO: insert jpg of existing entries corner)
-
-
-
+(TODO: insert jpg of record statistics page)
+![Add New Entry Corner](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/AddNewEntryCorner.png)
 
 # View Statistics Page
 

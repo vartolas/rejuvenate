@@ -47,25 +47,26 @@ export default class CreateStatistic extends React.Component {
                                 <option value="line">Line Graph</option>
                             </select>
 
-                            <label>Insert Data Below</label>
                         </form>
-                        <button onClick={this.createStatistic}>Create</button>
+                        <Link to="/recordStatistics">
+                            <button id="createButton" onClick={this.createStatistic}>Create</button>
+                        </Link>
                         <div>
                             {this.state.createStatState()}
                         </div>
                         <SpanLink to="/statistics" name="return"/>
                     </div>
+                    <div id="chooseTemplateContainer">
+                        
+                    </div>
 
-
-                    
-                    
                 </div>
             </div>
         );
     }
 
     createStatistic = (e) => {
-        e.preventDefault();
+        
 
         var title = document.getElementById("createStatTitleInput").value;
         var xAxisLabel = document.getElementById("createStatX-AxisInput").value;
