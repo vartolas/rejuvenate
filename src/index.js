@@ -10,6 +10,7 @@ import PasswordReset from "./views/PasswordReset";
 
 import Home from "./views/Home";
 import AdminHome from "./views/AdminHome";
+import AdminDashboard from "./views/AdminDashboard";
 import EditableProfile from "./views/EditableProfile";
 import ViewableProfile from "./views/ViewableProfile";
 import Statistics from "./views/Statistics";
@@ -33,6 +34,7 @@ class App extends React.Component {
 					<Switch>
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/admin home" component={AdminHome} />
+						<Route exact path="/admin dashboard" component={AdminDashboard} />
 						<Route exact path="/userProfile" component={EditableProfile} />
             <Route exact path="/otherUserProfile" component={ViewableProfile} />
 						<Route exact path="/password reset" component={PasswordReset} />

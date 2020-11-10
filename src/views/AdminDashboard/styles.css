@@ -1,0 +1,22 @@
+#dashboardContainer {
+	height: 93vh;
+	overflow-y: hidden;
+	display: flex;
+	flex-direction: row;
+	background-color: #283035;
+}
+
+#profileDashboardSegment {
+  width: 300px;
+}
+
+#postDashboardSegment {
+  width: 1110px;
+}
+
+.dashboardSegment {
+  background-color: #323f45;
+  margin: 10px 0 10px 10px;
+  float: left;
+  overflow-y: scroll;
+}

@@ -54,6 +54,12 @@ export default class PostEntry extends React.Component {
 		}
 	}
 
+	displayRemoveButton() {
+		return(
+			<div id='removeButton' onClick={ () => this.props.removePost(this.props.entry.uid) }><span>x</span></div>
+		)
+	}
+
 	render() {
 		const { tag, content, uid, comments, likes } = this.props.entry;
 		const users = getUsers();
@@ -95,6 +101,7 @@ export default class PostEntry extends React.Component {
 
 		return (
 			<div className="postEntryContainer">
+				{ this.props.removable ? this.displayRemoveButton() : '' }
 				<div className="tag">{tag}</div>
 				<div className="user">
 					<img className="avatar" src={user.profilePic} alt="" />

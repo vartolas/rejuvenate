@@ -1,0 +1,30 @@
+#homeContainer {
+	height: 93vh;
+	overflow-y: hidden;
+	display: flex;
+	flex-direction: row;
+	background-color: #283035;
+}
+
+#friendListContainer {
+	width: 22%;
+	position: relative;
+	background-color: #323f45;
+}
+
+#postListContainer {
+	width: 78%;
+	position: relative;
+	background-color: #283035;
+	overflow-y: scroll;
+}
+
+#adminDashboardButton {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: blue;
+  z-index: 1;
+  bottom: 10px;
+  left: 10px;
+}
