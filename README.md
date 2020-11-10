@@ -150,3 +150,7 @@ Users can change their username, password, or their profile picture.
 # Admin Dashboard Page
 
 (TODO: insert jpg of admin dashboard page)
+In the admin dashboard page, the admin can search through all users and posts, and delete unwanted ones. 
+To search for a post, the admin has to enter the prefix (first n characters) of the post content or its comment.
+
+```For now the deletion button does not work since we cannot delete any hardcoded data. This can be fixed during phase 2.```
