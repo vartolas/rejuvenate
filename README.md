@@ -105,21 +105,25 @@ Lastly, you can see your list of followers and followees, and access their profi
 # Record Statistics Page
 
 ![Add New Entry Corner](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/AddNewEntryCorner.png)
-    Users can add new entries to their data for this statistic by writing valid numbers tot eh input boxes and clicking "add new entry". All changes will be refelected in a local copy of the statistic as they happen so the user can see exactly what their changes look like
 
-![Existing Entries](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ExistingEntries.png)
-    Users can see all of the exisitng entries for their statistic here, and delete any as necessary
+Users can add new entries to their data for this statistic by writing valid numbers tot eh input boxes and clicking "add new entry". All changes will be refelected in a local copy of the statistic as they happen so the user can see exactly what their changes look like
 
-    Once a user is satisfied with their changes, they can click, on the "confirm all changes" button to commit their changes to the database (only a placeholder for now)
+![Existing Entries](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ExistingEntriesCorner.png)
+
+Users can see all of the exisitng entries for their statistic here, and delete any as necessary
+
+Once a user is satisfied with their changes, they can click, on the "confirm all changes" button to commit their changes to the database (only a placeholder for now)
 
 # View Statistics Page
 
 ![View Statistics](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ViewStatistic.png)
+
 Users can view all their statistics as nicely graphed charts on this page, orghanized by their category. click the "+" button to create a new statistic. click on any of the charts to navigate to the record statistic s page and edit the data for that chart/statistic
 
 # Create Statistic Page
 
 ![Create New Statistic](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/CreateStatistic.png)
+
 Users can create their own statistic by navigating her via the "+" button on the view statistics page, and filling out the form, note that this is only a placeholder right now because we need to write the newly created statisitc to the database for full functionality.
 
 # Settings Page
