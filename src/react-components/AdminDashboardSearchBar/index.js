@@ -9,7 +9,8 @@ export default class AdminDashboardSearchBar extends React.Component {
   state = {
     query: '',
     matchedPosts: [],
-    posts: []
+    posts: [],
+    comments: []
   }
 
   handleInput(e) {
@@ -30,21 +31,30 @@ export default class AdminDashboardSearchBar extends React.Component {
   componentDidMount() {
     // document.addEventListener("mouseup", this.handleMouseUp.bind(this));
 
-    // Initialize posts.
+    // Initialize posts and comments
     const users = getUsersAsList();
-
     const posts = [];
+    const comments = [];
+
+
     for (let i = 0; i < users.length; i++) {
       for (let j = 0; j < users[i].posts.length; j++) {
         posts.push(users[i].posts[j]);
+        for (let k = 0; k < users[i].posts[j].comments.length; k++) {
+          comments.push(users[i].posts[j].comments[k]);
+        }
       }
     }
 
     for (let i = 0; i < posts.length; i++) {
-      posts[i].uid = i;
+      posts[i].pid = i;
     }
 
-    this.setState({posts: posts});
+    for (let i = 0; i < comments.length; i++) {
+      comments[i].cid = i;
+    }
+
+    this.setState({ posts: posts, comments: comments });
   }
 
   componentWillUnmount() {
@@ -71,37 +81,57 @@ export default class AdminDashboardSearchBar extends React.Component {
 
   setMatchedPosts() {
     const matchedPosts = this.state.posts.filter(post => {
-      if (post.content.text.toLowerCase().startsWith(this.state.query.toLowerCase())) {
+      if (post.content.text.toLowerCase().includes(this.state.query.toLowerCase())) {
         return true;
       }
 
       for (let i = 0; i < post.comments.length; i++) {
-        if (post.comments[i].comment.toLowerCase().startsWith(this.state.query.toLowerCase())) {
+        if (post.comments[i].comment.toLowerCase().includes(this.state.query.toLowerCase())) {
           return true
         }
       }
     })
 
+    matchedPosts.map(post => {
+      for (let i = 0; i < post.comments.length; i++) {
+        if (!this.state.comments.includes(post.comments[i])) {
+          post.comments.splice(post.comments.indexOf(post.comments[i]), 1);
+        }
+      }
+    });
+
     this.setState({matchedPosts: matchedPosts});
-    console.log(matchedPosts)
-    console.log(this.state.posts)
   }
 
-  // removePost(uid) {
-  //   const currPosts = this.state.posts;
-  //   let i = 0;
-  //   while (this.state.posts[i].uid != uid) {
-  //     i++;
-  //   }
-  //   currPosts.splice(i, 1);
-  //   this.setState({ posts: currPosts });
-  // }
+  removePost(pid) {
+    const posts = this.state.posts;
+    let i = 0;
+    while (this.state.posts[i].pid != pid) {
+      i++;
+    }
+    posts.splice(i, 1);
+    this.setState({ posts: posts }, this.setMatchedPosts.bind(this));
+  }
+
+  removeComment(cid) {
+    const comments = this.state.comments;
+    let i = 0;
+    console.log(this.state)
+    while (this.state.comments[i].cid != cid) {
+      i++;
+    }
+    comments.splice(i, 1);
+    this.setState({ comments: comments }, this.setMatchedPosts.bind(this));
+  }
 
   render() {
     return (
       <div id='adminSearchBar'>
-        <input autocomplete='off' onKeyUp={ this.handleInput.bind(this) } type='text' placeholder='Search for a post or comment...' />
-        <PostList removable={ true } posts={ this.state.matchedPosts } listComponent={ this }/>
+        <div className='searchSettings'>
+          <input autocomplete='off' onKeyUp={ this.handleInput.bind(this) } type='text' placeholder='Search for a post or comment...' />
+        </div>
+
+        <PostList removable={ true } removePost={ this.removePost.bind(this) } removeComment={ this.removeComment.bind(this) } posts={ this.state.matchedPosts } listComponent={ this }/>
       </div>
 
     );

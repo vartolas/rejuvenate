@@ -1,11 +1,19 @@
 #adminSearchBar {
   height: 40px;
-  padding-top: 20px;
   position: relative;
   margin-left: 10px;
   font-size: 16px;
   width: 95%;
   z-index: 1;
+}
+
+.searchSettings {
+  width: 95%;
+  margin-left: 4%;
+  padding: 10px;
+  border-bottom: 3px #283035 dashed;
+  box-sizing: border-box;
+  margin-bottom: 30px;
 }
 
 #adminSearchBar input {
@@ -18,6 +26,7 @@
   background-color: #647d88;
   color: #1e272b;
   margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
 #adminSearchBar input::placeholder {
@@ -39,9 +48,9 @@
   padding-top: 55px;
 } */
 
-#searchBarSeparator {
+/* #searchBarSeparator {
   border-bottom: solid 1px #667f9B;
   width: 95%;
   margin-left: 2.5%;
   margin-bottom: 30px;
-}
+} */

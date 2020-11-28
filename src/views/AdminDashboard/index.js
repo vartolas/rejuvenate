@@ -10,10 +10,11 @@ export default class AdminDashboard extends React.Component {
 
       <div id='dashboardContainer'>
 
-        <div class='dashboardSegment' id='profileDashboardSegment'></div>
+        <div className='dashboardSegment' id='profileDashboardSegment'></div>
 
-        <div class='dashboardSegment' id='postDashboardSegment'>
-        <AdminDashboardSearchBar />
+        <div className='dashboardSegment' id='postDashboardSegment'>
+					<h1 className='dashboardHeader'>Posts and Comments</h1>
+        	<AdminDashboardSearchBar />
         </div>
 
       </div>
