@@ -2,7 +2,8 @@
 
 Here at Rejuvenate, we believe in sharing fitness, nutrition, and sleep advice in our journey to good health.
 
-Whenever we are fetching data from src/userData.js, we are simulating fetching data from the database.
+```Whenever we are fetching data from src/userData.js, we would be fetching data from the database.```
+```Whenever the fetched data is manipulated in the state, we would be send this manipulated data back to the server, so we can edit our database.```
 
 # What Libraries Did We Use?
 
@@ -145,13 +146,10 @@ Users can change their username, password, or their profile picture.
 
 # Admin Home Page
 
-(TODO: insert jpg of admin home page)
-
 ```Clicking on the top left hand corner where the name of the app is navigates the admin to regular user's home page, instead of admin's home page.```
 
 # Admin Dashboard Page
 
-(TODO: insert jpg of admin dashboard page)
 In the admin dashboard page, the admin can search through all users and posts, and delete unwanted ones. 
 To search for a post, the admin has to enter the prefix (first n characters) of the post content or its comment.
 
