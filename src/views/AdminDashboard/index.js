@@ -9,12 +9,13 @@ export default class AdminDashboard extends React.Component {
 		return (
 
       <div id='dashboardContainer'>
-        <div class='dashboardSegment' id='profileDashboardSegment'>
 
-        </div>
+        <div class='dashboardSegment' id='profileDashboardSegment'></div>
+
         <div class='dashboardSegment' id='postDashboardSegment'>
         <AdminDashboardSearchBar />
         </div>
+
       </div>
 
 		);

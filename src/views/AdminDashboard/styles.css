@@ -7,11 +7,11 @@
 }
 
 #profileDashboardSegment {
-  width: 300px;
+  width: 25%;
 }
 
 #postDashboardSegment {
-  width: 1110px;
+  width: 75%;
 }
 
 .dashboardSegment {

@@ -56,7 +56,7 @@ export default class PostEntry extends React.Component {
 
 	displayRemoveButton() {
 		return(
-			<div id='removeButton'><span>x</span></div>
+			<div id='removeButton'>x</div>
 		)
 	}
 

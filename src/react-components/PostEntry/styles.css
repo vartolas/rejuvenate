@@ -122,18 +122,18 @@
 	position: absolute;
 	top: 5px;
 	right: 5px;
-	background-color: #DD6666;
+	background-color: #AA6666;
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
 	font-size: 30px;
+	padding-left: 17px;
+	box-sizing: border-box;
+	user-select: none;
+	z-index: 1;
 }
 
 #removeButton:hover {
-	background-color: #EE6666;
+	background-color: #FF6666;
 	cursor: pointer;
-}
-
-#removeButton span {
-	margin-left: 17px
 }
