@@ -11,27 +11,27 @@
 	width: 95%;
 	margin-left: 4%;
 	padding: 10px;
-	border-bottom: 3px #283035 dashed;
+	border-bottom: 3px #f2a365 dashed;
 	box-sizing: border-box;
 	margin-bottom: 30px;
 }
 
 .adminSearchBar input {
 	border: none;
-	border-radius: 50px;
+	border-radius: 4px;
 	padding-left: 10px;
-	padding-bottom: 3px;
+	padding-top: 4px;
 	width: 95%;
 	height: 30px;
-	background-color: #647d88;
-	color: #202936;
+	background-color: #ececec;
+	color: #253749;
 	margin-bottom: 10px;
 	box-sizing: border-box;
 }
 
 .adminSearchBar input::placeholder {
-	color: #202936;
-	opacity: 50%;
+	color: #253749;
+	opacity: 70%;
 }
 
 .adminSearchBar input:focus {

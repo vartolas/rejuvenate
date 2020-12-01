@@ -11,15 +11,22 @@
 	display: none;
 }
 
-#friendListContainer {
-	width: 450px;
+.friendListContainer {
+	width: 340px;
 	position: relative;
 	background-color: #202936;
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	flex: 0 1 auto;
 }
 
-#postListContainer {
-	width: 100%;
+.postListContainer {
+	width: 700px;
 	position: relative;
 	background-color: #202936;
 	overflow-y: scroll;
+	float: left;
+	margin-top: 10px;
+	flex: 1 1 auto;
 }

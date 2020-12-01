@@ -43,18 +43,25 @@
 	height: 100%;
 	font-size: 12px;
 	text-align: center;
-	background-color: #775555;
-	color: #888888;
+
+	background-color: #f2a365;
+	/* border-top: solid 1px transparent;
+	border-bottom: solid 1px transparent;
+	border-right: solid 1px transparent; */
+	color: #ececec;
+
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
 	padding-top: 18px;
 	font-weight: 500;
+	box-sizing: border-box;
 }
 
 #unfollowButtonSmall:hover {
+	background-color: transparent;
+	border-color: #ececec;
+	transition: all 0.1s ease-in-out;
 	cursor: pointer;
-	background-color: #bb5555;
-	color: white;
 }
 
 #unfollowButtonSmall:focus {
@@ -71,7 +78,6 @@
 }
 
 #smallProfileBarLinkFull:hover {
-	background-color: #48575e;
 	cursor: pointer;
 }
 
@@ -86,6 +92,5 @@
 }
 
 #smallProfileBarLinkPartial:hover {
-	background-color: #48575e;
 	cursor: pointer;
 }
