@@ -25,6 +25,38 @@ export default class SmallProfileBar extends React.Component {
           </div>
         </Link>
       </div>
+
+    )
+  }
+
+  getRemoveUserButton() {
+    return (
+      <div className='removeUserButton' onClick={ () => this.props.removeUser(this.props.uid) }></div>
+    )
+  }
+
+  getRemovableBar() {
+    const { name, username, imgSrc } = this.props;
+
+    const linkTarget = {
+      pathname: this.props.uid ? "/otherUserProfile" : "/userProfile",
+      state: {uid: this.props.uid},
+      key: 0
+    };
+
+    return (
+      <div id='smallProfileBar'>
+        <Link onClick={ () => {this.forceUpdate()} } to={linkTarget}>
+          <div id='smallProfileBarLinkPartial'>
+            <img id='smallProfileImg' src={ imgSrc } alt='profile pic'/>
+            <div id='smallProfileInfo'>
+              <h5 id='smallProfileName'>{ name }</h5>
+              <h6 id='smallProfileUsername'>@{ username }</h6>
+            </div>
+          </div>
+        </Link>
+        <div onClick={ () => this.props.removeUser(this.props.uid) } id='unfollowButtonSmall'>Remove</div>
+      </div>
     )
   }
 
@@ -64,7 +96,7 @@ export default class SmallProfileBar extends React.Component {
 
     return (
       <div>
-        { this.props.canUnfollow ? this.getUnfollowableBar() : this.getNormalBar() }
+        { this.props.canUnfollow ? this.getUnfollowableBar() : (this.props.removeUser ? this.getRemovableBar() :  this.getNormalBar())}
       </div>
     );
   }

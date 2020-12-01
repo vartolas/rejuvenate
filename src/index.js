@@ -21,7 +21,6 @@ import Settings from "./views/Settings";
 import TopNavbar from "./react-components/TopNavbar";
 
 import "./index.css";
-var user = null;
 
 class App extends React.Component {
 	render() {
@@ -62,12 +61,6 @@ class App extends React.Component {
 				</BrowserRouter>
 			</>
 		);
-	}
-
-	componentDidMount() {
-		if (user == null) {
-			console.log("user not logged in");
-		}
 	}
 }
 

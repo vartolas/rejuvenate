@@ -1,6 +1,10 @@
 const mongoose = require("mongoose")
 
 const Statistic = mongoose.model('Statistic', {
+    userid: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
     title: {
         type: String,
         required: true,

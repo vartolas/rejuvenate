@@ -1,105 +1,66 @@
 const path = require('path');
 const express = require('express');
+const session = require('express-session');
 const bodyParser = require('body-parser');
-const { ObjectID } = require('mongodb');
 
 //mongoose connection
 const { mongoose } = require('./db/mongoose');
+mongoose.set('bufferCommands', false);  // don't buffer db requests if the db server isn't connected - minimizes http requests hanging if this is the case.
+mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 //db models
-const { User } = require('./models/user');
-const { Statistic } = require('./models/statistic');
-const { Post } = require('./models/post');
+
 
 //start app
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.json());
+app.use(session({
+    secret: process.env.SESSION_SECRET || "HARDCODED_SECRET",
+    cookie: {
+        expires: 600000, // have to log in after 10 minutes without server interaction
+        httpOnly: true,
+    },
 
-const log = console.log;
+    saveUninitialized: false,
+    resave: false, // may have to change
+}));
+
+//import api routes
+app.use(require('./api'));
 
 
-/**helper middleware */
-function checkMongoose(req, res, next){
-    if (mongoose.connection.readyState != 1) {
-        log('Issue with mongoose connection')
-        res.status(500).send('Internal server error')
-        return;
+
+const sessionChecker = (req, res, next) => {
+    if (req.session.user) {
+        res.redirect('/home');
+    } else {
+        next();
     }
 }
+/*** Routes to serve webpage **********************************/
 
-/*** Regular user API routes below **********************************/
-
-//add new user to database
-/*
-Request body expects :
-{
-    "username": <username>
-    "password": <password hash>
-    ""
-}
-*/
-
-app.post('/api/users', checkMongoose, async (req, res) => {
-
-    const user = new User({
-        username: req.body.username,
-        password: req.body.password
-    });
-
-    try {
-        const result = await user.save();
-        res.send(result)
-    } catch(error) {
-        log(error)
-        res.status(404).send('Bad Request');
-    }
+//for root and /login, check for existing session, if no session, continue to login page
+app.get('/', sessionChecker, (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, 'build', 'index.html'));
 })
 
-app.get('/api/users/:id', checkMongoose, async (req, res) => {
-
-    const id = req.params.id;
-
-    if(!ObjectID.isValid(id)){
-		res.status(404).send()
-		return
-	}
-
-    try {
-        const user = await User.findById(id);
-        res.send(user);
-    } catch(error) {
-        log(error)
-        res.status(404).send('Bad Request');
-    }
-
+app.get('/login', sessionChecker, (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, 'build', 'index.html'));
 })
 
-/*** Admin user API routes below **********************************/
 
-app.delete('/api/users/:id', checkMongoose, async (req, res) => {
-    const id = req.params.id;
-
-    if(!ObjectID.isValid(id)){
-		res.status(404).send()
-		return
-    }
-    
-    try {
-        const user = await User.findById(id);
-        user.remove();
-        res.send(user);
-    } catch(error) {
-        log(error)
-        res.status(404).send('Bad Request');
-    }
-
-})
-
-/*** Route to serve webpage **********************************/
-
+//for all other routes, check if user is logged in, if not, redirect to /login
 app.get('*', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, 'build', 'index.html'));
+    //replace above line with below code for checking if user is logged in
+    /* 
+    if (req.session.user) {
+        res.status(200).sendFile(path.join(__dirname, 'build', 'index.html'));
+    } else {
+        res.redirect('/login');
+    }
+    */
 });
 
 /*** Start Listening on PORT **********************************/

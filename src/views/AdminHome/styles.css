@@ -1,38 +1,19 @@
-#homeContainerAdmin {
-	height: 93vh;
-	overflow-y: hidden;
-	display: flex;
-	flex-direction: row;
-	background-color: #283035;
-}
-
-#friendListContainerAdmin {
-	width: 22%;
-	position: relative;
-	background-color: #323f45;
-}
-
-#postListContainerAdmin {
-	width: 78%;
-	position: relative;
-	background-color: #283035;
-	overflow-y: scroll;
-}
-
 #adminDashboardButton {
 	position: absolute;
-	width: 295px;
-	height: 200px;
+	width: 325px;
+	height: 20%;
 	background-color: #283035;
+	border-top-left-radius: 40%;
+	border-top-right-radius: 40%;
 	z-index: 1;
 	bottom: 10px;
 	left: 10px;
 	text-align: center;
-	padding-top: 80px;
-	color: #aaaaaa;
+	padding-top: 75px;
+	color: #dddddd;
+	font-size: 20px;
 }
 
 #adminDashboardButton:hover {
-	background-color: #647d88;
-	color: #283035;
+	opacity: 70%;
 }

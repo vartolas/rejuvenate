@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles.css";
-import AdminDashboardSearchBar from '../../react-components/AdminDashboardSearchBar';
+import PostSearchBar from '../../react-components/PostSearchBar';
+import UserSearchBar from '../../react-components/UserSearchBar';
 
 export default class AdminDashboard extends React.Component {
 
@@ -10,11 +11,14 @@ export default class AdminDashboard extends React.Component {
 
       <div id='dashboardContainer'>
 
-        <div className='dashboardSegment' id='profileDashboardSegment'></div>
+        <div className='dashboardSegment' id='profileDashboardSegment'>
+					<h1 className='dashboardHeader'>Users</h1>
+					<UserSearchBar />
+				</div>
 
         <div className='dashboardSegment' id='postDashboardSegment'>
 					<h1 className='dashboardHeader'>Posts and Comments</h1>
-        	<AdminDashboardSearchBar />
+					<PostSearchBar />
         </div>
 
       </div>

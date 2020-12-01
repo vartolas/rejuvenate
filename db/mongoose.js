@@ -5,9 +5,9 @@
 
    /* Connnect to our database */
    // Get the URI of the local database, or the one specified on deployment.
-   const USERNAME = process.env.USERNAME;
-   const PASSWORD = process.env.PASSWORD;
-   const mongoURI = process.env.MONGODB_URI || `mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.zxdg7.mongodb.net/UsersAPI?retryWrites=true&w=majority`;
+   const USERNAME = process.env.USERNAME || "ClientServiceAccount";
+   const PASSWORD = process.env.PASSWORD || "ClientServiceAccount";
+   const mongoURI = process.env.MONGODB_URI || `mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.zxdg7.mongodb.net/RejuvenateData?retryWrites=true&w=majority`;
    
    mongoose.connect(mongoURI, 
        { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
