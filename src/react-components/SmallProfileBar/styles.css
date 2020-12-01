@@ -5,6 +5,7 @@
   background-color: #38474e;
   margin-bottom: 10px;
   border-radius: 10px;
+  float: left;
 }
 
 #smallProfileImg {
@@ -86,4 +87,11 @@
 #smallProfileBarLinkPartial:hover {
   background-color: #48575e;
   cursor: pointer;
+}
+
+.removeUserButton {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  float: left;
 }

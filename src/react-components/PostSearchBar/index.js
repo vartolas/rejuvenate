@@ -5,7 +5,7 @@ import { getUsersAsList } from '../../userData.js';
 import SmallProfileBar from '../../react-components/SmallProfileBar';
 import PostList from "../../react-components/PostList";
 
-export default class AdminDashboardSearchBar extends React.Component {
+export default class PostSearchBar extends React.Component {
   state = {
     query: '',
     matchedPosts: [],
@@ -29,8 +29,6 @@ export default class AdminDashboardSearchBar extends React.Component {
   }
 
   componentDidMount() {
-    // document.addEventListener("mouseup", this.handleMouseUp.bind(this));
-
     // Initialize posts and comments
     const users = getUsersAsList();
     const posts = [];
@@ -56,28 +54,6 @@ export default class AdminDashboardSearchBar extends React.Component {
 
     this.setState({ posts: posts, comments: comments });
   }
-
-  componentWillUnmount() {
-    // document.removeEventListener("mouseup", this.handleMouseUp.bind(this));
-  }
-
-  // getSearchedUsers() {
-  //   const users = getUsersAsList();
-  //   const matchedUsers = users.filter( user => user.username.toLowerCase().startsWith(this.state.query.toLowerCase()) || (user.firstName + " " + user.lastName).toLowerCase().startsWith(this.state.query.toLowerCase()));
-  //   const firstMatchedUsers = matchedUsers.slice(0, 10);
-  //
-  //   return (
-  //     <div>
-  //     {
-  //       firstMatchedUsers.map( (user) => {
-  //         return (
-  //           <SmallProfileBar uid={ user.uid } isFollower={ true } name={ user.firstName + " " + user.lastName } username={ user.username } imgSrc='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' />
-  //         )
-  //       })
-  //     }
-  //     </div>
-  //   )
-  // }
 
   setMatchedPosts() {
     const matchedPosts = this.state.posts.filter(post => {
@@ -126,7 +102,7 @@ export default class AdminDashboardSearchBar extends React.Component {
 
   render() {
     return (
-      <div id='adminSearchBar'>
+      <div className='adminSearchBar'>
         <div className='searchSettings'>
           <input autocomplete='off' onKeyUp={ this.handleInput.bind(this) } type='text' placeholder='Search for a post or comment...' />
         </div>

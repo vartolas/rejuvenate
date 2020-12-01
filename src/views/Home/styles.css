@@ -7,13 +7,13 @@
 }
 
 #friendListContainer {
-	width: 22%;
+	width: 450px;
 	position: relative;
 	background-color: #323f45;
 }
 
 #postListContainer {
-	width: 78%;
+	width: 100%;
 	position: relative;
 	background-color: #283035;
 	overflow-y: scroll;
