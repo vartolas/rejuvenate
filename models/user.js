@@ -20,6 +20,7 @@ const UserSchema = mongoose.Schema({
     followers: [mongoose.Schema.Types.ObjectId],
     following: [mongoose.Schema.Types.ObjectId],
     statistics: [mongoose.Schema.Types.ObjectId],
+    isAdmin: {type: Boolean, required: true}
 })
 
 UserSchema.statics.findByUsernamePassword = function(username, password) {
@@ -40,7 +41,11 @@ UserSchema.statics.findByUsernamePassword = function(username, password) {
     })
 }
 
-const User = mongoose.model('User', UserSchema);
-const Admin = mongoose.model('Admin', UserSchema);
+UserSchema.statics.findByUsername = function(username) {
+    const User = this;
+    return User.findOne({username: username})
+}
 
-module.exports = { User, Admin }
+const User = mongoose.model('User', UserSchema);
+
+module.exports = { User }
