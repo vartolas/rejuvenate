@@ -90,9 +90,11 @@ export default class Home extends React.Component {
 
 	render() {
 		return (
-			<div id="homeContainer">
-        <Link to='/admin dashboard'><div id="adminDashboardButton">Go to admin dashboard</div></Link>
-				<div id="friendListContainer">
+			<div id="homeContainerAdmin">
+				<Link to="/admin dashboard">
+					<div id="adminDashboardButton">Go to admin dashboard</div>
+				</Link>
+				<div id="friendListContainerAdmin">
 					<ProfileUserConnections
 						canUnfollow={true}
 						followers={this.state.followers}
@@ -100,7 +102,7 @@ export default class Home extends React.Component {
 						unfollow={this.unfollow.bind(this)}
 					/>
 				</div>
-				<div id="postListContainer">
+				<div id="postListContainerAdmin">
 					<CreatePost
 						posts={this.state.posts}
 						tag={this.state.tag}

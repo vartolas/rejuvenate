@@ -69,7 +69,7 @@ export default class SearchBar extends React.Component {
   render() {
     return (
       <div id='searchBar'>
-        <input autocomplete='off' onKeyUp={ this.handleInput.bind(this) } type='text' name='searchBar' id='searchBar' placeholder='Search for a user' />
+        <input autocomplete='off' onKeyUp={ this.handleInput.bind(this) } type='text' name='searchBar' id='searchBar' placeholder='Search for a user...' />
         <div id='searchedProfilesContainer' style={{ display: 'none' }}>
           <div id='searchBarSeparator'></div>
 
