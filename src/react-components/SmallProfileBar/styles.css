@@ -40,19 +40,19 @@
   float: left;
   width: 20%;
   height: 100%;
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
-  /* background-color: #647d88; */
-  color: #647d88;
+  background-color: #775555;
+  color: #888888;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   padding-top: 18px;
-  font-weight: normal;
+  font-weight: 500;
 }
 
 #unfollowButtonSmall:hover {
   cursor: pointer;
-  background-color: #48575e;
+  opacity: 50%;
 }
 
 #unfollowButtonSmall:focus {
@@ -87,11 +87,4 @@
 #smallProfileBarLinkPartial:hover {
   background-color: #48575e;
   cursor: pointer;
-}
-
-.removeUserButton {
-  width: 20px;
-  height: 20px;
-  background-color: red;
-  float: left;
 }
