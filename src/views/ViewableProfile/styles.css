@@ -3,7 +3,7 @@
 	overflow-y: hidden;
 	display: flex;
 	flex-direction: row;
-	background-color: #1e272b;
+	background-color: #202936;
 }
 
 #middleProfilePageBar {
@@ -35,22 +35,22 @@
 }
 
 #viewMoreStatsText:hover {
-	color: #ffffff;
+	color: #ececec;
 	cursor: pointer;
 }
 
 .profilePageComp {
-	background-color: #323f45;
+	background-color: #202936;
 	margin: 0 0 10px 0;
 	float: left;
-	color: rgb(200, 200, 210);
+	color: #ececec;
 	padding: 5px;
 }
 
 #userStatsPreview h4 {
 	font-size: 20px;
 	margin: 10px 0 0 10px;
-	color: rgb(200, 200, 210);
+	color: #ececec;
 	font-weight: normal;
 }
 

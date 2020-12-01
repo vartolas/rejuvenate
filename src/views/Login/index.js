@@ -56,7 +56,7 @@ export default class Login extends React.Component {
 	// TODO: In phase 2, we plan on verifying user/admin credentials against a database.
 	displayUsernameError() {
 		if (this.state.username === "") {
-			return MISSING_USERNAME_ERROR_MSG;
+			// return MISSING_USERNAME_ERROR_MSG;
 		} else if (
 			this.state.username !== CORRECT_REGULAR_USER_USERNAME &&
 			this.state.username !== CORRECT_ADMIN_USERNAME
@@ -70,7 +70,7 @@ export default class Login extends React.Component {
 	// TODO: In phase 2, we plan on verifying user/admin credentials against a database.
 	displayPasswordError() {
 		if (this.state.password === "") {
-			return MISSING_PASSWORD_ERROR_MSG;
+			// return MISSING_PASSWORD_ERROR_MSG;
 		} else if (
 			this.state.password !== CORRECT_REGULAR_USER_PASSWORD &&
 			this.state.username !== CORRECT_ADMIN_PASSWORD
@@ -100,7 +100,7 @@ export default class Login extends React.Component {
 	render() {
 		return (
 			<div id="loginContainer">
-				<h1>Rejuvenate</h1>
+				<h1 id="title">Rejuvenate</h1>
 				<div id="loginComponent">
 					<FormControl>
 						<TextField
@@ -108,7 +108,7 @@ export default class Login extends React.Component {
 							value={this.state.username}
 							onChange={this.updateUsername}
 							label="Username"
-							error={!this.state.username}
+							// error={!this.state.username}
 							helperText={this.displayUsernameError()}
 						/>
 						<TextField
@@ -117,7 +117,7 @@ export default class Login extends React.Component {
 							onChange={this.updatePassword}
 							label="Password"
 							type="password"
-							error={!this.state.password}
+							// error={!this.state.password}
 							helperText={this.displayPasswordError()}
 						/>
 						<br></br>
@@ -139,14 +139,8 @@ export default class Login extends React.Component {
 							Sign Up
 						</Button>
 						<br></br>
-						<Button
-							className="loginButtons"
-							href="/password reset"
-							variant="contained"
-							disableElevation
-						>
-							Reset Password
-						</Button>
+						forgot password?
+						<a href="/password reset">Reset Password</a>
 						<br></br>
 					</FormControl>
 				</div>

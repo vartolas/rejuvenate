@@ -7,15 +7,15 @@ import "./styles.css";
 export default class PostList extends React.Component {
 	render() {
 		return (
-			<ListGroup>
+			<ListGroup className="postList">
 				{this.props.posts.map((entry) => (
 					<PostEntry
 						key={uuid()} /* unique id required to help React render more efficiently when we modify the students list. */
 						entry={entry}
 						listComponent={this.props.listComponent}
-						removable={ this.props.removable }
-						removePost={ this.props.removePost }
-						removeComment={ this.props.removeComment }
+						removable={this.props.removable}
+						removePost={this.props.removePost}
+						removeComment={this.props.removeComment}
 					/>
 				))}
 			</ListGroup>

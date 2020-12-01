@@ -1,19 +1,19 @@
 #adminDashboardButton {
-  position: absolute;
-  width: 325px;
-  height: 20%;
-  background-color: #283035;
-  border-top-left-radius: 40%;
-  border-top-right-radius: 40%;
-  z-index: 1;
-  bottom: 10px;
-  left: 10px;
+	position: absolute;
+	width: 325px;
+	height: 20%;
+	background-color: #283035;
+	border-top-left-radius: 40%;
+	border-top-right-radius: 40%;
+	z-index: 1;
+	bottom: 10px;
+	left: 10px;
 	text-align: center;
 	padding-top: 75px;
-	color: #DDDDDD;
-  font-size: 20px;
+	color: #dddddd;
+	font-size: 20px;
 }
 
 #adminDashboardButton:hover {
-  opacity: 70%;
+	opacity: 70%;
 }

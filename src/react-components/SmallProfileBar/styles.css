@@ -1,91 +1,91 @@
 #smallProfileBar {
-  width: 95%;
-  margin-left: 2.5%;
-  height: 50px;
-  background-color: #38474e;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  float: left;
+	width: 95%;
+	margin-left: 2.5%;
+	height: 50px;
+	background-color: #253749;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	float: left;
 }
 
 #smallProfileImg {
-  margin: 5px;
-  height: 40px;
-  width: 40px;
-  float: left;
-  border-radius: 50%;
-  border: 2px solid #1e272b;
+	margin: 5px;
+	height: 40px;
+	width: 40px;
+	float: left;
+	border-radius: 4px;
+	/* border: 2px solid #202936; */
 }
 
 #smallProfileInfo {
-  float: left;
-  padding-left: 5px;
-  margin: 5px;
+	float: left;
+	padding-left: 5px;
+	margin: 5px;
 }
 
 #smallProfileName {
-  padding-top: 1px;
-  color: rgb(200, 200, 210);
-  margin: 0;
-  font-size: 18px;
+	padding-top: 1px;
+	color: #ececec;
+	margin: 0;
+	font-size: large;
+	font-weight: 400;
 }
 
 #smallProfileUsername {
-  color: #647d88;
-  margin: 0;
-  font-size: 15px;
+	color: #647d88;
+	margin: 0;
+	font-size: medium;
 }
 
 #unfollowButtonSmall {
-  float: left;
-  width: 20%;
-  height: 100%;
-  font-size: 12px;
-  text-align: center;
-  background-color: #775555;
-  color: #888888;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  padding-top: 18px;
-  font-weight: 500;
+	float: left;
+	width: 20%;
+	height: 100%;
+	font-size: 12px;
+	text-align: center;
+	background-color: #775555;
+	color: #888888;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	padding-top: 18px;
+	font-weight: 500;
 }
 
 #unfollowButtonSmall:hover {
-  cursor: pointer;
-  background-color: #BB5555;
-  color: white;
+	cursor: pointer;
+	background-color: #bb5555;
+	color: white;
 }
 
 #unfollowButtonSmall:focus {
-  outline: none;
-  box-shadow: none;
+	outline: none;
+	box-shadow: none;
 }
 
 #smallProfileBarLinkFull {
-  width: 100%;
-  box-sizing: border-box;
-  border-right: 3px solid #323f45;
-  height: 100%;
-  border-radius: 10px;
-  float: left;
+	width: 100%;
+	box-sizing: border-box;
+	height: 100%;
+	border-radius: 10px;
+	float: left;
 }
 
 #smallProfileBarLinkFull:hover {
-  background-color: #48575e;
-  cursor: pointer;
+	background-color: #48575e;
+	cursor: pointer;
 }
 
 #smallProfileBarLinkPartial {
-  width: 80%;
-  box-sizing: border-box;
-  border-right: 3px solid #323f45;
-  height: 100%;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  float: left;
+	width: 80%;
+	box-sizing: border-box;
+	border-right: 3px solid #202936;
+	height: 100%;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	float: left;
 }
 
 #smallProfileBarLinkPartial:hover {
-  background-color: #48575e;
-  cursor: pointer;
+	background-color: #48575e;
+	cursor: pointer;
 }

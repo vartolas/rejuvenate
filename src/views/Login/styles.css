@@ -1,5 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
+
+#title {
+	font-family: "Work Sans", sans-serif;
+}
+
 body {
-	background-color: #323f45;
+	background-color: #202936;
 }
 
 #loginContainer {
@@ -19,8 +25,7 @@ body {
 	border: solid 1px;
 	border-radius: 2%;
 
-	margin-top: 10%;
-	margin-bottom: 10%;
+	margin-top: 15%;
 	margin-left: 40%;
 	margin-right: 40%;
 
@@ -34,10 +39,10 @@ body {
 
 .loginButtons {
 	display: block;
-	border-radius: 18px;
-	background-color: #323f45;
+	border-radius: 2%;
+	background-color: #f2a365;
 	border: solid 1px transparent;
-	color: #fff;
+	color: #ececec;
 	font-size: 18px;
 	font-weight: 300;
 	cursor: pointer;
@@ -46,6 +51,6 @@ body {
 
 .loginButtons:hover {
 	background-color: transparent;
-	border-color: #fff;
+	border-color: #ececec;
 	transition: all 0.1s ease-in-out;
 }
