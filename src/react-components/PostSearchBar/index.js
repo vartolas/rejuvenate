@@ -52,7 +52,7 @@ export default class PostSearchBar extends React.Component {
       comments[i].cid = i;
     }
 
-    this.setState({ posts: posts, comments: comments });
+    this.setState({ posts: posts, matchedPosts: posts, comments: comments });
   }
 
   setMatchedPosts() {

@@ -29,7 +29,7 @@ export default class PostSearchBar extends React.Component {
   componentDidMount() {
     // Initialize posts and comments
     const users = getUsersAsList();
-    this.setState({ users: users });
+    this.setState({ users: users, matchedUsers: users });
   }
 
   setMatchedUsers() {
