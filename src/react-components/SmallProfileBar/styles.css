@@ -52,7 +52,8 @@
 
 #unfollowButtonSmall:hover {
   cursor: pointer;
-  opacity: 50%;
+  background-color: #BB5555;
+  color: white;
 }
 
 #unfollowButtonSmall:focus {
