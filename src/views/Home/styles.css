@@ -1,20 +1,25 @@
 #homeContainer {
 	height: 93vh;
 	overflow-y: hidden;
+	scrollbar-width: none;
 	display: flex;
 	flex-direction: row;
-	background-color: #283035;
+	background-color: #202936;
+}
+
+::-webkit-scrollbar {
+	display: none;
 }
 
 #friendListContainer {
 	width: 22%;
 	position: relative;
-	background-color: #323f45;
+	background-color: #202936;
 }
 
 #postListContainer {
 	width: 78%;
 	position: relative;
-	background-color: #283035;
+	background-color: #202936;
 	overflow-y: scroll;
 }

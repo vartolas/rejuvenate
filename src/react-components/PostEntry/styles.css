@@ -1,25 +1,25 @@
 .postEntryContainer {
 	margin-left: 1%;
-	border: 6px solid #38474e;
+	border: 6px solid #253749;
 	padding: 30px;
-	border-radius: 2%;
+	border-radius: 10px;
 	margin-bottom: 4%;
 	width: 98%;
-	background-color: #38474e;
+	background-color: #253749;
 	padding: 25px;
 	position: relative;
 }
 
 .tag {
-	font-size: x-large;
-	font-weight: bold;
-	color: #ffffff;
+	font-size: xx-large;
+	font-weight: 300;
+	color: #ececec;
 	position: relative;
 }
 
 .text {
-	font-size: medium;
-	color: #ffffff;
+	font-size: large;
+	color: #ececec;
 	position: relative;
 	padding-left: 60px;
 }
@@ -32,8 +32,8 @@
 
 .username {
 	font-size: large;
-	font-weight: bold;
-	color: #ffffff;
+	font-weight: 300;
+	color: #ececec;
 	position: relative;
 	padding-top: 11px;
 	margin-left: 10px;
@@ -43,7 +43,7 @@
 	margin-top: 2px;
 	width: 50px;
 	height: 50px;
-	border-radius: 50%;
+	border-radius: 4px;
 	position: relative;
 	justify-self: start;
 }
@@ -68,22 +68,18 @@
 	justify-content: flex-end;
 }
 
-.likeButton {
-	color: #ffffff;
-}
-
 .likeIcon {
-	color: #ffffff;
+	color: #ececec;
 }
 
 .filledLikeIcon {
-	color: #ffffff;
+	color: #f2a365;
 }
 
 .likeNum {
 	display: flex;
 	flex-direction: column;
-	color: #ffffff;
+	color: #ececec;
 	font-size: large;
 	font-weight: bold;
 	margin-right: 4%;
@@ -94,23 +90,23 @@
 .commentListItem {
 	margin-top: 1%;
 	width: 99%;
-	background-color: #323f45;
-	border-radius: 3%;
+	background-color: #202936;
+	border-radius: 4px;
 	border-width: 4px;
-	border-color: #323f45;
+	border-color: #202936;
 	position: relative;
 }
 
 .commentuser {
 	font-size: large;
-	font-weight: bold;
-	color: #ffffff;
+	font-weight: 300;
+	color: #ececec;
 	position: relative;
 }
 
 .comment {
 	font-size: medium;
-	color: #ffffff;
+	color: #ececec;
 	position: relative;
 }
 
@@ -124,7 +120,7 @@
 	height: 50px;
 	font-size: 30px;
 	padding-left: 17px;
-	background-color: #AA6666;
+	background-color: #aa6666;
 }
 
 .commentRemoveButton {
@@ -133,7 +129,7 @@
 	font-size: 16px;
 	padding-left: 6px;
 	margin-top: 20px;
-	background-color: #AA6666;
+	background-color: #aa6666;
 	opacity: 70%;
 }
 
@@ -150,7 +146,7 @@
 }
 
 .removeButton:hover {
-	background-color: #FF6666;
+	background-color: #ff6666;
 	cursor: pointer;
 	opacity: 100%;
 }

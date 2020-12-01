@@ -1,4 +1,4 @@
-#homeContainer {
+#homeContainerAdmin {
 	height: 93vh;
 	overflow-y: hidden;
 	display: flex;
@@ -6,13 +6,13 @@
 	background-color: #283035;
 }
 
-#friendListContainer {
+#friendListContainerAdmin {
 	width: 22%;
 	position: relative;
 	background-color: #323f45;
 }
 
-#postListContainer {
+#postListContainerAdmin {
 	width: 78%;
 	position: relative;
 	background-color: #283035;
@@ -20,19 +20,19 @@
 }
 
 #adminDashboardButton {
-  position: absolute;
-  width: 295px;
-  height: 200px;
-  background-color: #283035;
-  z-index: 1;
-  bottom: 10px;
-  left: 10px;
+	position: absolute;
+	width: 295px;
+	height: 200px;
+	background-color: #283035;
+	z-index: 1;
+	bottom: 10px;
+	left: 10px;
 	text-align: center;
 	padding-top: 80px;
-	color: #AAAAAA;
+	color: #aaaaaa;
 }
 
 #adminDashboardButton:hover {
-  background-color: #647d88;
+	background-color: #647d88;
 	color: #283035;
 }
