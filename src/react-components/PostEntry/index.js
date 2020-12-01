@@ -56,7 +56,7 @@ export default class PostEntry extends React.Component {
 
 	displayRemoveButton() {
 		return(
-			<div onClick={ () => this.props.removePost(this.props.entry.pid) } className='removeButton postRemoveButton'></div>
+			<div onClick={ () => this.props.removePost(this.props.entry.pid) } className='removeButton postRemoveButton'>✕</div>
 		)
 	}
 
@@ -87,7 +87,7 @@ export default class PostEntry extends React.Component {
 			const commentUser = users[usercomment.uid];
 			commentRows.push(
 				<ListGroup.Item className="commentListItem" key={uuid()}>
-					{ this.props.removable ? <div onClick={ () => this.props.removeComment(usercomment.cid) } className='removeButton commentRemoveButton'></div> : '' }
+					{ this.props.removable ? <div onClick={ () => this.props.removeComment(usercomment.cid) } className='removeButton commentRemoveButton'>✕</div> : '' }
 					<div className="commentuser">{commentUser.username}</div>
 					<div className="comment">{usercomment.comment}</div>
 				</ListGroup.Item>

@@ -1,9 +1,9 @@
-#adminSearchBar {
+.adminSearchBar {
   height: 40px;
   position: relative;
   margin-left: 10px;
   font-size: 16px;
-  width: 95%;
+  margin-right: 10px;
   z-index: 1;
 }
 
@@ -16,7 +16,7 @@
   margin-bottom: 30px;
 }
 
-#adminSearchBar input {
+.adminSearchBar input {
   border: none;
   border-radius: 50px;
   padding-left: 10px;
@@ -29,12 +29,12 @@
   box-sizing: border-box;
 }
 
-#adminSearchBar input::placeholder {
+.adminSearchBar input::placeholder {
   color: #1e272b;
   opacity: 50%;
 }
 
-#adminSearchBar input:focus {
+.adminSearchBar input:focus {
   outline:none;
 }
 

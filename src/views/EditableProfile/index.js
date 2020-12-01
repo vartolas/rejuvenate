@@ -81,7 +81,7 @@ export default class EditableProfile extends React.Component {
 						<PostList posts={this.state.posts} listComponent={this} />
 					</div>
 				</div>
-				<div id="topRightMargin10px">
+				<div className="profileConnectionsWidth topRightMargin10px">
 					<ProfileUserConnections
 						canUnfollow={true}
 						numFollowers={this.state.numFollowers}
