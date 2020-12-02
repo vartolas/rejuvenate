@@ -13,8 +13,8 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    firstName: {type: String, required: true, minlength: 2},
-    lastName: {type: String, required: true, minlength: 1},
+    firstname: {type: String, required: true, minlength: 2},
+    lastname: {type: String, required: true, minlength: 1},
     profilePicture: ImageSchema,
     bio: {type: String},
     followers: [mongoose.Schema.Types.ObjectId],

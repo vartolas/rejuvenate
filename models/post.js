@@ -13,6 +13,7 @@ const Post = mongoose.model('Post', {
         type: String,
         maxlength: 300
     },
+    timestamp: {type: Date, required: true},
     image: ImageSchema,
     comments: [CommentSchema],
     likes: [mongoose.Schema.Types.ObjectId] //list of user id's, number of likes is then likes.length

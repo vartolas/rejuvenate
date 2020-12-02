@@ -26,8 +26,15 @@ app.use(session({
     resave: false, // may have to change
 }));
 
+
 //import api routes
-app.use(require('./api'));
+app.use(require('./api_routes/admin'));
+app.use(require('./api_routes/users'));
+app.use(require('./api_routes/posts'));
+app.use(require('./api_routes/login'));
+app.use(require('./api_routes/statistics'));
+
+
 
 
 
@@ -38,6 +45,7 @@ const sessionChecker = (req, res, next) => {
         next();
     }
 }
+
 /*** Routes to serve webpage **********************************/
 
 //for root and /login, check for existing session, if no session, continue to login page
@@ -66,5 +74,5 @@ app.get('*', (req, res) => {
 /*** Start Listening on PORT **********************************/
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`server listeing at http://localhost:${PORT}...`);
+    console.log(`server listening at http://localhost:${PORT}...`);
 })
