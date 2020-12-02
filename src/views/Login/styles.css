@@ -25,7 +25,8 @@ body {
 	border: solid 1px;
 	border-radius: 2%;
 
-	margin-top: 15%;
+	margin-top: 10%;
+	margin-bottom: 10%;
 	margin-left: 40%;
 	margin-right: 40%;
 
@@ -51,6 +52,6 @@ body {
 
 .loginButtons:hover {
 	background-color: transparent;
-	border-color: #ececec;
+	border-color: #f2a365;
 	transition: all 0.1s ease-in-out;
 }
