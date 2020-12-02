@@ -102,6 +102,7 @@ export default class PasswordReset extends React.Component {
 							className="resetPasswordButton"
 							href={this.logIn()}
 							variant="contained"
+							disabled={this.state.username === '' || this.state.password === ''}
 							disableElevation
 						>
 							Reset Password
