@@ -44,12 +44,12 @@ export default class Login extends React.Component {
 	}
 
 	// TODO: In phase 2, we plan on verifying user credentials against a database.
-	usernameIsFound() {
+	usernameExists() {
 		return this.state.username === CORRECT_REGULAR_USER_USERNAME;
 	}
 
-	// TODO: In phase 2, we plan on verifying user credentials against a database.
-	adminUsernameIsFound() {
+	// TODO: In phase 2, we plan on verifying admin credentials against a database.
+	adminUsernameExists() {
 		return this.state.username === CORRECT_ADMIN_USERNAME;
 	}
 
@@ -58,15 +58,15 @@ export default class Login extends React.Component {
 		return this.state.password === CORRECT_REGULAR_USER_PASSWORD;
 	}
 
-	// TODO: In phase 2, we plan on verifying user credentials against a database.
+	// TODO: In phase 2, we plan on verifying admin credentials against a database.
 	adminPasswordIsCorrect(username) {
 		return this.state.password === CORRECT_ADMIN_PASSWORD;
 	}
 
 	logIn() {
-		if (this.usernameIsFound() && this.userPasswordIsCorrect()) {
+		if (this.usernameExists() && this.userPasswordIsCorrect()) {
 			return "/home";
-		} else if (this.adminUsernameIsFound() && this.adminPasswordIsCorrect()) {
+		} else if (this.adminUsernameExists() && this.adminPasswordIsCorrect()) {
 			return "/admin home";
 		} else {
 			return "/";

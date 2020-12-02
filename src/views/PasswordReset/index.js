@@ -17,6 +17,7 @@ export const WEAK_PASSWORD_ERROR_MSG = "New password is not strong enough.";
 export const STRONG_PASSWORD_FOR_PASSWORD_RESET_MSG =
 	"This existing username has a strong enough password.";
 
+// TODO: Convert this to a functional component.
 export default class PasswordReset extends React.Component {
 	// I found this helpful:
 	// - https://reactjs.org/docs/forms.html
@@ -35,63 +36,38 @@ export default class PasswordReset extends React.Component {
 	updateUsername = (e) => {
 		e.preventDefault();
 		this.setState({ username: e.target.value });
-	};
+	}
 
 	updatePassword = (e) => {
 		e.preventDefault();
 		this.setState({ password: e.target.value });
-	};
-
-	// TODO: I may not need this function.
-	processCredentials() {
-		return (
-			this.state.username !== "" &&
-			this.state.password !== "" &&
-			((this.state.username === CORRECT_REGULAR_USER_USERNAME &&
-				this.state.password === CORRECT_REGULAR_USER_PASSWORD) ||
-				(this.state.username === CORRECT_ADMIN_USERNAME &&
-					this.state.password === CORRECT_ADMIN_PASSWORD))
-		);
 	}
 
-	// TODO: In phase 2, we plan on verifying user/admin credentials against a database.
-	displayUsernameError() {
-		if (this.state.username === "") {
-			return MISSING_USERNAME_ERROR_MSG;
-		} else if (
-			this.state.username !== CORRECT_REGULAR_USER_USERNAME &&
-			this.state.username !== CORRECT_ADMIN_USERNAME
-		) {
-			return NONEXISTING_USERNAME_ERROR_MSG;
-		} else {
-			return "";
-		}
+	// TODO: In phase 2, we plan on verifying user credentials against a database.
+	usernameExists(username) {
+		return this.state.username !== CORRECT_REGULAR_USER_USERNAME;
 	}
 
-	// TODO: In phase 2, we plan on verifying user/admin credentials against a database.
-	displayPasswordError() {
-		if (this.state.password === "") {
-			return MISSING_PASSWORD_ERROR_MSG;
-		} else if (
-			this.state.password !== CORRECT_REGULAR_USER_PASSWORD &&
-			this.state.password !== CORRECT_ADMIN_PASSWORD
-		) {
-			return WEAK_PASSWORD_ERROR_MSG;
-		} else {
-			return "";
-		}
+	// TODO: In phase 2, we plan on verifying admin credentials against a database.
+	adminUsernameExists(username) {
+		return this.state.username !== CORRECT_ADMIN_USERNAME;
+	}
+
+	// TODO: In phase 2, we plan on verifying user credentials against a database.
+	userPasswordIsStrong() {
+		return this.state.password !== CORRECT_REGULAR_USER_PASSWORD;
+	}
+
+	// TODO: In phase 2, we plan on verifying admin credentials against a database.
+	adminPasswordIsStrong() {
+		return this.state.password !== CORRECT_ADMIN_PASSWORD;
 	}
 
 	logIn() {
-		if (
-			this.state.username === CORRECT_REGULAR_USER_USERNAME &&
-			this.state.password === CORRECT_REGULAR_USER_PASSWORD
-		) {
+		if (this.usernameExists() && this.userPasswordIsStrong()) {
 			return "/home";
 		} else if (
-			this.state.username === CORRECT_ADMIN_USERNAME &&
-			this.state.password === CORRECT_ADMIN_PASSWORD
-		) {
+			this.adminUsernameExists() && this.adminPasswordIsStrong()) {
 			return "/admin home";
 		} else {
 			return "/password reset";
@@ -110,7 +86,7 @@ export default class PasswordReset extends React.Component {
 							onChange={this.updateUsername}
 							label="Existing Username"
 							// error={!this.state.username}
-							helperText={this.displayUsernameError()}
+							// helperText={NONEXISTING_USERNAME_ERROR_MSG}
 						/>
 						<TextField
 							id="passwordTextbox"
@@ -119,24 +95,22 @@ export default class PasswordReset extends React.Component {
 							label="New Password"
 							type="password"
 							// error={!this.state.password}
-							helperText={this.displayPasswordError()}
+							// helperText={WEAK_PASSWORD_ERROR_MSG}
 						/>
 						<br></br>
 						<Button
-							className="resetPasswordButtons"
-							href={this.logIn().toString()}
+							className="resetPasswordButton"
+							href={this.logIn()}
 							variant="contained"
-							color="primary"
 							disableElevation
 						>
 							Reset Password
 						</Button>
 						<br></br>
 						<Button
-							className="resetPasswordButtons"
+							className="resetPasswordButton"
 							href="/"
 							variant="contained"
-							color="primary"
 							disableElevation
 						>
 							Go Back
