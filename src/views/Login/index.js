@@ -63,22 +63,6 @@ export default class Login extends React.Component {
 		return this.state.password === CORRECT_ADMIN_PASSWORD;
 	}
 
-	displayUsernameError() {
-		if (this.state.username === "") {
-			// return MISSING_USERNAME_ERROR_MSG;
-		} else {
-			return INCORRECT_USERNAME_ERROR_MSG;
-		}
-	}
-
-	displayPasswordError() {
-		if (this.state.password === "") {
-			// return MISSING_PASSWORD_ERROR_MSG;
-		} else {
-			return INCORRECT_PASSWORD_ERROR_MSG;
-		}
-	}
-
 	logIn() {
 		if (this.usernameIsFound() && this.userPasswordIsCorrect()) {
 			return "/home";
@@ -101,7 +85,7 @@ export default class Login extends React.Component {
 							onChange={this.updateUsername}
 							label="Username"
 							// error={!this.state.username}
-							// helperText={this.displayUsernameError()}
+							// helperText={INCORRECT_USERNAME_ERROR_MSG}
 						/>
 						<TextField
 							id="passwordTextbox"
@@ -110,13 +94,14 @@ export default class Login extends React.Component {
 							label="Password"
 							type="password"
 							// error={!this.state.password}
-							// helperText={this.displayPasswordError()}
+							// helperText={INCORRECT_PASSWORD_ERROR_MSG}
 						/>
 						<br></br>
 						<Button
 							className="loginButton"
 							href={this.logIn()}
 							variant="contained"
+							disabled={this.state.username === '' || this.state.password === ''}
 							disableElevation
 						>
 							Log In
