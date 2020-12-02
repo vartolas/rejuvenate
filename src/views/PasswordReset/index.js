@@ -109,7 +109,7 @@ export default class PasswordReset extends React.Component {
 							value={this.state.username}
 							onChange={this.updateUsername}
 							label="Existing Username"
-							error={!this.state.username}
+							// error={!this.state.username}
 							helperText={this.displayUsernameError()}
 						/>
 						<TextField
@@ -118,7 +118,7 @@ export default class PasswordReset extends React.Component {
 							onChange={this.updatePassword}
 							label="New Password"
 							type="password"
-							error={!this.state.password}
+							// error={!this.state.password}
 							helperText={this.displayPasswordError()}
 						/>
 						<br></br>
