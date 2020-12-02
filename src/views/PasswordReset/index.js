@@ -66,8 +66,7 @@ export default class PasswordReset extends React.Component {
 	logIn() {
 		if (this.usernameExists() && this.userPasswordIsStrong()) {
 			return "/home";
-		} else if (
-			this.adminUsernameExists() && this.adminPasswordIsStrong()) {
+		} else if (this.adminUsernameExists() && this.adminPasswordIsStrong()) {
 			return "/admin home";
 		} else {
 			return "/password reset";
