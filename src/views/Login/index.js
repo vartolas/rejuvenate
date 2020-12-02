@@ -10,8 +10,6 @@ export const CORRECT_REGULAR_USER_PASSWORD = "user";
 export const CORRECT_ADMIN_USERNAME = "admin";
 export const CORRECT_ADMIN_PASSWORD = "admin";
 
-export const MISSING_USERNAME_ERROR_MSG = "Username is missing.";
-export const MISSING_PASSWORD_ERROR_MSG = "Password is missing.";
 export const INCORRECT_USERNAME_ERROR_MSG = "Username is incorrect.";
 export const INCORRECT_PASSWORD_ERROR_MSG = "Password is incorrect.";
 export const CORRECT_CREDENTIALS_MSG = "Username and password are correct.";

@@ -10,8 +10,6 @@ export const CORRECT_REGULAR_USER_PASSWORD = "user";
 export const CORRECT_ADMIN_USERNAME = "admin";
 export const CORRECT_ADMIN_PASSWORD = "admin";
 
-export const MISSING_USERNAME_ERROR_MSG = "Username is missing.";
-export const MISSING_PASSWORD_ERROR_MSG = "Password is missing.";
 export const NONEXISTING_USERNAME_ERROR_MSG = "New username does not exist.";
 export const WEAK_PASSWORD_ERROR_MSG = "New password is not strong enough.";
 export const STRONG_PASSWORD_FOR_PASSWORD_RESET_MSG =
