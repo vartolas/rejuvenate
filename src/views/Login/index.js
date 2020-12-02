@@ -16,6 +16,7 @@ export const INCORRECT_USERNAME_ERROR_MSG = "Username is incorrect.";
 export const INCORRECT_PASSWORD_ERROR_MSG = "Password is incorrect.";
 export const CORRECT_CREDENTIALS_MSG = "Username and password are correct.";
 
+// TODO: Convert this to a functional component.
 export default class Login extends React.Component {
 	// I found this helpful:
 	// - https://reactjs.org/docs/forms.html
@@ -25,6 +26,7 @@ export default class Login extends React.Component {
 
 	constructor(props) {
 		super(props);
+		// TODO: Use React hooks and useState instead.
 		this.state = {
 			username: "",
 			password: "",
@@ -34,63 +36,53 @@ export default class Login extends React.Component {
 	updateUsername = (e) => {
 		e.preventDefault();
 		this.setState({ username: e.target.value });
-	};
+	}
 
 	updatePassword = (e) => {
 		e.preventDefault();
 		this.setState({ password: e.target.value });
-	};
-
-	// TODO: I may not need this function.
-	processCredentials() {
-		return (
-			this.state.username !== "" &&
-			this.state.password !== "" &&
-			((this.state.username === CORRECT_REGULAR_USER_USERNAME &&
-				this.state.password === CORRECT_REGULAR_USER_PASSWORD) ||
-				(this.state.username === CORRECT_ADMIN_USERNAME &&
-					this.state.password === CORRECT_ADMIN_PASSWORD))
-		);
 	}
 
-	// TODO: In phase 2, we plan on verifying user/admin credentials against a database.
+	// TODO: In phase 2, we plan on verifying user credentials against a database.
+	usernameIsFound() {
+		return this.state.username === CORRECT_REGULAR_USER_USERNAME;
+	}
+
+	// TODO: In phase 2, we plan on verifying user credentials against a database.
+	adminUsernameIsFound() {
+		return this.state.username === CORRECT_ADMIN_USERNAME;
+	}
+
+	// TODO: In phase 2, we plan on verifying user credentials against a database.
+	userPasswordIsCorrect(username) {
+		return this.state.password === CORRECT_REGULAR_USER_PASSWORD;
+	}
+
+	// TODO: In phase 2, we plan on verifying user credentials against a database.
+	adminPasswordIsCorrect(username) {
+		return this.state.password === CORRECT_ADMIN_PASSWORD;
+	}
+
 	displayUsernameError() {
 		if (this.state.username === "") {
 			// return MISSING_USERNAME_ERROR_MSG;
-		} else if (
-			this.state.username !== CORRECT_REGULAR_USER_USERNAME &&
-			this.state.username !== CORRECT_ADMIN_USERNAME
-		) {
-			return INCORRECT_USERNAME_ERROR_MSG;
 		} else {
-			return "";
+			return INCORRECT_USERNAME_ERROR_MSG;
 		}
 	}
 
-	// TODO: In phase 2, we plan on verifying user/admin credentials against a database.
 	displayPasswordError() {
 		if (this.state.password === "") {
 			// return MISSING_PASSWORD_ERROR_MSG;
-		} else if (
-			this.state.password !== CORRECT_REGULAR_USER_PASSWORD &&
-			this.state.username !== CORRECT_ADMIN_PASSWORD
-		) {
-			return INCORRECT_PASSWORD_ERROR_MSG;
 		} else {
-			return "";
+			return INCORRECT_PASSWORD_ERROR_MSG;
 		}
 	}
 
 	logIn() {
-		if (
-			this.state.username === CORRECT_REGULAR_USER_USERNAME &&
-			this.state.password === CORRECT_REGULAR_USER_PASSWORD
-		) {
+		if (this.usernameIsFound() && this.userPasswordIsCorrect()) {
 			return "/home";
-		} else if (
-			this.state.username === CORRECT_ADMIN_USERNAME &&
-			this.state.password === CORRECT_ADMIN_PASSWORD
-		) {
+		} else if (this.adminUsernameIsFound() && this.adminPasswordIsCorrect()) {
 			return "/admin home";
 		} else {
 			return "/";
@@ -109,7 +101,7 @@ export default class Login extends React.Component {
 							onChange={this.updateUsername}
 							label="Username"
 							// error={!this.state.username}
-							helperText={this.displayUsernameError()}
+							// helperText={this.displayUsernameError()}
 						/>
 						<TextField
 							id="passwordTextbox"
@@ -118,12 +110,12 @@ export default class Login extends React.Component {
 							label="Password"
 							type="password"
 							// error={!this.state.password}
-							helperText={this.displayPasswordError()}
+							// helperText={this.displayPasswordError()}
 						/>
 						<br></br>
 						<Button
-							className="loginButtons"
-							href={this.logIn().toString()}
+							className="loginButton"
+							href={this.logIn()}
 							variant="contained"
 							disableElevation
 						>
@@ -131,7 +123,7 @@ export default class Login extends React.Component {
 						</Button>
 						<br></br>
 						<Button
-							className="loginButtons"
+							className="loginButton"
 							href="/register"
 							variant="contained"
 							disableElevation
