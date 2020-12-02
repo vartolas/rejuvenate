@@ -34,10 +34,10 @@ body {
 
 .registerButtons {
 	display: block;
-	border-radius: 18px;
-	background-color: #323f45;
+	border-radius: 2%;
+	background-color: #f2a365;
 	border: solid 1px transparent;
-	color: #fff;
+	color: #ececec;
 	font-size: 18px;
 	font-weight: 300;
 	cursor: pointer;
@@ -46,6 +46,6 @@ body {
 
 .registerButtons:hover {
 	background-color: transparent;
-	border-color: #fff;
+	border-color: #f2a365;
 	transition: all 0.1s ease-in-out;
 }
