@@ -102,6 +102,7 @@ export default class Register extends React.Component {
 							className="registerButton"
 							href={this.logIn()}
 							variant="contained"
+							disabled={this.state.username === '' || this.state.password === ''}
 							disableElevation
 						>
 							Register
