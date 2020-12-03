@@ -5,6 +5,10 @@ const Statistic = mongoose.model('Statistic', {
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
+    category: {
+        type: String,
+        required: true
+    },
     title: {
         type: String,
         required: true,

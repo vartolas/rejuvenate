@@ -5,111 +5,71 @@ import ScrollMenu from "react-horizontal-scrolling-menu";
 
 import "./styles.css";
 
-const user = null; //global variable should be set when user logs in
-function get_user_stats(user) {
-	//fectch user stats
-	//should return dictionary of user statistics
-	//for now we hardcode
-	var user_stats = [
-		{
-			category: "Fitness",
-			stats: [
-				{
-					id: 1, //id assigned by database code
-					type: "scatter",
-					title: "Jogging Distance Stats",
-					xAxes: "day",
-					yAxes: "distance ran",
-					data: [
-						{ x: 1, y: 1 },
-						{ x: 2, y: 5 },
-						{ x: 3, y: 3 },
-						{ x: 4, y: 4 },
-						{ x: 5, y: 5 },
-					],
-				},
-				{
-					id: 2,
-					type: "scatter",
-					title: "Bench Press Stats",
-					xAxes: "day",
-					yAxes: "kg pressed",
-					data: [
-						{ x: 1, y: 2 },
-						{ x: 2, y: 3 },
-						{ x: 3, y: 5 },
-						{ x: 4, y: 4 },
-						{ x: 5, y: 5 },
-					],
-				},
-				{
-					id: 3,
-					type: "scatter",
-					title: "Squat PR",
-					xAxes: "day",
-					yAxes: "kg squatted",
-					data: [
-						{ x: 1, y: 2 },
-						{ x: 2, y: 3 },
-						{ x: 3, y: 5 },
-						{ x: 4, y: 4 },
-						{ x: 5, y: 5 },
-					],
-				},
-				{
-					id: 4,
-					type: "scatter",
-					title: "Deadlift PR",
-					xAxes: "day",
-					yAxes: "kg deadlifted",
-					data: [
-						{ x: 1, y: 2 },
-						{ x: 2, y: 3 },
-						{ x: 3, y: 5 },
-						{ x: 4, y: 4 },
-						{ x: 5, y: 5 },
-					],
-				},
-			],
-		},
-		{
-			category: "Nutriton",
-			stats: [
-				{
-					type: "scatter",
-					title: "Calories in the day",
-					xAxes: "day",
-					yAxes: "calories",
-					data: [
-						{ x: 1, y: 1 },
-						{ x: 2, y: 2 },
-						{ x: 3, y: 3 },
-						{ x: 4, y: 2 },
-						{ x: 5, y: 2 },
-					],
-				},
-			],
-		},
-	];
+const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
 
-	return user_stats;
+function get_stats_by_category(stats){
+	var stats_by_category = [];
+	console.log(stats);
+	console.log(stats.length);
+	for(let i = 0; i < stats.length; i++){
+		let category = stats_by_category.find(category => category.category === stats[i].category)
+		if (category) {
+			category.stats.push(stats[i])
+		} else {
+			stats_by_category.push({
+				category: stats[i].category, 
+				stats: [stats[i]]
+			})
+		}
+	}
+	return stats_by_category;
 }
 
 export default class Statistics extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			user_stats: get_user_stats(user),
-		};
 		this.num_canvas_ids = 0;
+		this.state = {
+			stats: null
+		}
 	}
 
 	new_canvas_id = () => "statCanvas".concat(++this.num_canvas_ids);
 
+	componentDidMount(){
+		const userid = this.props.app.state.user._id
+		fetch(`${HOST_URL}/api/users/${userid}/statistics`)
+		.then(res => res.json())
+		.then(json =>{
+			this.setState({stats: json}); //causes component to re-render with new state
+		})
+	}
+
 	render() {
+		//if fetch has not net completed retrieving stats, put loading screen
+		if(!this.state.stats){
+			return (
+				<div id="statViewContainer">
+					<h1>loading</h1>
+				</div>
+			);
+		}
+
+		//if no stats render a page that tells user they have no stats
+		if(this.state.stats.length === 0){
+			return (
+				<div id="statViewContainer">
+					<h1>you dont have any stats yet!</h1>
+				</div>
+			);
+		}
+		//if execution gets here, then the stats are loaded and there is at least one stat, so load the full page
+
+		//helper to create a format of the stats for this user that is easier to render
+		var stats_by_category = get_stats_by_category(this.state.stats); 
 		return (
 			<div id="statViewContainer">
-				{this.state.user_stats.map((category) => (
+				{stats_by_category.map((category) => (
 					<div key={category.category} className="categoryContainer">
 						<span className="categoryTitle">{category.category}</span>
 						<StatChartsContainer
@@ -121,6 +81,7 @@ export default class Statistics extends React.Component {
 			</div>
 		);
 	}
+
 }
 
 class StatChartsContainer extends React.Component {
@@ -198,7 +159,7 @@ export class StatChart extends React.Component {
 	drawChart() {
 		var ctx = document.getElementById(this.state.id).getContext("2d");
 		this.chart = new Chart(ctx, {
-			type: this.stat.type,
+			type: "scatter",
 			data: {
 				datasets: [
 					{
@@ -233,7 +194,7 @@ export class StatChart extends React.Component {
 						{
 							scaleLabel: {
 								display: true,
-								labelString: this.stat.xAxes,
+								labelString: this.stat.xAxis,
 								fontColor: "white",
 							},
 							gridLines: {
@@ -250,7 +211,7 @@ export class StatChart extends React.Component {
 						{
 							scaleLabel: {
 								display: true,
-								labelString: this.stat.yAxes,
+								labelString: this.stat.yAxis,
 								fontColor: "white",
 							},
 							display: true,

@@ -34,16 +34,11 @@ const sessionChecker = (req, res, next) => {
     }
 }
 
-
-
 //import api routes
-app.use(require('./api_routes/admin'));
 app.use(require('./api_routes/users'));
 app.use(require('./api_routes/posts'));
 app.use(require('./api_routes/login'));
 app.use(require('./api_routes/statistics'));
-
-
 
 
 /*** Routes to serve webpage **********************************/
@@ -57,7 +52,12 @@ app.get('/', sessionChecker, (req, res) => {
 //have to define afer '/' route or else it will override our get method for '/'
 app.use(express.static(path.join(__dirname, 'build')));
 
+// login and register routes are accessible without any authentication
 app.get('/login', sessionChecker, (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, 'build', 'index.html'));
+})
+
+app.get('/register', sessionChecker, (req, res) => {
     res.status(200).sendFile(path.join(__dirname, 'build', 'index.html'));
 })
 

@@ -6,17 +6,23 @@ const {mongoChecker, isMongoError} = require('./helpers/mongo_helpers')
 const router = express.Router();
 const log = console.log;
 
-
 //get current user calling this route
 router.get('/api/users/currentuser', mongoChecker, async (req, res) => {
-    
-    if (!req.session.user || !ObjectID.isValid(req.session.user)){
+    if(!req.session.user){
+        res.redirect('/login');
+    }
+
+    if (!ObjectID.isValid(req.session.user)){
 		res.status(404).send()
 		return;
     }
 
     try {
-        const user = User.findById(req.session.user);
+        const user = await User.findById(req.session.user);
+        if(!user){
+            res.status(404).send("User not found");
+            return;
+        }
         res.status(200).send(user);
 
     } catch (error) {
@@ -52,9 +58,7 @@ router.get('/api/users/:id', mongoChecker, async (req, res) => {
             res.status(400).send("Bad Request");
         }
     }
-
 })
-
 
 //Create new user and add to database
 /*
@@ -159,5 +163,36 @@ router.get('/api/users/:id/statistics', mongoChecker, async (req, res) => {
     }
 
 });
+
+//delete the user with id as given
+//must be an admin 
+router.delete('/api/users/:id', mongoChecker, async (req, res) => {
+
+    if(!req.session.isAdmin){
+        res.status(401).send("Unauthorized");
+        return;
+    }
+
+    const id = req.params.id;
+
+    if(!ObjectID.isValid(id)){
+		res.status(404).send()
+		return;
+    }
+    
+    try {
+        const user = await User.findById(id);
+        user.remove();
+        res.send(user);
+    } catch (error) {
+        log(error);
+        if (isMongoError(error)) {
+            res.status(500).send("Internal Server Error");
+        } else {
+            res.status(400).send();
+        }
+    }
+
+})
 
 module.exports = router;

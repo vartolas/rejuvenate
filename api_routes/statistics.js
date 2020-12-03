@@ -39,14 +39,15 @@ router.get('/api/statistics/:id', mongoChecker, async (req, res) => {
 Request body expects:
 {
     userid: <user id>,
+    category: <category>
     title: <title>,
     xAxis: <x axis label>,
     yAxis: <y axis label>,
-    data: <data points array>
 }
 */
 router.post('/api/statistics', mongoChecker, async (req, res) => {
-    const { userid, title, xAxis, yAxis, data } = req.body 
+    const { userid, category, title, xAxis, yAxis } = req.body 
+    
     log('Creating new Statistic')
 
     if(!ObjectID.isValid(userid)){
@@ -57,10 +58,11 @@ router.post('/api/statistics', mongoChecker, async (req, res) => {
     try {
         const stat = new Statistic({
             userid: userid,
+            category: category,
             title: title,
             xAxis: xAxis,
             yAxis: yAxis,
-            data: data
+            data: []
         });
 
         const result = await stat.save();
@@ -92,8 +94,9 @@ router.patch('/api/statistics/:id', mongoChecker, async (req, res) =>{
     }
 
     try {
-        const stat = Statistic.findById(statid);
-        if(req.session.user === stat.userid || req.session.isAdmin){
+        const stat = await Statistic.findById(statid);
+        if(req.session.user == stat.userid || req.session.isAdmin){
+            log(`patching statistic [${stat._id}]`);
             stat.data = data;
             const result = await stat.save();
             res.status(200).send(result);
@@ -113,5 +116,38 @@ router.patch('/api/statistics/:id', mongoChecker, async (req, res) =>{
 
 });
 
+//delete statistic with given id
+//must be an admin or the user that owns this statistic
+router.delete('/api/statistics/:id', async (req, res) => {
+
+    const statid = req.params.id;
+
+    if(!ObjectID.isValid(statid)){
+		res.status(404).send()
+		return;
+    }
+    
+    try {
+        const stat = await Statistic.findById(statid);
+        if(!stat){
+            res.status(404).send("Could not find statistic");
+            return;
+        }
+        const userid = stat.userid;
+        if(userid == req.session.user || req.session.isAdmin){
+            stat.remove();
+            res.status(200).send(stat);
+        } else {
+            res.status(401).send("Unauthorized");
+        }
+    } catch (error) {
+        log(error);
+        if (isMongoError(error)) {
+            res.status(500).send("Internal Server Error");
+        } else {
+            res.status(400).send();
+        }
+    }
+})
 
 module.exports = router;

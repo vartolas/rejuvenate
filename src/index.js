@@ -27,58 +27,60 @@ const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
 class App extends React.Component {
 	constructor(props){
 		super(props);
-
 		//keep global state in App component's state object, pass down App obj to children
 		this.state = {
 			user: null
 		}
 	}
+
 	render() {
+		//page still fetching the user, return loading screen for now
 		if (!this.state.user){
-			//make api to grab current user
-			// fetch(`${HOST_URL}/api/users/currentuser`).then(response => {
-			// 	this.setState({user: response.json()})
-			// })
+			return (
+				<h1>loading</h1>
+			);
 		}
-		
+		console.log(this.state.user)
 		return (
 			<>
 				<TopNavbar app={this}/>
 				<BrowserRouter>
 					<Switch>
 						<Route exact path="/home" render={() => (<Home app={this}/>)}/> 
-						<Route exact path="/admin home" component={AdminHome} />
-						<Route exact path="/admin dashboard" component={AdminDashboard} />
-						<Route exact path="/userProfile" component={EditableProfile} />
-						<Route exact path="/otherUserProfile" component={ViewableProfile} />
-						<Route exact path="/password reset" component={PasswordReset} />
-						<Route
-							exact
-							path="/recordStatistics"
-							component={RecordStatistics}
-						/>
-						<Route
-							exact
-							path="/statistics/create"
-							component={CreateStatistics}
-						/>
-						<Route exact path="/statistics" component={Statistics} />
-						<Route
-							exact
-							path="/statistics/create"
-							component={CreateStatistics}
-						/>
-						<Route
-							exact
-							path="/recordStatistics"
-							component={RecordStatistics}
-						/>
-						<Route exact path="/settings" component={Settings} />
+
+						<Route exact path="/admin home"  render={() => (<AdminHome app={this}/>)} />
+
+						<Route exact path="/admin dashboard" render={() => (<AdminDashboard app={this}/>)} />
+
+						<Route exact path="/userProfile" render={() => (<EditableProfile app={this}/>)} />
+
+						<Route exact path="/otherUserProfile" render={() => (<ViewableProfile app={this}/>)} />
+
+						<Route exact path="/password reset" render={() => (<PasswordReset app={this}/>)} />
+
+						<Route exact path="/recordStatistics" render={() => (<RecordStatistics app={this}/>)} />
+
+						<Route exact path="/statistics/create" render={() => (<CreateStatistics app={this}/>)} />
+
+						<Route exact path="/statistics" render={() => (<Statistics app={this}/>)} />
+
+						<Route exact path="/statistics/create" render={() => (<CreateStatistics app={this}/>)} />
+
+						<Route exact path="/recordStatistics" render={() => (<RecordStatistics app={this}/>)} />
+						
+						<Route exact path="/settings" render={() => (<Settings app={this}/>)} />
 					</Switch>
 				</BrowserRouter>
 			</>
 		);
 	}
+
+	componentDidMount(){
+		fetch(`${HOST_URL}/api/users/currentuser`)
+			.then(res => res.json())
+			.then(json => this.setState({user: json}));
+	}
+
 }
 
 class AppLoginWrapper extends React.Component {
@@ -86,7 +88,7 @@ class AppLoginWrapper extends React.Component {
 		return (
 			<BrowserRouter>
 				<Switch>
-					<Route exact path="/login" component={Login}/>
+					<Route exact path="/login" component={Login} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/password reset" component={PasswordReset} />
 					<Route path="/" component={App} />
