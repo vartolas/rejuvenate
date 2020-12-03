@@ -13,7 +13,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 //start app
 const app = express();
-app.use(express.static(path.join(__dirname, 'build')));
+
 app.use(bodyParser.json());
 app.use(session({
     secret: process.env.SESSION_SECRET || "HARDCODED_SECRET",
@@ -26,6 +26,15 @@ app.use(session({
     resave: false, // may have to change
 }));
 
+const sessionChecker = (req, res, next) => {
+    if (req.session.user) {
+        res.redirect('/home');
+    } else {
+        next();
+    }
+}
+
+
 
 //import api routes
 app.use(require('./api_routes/admin'));
@@ -37,38 +46,30 @@ app.use(require('./api_routes/statistics'));
 
 
 
-
-const sessionChecker = (req, res, next) => {
-    if (req.session.user) {
-        res.redirect('/home');
-    } else {
-        next();
-    }
-}
-
 /*** Routes to serve webpage **********************************/
 
 //for root and /login, check for existing session, if no session, continue to login page
 app.get('/', sessionChecker, (req, res) => {
-    res.redirect('/login');
+    console.log("rerouting to login")
+    res.redirect('/login')
 })
+
+//have to define afer '/' route or else it will override our get method for '/'
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/login', sessionChecker, (req, res) => {
     res.status(200).sendFile(path.join(__dirname, 'build', 'index.html'));
 })
 
 
-//for all other routes, check if user is logged in, if not, redirect to /login
+// for all other routes, check if user is logged in, if not, redirect to /login
 app.get('*', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, 'build', 'index.html'));
-    //replace above line with below code for checking if user is logged in
-    /* 
+    //res.status(200).sendFile(path.join(__dirname, 'build', 'index.html')); 
     if (req.session.user) {
         res.status(200).sendFile(path.join(__dirname, 'build', 'index.html'));
     } else {
         res.redirect('/login');
     }
-    */
 });
 
 /*** Start Listening on PORT **********************************/

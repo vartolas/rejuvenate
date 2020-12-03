@@ -4,7 +4,17 @@ import { BrowserRouter } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import SearchBar from "../../react-components/SearchBar";
 
+const HOST_URL = process.env.HOST_URL || "http://localhost:5000"
+
 export default class TopNavbar extends React.Component {
+
+	logout = () => {
+		fetch(`${HOST_URL}/api/logout`, {
+			method: 'post'
+		});
+		this.props.history.push("/login");
+	}
+
 	render() {
 		return (
 			<div className="topRow">
@@ -31,7 +41,7 @@ export default class TopNavbar extends React.Component {
 								<Nav.Link id="option" href="/settings">
 									Settings
 								</Nav.Link>
-								<Nav.Link id="option" href="/">
+								<Nav.Link onClick={this.logout} id="option" href="/login">
 									Sign Out
 								</Nav.Link>
 							</Nav>

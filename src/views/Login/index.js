@@ -14,6 +14,8 @@ export const INCORRECT_USERNAME_ERROR_MSG = "Username is incorrect.";
 export const INCORRECT_PASSWORD_ERROR_MSG = "Password is incorrect.";
 export const INCORRECT_CREDENTIAL_MSG = "Invalid credentials.";
 
+const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
+
 // TODO: Convert this to a functional component.
 export default class Login extends React.Component {
 	// I found this helpful:
@@ -62,14 +64,32 @@ export default class Login extends React.Component {
 		return this.state.password === CORRECT_ADMIN_PASSWORD;
 	}
 
-	handleLogInAttempt() {
-		if (this.usernameExists() && this.userPasswordIsCorrect()) {
-			this.props.history.push('/home')
-		} else if (this.adminUsernameExists() && this.adminPasswordIsCorrect()) {
-			this.props.history.push('/admin home')
-		} else {
-			this.setState({lastActionWasLoginAttempt: true})
-		}
+	handleLogInAttempt = () => {
+		fetch(`${HOST_URL}/api/login`, {
+			method: 'post',
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				username: this.state.username,
+				password: this.state.password
+			}),
+		}).then(response => {
+			
+			if(response.status === 200){
+				this.props.history.push('/home'); //route to home
+			}else if (response.status === 404) {
+				//login attempt has failed, handle notifying user somehow
+				console.log("login attempt failed"); //do whatever here
+			}
+		});
+		// if (this.usernameExists() && this.userPasswordIsCorrect()) {
+		// 	this.props.history.push('/home')
+		// } else if (this.adminUsernameExists() && this.adminPasswordIsCorrect()) {
+		// 	this.props.history.push('/admin home')
+		// } else {
+		// 	this.setState({lastActionWasLoginAttempt: true})
+		// }
 	}
 
 	helperText() {
