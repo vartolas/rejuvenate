@@ -50,7 +50,7 @@ const sessionChecker = (req, res, next) => {
 
 //for root and /login, check for existing session, if no session, continue to login page
 app.get('/', sessionChecker, (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.redirect('/login');
 })
 
 app.get('/login', sessionChecker, (req, res) => {

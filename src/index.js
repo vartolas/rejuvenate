@@ -22,14 +22,29 @@ import TopNavbar from "./react-components/TopNavbar";
 
 import "./index.css";
 
+const HOST_URL = "http://localhost:5000"
+
 class App extends React.Component {
+	constructor(){
+		//keep global state in App component's state object, pass down App obj to children
+		this.state = {
+			user: null
+		}
+	}
 	render() {
+		if (!this.state.user){
+			//make api to grab current user
+			// fetch(`${HOST_URL}/api/users/currentuser`).then(response => {
+			// 	this.setState({user: response.json()})
+			// })
+		}
+		
 		return (
 			<>
-				<TopNavbar />
+				<TopNavbar app={this}/>
 				<BrowserRouter>
 					<Switch>
-						<Route exact path="/home" component={Home} />
+						<Route exact path="/home" render={() => (<Home app={this}/>)}/> 
 						<Route exact path="/admin home" component={AdminHome} />
 						<Route exact path="/admin dashboard" component={AdminDashboard} />
 						<Route exact path="/userProfile" component={EditableProfile} />
@@ -69,7 +84,7 @@ class AppLoginWrapper extends React.Component {
 		return (
 			<BrowserRouter>
 				<Switch>
-					<Route exact path="/" component={Login} />
+					<Route exact path="/login" component={Login}/>
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/password reset" component={PasswordReset} />
 					<Route path="/" component={App} />

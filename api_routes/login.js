@@ -13,6 +13,7 @@ Request body expects :
     "password": <password>
 }
 */
+//if the user is found, reroutes to home with active session, else returns status 404
 router.post('/api/login', mongoChecker, async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -22,12 +23,12 @@ router.post('/api/login', mongoChecker, async (req, res) => {
     try {
         const user =  await User.findByUsernamePassword(username, password) 
         if (!user) {
-                res.redirect('/login');
+            res.status(404).send("User not found");
         } else {
             req.session.user = user._id; //need to put this into url parameter for each page
             req.session.username = user.username;
             req.session.isAdmin = user.isAdmin; //cookie keeps track of whether this is an admin for permission purposes
-            res.redirect(`/home?user=${req.session.user}`) //pass user's ID into url parameter so it is known to client side
+            res.redirect('/home'); 
         }
     } catch (error) {
         if (isMongoError(error)) {

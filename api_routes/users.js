@@ -34,11 +34,11 @@ router.get('/api/users/currentuser', mongoChecker, async (req, res) => {
 router.get('/api/users/:id', mongoChecker, async (req, res) => {
 
     
-    const userid = req.body.userid;
+    const userid = req.params.id;
     log(`fetching user ${userid}`);
 
     try {
-        const user = await User.findByID(userid);
+        const user = await User.findById(userid);
         if(!user){
             res.status(404).send();
             return;
@@ -49,7 +49,7 @@ router.get('/api/users/:id', mongoChecker, async (req, res) => {
         if (isMongoError(error)) {
             res.status(500).send("Internal Server Error");
         } else {
-            res.status(400).send("Internal Server Error");
+            res.status(400).send("Bad Request");
         }
     }
 

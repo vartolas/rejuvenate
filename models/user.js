@@ -19,7 +19,6 @@ const UserSchema = mongoose.Schema({
     bio: {type: String},
     followers: [mongoose.Schema.Types.ObjectId],
     following: [mongoose.Schema.Types.ObjectId],
-    statistics: [mongoose.Schema.Types.ObjectId],
     isAdmin: {type: Boolean, required: true}
 })
 

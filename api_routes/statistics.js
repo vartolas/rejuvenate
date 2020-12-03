@@ -64,7 +64,7 @@ router.post('/api/statistics', mongoChecker, async (req, res) => {
         });
 
         const result = await stat.save();
-        res.status(200).send();
+        res.status(200).send(result);
     } catch (error) {
         log(error);
         if (isMongoError(error)) {
