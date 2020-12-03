@@ -12,7 +12,7 @@ export const CORRECT_ADMIN_PASSWORD = "admin";
 
 export const INCORRECT_USERNAME_ERROR_MSG = "Username is incorrect.";
 export const INCORRECT_PASSWORD_ERROR_MSG = "Password is incorrect.";
-export const CORRECT_CREDENTIALS_MSG = "Username and password are correct.";
+export const INCORRECT_CREDENTIAL_MSG = "Invalid credentials.";
 
 // TODO: Convert this to a functional component.
 export default class Login extends React.Component {
@@ -28,17 +28,18 @@ export default class Login extends React.Component {
 		this.state = {
 			username: "",
 			password: "",
+			lastActionWasLoginAttempt: false
 		};
 	}
 
 	updateUsername = (e) => {
 		e.preventDefault();
-		this.setState({ username: e.target.value });
+		this.setState({ username: e.target.value, lastActionWasLoginAttempt: false });
 	}
 
 	updatePassword = (e) => {
 		e.preventDefault();
-		this.setState({ password: e.target.value });
+		this.setState({ password: e.target.value, lastActionWasLoginAttempt: false  });
 	}
 
 	// TODO: In phase 2, we plan on verifying user credentials against a database.
@@ -61,13 +62,21 @@ export default class Login extends React.Component {
 		return this.state.password === CORRECT_ADMIN_PASSWORD;
 	}
 
-	logIn() {
+	handleLogInAttempt() {
 		if (this.usernameExists() && this.userPasswordIsCorrect()) {
-			return "/home";
+			this.props.history.push('/home')
 		} else if (this.adminUsernameExists() && this.adminPasswordIsCorrect()) {
-			return "/admin home";
+			this.props.history.push('/admin home')
 		} else {
-			return "/";
+			this.setState({lastActionWasLoginAttempt: true})
+		}
+	}
+
+	helperText() {
+		if (this.state.lastActionWasLoginAttempt) {
+			return INCORRECT_CREDENTIAL_MSG;
+		} else {
+			return "";
 		}
 	}
 
@@ -82,8 +91,7 @@ export default class Login extends React.Component {
 							value={this.state.username}
 							onChange={this.updateUsername}
 							label="Username"
-							// error={!this.state.username}
-							// helperText={INCORRECT_USERNAME_ERROR_MSG}
+							error={this.helperText.call(this) !== ""}
 						/>
 						<TextField
 							id="passwordTextbox"
@@ -91,13 +99,13 @@ export default class Login extends React.Component {
 							onChange={this.updatePassword}
 							label="Password"
 							type="password"
-							// error={!this.state.password}
-							// helperText={INCORRECT_PASSWORD_ERROR_MSG}
+							error={this.helperText.call(this) !== ""}
+							helperText={this.helperText.call(this)}
 						/>
 						<br></br>
 						<Button
 							className="loginButton"
-							href={this.logIn()}
+							onClick={this.handleLogInAttempt.bind(this)}
 							variant="contained"
 							disabled={this.state.username === '' || this.state.password === ''}
 							disableElevation
