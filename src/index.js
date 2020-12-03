@@ -25,7 +25,9 @@ import "./index.css";
 const HOST_URL = "http://localhost:5000"
 
 class App extends React.Component {
-	constructor(){
+	constructor(props){
+		super(props);
+		
 		//keep global state in App component's state object, pass down App obj to children
 		this.state = {
 			user: null
