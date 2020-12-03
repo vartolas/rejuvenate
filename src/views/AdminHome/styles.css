@@ -6,16 +6,16 @@
 	background-color: #f2a365;
 	border: solid 1px transparent;
 	color: #ececec;
+	border-radius: 4px;
 
-	border-top-left-radius: 40%;
-	border-top-right-radius: 40%;
 	z-index: 1;
 	bottom: 10px;
 	left: 10px;
 	text-align: center;
-	padding-top: 40px;
+	padding-top: 30px;
 	color: #ececec;
-	font-size: 20px;
+	font-size: 25px;
+	font-weight: 300;
 }
 
 #adminDashboardButton:hover {

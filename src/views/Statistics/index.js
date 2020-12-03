@@ -2,13 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Chart from "chart.js";
 import ScrollMenu from "react-horizontal-scrolling-menu";
-import { v4 as uuid } from "uuid";
-// import { IconButton } from "@material-ui/core";
-// import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
-// import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
 import "./styles.css";
-import { UsbOutlined } from "@material-ui/icons";
 
 const user = null; //global variable should be set when user logs in
 function get_user_stats(user) {
@@ -117,16 +112,10 @@ export default class Statistics extends React.Component {
 				{this.state.user_stats.map((category) => (
 					<div key={category.category} className="categoryContainer">
 						<span className="categoryTitle">{category.category}</span>
-						{/* <IconButton className="likeButton" onClick={() => this.handle()}>
-							    <KeyboardArrowLeftIcon className="filledLikeIcon" />
-					    </IconButton> */}
 						<StatChartsContainer
 							stats={category.stats}
 							new_canvas_id={this.new_canvas_id}
 						/>
-						{/* <IconButton className="likeButton" onClick={() => function(){}}>
-							    <KeyboardArrowRightIcon className="filledLikeIcon" />
-					    </IconButton> */}
 					</div>
 				))}
 			</div>
@@ -155,14 +144,6 @@ class StatChartsContainer extends React.Component {
 			);
 		});
 
-		// statsContainer.push(
-		// 	<div className="addStatButtonTableContainer" key={uuid()}>
-		// 		<Link to="/statistics/create">
-		// 			<button className="addStatButton">+</button>
-		// 		</Link>
-		// 	</div>
-		// );
-
 		const Arrow = ({ text, className }) => {
 			return <div className={className}>{text}</div>;
 		};
@@ -172,16 +153,6 @@ class StatChartsContainer extends React.Component {
 
 		return (
 			<div className="statsContainer">
-				{/* {this.state.stats.map((stat) => {
-					var id = this.new_canvas_id();
-					return (
-						<div key={id}>
-							<Link to="/recordStatistics">
-								<StatChart id={id} stat={stat} />
-							</Link>
-						</div>
-					);
-				})} */}
 				<div className="scrollMenu">
 					<ScrollMenu
 						data={statsContainer}
