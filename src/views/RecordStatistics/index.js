@@ -1,41 +1,40 @@
 import React from "react";
-
+import { Button } from "react-bootstrap";
+import { StatChart } from "../Statistics";
+import LoadingDisplay from "../../react-components/LoadingDisplay";
 import "./styles.css";
 
-import SpanLink from "../../react-components/SpanLink";
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { StatChart } from "../Statistics";
-
-//example of one statistic, this will be retrieved from database, maybe based on query parameters
-var stat = {
-	type: "scatter",
-	title: "Jogging Distance Stats",
-	xAxes: "days since Januray 1st 2020",
-	yAxes: "distance ran (km)",
-	data: [
-		{ x: 1, y: 1 },
-		{ x: 2, y: 5 },
-		{ x: 3, y: 3 },
-		{ x: 4, y: 4 },
-		{ x: 5, y: 5 },
-	],
-};
+const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
 
 export default class RecordStatistics extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			stat: stat,
+			stat: null,
+			successfullyUpdated: null
 		};
 		this.num_point_ids = 0;
+		this.statid = new URLSearchParams(window.location.search).get('id');
 	}
 
 	new_point_id = () => "point".concat(++this.num_point_ids);
 
-	render() {
-		this.num_point_ids = 0;
+	componentDidMount(){
+		fetch(`${HOST_URL}/api/statistics/${this.statid}`)
+			.then(res => res.json())
+			.then(stat =>{
+				this.setState({stat: stat});
+			})
+	}
 
+	render() {
+		if(!this.state.stat){
+			return (
+				<LoadingDisplay/>
+			);
+		}
+
+		this.num_point_ids = 0;
 		return (
 			<div id="recordStatViewContainer">
 				<h1>Record Stats</h1>
@@ -48,7 +47,7 @@ export default class RecordStatistics extends React.Component {
 								<tbody>
 									<tr>
 										<td>
-											<span id="xAxesLabel">{this.state.stat.xAxes}</span>{" "}
+											<span id="xAxesLabel">{this.state.stat.xAxis}</span>{" "}
 										</td>
 										<td>
 											<input id="newXEntryInput" type="text"></input>
@@ -56,7 +55,7 @@ export default class RecordStatistics extends React.Component {
 									</tr>
 									<tr>
 										<td>
-											<span id="yAxesLabel">{this.state.stat.yAxes}</span>
+											<span id="yAxesLabel">{this.state.stat.yAxis}</span>
 										</td>
 										<td>
 											<input id="newYEntryInput" type="text"></input>
@@ -78,8 +77,8 @@ export default class RecordStatistics extends React.Component {
 					<h2>Exisiting Entries</h2>
 					<div id="editExistingStatContainer">
 						<div id="labelsContainer">
-							<span id="xAxesLabel">{this.state.stat.xAxes}</span>
-							<span id="XAxesLabel">{this.state.stat.yAxes}</span>
+							<span id="xAxesLabel">{this.state.stat.xAxis}</span>
+							<span id="XAxesLabel">{this.state.stat.yAxis}</span>
 						</div>
 						<div id="editExistingStatScroll">
 							{this.state.stat.data.map((point, index) => {
@@ -102,22 +101,30 @@ export default class RecordStatistics extends React.Component {
 							})}
 						</div>
 					</div>
-
-					<Link to="/statistics">
-						<Button
-							id="confirmAllChangesButton"
-							onClick={this.handleConfirmAllChanges}
-						>
-							Confirm All Changes
-						</Button>
-					</Link>
+					<Button
+						id="confirmAllChangesButton"
+						onClick={this.handleConfirmAllChanges}
+					>
+						Confirm All Changes
+					</Button>
+					
 				</div>
 			</div>
 		);
 	}
 
-	handleConfirmAllEntries = (e) => {
-		//upload to dataBase
+	handleConfirmAllChanges = (e) => {
+		fetch(`${HOST_URL}/api/statistics/${this.statid}`, {
+			method: 'PATCH',
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify({
+				data: this.state.stat.data
+			})
+		})
+		.then(res => res.json())
+		.then(updatedstat => {
+			this.setState({stat: updatedstat})
+		});
 	};
 
 	handleNewEntry = (e) => {

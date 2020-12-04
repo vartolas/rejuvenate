@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Chart from "chart.js";
 import ScrollMenu from "react-horizontal-scrolling-menu";
+import { Button } from 'react-bootstrap';
+
+import LoadingDisplay from "../../react-components/LoadingDisplay";
 
 import "./styles.css";
 
@@ -47,23 +50,12 @@ export default class Statistics extends React.Component {
 
 	render() {
 		//if fetch has not net completed retrieving stats, put loading screen
-		if(!this.state.stats){
+		if (!this.state.stats) {
 			return (
-				<div id="statViewContainer">
-					<h1>loading</h1>
-				</div>
+				<LoadingDisplay/>
 			);
 		}
-
-		//if no stats render a page that tells user they have no stats
-		if(this.state.stats.length === 0){
-			return (
-				<div id="statViewContainer">
-					<h1>you dont have any stats yet!</h1>
-				</div>
-			);
-		}
-		//if execution gets here, then the stats are loaded and there is at least one stat, so load the full page
+		//if execution gets here, then the stats are loaded 
 
 		//helper to create a format of the stats for this user that is easier to render
 		var stats_by_category = get_stats_by_category(this.state.stats); 
@@ -78,6 +70,16 @@ export default class Statistics extends React.Component {
 						/>
 					</div>
 				))}
+				<div id="createNewStatButtonContainer">
+					<Button
+						className="loginButton"
+						href='/statistics/create'
+						variant="contained"
+						disableElevation
+					>
+						Create New Statistic
+					</Button>
+				</div>
 			</div>
 		);
 	}
@@ -98,7 +100,7 @@ class StatChartsContainer extends React.Component {
 			var id = this.new_canvas_id();
 			return (
 				<div key={id}>
-					<Link to="/recordStatistics">
+					<Link to={`/statistics/record?id=${stat._id}`}>
 						<StatChart id={id} stat={stat} />
 					</Link>
 				</div>
@@ -122,11 +124,11 @@ class StatChartsContainer extends React.Component {
 						wheel={false}
 					/>
 				</div>
-				<div className="addStatButtonTableContainer">
+				{/* <div className="addStatButtonTableContainer">
 					<Link to="/statistics/create">
 						<button className="addStatButton">+</button>
 					</Link>
-				</div>
+				</div> */}
 			</div>
 		);
 	}

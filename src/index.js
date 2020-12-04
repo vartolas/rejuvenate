@@ -40,7 +40,7 @@ class App extends React.Component {
 				<h1>loading</h1>
 			);
 		}
-		console.log(this.state.user)
+		console.log(`Logged in as user ${this.state.user._id}`);
 		return (
 			<>
 				<TopNavbar app={this}/>
@@ -58,15 +58,11 @@ class App extends React.Component {
 
 						<Route exact path="/password reset" render={() => (<PasswordReset app={this}/>)} />
 
-						<Route exact path="/recordStatistics" render={() => (<RecordStatistics app={this}/>)} />
-
-						<Route exact path="/statistics/create" render={() => (<CreateStatistics app={this}/>)} />
-
 						<Route exact path="/statistics" render={() => (<Statistics app={this}/>)} />
 
 						<Route exact path="/statistics/create" render={() => (<CreateStatistics app={this}/>)} />
 
-						<Route exact path="/recordStatistics" render={() => (<RecordStatistics app={this}/>)} />
+						<Route exact path="/statistics/record" render={() => (<RecordStatistics app={this}/>)} />
 						
 						<Route exact path="/settings" render={() => (<Settings app={this}/>)} />
 					</Switch>

@@ -15,6 +15,19 @@ export default class TopNavbar extends React.Component {
 		this.props.history.push("/login");
 	}
 
+	dashboardIfAdmin(){
+		const app = this.props.app;
+		if(app.state.user.isAdmin){
+			return (
+				<div id="adminDashboardNavLinkContainer">
+					<Nav.Link id="adminDashboardNavLink">
+						Admin Dashboard
+					</Nav.Link>
+				</div>
+			)
+		}
+	}
+
 	render() {
 		return (
 			<div className="topRow">
@@ -30,20 +43,24 @@ export default class TopNavbar extends React.Component {
 								<Nav.Link id="option" href="/userProfile">
 									Profile
 								</Nav.Link>
-								<NavDropdown title="Statistics" id="option">
-									<NavDropdown.Item href="/recordStatistics">
+								<Nav.Link id="option" href="/statistics">
+									Statistics
+								</Nav.Link>
+								{/* <NavDropdown title="Statistics" id="option">
+									<NavDropdown.Item href="/statistics/record">
 										Record Statistics
 									</NavDropdown.Item>
 									<NavDropdown.Item href="/statistics">
 										View Statistics
 									</NavDropdown.Item>
-								</NavDropdown>
+								</NavDropdown> */}
 								<Nav.Link id="option" href="/settings">
 									Settings
 								</Nav.Link>
 								<Nav.Link onClick={this.logout} id="option" href="/login">
 									Sign Out
 								</Nav.Link>
+								{this.dashboardIfAdmin()}
 							</Nav>
 						</Navbar.Collapse>
 					</Navbar>

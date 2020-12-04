@@ -93,10 +93,23 @@
 	color: gray;
 }
 
+#createNewStatButtonContainer {
+	width: fit-content;
+	height: fit-content;
+	margin: auto;
+	margin-top: 20px;
+}
 button {
 	outline: none;
 }
 
 button:hover {
 	cursor: pointer;
+}
+
+#createNewStatisticButton:hover {
+	background-color: transparent;
+	color: #ececec;
+	border-color: #ececec;
+	transition: all 0.1s ease-in-out;
 }

@@ -97,6 +97,10 @@ router.patch('/api/statistics/:id', mongoChecker, async (req, res) =>{
 
     try {
         const stat = await Statistic.findById(statid);
+        if(!stat){
+            res.status(404).send()
+            return;
+        }
         if(req.session.user == stat.userid || req.session.isAdmin){
             log(`patching statistic [${stat._id}]`);
             stat.data = data;

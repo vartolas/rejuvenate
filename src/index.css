@@ -6,3 +6,8 @@ body {
 button {
 	outline: none;
 }
+
+.loadingScreenText {
+	margin: 10px;
+	color: #f2a365;
+}
