@@ -1,10 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import "./styles.css";
+
+import { Button } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
-
-
-import "./styles.css";
 
 export default class CreateStatistic extends React.Component {
 	constructor(props) {
@@ -19,44 +18,38 @@ export default class CreateStatistic extends React.Component {
 
 	render() {
 		return (
-			<div id="createStatViewContainer">
+			<div id="createStatContainer">
 				<span id="createStatTitle">Create New Statistic</span>
-				<div id="createStatSectionContainer">
-					<div id="createStatFormContainer">
-						<form id="createStatForm">
-							<label>Category:</label>
-							<select id="createStatTypeSelect" name="type">
-								<option value="Nutrition">Nutrition</option>
-								<option value="Fitness">Fitness</option>
-							</select>
-
-							<label>Title:</label>
-							<input id="createStatTitleInput" type="text" />
-							<br />
-
-							<label>X-Axis label:</label>
-							<input id="createStatX-AxisInput" type="text" />
-
-							<label>Y-Axis label:</label>
-							<input id="createStatY-AxisInput" type="text" />
-
-							<label>Type:</label>
-							<select id="createStatTypeSelect" name="type">
-								<option value="bar">Bar Graph</option>
-								<option value="line">Line Graph</option>
-							</select>
-						</form>
-						<Link to="/recordStatistics">
-							<button id="createButton" onClick={this.createStatistic}>
-								Create
-							</button>
-						</Link>
-						<div>{this.state.createStatState()}</div>
-						<Link to="/statistics">
-							<button id="returnButton">Return</button>
-						</Link>
-					</div>
-					<div id="chooseTemplateContainer"></div>
+				<div id="createStatComponent">
+					<FormControl>
+						<TextField
+							id="statisticsTextbox"
+							label="Name of Statistic"
+						/>
+						<TextField
+							id="statisticsType"
+							label="Type of Statistic"
+						/>
+						<TextField
+							id="statistics-x-axis"
+							label="X-Axis Label"
+						/>
+						<TextField
+							id="statistics-y-axis"
+							label="Y-Axis Label"
+						/>
+						<br></br>
+						<Button
+							className="createStatisticsButton"
+							href="/recordStatistics"
+							variant="contained"
+							disableElevation
+							onClick={this.createStatistic}
+						>
+							Create New Statistic
+						</Button>
+						<br></br>
+					</FormControl>
 				</div>
 			</div>
 		);

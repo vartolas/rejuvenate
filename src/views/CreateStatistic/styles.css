@@ -1,18 +1,40 @@
-#createStatViewContainer {
-	position: absolute;
-	width: 100%;
-	height: 100%;
+body {
 	background-color: #202936;
-	color: #ececec;
-	margin: 0;
 }
 
-#createButton {
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 30px;
+#createStatContainer {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+#createStatTitle {
+	color: #ececec;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+#createStatComponent {
+	border: solid 1px;
+	border-radius: 2%;
+
+	margin-top: 10%;
+	margin-bottom: 10%;
+	margin-left: 40%;
+	margin-right: 40%;
+
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+	background-color: #ececec;
+}
+
+.createStatisticsButton {
 	display: block;
-	border-radius: 4px;
+	border-radius: 2%;
 	background-color: #f2a365;
 	border: solid 1px transparent;
 	color: #ececec;
@@ -22,70 +44,8 @@
 	transition: all 0.1s ease-in-out;
 }
 
-#createButton:hover {
+.createStatisticsButton:hover {
 	background-color: transparent;
 	border-color: #f2a365;
 	transition: all 0.1s ease-in-out;
-}
-
-#returnButton {
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 10px;
-	display: block;
-	border-radius: 4px;
-	background-color: #ececec;
-	border: solid 1px transparent;
-	color: black;
-	font-size: 18px;
-	font-weight: 300;
-	cursor: pointer;
-	transition: all 0.1s ease-in-out;
-}
-
-#returnButton:hover {
-	color: #ececec;
-	background-color: transparent;
-	border-color: #f2a365;
-	transition: all 0.1s ease-in-out;
-}
-
-#createStatFormContainer {
-	background-color: #253749;
-	margin: 20px;
-	padding: 20px;
-	border-radius: 10px;
-	text-align: center;
-	font-weight: 300;
-}
-
-#createStatTitle {
-	font-size: 40px;
-	margin-left: 20px;
-	font-weight: 300;
-}
-
-#createStatForm {
-	display: block;
-	text-align: center;
-	width: 100%;
-}
-
-#createStatForm label {
-	margin-top: 20px;
-	display: block;
-	font-size: 20px;
-}
-
-#createStatForm input {
-	width: 30%;
-	padding: 5px;
-	border-radius: 5px;
-}
-
-#createStatForm select {
-	text-align: center;
-	width: 20%;
-	padding: 5px;
-	border-radius: 5px;
 }
