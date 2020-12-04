@@ -16,6 +16,7 @@ router.get('/api/statistics/:id', mongoChecker, async (req, res) => {
     }
 
     try {
+        log(`fetching statistic ${statid}`)
         const stat = await Statistic.findById(statid);
         if(!stat){
             res.status(404).send()
@@ -48,7 +49,7 @@ Request body expects:
 router.post('/api/statistics', mongoChecker, async (req, res) => {
     const { userid, category, title, xAxis, yAxis } = req.body 
     
-    log('Creating new Statistic')
+    
 
     if(!ObjectID.isValid(userid)){
 		res.status(400).send();
@@ -67,6 +68,7 @@ router.post('/api/statistics', mongoChecker, async (req, res) => {
 
         const result = await stat.save();
         res.status(200).send(result);
+        log(`Creatied new statistic [${stat._id}]`)
     } catch (error) {
         log(error);
         if (isMongoError(error)) {
@@ -135,6 +137,7 @@ router.delete('/api/statistics/:id', async (req, res) => {
         }
         const userid = stat.userid;
         if(userid == req.session.user || req.session.isAdmin){
+            log(`Deleting statistic [${stat._id}]`)
             stat.remove();
             res.status(200).send(stat);
         } else {

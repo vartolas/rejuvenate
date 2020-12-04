@@ -2,6 +2,10 @@ body {
 	background-color: #202936;
 }
 
+#successMessage {
+	color: greenyellow;
+}
+
 #registerContainer {
 	width: 100%;
 	height: 100%;

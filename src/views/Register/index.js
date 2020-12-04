@@ -10,10 +10,12 @@ export const CORRECT_REGULAR_USER_PASSWORD = "user";
 export const CORRECT_ADMIN_USERNAME = "admin";
 export const CORRECT_ADMIN_PASSWORD = "admin";
 
-export const EXISTING_USERNAME_ERROR_MSG = "New username already exists.";
+export const EXISTING_USERNAME_ERROR_MSG = "Username already exists.";
 export const WEAK_PASSWORD_ERROR_MSG = "New password is not strong enough.";
 export const STRONG_PASSWORD_FOR_REGISTRATION_MSG =
 	"This new username has a strong enough password.";
+
+const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
 
 // TODO: Convert this to a functional component.
 export default class Register extends React.Component {
@@ -27,9 +29,60 @@ export default class Register extends React.Component {
 		super(props);
 		// TODO: Use React hooks and useState instead.
 		this.state = {
+			firstname: "",
+			lastname: "",
 			username: "",
 			password: "",
+			usernameTaken: null,
+			successfulRegister: null
 		};
+	}
+
+	register() {
+		fetch(`${HOST_URL}/api/users/check/${this.state.username}`)
+			.then(res => res.json())
+			.then(json => {
+				this.setState({usernameTaken: json.usernameTaken})
+				if(!this.state.usernameTaken){
+					fetch(`${HOST_URL}/api/users`, {
+						method: 'post',
+						headers: {"Content-Type": "application/json"},
+						body: JSON.stringify({
+							firstname: this.state.firstname,
+							lastname: this.state.lastname,
+							username: this.state.username,
+							password: this.state.password,
+						})
+					})
+					.then(res => {
+						if (res.status === 200) {
+							this.setState({successfulRegister: true})
+						} else {
+							console.log("register attempt failed")
+							this.setState({successfulRegister: false})
+						}
+					});
+				} else {
+					this.setState({successfulRegister: false})
+				}
+			});
+		
+		
+	}
+
+	displayMessage(){
+		if (this.state.successfulRegister === true){
+			return (
+				<span id="successMessage">You have succesfully registered! Welcome!</span>
+			)
+		}
+	}
+
+	usernameTakenHelperText(){
+		if (this.state.usernameTaken){
+			return EXISTING_USERNAME_ERROR_MSG
+		}
+		return ""
 	}
 
 	updateUsername = (e) => {
@@ -73,24 +126,42 @@ export default class Register extends React.Component {
 	}
 
 	render() {
+		console.log(this.state)
 		return (
 			<div id="registerContainer">
 				<h1>Rejuvenate</h1>
 				<div id="registerComponent">
 					<FormControl>
 						<TextField
+							id="firstnameTextbox"
+							value={this.state.firstname}
+							onChange={(e) => {e.preventDefault(); this.setState({firstname: e.target.value})}}
+							label="First Name"
+							// error={!this.state.password}
+							// helperText={WEAK_PASSWORD_ERROR_MSG}
+						/>
+						<TextField
+							id="lastnameTextbox"
+							value={this.state.lastname}
+							onChange={(e) => {e.preventDefault(); this.setState({lastname: e.target.value})}}
+							label="Last Name"
+							// error={!this.state.password}
+							// helperText={WEAK_PASSWORD_ERROR_MSG}
+						/>
+						<TextField
 							id="usernameTextbox"
 							value={this.state.username}
-							onChange={this.updateUsername}
-							label="New Username"
+							onChange={(e) => {e.preventDefault(); this.setState({username: e.target.value})}}
+							label="Username"
+							error={this.state.usernameTaken === true}
+							helperText={this.usernameTakenHelperText()}
 							// error={!this.state.username}
-							// helperText={EXISTING_USERNAME_ERROR_MSG}
 						/>
 						<TextField
 							id="passwordTextbox"
 							value={this.state.password}
-							onChange={this.updatePassword}
-							label="New Password"
+							onChange={(e) => {e.preventDefault(); this.setState({password: e.target.value})}}
+							label="Password"
 							type="password"
 							// error={!this.state.password}
 							// helperText={WEAK_PASSWORD_ERROR_MSG}
@@ -98,9 +169,10 @@ export default class Register extends React.Component {
 						<br></br>
 						<Button
 							className="registerButton"
-							href={this.logIn()}
+							onClick = {this.register.bind(this)}
 							variant="contained"
-							disabled={this.state.username === '' || this.state.password === ''}
+							disabled={this.state.firstname === "" || this.state.lastname === ""	||
+									this.state.username === "" || this.state.password === ""}
 							disableElevation
 						>
 							Register
@@ -108,7 +180,7 @@ export default class Register extends React.Component {
 						<br></br>
 						<Button
 							className="registerButton"
-							href="/"
+							href='/login'
 							variant="contained"
 							disableElevation
 						>
@@ -117,6 +189,7 @@ export default class Register extends React.Component {
 						<br></br>
 					</FormControl>
 				</div>
+				{this.displayMessage()}
 			</div>
 		);
 	}

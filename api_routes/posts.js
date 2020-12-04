@@ -59,7 +59,7 @@ router.post('/api/post/:id', mongoChecker, async (req, res) => {
 
     const postid = req.params.id;
 
-    log(`Creating new post`);
+    
 
     if(!ObjectID.isValid(postid)){
 		res.status(404).send();
@@ -68,12 +68,14 @@ router.post('/api/post/:id', mongoChecker, async (req, res) => {
     
 
     try {
-        const post = await Post.findById(postid);;
+        log(`fetching post [${postid}]`);
+        const post = await Post.findById(postid);
         if (!post) {
             res.status(404).send()
             return;
         }
         res.status(200).send(post);
+        
         
     } catch (error) {
         log(error);
@@ -120,6 +122,7 @@ router.post('/api/posts/:id/like', mongoChecker, async (req, res) => {
         post.likes.push(userid);
         const result = await post.save()
         res.status(200).send(result);
+        log(`user [${userid}] liked a post [${post._id}]`)
 
     } catch (error) {
         log(error);
@@ -171,6 +174,7 @@ router.post('/api/posts/:id/comment', mongoChecker, async (req, res) => {
         });
         const result = await post.save()
         res.status(200).send(result);
+        log(`user [${userid}] commented on a post [${post._id}]`)
 
     } catch (error) {
         log(error);

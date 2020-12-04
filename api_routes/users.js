@@ -36,6 +36,42 @@ router.get('/api/users/currentuser', mongoChecker, async (req, res) => {
 
 })
 
+//check if username is already taken in the database
+/*
+expected response body:
+{
+    isTaken: <true if taken, else false>
+}
+*/
+router.get('/api/users/check/:username', async (req, res) => {
+    const username = req.params.username;
+
+    try {
+        log(`checking username ${username}`)
+        const existingUser = await User.findOne({username: username});
+        let usernameTaken;
+
+        if (existingUser) {
+            log(`username ${username} is taken`)
+            usernameTaken = true;
+        } else {
+            log(`username ${username} is not yet taken`)
+            usernameTaken = false;
+        }
+
+        res.status(200).send({
+            usernameTaken: usernameTaken
+        })
+    } catch (error) {
+        log(error);
+        if (isMongoError(error)) {
+            res.status(500).send("Internal Server Error");
+        } else {
+            res.status(400).send("Bad Request");
+        }
+    }
+});
+
 //get user document by id
 router.get('/api/users/:id', mongoChecker, async (req, res) => {
 
@@ -144,7 +180,7 @@ router.get('/api/users/:id/statistics', mongoChecker, async (req, res) => {
         return;
     }
 
-    log(`'fetching all statistics for user id: ${userid}`)
+    log(`'fetching all statistics for user [${userid}]`)
 
     try {
         const stats = await Statistic.find({userid: userid});
@@ -173,15 +209,16 @@ router.delete('/api/users/:id', mongoChecker, async (req, res) => {
         return;
     }
 
-    const id = req.params.id;
+    const userid = req.params.id;
 
-    if(!ObjectID.isValid(id)){
+    if(!ObjectID.isValid(userid)){
 		res.status(404).send()
 		return;
     }
     
     try {
-        const user = await User.findById(id);
+        log(`deleting user [${userid}]`)
+        const user = await User.findById(userid);
         user.remove();
         res.send(user);
     } catch (error) {
