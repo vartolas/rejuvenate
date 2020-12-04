@@ -128,7 +128,8 @@ export default class Login extends React.Component {
 							className="loginButton"
 							onClick={this.handleLogInAttempt.bind(this)}
 							variant="contained"
-							disabled={this.state.username === '' || this.state.password === ''}
+							disabled={!this.state.username
+								|| !this.state.password}
 							disableElevation
 						>
 							Log In

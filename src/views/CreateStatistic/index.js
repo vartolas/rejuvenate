@@ -8,12 +8,37 @@ import FormControl from "@material-ui/core/FormControl";
 export default class CreateStatistic extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			statTitle: "",
+			statType: "",
+			statXAxis: "",
+			statYAxis: "",
+		};
 		this.formInfo = null;
-
 		this.state = {
 			createStatState: Initial,
 			formIsValid: null,
 		};
+	}
+
+	updateStatTitle = (e) => {
+		e.preventDefault();
+		this.setState({ statTitle: e.target.value });
+	}
+
+	updateStatType = (e) => {
+		e.preventDefault();
+		this.setState({ statType: e.target.value });
+	}
+
+	updateStatXAxis = (e) => {
+		e.preventDefault();
+		this.setState({ statXAxis: e.target.value });
+	}
+
+	updateStatYAxis = (e) => {
+		e.preventDefault();
+		this.setState({ statYAxis: e.target.value });
 	}
 
 	render() {
@@ -24,27 +49,39 @@ export default class CreateStatistic extends React.Component {
 					<FormControl>
 						<TextField
 							id="statisticsTextbox"
+							value={this.state.statTitle}
+							onChange={this.updateStatTitle}
 							label="Name of Statistic"
 						/>
 						<TextField
 							id="statisticsType"
+							value={this.state.statType}
+							onChange={this.updateStatType}
 							label="Type of Statistic"
 						/>
 						<TextField
 							id="statistics-x-axis"
+							value={this.state.statXAxis}
+							onChange={this.updateStatXAxis}
 							label="X-Axis Label"
 						/>
 						<TextField
 							id="statistics-y-axis"
+							value={this.state.statYAxis}
+							onChange={this.updateStatYAxis}
 							label="Y-Axis Label"
 						/>
 						<br></br>
 						<Button
 							className="createStatisticsButton"
-							href="/recordStatistics"
+							onClick={this.createStatistic}
+							href="/statistics"
+							disabled={!this.state.statTitle
+								|| !this.state.statType
+								|| !this.state.statXAxis
+								|| !this.state.statYAxis}
 							variant="contained"
 							disableElevation
-							onClick={this.createStatistic}
 						>
 							Create New Statistic
 						</Button>
