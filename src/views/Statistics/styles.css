@@ -107,7 +107,28 @@ button:hover {
 	cursor: pointer;
 }
 
-#createNewStatisticButton:hover {
+:hover {
+	background-color: transparent;
+	color: #ececec;
+	border-color: #ececec;
+	transition: all 0.1s ease-in-out;
+}
+#createNewStatisticButton {
+	margin-left: 43%;
+	margin-top: 50px;
+	margin-bottom: 20px;
+	display: block;
+	border-radius: 5px;
+	background-color: #f2a365;
+	border: solid 1px transparent;
+	color: #ececec;
+	font-size: 18px;
+	font-weight: 300;
+	cursor: pointer;
+	transition: all 0.1s ease-in-out;
+}
+
+#createNewStatisticButton {
 	background-color: transparent;
 	color: #ececec;
 	border-color: #ececec;

@@ -17,12 +17,23 @@
 	font-family: "Work Sans", sans-serif;
 }
 
-#option {
+
+.topNavBarOption {
 	font-size: large;
 	font-weight: 300;
 	color: #ececec;
 }
 
-#option:hover {
+#topNavBarOption {
+	font-size: large;
+	font-weight: 300;
+	color: #ececec;
+}
+
+#topNavBarOption:hover {
 	color: #f2a365;
+}
+
+#adminDashboardNavLinkContainer {
+	border-left: 1px solid white;
 }

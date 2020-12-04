@@ -15,12 +15,12 @@ export default class TopNavbar extends React.Component {
 		this.props.history.push("/login");
 	}
 
-	dashboardIfAdmin(){
+	dashboardLinkIfAdmin(){
 		const app = this.props.app;
 		if(app.state.user.isAdmin){
 			return (
 				<div id="adminDashboardNavLinkContainer">
-					<Nav.Link id="adminDashboardNavLink">
+					<Nav.Link id="topNavBarOption" href="/admin/dashboard">
 						Admin Dashboard
 					</Nav.Link>
 				</div>
@@ -40,10 +40,10 @@ export default class TopNavbar extends React.Component {
 						<Navbar.Collapse id="basic-navbar-nav">
 							<SearchBar />
 							<Nav className="navContent">
-								<Nav.Link id="option" href="/userProfile">
+								<Nav.Link id="topNavBarOption" href="/userProfile">
 									Profile
 								</Nav.Link>
-								<Nav.Link id="option" href="/statistics">
+								<Nav.Link id="topNavBarOption" href="/statistics">
 									Statistics
 								</Nav.Link>
 								{/* <NavDropdown title="Statistics" id="option">
@@ -54,13 +54,13 @@ export default class TopNavbar extends React.Component {
 										View Statistics
 									</NavDropdown.Item>
 								</NavDropdown> */}
-								<Nav.Link id="option" href="/settings">
+								<Nav.Link id="topNavBarOption" href="/settings">
 									Settings
 								</Nav.Link>
-								<Nav.Link onClick={this.logout} id="option" href="/login">
+								<Nav.Link id="topNavBarOption" onClick={this.logout} href="/login">
 									Sign Out
 								</Nav.Link>
-								{this.dashboardIfAdmin()}
+								{this.dashboardLinkIfAdmin()}
 							</Nav>
 						</Navbar.Collapse>
 					</Navbar>
