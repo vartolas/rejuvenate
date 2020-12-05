@@ -64,7 +64,7 @@ export default class Login extends React.Component {
 		return this.state.password === CORRECT_ADMIN_PASSWORD;
 	}
 
-	handleLogInAttempt = () => {
+	logIn = () => {
 		fetch(`${HOST_URL}/api/login`, {
 			method: 'post',
 			headers: {
@@ -126,7 +126,7 @@ export default class Login extends React.Component {
 						<br></br>
 						<Button
 							className="loginButton"
-							onClick={this.handleLogInAttempt.bind(this)}
+							onClick={this.logIn}
 							variant="contained"
 							disabled={!this.state.username
 								|| !this.state.password}
@@ -144,8 +144,14 @@ export default class Login extends React.Component {
 							Sign Up
 						</Button>
 						<br></br>
-						forgot password?
-						<a href="/password reset">Reset Password</a>
+						<Button
+							className="loginButton"
+							href="/password reset"
+							variant="contained"
+							disableElevation
+						>
+							Reset Password
+						</Button>
 						<br></br>
 					</FormControl>
 				</div>
