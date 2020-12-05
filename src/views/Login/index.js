@@ -75,12 +75,11 @@ export default class Login extends React.Component {
 				password: this.state.password
 			}),
 		}).then(response => {
-			
-			if(response.status === 200){
-				this.props.history.push('/home'); //route to home
+			if (response.status === 200) {
+				this.props.history.push('/home'); // go to user home
 			} else {
-				//login attempt has failed, handle notifying user somehow
-				console.log("login attempt failed"); //do whatever here
+				// login attempt has failed, handle notifying user somehow
+				console.log("login attempt failed"); // do whatever here
 				this.setState({lastActionWasLoginAttempt: true});
 			}
 		});
