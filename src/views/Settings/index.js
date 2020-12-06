@@ -95,67 +95,67 @@ export default class Setting extends React.Component {
         return '/settings';
     }
 
-    render() {
-        return (
-            <div id="settingsContainer">
-                <h1>Settings</h1>
-                <div id="settingsComponent">
-                    <FormControl>
-                        <TextField
-                            id="usernameTextbox"
-                            value={this.state.username}
-                            onChange={this.updateUsername}
-                            label="New Username"
-                            error={!this.state.username}
-                            helperText={this.displayUsernameError()}
-                        />
-                        <TextField
-                            id="passwordTextbox"
-                            value={this.state.password}
-                            onChange={this.updatePassword}
-                            label="New Password"
-                            type="password"
-                            error={!this.state.password}
-                            helperText={this.displayPasswordError()}
-                        />
-                        {/* TODO: make proper upload photo (change profile pic) */}
-                        <span>
-                            <input
-                                type="file"
-                                name="picture"
-                                id="file"
-                                className="inputPicture"
-                            />
-                            <label for="file">Choose New Profile Picture</label>
-                        </span>
-                        <br></br>
-                        <Button
-                            href={this.changeUsername().toString()}
-                            variant="contained"
-                            color="primary"
-                            disableElevation>
-                            Change Username
-                        </Button>
-                        <br></br>
-                        <Button href={this.changePassword().toString()}
-                            variant="contained"
-                            color="primary"
-                            disableElevation>
-                            Change Password
-                        </Button>
-                        <br></br>
-                        <Button
-                            href={this.changeProfilePicture().toString()}
-                            variant="contained"
-                            color="primary"
-                            className="changeProfilePictureButton"                                
-                            name="picture"
-                        >
-                            Change Profile Picture
-                        </Button>
-                    </FormControl>
-                </div>
-            </div>    
-        );
-    }
+	render() {
+		return (
+			<div id="settingsContainer">
+				<h1 id="settingsTitle">Settings</h1>
+				<div id="settingsComponent">
+					<FormControl>
+						<TextField
+							id="usernameTextbox"
+							value={this.state.username}
+							onChange={this.updateUsername}
+							label="Change Username"
+						/>
+						<br></br>
+						<Button
+							className="settingsButton"
+							href={this.changeUsername().toString()}
+							variant="contained"
+							color="primary"
+							disableElevation
+						>
+							Change Username
+						</Button>
+						<TextField
+							id="passwordTextbox"
+							value={this.state.password}
+							onChange={this.updatePassword}
+							label="Change Password"
+							type="password"
+						/>
+						<br></br>
+						<Button
+							className="settingsButton"
+							href={this.changePassword().toString()}
+							variant="contained"
+							color="primary"
+							disableElevation
+						>
+							Change Password
+						</Button>
+						{/* TODO: make proper upload photo (change profile pic) */}
+						<span>
+							<input
+								type="file"
+								name="picture"
+								id="file"
+								className="changeProfile"
+							/>
+							<label for="file">Choose New Profile Picture</label>
+						</span>
+						<Button
+							className="settingsButton"
+							href={this.changeProfilePicture().toString()}
+							variant="contained"
+							color="primary"
+							name="picture"
+						>
+							Change Profile Picture
+						</Button>
+					</FormControl>
+				</div>
+			</div>
+		);
+	}
 }
