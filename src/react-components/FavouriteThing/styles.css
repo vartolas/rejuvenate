@@ -1,86 +1,86 @@
 #favouriteThing {
-  position: relative;
-  top: 50px;
-  float: left;
-  margin-right: 10px;
-  display: inline-block;
-  float: none;
+	position: relative;
+	top: 50px;
+	float: left;
+	margin-right: 10px;
+	display: inline-block;
+	float: none;
 }
 
 #favouriteThingImg {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  float: left;
-  border: 5px solid #1e272b;
-  position: absolute;
-  left: 0px;
-  top: -45px;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	float: left;
+	border: 5px solid #202936;
+	position: absolute;
+	left: 0px;
+	top: -45px;
 }
 
 #desc-box {
-  width: 80px;
-  height: 60px;
-  background-color: #1e272b;
-  float: left;
-  position: relative;
-  margin-bottom: 10px;
-  text-align: center;
+	width: 80px;
+	height: 60px;
+	background-color: #202936;
+	float: left;
+	position: relative;
+	margin-bottom: 10px;
+	text-align: center;
 }
 
 #favouriteThingName {
-  font-size: 16px;
-  color: #647d88;
-  position: absolute;
-  bottom: 3px;
-  width: 100%;
-  text-align: center;
+	font-size: 16px;
+	color: #647d88;
+	position: absolute;
+	bottom: 3px;
+	width: 100%;
+	text-align: center;
 }
 
 #removeFavouriteThingBtn {
-  width: 15px;
-  height: 15px;
-  background-color: #AAAAAA;
-  position: absolute;
-  top: 56px;
-  left: 35px;
-  z-index: 1;
-  border-radius: 50%;
-  text-align: center;
+	width: 15px;
+	height: 15px;
+	background-color: #aaaaaa;
+	position: absolute;
+	top: 56px;
+	left: 35px;
+	z-index: 1;
+	border-radius: 50%;
+	text-align: center;
 }
 
 #removeFavouriteThingBtn:hover {
-  background-color: #DD8888;
-  cursor: pointer;
+	background-color: #dd8888;
+	cursor: pointer;
 }
 
 #addFavouriteThingBtn {
-  width: 15px;
-  height: 15px;
-  background-color: #AAAAAA;
-  position: absolute;
-  top: 56px;
-  left: 35px;
-  z-index: 1;
-  border-radius: 50%;
-  text-align: center;
+	width: 15px;
+	height: 15px;
+	background-color: #aaaaaa;
+	position: absolute;
+	top: 56px;
+	left: 35px;
+	z-index: 1;
+	border-radius: 50%;
+	text-align: center;
 }
 
 #addFavouriteThingBtn:hover {
-  background-color: #88DD88;
-  cursor: pointer;
+	background-color: #88dd88;
+	cursor: pointer;
 }
 
 #addFavouriteThingText {
-  position: absolute;
-  top: -5px;
-  left: 2.5px;
-  font-weight: normal;
+	position: absolute;
+	top: -5px;
+	left: 2.5px;
+	font-weight: normal;
 }
 
 #removeFavouriteThingText {
-  position: absolute;
-  top: -5px;
-  left: 4px;
-  font-weight: normal;
+	position: absolute;
+	top: -5px;
+	left: 4px;
+	font-weight: normal;
 }

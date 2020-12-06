@@ -1,100 +1,131 @@
 #statViewContainer {
-    position: absolute;
-    width: 100%;
-    background-color: rgb(20, 17, 27);
+	position: absolute;
+	width: 100%;
+	background-color: #202936;
 }
 
 .categoryContainer {
-    background-color: rgb(45,60,75);
-    margin: 20px;
-    border-radius: 10px;
+	background-color: #253749;
+	margin: 20px;
+	border-radius: 10px;
 }
 
 .statsContainer {
-    
-    justify-content: left;
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
+	justify-content: left;
+	display: flex;
+	overflow-x: auto;
+	overflow-y: hidden;
 }
+
+.statsContainer .chartContainer {
+	transition: all 0.1s ease-in-out;
+}
+
+.statsContainer .chartContainer:hover {
+	transform: scale(1.05);
+	cursor: pointer;
+}
+
+.statsContainer a {
+	cursor: default;
+}
+
 .chartCanvas {
-    width: 100%;
+	width: 100%;
 }
 
 .chartContainer {
-    border-radius: 10%;
-    width: 300px;
-    min-width: 300px;
-    height: fit-content;
-    padding: 10px;
-    background-color: rgb(70, 90, 110);
-    border: 2px solid black;
-    margin: 30px;
-    transition: all .1s ease-in-out;
-    
-    
+	border-radius: 5%;
+	width: 300px;
+	min-width: 300px;
+	height: fit-content;
+	padding: 10px;
+	background-color: rgb(70, 90, 110);
+	box-shadow: #202936 0 0 10px;
+	margin: 30px;
 }
-.chartContainer:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-}
+
 .categoryTitle {
-    display: block;
-    font-size: 30px;
-    color: white;
-    padding-left: 50px;
-    
-    font-weight: bold;
-    text-align: left;
+	display: block;
+	font-size: 35px;
+	color: #ececec;
+	padding-left: 50px;
+
+	font-weight: 300;
+	text-align: left;
 }
 
 .addStatButton {
-    background-color: transparent;
-    border: 2px solid white;
-    border-radius: 15px;
-    min-width: 50px;
-    height: 50px;
-    margin-right: 30px;
-    margin-top: 140px;
-    font-size: 20px;
-    font-family: "europa", sans-serif;
-    font-weight: bold;
-    color: white;
-    outline: none;
-  }
- .addStatButton:hover {
-    background-color: gray;
-    outline: none;
-  }
-  .addStatButton:active {
-    background-color: darkgray;
-  }
+	background-color: transparent;
+	border: 2px solid #ececec;
+	border-radius: 10px;
+	min-width: 50px;
+	height: 50px;
+	margin-right: 30px;
+	margin-top: 130px;
+	font-size: 20px;
+	font-family: "europa", sans-serif;
+	font-weight: bold;
+	color: white;
+	outline: none;
+}
+.addStatButton:hover {
+	background-color: gray;
+	outline: none;
+}
+.addStatButton:active {
+	background-color: darkgray;
+}
 
-.statsContainer::-webkit-scrollbar {
-    min-height: 10px;
-  }
-  
-  /* Track */
-  .statsContainer::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-    border-radius: 10px;
-  }
-   
-  /* Handle */
-  .statsContainer::-webkit-scrollbar-thumb {
-    background: rgb(115, 116, 180); 
-    border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  .statsContainer::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+.scrollMenu {
+	width: 92%;
+}
 
-  button {
-      outline: none;
-  }
+.scroll-menu-arrow {
+	font-size: xx-large;
+	font-weight: 300;
+	color: #ececec;
+	padding: 20px;
+	cursor: pointer;
+}
 
-  button:hover {
-      cursor: pointer;
-  }
+.scroll-menu-arrow:hover {
+	color: gray;
+}
+
+#createNewStatButtonContainer {
+	width: fit-content;
+	height: fit-content;
+	margin: auto;
+	margin-top: 20px;
+}
+button {
+	outline: none;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+
+#createNewStatisticButton {
+	margin-left: 43%;
+	margin-top: 50px;
+	margin-bottom: 20px;
+	display: block;
+	border-radius: 5px;
+	background-color: #f2a365;
+	border: solid 1px transparent;
+	color: #ececec;
+	font-size: 18px;
+	font-weight: 300;
+	cursor: pointer;
+	transition: all 0.1s ease-in-out;
+}
+
+#createNewStatisticButton {
+	background-color: transparent;
+	color: #ececec;
+	border-color: #ececec;
+	transition: all 0.1s ease-in-out;
+}

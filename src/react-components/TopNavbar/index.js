@@ -1,32 +1,71 @@
-import React from 'react';
-import './styles.css';
-import {BrowserRouter} from 'react-router-dom';
-import {Navbar,Nav,NavDropdown} from 'react-bootstrap'
-import SearchBar from '../../react-components/SearchBar';
+import React from "react";
+import "./styles.css";
+import { BrowserRouter } from "react-router-dom";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import SearchBar from "../../react-components/SearchBar";
+
+const HOST_URL = process.env.HOST_URL || "http://localhost:5000"
 
 export default class TopNavbar extends React.Component {
-    render(){
-        return (
-            <div className="topRow">
-                <BrowserRouter>
-                    <Navbar className="Navbar" bg="dark" variant="dark" expand="lg" sticky="top">
-                        <Navbar.Brand href="/home">Rejuvenate</Navbar.Brand>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
-                        <SearchBar />
-                        <Nav className="navContent">
-                            <Nav.Link href="/userProfile">Profile</Nav.Link>
-                            <NavDropdown title="Statistics" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="/recordStatistics">Record Statistics</NavDropdown.Item>
-                                <NavDropdown.Item href="/statistics">View Statistics</NavDropdown.Item>
-                            </NavDropdown>
-                            <Nav.Link href="/settings">Settings</Nav.Link>
-                            <Nav.Link href="/">Sign Out</Nav.Link>
-                        </Nav>
-                        </Navbar.Collapse>
-                    </Navbar>
-                </BrowserRouter>
-            </div>
-        );
-    }
+
+	logout = () => {
+		fetch(`${HOST_URL}/api/logout`, {
+			method: 'post'
+		});
+		this.props.history.push("/login");
+	}
+
+	dashboardLinkIfAdmin() {
+		const app = this.props.app;
+		if (app.state.user.isAdmin) {
+			return (
+				<div id="adminDashboardNavLinkContainer">
+					<Nav.Link id="topNavBarOption" href="/admin dashboard">
+						Admin Dashboard
+					</Nav.Link>
+				</div>
+			)
+		}
+	}
+
+	render() {
+		return (
+			<div className="topRow">
+				<BrowserRouter>
+					<Navbar className="Navbar" expand="lg" sticky="top">
+						<Navbar.Brand href="/home" id="title">
+							Rejuvenate
+						</Navbar.Brand>
+						<Navbar.Toggle aria-controls="basic-navbar-nav" />
+						<Navbar.Collapse id="basic-navbar-nav">
+							<SearchBar />
+							<Nav className="navContent">
+								<Nav.Link id="topNavBarOption" href="/userProfile">
+									Profile
+								</Nav.Link>
+								<Nav.Link id="topNavBarOption" href="/statistics">
+									Statistics
+								</Nav.Link>
+								{/* <NavDropdown title="Statistics" id="option">
+									<NavDropdown.Item href="/statistics/record">
+										Record Statistics
+									</NavDropdown.Item>
+									<NavDropdown.Item href="/statistics">
+										View Statistics
+									</NavDropdown.Item>
+								</NavDropdown> */}
+								<Nav.Link id="topNavBarOption" href="/settings">
+									Settings
+								</Nav.Link>
+								<Nav.Link id="topNavBarOption" onClick={this.logout} href="/login">
+									Sign Out
+								</Nav.Link>
+								{this.dashboardLinkIfAdmin()}
+							</Nav>
+						</Navbar.Collapse>
+					</Navbar>
+				</BrowserRouter>
+			</div>
+		);
+	}
 }

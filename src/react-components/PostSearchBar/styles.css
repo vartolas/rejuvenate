@@ -1,0 +1,56 @@
+.adminSearchBar {
+	height: 40px;
+	position: relative;
+	margin-left: 10px;
+	font-size: 16px;
+	margin-right: 10px;
+	z-index: 1;
+}
+
+.searchSettings {
+	width: 95%;
+	margin-left: 4%;
+	padding: 10px;
+	border-bottom: 3px #f2a365 dashed;
+	box-sizing: border-box;
+	margin-bottom: 30px;
+}
+
+.adminSearchBar input {
+	border: none;
+	border-radius: 4px;
+	padding-left: 10px;
+	padding-top: 4px;
+	width: 95%;
+	height: 30px;
+	background-color: #ececec;
+	color: #253749;
+	margin-bottom: 10px;
+	box-sizing: border-box;
+}
+
+.adminSearchBar input::placeholder {
+	color: #253749;
+	opacity: 70%;
+}
+
+.adminSearchBar input:focus {
+	outline: none;
+}
+
+/* #adminSearchedProfilesContainer {
+  height: 370px;
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding-top: 55px;
+} */
+
+/* #searchBarSeparator {
+  border-bottom: solid 1px #667f9B;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-bottom: 30px;
+} */

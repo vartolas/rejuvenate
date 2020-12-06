@@ -1,108 +1,135 @@
-import React from 'react';
+import React from "react";
+import "./styles.css";
 
-<<<<<<< HEAD:src/views/Create Statistic/index.js
-import SpanLink from '../../react-components/Span Link';
-import {useHistory} from 'react-router-dom';
-=======
-import SpanLink from '../../react-components/SpanLink';
->>>>>>> bfc257c1e914f39ed8b4227f8c023077da1c30ad:src/views/CreateStatistic/index.js
-
-import './styles.css';
+import { Button } from "react-bootstrap";
+import TextField from "@material-ui/core/TextField";
+import FormControl from "@material-ui/core/FormControl";
 
 export default class CreateStatistic extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			statTitle: "",
+			statType: "",
+			statXAxis: "",
+			statYAxis: "",
+		};
+		this.formInfo = null;
+		this.state = {
+			createStatState: Initial,
+			formIsValid: null,
+		};
+	}
 
-    constructor (props) {
-        super(props);
-        this.formInfo = null;
+	updateStatTitle = (e) => {
+		e.preventDefault();
+		this.setState({ statTitle: e.target.value });
+	}
 
-        this.state = {
-            createStatState: Initial,
-            formIsValid: null,
-        }
-    }
+	updateStatType = (e) => {
+		e.preventDefault();
+		this.setState({ statType: e.target.value });
+	}
 
-    render (){
-        return (
-            <div id="createStatViewContainer">
-                <span id="createStatTitle">Create New Statistic</span>
-                <div id="createStatFormContainer">
-                    
-                    <form id="createStatForm">
-                        <label>Title:</label>
-                        <input id="createStatTitleInput" type="text"/><br/>
+	updateStatXAxis = (e) => {
+		e.preventDefault();
+		this.setState({ statXAxis: e.target.value });
+	}
 
-                        <label>X-Axis label:</label>
-                        <input id="createStatX-AxisInput" type="text"/>
+	updateStatYAxis = (e) => {
+		e.preventDefault();
+		this.setState({ statYAxis: e.target.value });
+	}
 
-                        <label>Y-Axis label:</label>
-                        <input id="createStatY-AxisInput" type="text"/>
+	render() {
+		return (
+			<div id="createStatContainer">
+				<span id="createStatTitle">Create New Statistic</span>
+				<div id="createStatComponent">
+					<FormControl>
+						<TextField
+							id="statisticsTextbox"
+							value={this.state.statTitle}
+							onChange={this.updateStatTitle}
+							label="Name of Statistic"
+						/>
+						<TextField
+							id="statisticsType"
+							value={this.state.statType}
+							onChange={this.updateStatType}
+							label="Type of Statistic"
+						/>
+						<TextField
+							id="statistics-x-axis"
+							value={this.state.statXAxis}
+							onChange={this.updateStatXAxis}
+							label="X-Axis Label"
+						/>
+						<TextField
+							id="statistics-y-axis"
+							value={this.state.statYAxis}
+							onChange={this.updateStatYAxis}
+							label="Y-Axis Label"
+						/>
+						<br></br>
+						<Button
+							className="createStatisticsButton"
+							onClick={this.createStatistic}
+							href="/statistics"
+							disabled={!this.state.statTitle
+								|| !this.state.statType
+								|| !this.state.statXAxis
+								|| !this.state.statYAxis}
+							variant="contained"
+							disableElevation
+						>
+							Create New Statistic
+						</Button>
+						<br></br>
+						<Button
+							className="createStatisticsButton"
+							href="/statistics"
+							variant="contained"
+							disableElevation
+						>
+							Go Back
+						</Button>
+					</FormControl>
+				</div>
+			</div>
+		);
+	}
 
-                        <label>Type:</label>
-                        <select id="createStatTypeSelect" name="type">
-                            <option value="bar">Bar Graph</option>
-                            <option value="line">Line Graph</option>
-                        </select>
+	createStatistic = (e) => {
+		var title = document.getElementById("createStatTitleInput").value;
+		var xAxisLabel = document.getElementById("createStatX-AxisInput").value;
+		var yAxisLabel = document.getElementById("createStatY-AxisInput").value;
+		var type = document.getElementById("createStatTypeSelect").value;
 
-                        <label>Insert Data Below</label>
-                    </form>
-<<<<<<< HEAD:src/views/Create Statistic/index.js
-                    <button onClick={this.createStatistic}>Create</button>
-                    <div>
-                        {this.state.createStatState()}
-                    </div>
-                    <SpanLink to="/statistics" name="return"/>
-                </div>
-            </div>
-        );
-    }
+		if (!title || !xAxisLabel || !yAxisLabel) {
+			this.setState({ createStatState: Unsuccessfull });
+		} else {
+			this.formInfo = {
+				title: title,
+				xAxisLabel: xAxisLabel,
+				yAxisLabel: yAxisLabel,
+				type: type,
+			};
+			this.setState({ createStatState: Successfull });
+		}
 
-    createStatistic = (e) => {
-        e.preventDefault();
-
-        var title = document.getElementById("createStatTitleInput").value;
-        var xAxisLabel = document.getElementById("createStatX-AxisInput").value;
-        var yAxisLabel = document.getElementById("createStatY-AxisInput").value;
-        var type = document.getElementById("createStatTypeSelect").value;
-
-        if (!title || !xAxisLabel || !yAxisLabel){
-            this.setState({createStatState: Unsuccessfull});
-        }else {
-            
-            this.formInfo = {
-                title: title,
-                xAxisLabel: xAxisLabel,
-                yAxisLabel: yAxisLabel,
-                type: type,
-            }
-            this.setState({createStatState: Successfull});
-        }
-
-        console.log("created stat", title, xAxisLabel, yAxisLabel, type);
-
-    }
+		console.log("created stat", title, xAxisLabel, yAxisLabel, type);
+	};
 }
 
-function Initial () {
-    return null;
+function Initial() {
+	return null;
 }
 
-function Unsuccessfull () {
-    return (
-        <span>unsuccessfull</span>
-    );
+function Unsuccessfull() {
+	return <span>unsuccessfull</span>;
 }
 
-function Successfull () {
-    return (
-        <span>Successfull</span>
-    );
+function Successfull() {
+	return <span>Successfull</span>;
 }
-
-=======
-                <SpanLink to="/statistics" name="return"/>
-
-            </div>
-        );
-    }
-}
->>>>>>> bfc257c1e914f39ed8b4227f8c023077da1c30ad:src/views/CreateStatistic/index.js

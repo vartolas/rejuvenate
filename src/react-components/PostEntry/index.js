@@ -4,6 +4,7 @@ import { v4 as uuid } from "uuid";
 import { IconButton } from "@material-ui/core";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import CancelIcon from "@material-ui/icons/Cancel";
 import { addLike, removeLike, addComment } from "../../actions/post";
 import { getLoggInUser, getUsers } from "../../userData";
 
@@ -54,6 +55,17 @@ export default class PostEntry extends React.Component {
 		}
 	}
 
+	displayRemoveButton() {
+		return (
+			<IconButton
+				id="postRemoveButton"
+				onClick={() => this.props.removePost(this.props.entry.pid)}
+			>
+				<CancelIcon id="cancelIcon" />
+			</IconButton>
+		);
+	}
+
 	render() {
 		const { tag, content, uid, comments, likes } = this.props.entry;
 		const users = getUsers();
@@ -81,6 +93,16 @@ export default class PostEntry extends React.Component {
 			const commentUser = users[usercomment.uid];
 			commentRows.push(
 				<ListGroup.Item className="commentListItem" key={uuid()}>
+					{this.props.removable ? (
+						<IconButton
+							id="commentRemoveButton"
+							onClick={() => this.props.removeComment(usercomment.cid)}
+						>
+							<CancelIcon id="commentCancelIcon" />
+						</IconButton>
+					) : (
+						""
+					)}
 					<div className="commentuser">{commentUser.username}</div>
 					<div className="comment">{usercomment.comment}</div>
 				</ListGroup.Item>
@@ -95,6 +117,7 @@ export default class PostEntry extends React.Component {
 
 		return (
 			<div className="postEntryContainer">
+				{this.props.removable ? this.displayRemoveButton() : ""}
 				<div className="tag">{tag}</div>
 				<div className="user">
 					<img className="avatar" src={user.profilePic} alt="" />

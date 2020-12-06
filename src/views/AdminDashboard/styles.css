@@ -1,0 +1,30 @@
+#dashboardContainer {
+	height: 93vh;
+	overflow-y: hidden;
+	display: flex;
+	flex-direction: row;
+	background-color: #202936;
+}
+
+.dashboardHeader {
+	text-align: center;
+	margin: 20px;
+	color: #ececec;
+	font-weight: 300;
+}
+
+#profileDashboardSegment {
+	width: 500px;
+}
+
+#postDashboardSegment {
+	width: 100%;
+	margin-right: 1%;
+}
+
+.dashboardSegment {
+	background-color: #202936;
+	margin: 1% 0 1% 1%;
+	float: left;
+	overflow-y: scroll;
+}

@@ -1,33 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
+
+#title {
+	font-family: "Work Sans", sans-serif;
+}
+
 body {
-    background-color: #323f45;
+	background-color: #202936;
 }
 
 #loginContainer {
-    width: 100%;
-    height: 100%;
-    text-align: center;
+	width: 100%;
+	height: 100%;
+	text-align: center;
 }
 
 #loginContainer h1 {
-    color: white;
-    position: absolute;
-    top: 10px;
-    left: 10px;
+	color: #ececec;
+	position: absolute;
+	top: 10px;
+	left: 10px;
 }
 
 #loginComponent {
-    border: solid 1px;
-    border-radius: 2%;
+	border: solid 1px;
+	border-radius: 2%;
 
-    margin-top: 10%;
-    margin-bottom: 10%;
-    margin-left: 40%;
-    margin-right: 40%;
+	margin-top: 10%;
+	margin-bottom: 10%;
+	margin-left: 40%;
+	margin-right: 40%;
 
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 
-    background-color: white;
+	background-color: #ececec;
+}
+
+.loginButton {
+	display: block;
+	border-radius: 5%;
+	background-color: #f2a365;
+	border: solid 1px transparent;
+	color: #ececec;
+	font-size: 18px;
+	font-weight: 300;
+	cursor: pointer;
+	transition: all 0.1s ease-in-out;
+}
+
+.loginButton:hover {
+	background-color: transparent;
+	border-color: #f2a365;
+	transition: all 0.1s ease-in-out;
 }
