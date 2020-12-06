@@ -1,18 +1,10 @@
 import React from "react";
 import "./styles.css";
+import loginConstant from "./../../constants/login/login_constants.js";
 
 import { Button } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
-
-export const CORRECT_REGULAR_USER_USERNAME = "user";
-export const CORRECT_REGULAR_USER_PASSWORD = "user";
-export const CORRECT_ADMIN_USERNAME = "admin";
-export const CORRECT_ADMIN_PASSWORD = "admin";
-
-export const INCORRECT_USERNAME_ERROR_MSG = "Username is incorrect.";
-export const INCORRECT_PASSWORD_ERROR_MSG = "Password is incorrect.";
-export const INCORRECT_CREDENTIAL_MSG = "Invalid credentials.";
 
 const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
 
@@ -46,22 +38,22 @@ export default class Login extends React.Component {
 
 	// TODO: In phase 2, we plan on verifying user credentials against a database.
 	usernameExists() {
-		return this.state.username === CORRECT_REGULAR_USER_USERNAME;
+		return this.state.username === loginConstant.CORRECT_REGULAR_USER_USERNAME;
 	}
 
 	// TODO: In phase 2, we plan on verifying admin credentials against a database.
 	adminUsernameExists() {
-		return this.state.username === CORRECT_ADMIN_USERNAME;
+		return this.state.username === loginConstant.CORRECT_ADMIN_USERNAME;
 	}
 
 	// TODO: In phase 2, we plan on verifying user credentials against a database.
 	userPasswordIsCorrect(username) {
-		return this.state.password === CORRECT_REGULAR_USER_PASSWORD;
+		return this.state.password === loginConstant.CORRECT_REGULAR_USER_PASSWORD;
 	}
 
 	// TODO: In phase 2, we plan on verifying admin credentials against a database.
 	adminPasswordIsCorrect(username) {
-		return this.state.password === CORRECT_ADMIN_PASSWORD;
+		return this.state.password === loginConstant.CORRECT_ADMIN_PASSWORD;
 	}
 
 	logIn = () => {
@@ -94,7 +86,7 @@ export default class Login extends React.Component {
 
 	helperText() {
 		if (this.state.lastActionWasLoginAttempt) {
-			return INCORRECT_CREDENTIAL_MSG;
+			return loginConstant.INCORRECT_CREDENTIAL_MSG;
 		} else {
 			return "";
 		}
