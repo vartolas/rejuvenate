@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
+
+#title {
+	font-family: "Work Sans", sans-serif;
+}
+
 body {
 	background-color: #202936;
 }
@@ -46,6 +52,9 @@ body {
 	font-weight: 300;
 	cursor: pointer;
 	transition: all 0.1s ease-in-out;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 20px;
 }
 
 .registerButton:hover {

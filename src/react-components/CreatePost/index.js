@@ -30,7 +30,8 @@ export default class CreatePost extends React.Component {
 							>
 								<option className="tagSelect">General</option>
 								<option className="tagSelect">Fitness</option>
-								<option className="tagSelect">Recipie</option>
+								<option className="tagSelect">Recipe</option>
+								<option className="tagSelect">Sleep</option>
 							</Form.Control>
 						</Form.Group>
 

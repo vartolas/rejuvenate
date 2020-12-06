@@ -1,19 +1,10 @@
 import React from "react";
 import "./styles.css";
+import loginConstant from "./../../constants/login/login_constants.js";
 
 import { Button } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
-
-export const CORRECT_REGULAR_USER_USERNAME = "user";
-export const CORRECT_REGULAR_USER_PASSWORD = "user";
-export const CORRECT_ADMIN_USERNAME = "admin";
-export const CORRECT_ADMIN_PASSWORD = "admin";
-
-export const EXISTING_USERNAME_ERROR_MSG = "Username already exists.";
-export const WEAK_PASSWORD_ERROR_MSG = "New password is not strong enough.";
-export const STRONG_PASSWORD_FOR_REGISTRATION_MSG =
-	"This new username has a strong enough password.";
 
 const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
 
@@ -60,22 +51,22 @@ export default class Register extends React.Component {
 
 	// TODO: In phase 2, we plan on verifying user credentials against a database.
 	usernameExists() {
-		return this.state.username === CORRECT_REGULAR_USER_USERNAME;
+		return this.state.username === loginConstant.CORRECT_REGULAR_USER_USERNAME;
 	}
 
 	// TODO: In phase 2, we plan on verifying admin credentials against a database.
 	adminUsernameExists() {
-		return this.state.username === CORRECT_ADMIN_USERNAME;
+		return this.state.username === loginConstant.CORRECT_ADMIN_USERNAME;
 	}
 
 	// TODO: In phase 2, we plan on verifying user credentials against a database.
 	userPasswordIsStrong() {
-		return this.state.password !== CORRECT_REGULAR_USER_PASSWORD;
+		return this.state.password !== loginConstant.CORRECT_REGULAR_USER_PASSWORD;
 	}
 
 	// TODO: In phase 2, we plan on verifying admin credentials against a database.
 	adminPasswordIsStrong() {
-		return this.state.password !== CORRECT_ADMIN_PASSWORD;
+		return this.state.password !== loginConstant.CORRECT_ADMIN_PASSWORD;
 	}
 
 	register = () => {
@@ -118,7 +109,7 @@ export default class Register extends React.Component {
 
 	usernameTakenHelperText = () => {
 		if (this.state.usernameTaken) {
-			return EXISTING_USERNAME_ERROR_MSG;
+			return loginConstant.EXISTING_USERNAME_ERROR_MSG;
 		} else {
 			return "";
 		}
@@ -128,7 +119,7 @@ export default class Register extends React.Component {
 		console.log(this.state)
 		return (
 			<div id="registerContainer">
-				<h1>Rejuvenate</h1>
+				<h1 id="title">Rejuvenate</h1>
 				<div id="registerComponent">
 					<FormControl>
 						<TextField
@@ -158,20 +149,21 @@ export default class Register extends React.Component {
 							type="password"
 							error={this.usernameTakenHelperText.call(this) !== ""}
 							helperText={this.usernameTakenHelperText.call(this)}
-							// helperText={WEAK_PASSWORD_ERROR_MSG}
+							// helperText={loginConstant.WEAK_PASSWORD_ERROR_MSG}
 						/>
 						<br></br>
 						<Button
 							className="registerButton"
 							onClick = {this.register}
 							variant="contained"
-							disabled={this.state.firstname === "" || this.state.lastname === ""	||
-									this.state.username === "" || this.state.password === ""}
+							disabled={!this.state.firstname
+								|| !this.state.lastname
+								|| !this.state.username
+								|| !this.state.password}
 							disableElevation
 						>
 							Register
 						</Button>
-						<br></br>
 						<Button
 							className="registerButton"
 							href='/login'
@@ -180,7 +172,6 @@ export default class Register extends React.Component {
 						>
 							Go Back
 						</Button>
-						<br></br>
 					</FormControl>
 				</div>
 				{this.displayMessage()}

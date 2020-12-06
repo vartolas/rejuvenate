@@ -85,7 +85,6 @@ export default class CreateStatistic extends React.Component {
 						>
 							Create New Statistic
 						</Button>
-						<br></br>
 						<Button
 							className="createStatisticsButton"
 							href="/statistics"
