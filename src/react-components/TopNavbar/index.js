@@ -15,12 +15,12 @@ export default class TopNavbar extends React.Component {
 		this.props.history.push("/login");
 	}
 
-	dashboardLinkIfAdmin(){
+	dashboardLinkIfAdmin() {
 		const app = this.props.app;
-		if(app.state.user.isAdmin){
+		if (app.state.user.isAdmin) {
 			return (
 				<div id="adminDashboardNavLinkContainer">
-					<Nav.Link id="topNavBarOption" href="/admin/dashboard">
+					<Nav.Link id="topNavBarOption" href="/admin dashboard">
 						Admin Dashboard
 					</Nav.Link>
 				</div>

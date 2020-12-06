@@ -1,62 +1,100 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import "./styles.css";
+
+import { Button } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
-
-
-import "./styles.css";
 
 export default class CreateStatistic extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			statTitle: "",
+			statType: "",
+			statXAxis: "",
+			statYAxis: "",
+		};
 		this.formInfo = null;
-
 		this.state = {
 			createStatState: Initial,
 			formIsValid: null,
 		};
 	}
 
+	updateStatTitle = (e) => {
+		e.preventDefault();
+		this.setState({ statTitle: e.target.value });
+	}
+
+	updateStatType = (e) => {
+		e.preventDefault();
+		this.setState({ statType: e.target.value });
+	}
+
+	updateStatXAxis = (e) => {
+		e.preventDefault();
+		this.setState({ statXAxis: e.target.value });
+	}
+
+	updateStatYAxis = (e) => {
+		e.preventDefault();
+		this.setState({ statYAxis: e.target.value });
+	}
+
 	render() {
 		return (
-			<div id="createStatViewContainer">
+			<div id="createStatContainer">
 				<span id="createStatTitle">Create New Statistic</span>
-				<div id="createStatSectionContainer">
-					<div id="createStatFormContainer">
-						<form id="createStatForm">
-							<label>Category:</label>
-							<select id="createStatTypeSelect" name="type">
-								<option value="Nutrition">Nutrition</option>
-								<option value="Fitness">Fitness</option>
-							</select>
-
-							<label>Title:</label>
-							<input id="createStatTitleInput" type="text" />
-							<br />
-
-							<label>X-Axis label:</label>
-							<input id="createStatX-AxisInput" type="text" />
-
-							<label>Y-Axis label:</label>
-							<input id="createStatY-AxisInput" type="text" />
-
-							<label>Type:</label>
-							<select id="createStatTypeSelect" name="type">
-								<option value="bar">Bar Graph</option>
-								<option value="line">Line Graph</option>
-							</select>
-						</form>
-						<Link to="/recordStatistics">
-							<button id="createButton" onClick={this.createStatistic}>
-								Create
-							</button>
-						</Link>
-						<div>{this.state.createStatState()}</div>
-						<Link to="/statistics">
-							<button id="returnButton">Return</button>
-						</Link>
-					</div>
-					<div id="chooseTemplateContainer"></div>
+				<div id="createStatComponent">
+					<FormControl>
+						<TextField
+							id="statisticsTextbox"
+							value={this.state.statTitle}
+							onChange={this.updateStatTitle}
+							label="Name of Statistic"
+						/>
+						<TextField
+							id="statisticsType"
+							value={this.state.statType}
+							onChange={this.updateStatType}
+							label="Type of Statistic"
+						/>
+						<TextField
+							id="statistics-x-axis"
+							value={this.state.statXAxis}
+							onChange={this.updateStatXAxis}
+							label="X-Axis Label"
+						/>
+						<TextField
+							id="statistics-y-axis"
+							value={this.state.statYAxis}
+							onChange={this.updateStatYAxis}
+							label="Y-Axis Label"
+						/>
+						<br></br>
+						<Button
+							className="createStatisticsButton"
+							onClick={this.createStatistic}
+							href="/statistics"
+							disabled={!this.state.statTitle
+								|| !this.state.statType
+								|| !this.state.statXAxis
+								|| !this.state.statYAxis}
+							variant="contained"
+							disableElevation
+						>
+							Create New Statistic
+						</Button>
+						<br></br>
+						<Button
+							className="createStatisticsButton"
+							href="/statistics"
+							variant="contained"
+							disableElevation
+						>
+							Go Back
+						</Button>
+					</FormControl>
 				</div>
 			</div>
 		);

@@ -107,7 +107,7 @@ export default class PasswordReset extends React.Component {
 						<br></br>
 						<Button
 							className="resetPasswordButton"
-							href="/"
+							href="/login"
 							variant="contained"
 							disableElevation
 						>

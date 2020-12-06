@@ -64,7 +64,7 @@ export default class Login extends React.Component {
 		return this.state.password === CORRECT_ADMIN_PASSWORD;
 	}
 
-	handleLogInAttempt = () => {
+	logIn = () => {
 		fetch(`${HOST_URL}/api/login`, {
 			method: 'post',
 			headers: {
@@ -75,12 +75,11 @@ export default class Login extends React.Component {
 				password: this.state.password
 			}),
 		}).then(response => {
-			
-			if(response.status === 200){
-				this.props.history.push('/home'); //route to home
+			if (response.status === 200) {
+				this.props.history.push('/home'); // go to user home
 			} else {
-				//login attempt has failed, handle notifying user somehow
-				console.log("login attempt failed"); //do whatever here
+				// login attempt has failed, handle notifying user somehow
+				console.log("login attempt failed"); // do whatever here
 				this.setState({lastActionWasLoginAttempt: true});
 			}
 		});
@@ -126,9 +125,10 @@ export default class Login extends React.Component {
 						<br></br>
 						<Button
 							className="loginButton"
-							onClick={this.handleLogInAttempt.bind(this)}
+							onClick={this.logIn}
 							variant="contained"
-							disabled={this.state.username === '' || this.state.password === ''}
+							disabled={!this.state.username
+								|| !this.state.password}
 							disableElevation
 						>
 							Log In
@@ -143,8 +143,14 @@ export default class Login extends React.Component {
 							Sign Up
 						</Button>
 						<br></br>
-						forgot password?
-						<a href="/password reset">Reset Password</a>
+						<Button
+							className="loginButton"
+							href="/password reset"
+							variant="contained"
+							disableElevation
+						>
+							Reset Password
+						</Button>
 						<br></br>
 					</FormControl>
 				</div>
