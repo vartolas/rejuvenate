@@ -1,4 +1,4 @@
-export function getFavouriteThings() {
+export function getFavouriteThingsToImages() {
 	const favouriteThings = {
 		Bananas: "https://pixy.org/src/442/thumbs350/4428098.jpg",
 		Hockey: "https://pixy.org/src/428/4282288.jpeg",
@@ -9,10 +9,16 @@ export function getFavouriteThings() {
 		"Push-ups": "https://pixy.org/src/183/thumbs350/1830402.jpg",
 		Biking: "https://pixy.org/src/336/thumbs350/3368963.jpg",
 		Basketball: "https://pixy.org/src/76/760790.jpg",
-		Smoothies: "https://pixy.org/src2/582/5823753.jpg",
+		Smoothies: "https://pixy.org/src/395/thumbs350/3957381.jpg",
+		Weights: "https://pixy.org/src/223/thumbs350/2239559.jpg"
 	};
 
 	return favouriteThings;
+}
+
+export function getFavouriteThings() {
+  return ["Bananas", "Hockey", "Salads", "Jogging", "Skiing", "Tennis", "Push-ups",
+          "Biking", "Basketball", "Smoothies", "Weights"];
 }
 
 // The key of the user whose profile page was last displayed (or is otherwise being displayed).
@@ -33,12 +39,17 @@ export function getLoggInUser() {
 	return loggedInUser;
 }
 
+export function getUsersAsList() {
+  return Object.values(users);
+}
+
 // The user with key 0 is the logged-in user.
 let users = {
-	0: {
+	'0': {
+    uid: 0,
 		firstName: "John",
 		lastName: "Doe",
-		username: "user",
+		username: "johndoe_99",
 		profilePic:
 			"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
 		bio:
@@ -85,12 +96,65 @@ let users = {
 				likes: [3],
 			},
 		],
-		following: [1, 3],
+		following: [1, 3, 4],
 		followers: [1, 3],
-		numFollowing: 2,
+		numFollowing: 3,
 		numFollowers: 2,
+		stats: [
+			{
+				category: 'Fitness',
+				stats: [
+					{   
+						id: 1, //id assigned by database code
+						type: 'scatter',
+						title: "Jogging Distance Stats",
+						xAxes: "day",
+						yAxes: "distance ran",
+						data: [{x: 1, y: 1}, {x: 2, y: 5}, {x: 3, y: 3}, {x: 4, y: 4}, {x: 5, y: 5}]
+					},
+					{
+						id: 2,
+						type: 'scatter',
+						title: "Bench Press Stats",
+						xAxes: "day",
+						yAxes: "kg pressed",
+						data: [{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 5}, {x: 4, y: 4}, {x: 5, y: 5}]
+					},
+					{
+						id: 3,
+						type: 'scatter',
+						title: "Squat PR",
+						xAxes: "day",
+						yAxes: "kg squatted",
+						data: [{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 5}, {x: 4, y: 4}, {x: 5, y: 5}]
+					},
+					{
+						id: 4,
+						type: 'scatter',
+						title: "Deadlift PR",
+						xAxes: "day",
+						yAxes: "kg deadlifted",
+						data: [{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 5}, {x: 4, y: 4}, {x: 5, y: 5}]
+					},
+	
+			 ]
+			},
+			{
+				category: 'Nutriton',
+				stats: [
+					{
+						type: 'scatter',
+						title: "Calories in the day",
+						xAxes: "day",
+						yAxes: "calories",
+						data: [{x: 1, y: 1}, {x: 2, y: 2}, {x: 3, y: 3}, {x: 4, y: 2}, {x: 5, y: 2}]
+					}
+				]
+			}  
+		]
 	},
-	1: {
+	'1': {
+    uid: 1,
 		firstName: "Cathy",
 		lastName: "Jones",
 		username: "basketballfan23",
@@ -112,12 +176,13 @@ let users = {
 				likes: [0],
 			},
 		],
-		following: [0, 2, 3],
-		followers: [0, 3],
-		numFollowing: 3,
-		numFollowers: 2,
+		following: [0, 2, 3, 4],
+		followers: [0, 3, 4],
+		numFollowing: 4,
+		numFollowers: 3,
 	},
-	2: {
+	'2': {
+    uid: 2,
 		firstName: "Jim",
 		lastName: "Lu",
 		username: "jimmmmlu",
@@ -126,12 +191,13 @@ let users = {
 		bio: "bikes r life",
 		favouriteThings: ["Biking"],
 		posts: [],
-		following: [3],
-		followers: [2, 3],
+		following: [3, 4],
+		followers: [1, 3, 4],
 		numFollowing: 2,
-		numFollowers: 1,
+		numFollowers: 3,
 	},
-	3: {
+	'3': {
+    uid: 3,
 		firstName: "Nikolas",
 		lastName: "Karlsson",
 		username: "nikolas.karlsson",
@@ -151,9 +217,9 @@ let users = {
 				comments: [
 					{ uid: 0, comment: "Im still in bed lol" },
 					{ uid: 1, comment: "Cool!" },
-					{ uid: 3, comment: "So much snow... where r u?" },
+					{ uid: 2, comment: "So much snow... where r u?" },
 				],
-				likes: [0, 1, 2, 3],
+				likes: [0, 1, 2, 3, 4],
 			},
 			{
 				tag: "Reciepe",
@@ -166,17 +232,47 @@ let users = {
 				uid: 3,
 				comments: [
 					{ uid: 0, comment: "great - now i want one" },
-					{ uid: 3, comment: "We should grab smoothies some time!" },
+					{ uid: 4, comment: "We should grab smoothies some time!" },
 				],
 				likes: [0, 2, 3],
 			},
 		],
-		following: [0, 1, 2, 3],
-		followers: [0, 1, 2, 3],
+		following: [0, 1, 2, 4],
+		followers: [0, 1, 2, 4],
 		numFollowing: 4,
 		numFollowers: 4,
 	},
-	4: {
+	'4': {
+		uid: 4,
+		firstName: "Michael",
+		lastName: "Miller",
+		username: "mikenike",
+		profilePic:
+			"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+		bio: "Yoooo it's Mike you already know where its at I keep that fitness game strong.",
+		favouriteThings: ["Weights", "Smoothies", "Bananas", "Biking", "Salads"],
+		posts: [
+			{
+				tag: "Lifestyle",
+				content: {
+					text: "6AM y'all already know where I'm at! ",
+					have_pic: 1,
+					picture: "https://pixy.org/src/484/4848268.jpg",
+				},
+				uid: 4,
+				comments: [
+					{ uid: 0, comment: "Consistency is key dude.. keep at it." }
+				],
+				likes: [0, 1, 2, 3, 4],
+			}
+		],
+		following: [1, 2],
+		followers: [1, 2, 0],
+		numFollowing: 2,
+		numFollowers: 3,
+	},
+	'5': {
+    uid: 5,
 		firstName: "Jennifer",
 		lastName: "Jones",
 		username: "jennifer9375082",

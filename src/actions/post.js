@@ -44,12 +44,32 @@ export const addPost = (postComponent) => {
 		likes: [],
 	};
 
-	console.log(post);
-
 	postList.splice(0, 0, post);
 	postComponent.setState({
+		tag: "General",
+		text: "",
+		have_pic: 0,
+		picture: "",
 		posts: postList,
 	});
+};
 
-	console.log(postComponent.state.posts);
+export const addComment = (currentPost, listComponent, commentText, userid) => {
+	const comment = {
+		uid: userid,
+		comment: commentText,
+	};
+
+	const index = listComponent.state.posts.findIndex(
+		(entry) => entry === currentPost
+	);
+
+	if (index !== -1) {
+		const newPosts = listComponent.state.posts;
+		newPosts[index].comments.push(comment);
+
+		listComponent.setState({
+			posts: newPosts,
+		});
+	}
 };

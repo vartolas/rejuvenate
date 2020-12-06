@@ -1,25 +1,36 @@
-
 #settingsContainer {
-  width: 100%;
-  height: 100%;
-  text-align: center;
+	width: 100%;
+	height: 50%;
+	background-color: #202936;
 }
 
 #settingsContainer h1 {
-  color: white;
-  position: absolute;
-  top: 15%;
-  left: 45%;
+	color: #ececec;
+	font-size: 40px;
+	margin-left: 20px;
+	margin-top: 20px;
+	font-weight: 300;
 }
 
 #settingsComponent {
-  border: solid 1px;
-  border-radius: 2%;
+	text-align: center;
+	border: solid 1px;
+	border-radius: 2%;
+
+	margin-top: 10%;
+	margin-bottom: 10%;
+	margin-left: 40%;
+	margin-right: 40%;
+
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 
 	background-color: #ececec;
 }
 
-.settingsButton {
+.settingsButtons {
 	display: block;
 	border-radius: 4px;
 	background-color: #f2a365;
@@ -29,12 +40,9 @@
 	font-weight: 300;
 	cursor: pointer;
 	transition: all 0.1s ease-in-out;
-	margin-left: 20px;
-	margin-right: 20px;
-	margin-bottom: 20px;
 }
 
-.settingsButton:hover {
+.settingsButtons:hover {
 	background-color: transparent;
 	border-color: #ececec;
 	transition: all 0.1s ease-in-out;
@@ -62,6 +70,13 @@
 	text-decoration: none;
 	transition: all 0.1s ease-in-out;
 	margin-bottom: 1%;
+}
 
-  background-color: white;
+.changeProfile:focus + label,
+.changeProfile + label:hover {
+	background-color: transparent;
+	transition: all 0.1s ease-in-out;
+	border-color: #253749;
+	color: #253749;
+	cursor: pointer; /* "hand" cursor */
 }

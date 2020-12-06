@@ -1,10 +1,11 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
+import { ListGroup, Form, Button } from "react-bootstrap";
 import { v4 as uuid } from "uuid";
 import { IconButton } from "@material-ui/core";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import { addLike, removeLike } from "../../actions/post";
+import CancelIcon from "@material-ui/icons/Cancel";
+import { addLike, removeLike, addComment } from "../../actions/post";
 import { getLoggInUser, getUsers } from "../../userData";
 
 import "./styles.css";
@@ -13,7 +14,6 @@ export default class PostEntry extends React.Component {
 	constructor(props) {
 		super(props);
 		const likes = this.props.entry.likes;
-		// console.log(likes);
 		const currentUid = getLoggInUser();
 		this.state = {
 			liked: likes.includes(currentUid),
@@ -43,6 +43,29 @@ export default class PostEntry extends React.Component {
 		}
 	}
 
+	onKeyUp(event) {
+		if (event.key === "Enter") {
+			const commentText = event.target.value;
+			addComment(
+				this.props.entry,
+				this.props.listComponent,
+				commentText,
+				this.state.currentUid
+			);
+		}
+	}
+
+	displayRemoveButton() {
+		return (
+			<IconButton
+				id="postRemoveButton"
+				onClick={() => this.props.removePost(this.props.entry.pid)}
+			>
+				<CancelIcon id="cancelIcon" />
+			</IconButton>
+		);
+	}
+
 	render() {
 		const { tag, content, uid, comments, likes } = this.props.entry;
 		const users = getUsers();
@@ -55,16 +78,31 @@ export default class PostEntry extends React.Component {
 		const commentRows = [];
 		let showcomments = [];
 
-		if (comments.length > 3) {
-			showcomments = comments.slice(0, 3);
-		} else {
-			showcomments = comments;
-		}
+		//Setting the maximum number of posts to 3.
+
+		// if (comments.length > 3) {
+		// 	showcomments = comments.slice(0, 3);
+		// } else {
+		// 	showcomments = comments;
+		// }
+
+		//Remove this if there is a maxmum number of posts
+		showcomments = comments;
 
 		showcomments.forEach((usercomment) => {
 			const commentUser = users[usercomment.uid];
 			commentRows.push(
 				<ListGroup.Item className="commentListItem" key={uuid()}>
+					{this.props.removable ? (
+						<IconButton
+							id="commentRemoveButton"
+							onClick={() => this.props.removeComment(usercomment.cid)}
+						>
+							<CancelIcon id="commentCancelIcon" />
+						</IconButton>
+					) : (
+						""
+					)}
 					<div className="commentuser">{commentUser.username}</div>
 					<div className="comment">{usercomment.comment}</div>
 				</ListGroup.Item>
@@ -78,7 +116,8 @@ export default class PostEntry extends React.Component {
 		}
 
 		return (
-			<div className="PostEntryContainer">
+			<div className="postEntryContainer">
+				{this.props.removable ? this.displayRemoveButton() : ""}
 				<div className="tag">{tag}</div>
 				<div className="user">
 					<img className="avatar" src={user.profilePic} alt="" />
@@ -97,7 +136,15 @@ export default class PostEntry extends React.Component {
 					</IconButton>
 					<div className="likeNum">{likes.length}</div>
 				</div>
-				<ListGroup className="commentSection">{commentRows}</ListGroup>
+				<div className="comments">
+					<ListGroup className="commentSection">{commentRows}</ListGroup>
+					<Form.Control
+						className="commentInput"
+						type="text"
+						placeholder="Write Your Comment!"
+						onKeyPress={this.onKeyUp.bind(this)}
+					/>
+				</div>
 			</div>
 		);
 	}

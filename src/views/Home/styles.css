@@ -1,39 +1,32 @@
 #homeContainer {
-  height: 93vh;
-  overflow-y: hidden;
-  display: flex;
-  flex-direction: row;
+	height: 93vh;
+	overflow-y: hidden;
+	scrollbar-width: none;
+	display: flex;
+	flex-direction: row;
+	background-color: #202936;
 }
 
-#friendListContainer {
-  width: 25%;
-  position: relative;
-  background-color: #323f45;
-  text-align: center;
-  overflow-y: scroll;
+::-webkit-scrollbar {
+	display: none;
 }
 
-#postListContainer {
-  width: 75%;
-  position: relative;
-  background-color: #323f45;
-  overflow-y: scroll;
+.friendListContainer {
+	width: 340px;
+	position: relative;
+	background-color: #202936;
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	flex: 0 1 auto;
 }
 
-#circleIcon {
-  color: #647d88;
-  size: 200px;
-}
-
-#postButton {
-  color: #647d88;
-  size: 200px;
-}
-
-#postButtonContainer {
-  position: fixed;
-  bottom: 60px;
-  border-radius: 50%;
-  right: 50%;
-  background-color: #1e272b;
+.postListContainer {
+	width: 700px;
+	position: relative;
+	background-color: #202936;
+	overflow-y: scroll;
+	float: left;
+	margin-top: 10px;
+	flex: 1 1 auto;
 }

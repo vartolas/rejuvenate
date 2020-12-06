@@ -1,33 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
+
+#title {
+	font-family: "Work Sans", sans-serif;
+}
+
 body {
-    background-color: #323f45;
+	background-color: #202936;
+}
+
+#successMessage {
+	color: greenyellow;
 }
 
 #registerContainer {
-    width: 100%;
-    height: 100%;
-    text-align: center;
+	width: 100%;
+	height: 100%;
+	text-align: center;
 }
 
 #registerContainer h1 {
-    color: white;
-    position: absolute;
-    top: 10px;
-    left: 10px;
+	color: white;
+	position: absolute;
+	top: 10px;
+	left: 10px;
 }
 
 #registerComponent {
-    border: solid 1px;
-    border-radius: 2%;
+	border: solid 1px;
+	border-radius: 2%;
 
-    margin-top: 10%;
-    margin-bottom: 10%;
-    margin-left: 40%;
-    margin-right: 40%;
+	margin-top: 10%;
+	margin-bottom: 10%;
+	margin-left: 40%;
+	margin-right: 40%;
 
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 
-    background-color: white;
+	background-color: white;
+}
+
+.registerButton {
+	display: block;
+	border-radius: 2%;
+	background-color: #f2a365;
+	border: solid 1px transparent;
+	color: #ececec;
+	font-size: 18px;
+	font-weight: 300;
+	cursor: pointer;
+	transition: all 0.1s ease-in-out;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.registerButton:hover {
+	background-color: transparent;
+	border-color: #f2a365;
+	transition: all 0.1s ease-in-out;
 }

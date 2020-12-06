@@ -1,9 +1,39 @@
-.navBar {
-  height: 5vh;
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
+
+.Navbar {
+	height: 7vh;
+	background-color: #323c50;
 }
+
 .navContent {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-end;
-  width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-end;
+	width: 100%;
+}
+
+#title {
+	color: #ececec;
+	font-family: "Work Sans", sans-serif;
+}
+
+
+.topNavBarOption {
+	font-size: large;
+	font-weight: 300;
+	color: #ececec;
+}
+
+#topNavBarOption {
+	font-size: large;
+	font-weight: 300;
+	color: #ececec;
+}
+
+#topNavBarOption:hover {
+	color: #f2a365;
+}
+
+#adminDashboardNavLinkContainer {
+	border-left: 1px solid white;
 }

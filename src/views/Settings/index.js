@@ -1,9 +1,9 @@
-import React from 'react';
-import './styles.css';
+import React from "react";
+import "./styles.css";
 
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
+import { Button } from "react-bootstrap";
+import TextField from "@material-ui/core/TextField";
+import FormControl from "@material-ui/core/FormControl";
 
 export const CORRECT_REGULAR_USER_USERNAME = "user";
 export const CORRECT_REGULAR_USER_PASSWORD = "user";
@@ -16,89 +16,104 @@ export const EXISTING_USERNAME_ERROR_MSG = "New username already exists.";
 export const NONEXISTING_USERNAME_ERROR_MSG = "New username does not exist.";
 
 export const WEAK_PASSWORD_ERROR_MSG = "New password is not strong enough.";
-export const STRONG_PASSWORD_FOR_PASSWORD_RESET_MSG = "This existing username has a strong enough password.";
+export const STRONG_PASSWORD_FOR_PASSWORD_RESET_MSG =
+	"This existing username has a strong enough password.";
 
 export default class Setting extends React.Component {
-    // I found this helpful: 
-    // - https://reactjs.org/docs/forms.html
-    // - https://material-ui.com/components/text-fields/
-    // - https://material-ui.com/components/buttons/#text-buttons
-    // - https://material-ui.com/api/form-control/
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            password: ''
-        };
-    }
+	// I found this helpful:
+	// - https://reactjs.org/docs/forms.html
+	// - https://material-ui.com/components/text-fields/
+	// - https://material-ui.com/components/buttons/#text-buttons
+	// - https://material-ui.com/api/form-control/
 
-    updateUsername = (e) => {
-        e.preventDefault();
-        this.setState({ username: e.target.value });
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+			username: "",
+			password: "",
+		};
+	}
 
-    updatePassword = (e) => {
-        e.preventDefault();
-        this.setState({ password: e.target.value });
-    }
+	updateUsername = (e) => {
+		e.preventDefault();
+		this.setState({ username: e.target.value });
+	};
 
-    // TODO: I may not need this function.
-    processCredentials() {
-        return this.state.username !== '' &&
-            this.state.password !== '' &&
-            ((this.state.username !== CORRECT_REGULAR_USER_USERNAME &&
-                this.state.password !== CORRECT_REGULAR_USER_PASSWORD) ||
-            (this.state.username !== CORRECT_ADMIN_USERNAME &&
-                this.state.password !== CORRECT_ADMIN_PASSWORD));
-    }
+	updatePassword = (e) => {
+		e.preventDefault();
+		this.setState({ password: e.target.value });
+	};
 
-    // TODO: In phase 2, we plan on verifying user/admin credentials against a database.
-    displayUsernameError() {
-        if (this.state.username === '') {
-            return MISSING_USERNAME_ERROR_MSG;
-        } else if (this.state.username === CORRECT_REGULAR_USER_USERNAME || this.state.username === CORRECT_ADMIN_USERNAME) {
-            return EXISTING_USERNAME_ERROR_MSG;
-        } else {
-            return '';
-        }
-    }
-    
-    // TODO: In phase 2, we plan on verifying user/admin credentials against a database.
-    displayPasswordError() {
-        if (this.state.password === '') {
-            return MISSING_PASSWORD_ERROR_MSG;
-        } else if (this.state.password === CORRECT_REGULAR_USER_PASSWORD || this.state.password === CORRECT_ADMIN_PASSWORD) {
-            return WEAK_PASSWORD_ERROR_MSG;
-        } else {
-            return '';
-        }
-    }
+	// TODO: I may not need this function.
+	processCredentials() {
+		return (
+			this.state.username !== "" &&
+			this.state.password !== "" &&
+			((this.state.username !== CORRECT_REGULAR_USER_USERNAME &&
+				this.state.password !== CORRECT_REGULAR_USER_PASSWORD) ||
+				(this.state.username !== CORRECT_ADMIN_USERNAME &&
+					this.state.password !== CORRECT_ADMIN_PASSWORD))
+		);
+	}
 
-    changeUsername() {
-        if (this.state.username !== CORRECT_REGULAR_USER_USERNAME && this.state.username !== CORRECT_ADMIN_USERNAME) {
-            return '/settings';
-        } else {
-            return '/settings';
-        }
-    }
+	// TODO: In phase 2, we plan on verifying user/admin credentials against a database.
+	displayUsernameError() {
+		if (this.state.username === "") {
+			return MISSING_USERNAME_ERROR_MSG;
+		} else if (
+			this.state.username === CORRECT_REGULAR_USER_USERNAME ||
+			this.state.username === CORRECT_ADMIN_USERNAME
+		) {
+			return EXISTING_USERNAME_ERROR_MSG;
+		} else {
+			return "";
+		}
+	}
 
-    changePassword() {
-        if (this.state.password !== CORRECT_REGULAR_USER_PASSWORD && this.state.password !== CORRECT_ADMIN_PASSWORD) {
-            return '/settings';
-        } else {
-            return '/settings';
-        }
-    }
+	// TODO: In phase 2, we plan on verifying user/admin credentials against a database.
+	displayPasswordError() {
+		if (this.state.password === "") {
+			return MISSING_PASSWORD_ERROR_MSG;
+		} else if (
+			this.state.password === CORRECT_REGULAR_USER_PASSWORD ||
+			this.state.password === CORRECT_ADMIN_PASSWORD
+		) {
+			return WEAK_PASSWORD_ERROR_MSG;
+		} else {
+			return "";
+		}
+	}
 
-    changeProfilePicture() {
-        return '/settings';
-    }
+	changeUsername() {
+		if (
+			this.state.username !== CORRECT_REGULAR_USER_USERNAME &&
+			this.state.username !== CORRECT_ADMIN_USERNAME
+		) {
+			return "/settings";
+		} else {
+			return "/settings";
+		}
+	}
+
+	changePassword() {
+		if (
+			this.state.password !== CORRECT_REGULAR_USER_PASSWORD &&
+			this.state.password !== CORRECT_ADMIN_PASSWORD
+		) {
+			return "/settings";
+		} else {
+			return "/settings";
+		}
+	}
+
+	changeProfilePicture() {
+		return "/settings";
+	}
 
 	render() {
 		return (
 			<div id="settingsContainer">
-				<h1 id="settingsTitle">Settings</h1>
+				<h1>Settings</h1>
 				<div id="settingsComponent">
 					<FormControl>
 						<TextField
@@ -109,7 +124,7 @@ export default class Setting extends React.Component {
 						/>
 						<br></br>
 						<Button
-							className="settingsButton"
+							className="settingsButtons"
 							href={this.changeUsername().toString()}
 							variant="contained"
 							color="primary"
@@ -117,6 +132,7 @@ export default class Setting extends React.Component {
 						>
 							Change Username
 						</Button>
+						<br></br>
 						<TextField
 							id="passwordTextbox"
 							value={this.state.password}
@@ -126,7 +142,7 @@ export default class Setting extends React.Component {
 						/>
 						<br></br>
 						<Button
-							className="settingsButton"
+							className="settingsButtons"
 							href={this.changePassword().toString()}
 							variant="contained"
 							color="primary"
@@ -134,6 +150,7 @@ export default class Setting extends React.Component {
 						>
 							Change Password
 						</Button>
+						<br></br>
 						{/* TODO: make proper upload photo (change profile pic) */}
 						<span>
 							<input
@@ -144,8 +161,9 @@ export default class Setting extends React.Component {
 							/>
 							<label for="file">Choose New Profile Picture</label>
 						</span>
+						<br></br>
 						<Button
-							className="settingsButton"
+							className="settingsButtons"
 							href={this.changeProfilePicture().toString()}
 							variant="contained"
 							color="primary"
