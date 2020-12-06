@@ -113,7 +113,7 @@ export default class Setting extends React.Component {
 	render() {
 		return (
 			<div id="settingsContainer">
-				<h1>Settings</h1>
+				<h1 id="settingsTitle">Settings</h1>
 				<div id="settingsComponent">
 					<FormControl>
 						<TextField
@@ -124,7 +124,7 @@ export default class Setting extends React.Component {
 						/>
 						<br></br>
 						<Button
-							className="settingsButtons"
+							className="settingsButton"
 							href={this.changeUsername().toString()}
 							variant="contained"
 							color="primary"
@@ -132,7 +132,6 @@ export default class Setting extends React.Component {
 						>
 							Change Username
 						</Button>
-						<br></br>
 						<TextField
 							id="passwordTextbox"
 							value={this.state.password}
@@ -142,7 +141,7 @@ export default class Setting extends React.Component {
 						/>
 						<br></br>
 						<Button
-							className="settingsButtons"
+							className="settingsButton"
 							href={this.changePassword().toString()}
 							variant="contained"
 							color="primary"
@@ -150,7 +149,6 @@ export default class Setting extends React.Component {
 						>
 							Change Password
 						</Button>
-						<br></br>
 						{/* TODO: make proper upload photo (change profile pic) */}
 						<span>
 							<input
@@ -163,7 +161,7 @@ export default class Setting extends React.Component {
 						</span>
 						<br></br>
 						<Button
-							className="settingsButtons"
+							className="settingsButton"
 							href={this.changeProfilePicture().toString()}
 							variant="contained"
 							color="primary"
