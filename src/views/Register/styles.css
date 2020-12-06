@@ -46,6 +46,9 @@ body {
 	font-weight: 300;
 	cursor: pointer;
 	transition: all 0.1s ease-in-out;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 20px;
 }
 
 .registerButton:hover {

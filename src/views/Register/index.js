@@ -164,7 +164,6 @@ export default class Register extends React.Component {
 						>
 							Register
 						</Button>
-						<br></br>
 						<Button
 							className="registerButton"
 							href='/login'
@@ -173,7 +172,6 @@ export default class Register extends React.Component {
 						>
 							Go Back
 						</Button>
-						<br></br>
 					</FormControl>
 				</div>
 				{this.displayMessage()}

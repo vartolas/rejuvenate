@@ -95,7 +95,6 @@ export default class PasswordReset extends React.Component {
 						>
 							Reset Password
 						</Button>
-						<br></br>
 						<Button
 							className="resetPasswordButton"
 							href="/login"
@@ -104,7 +103,6 @@ export default class PasswordReset extends React.Component {
 						>
 							Go Back
 						</Button>
-						<br></br>
 					</FormControl>
 				</div>
 			</div>

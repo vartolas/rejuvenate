@@ -125,7 +125,6 @@ export default class Login extends React.Component {
 						>
 							Log In
 						</Button>
-						<br></br>
 						<Button
 							className="loginButton"
 							href="/register"
@@ -134,7 +133,6 @@ export default class Login extends React.Component {
 						>
 							Sign Up
 						</Button>
-						<br></br>
 						<Button
 							className="loginButton"
 							href="/password reset"
@@ -143,7 +141,6 @@ export default class Login extends React.Component {
 						>
 							Reset Password
 						</Button>
-						<br></br>
 					</FormControl>
 				</div>
 			</div>
