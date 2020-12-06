@@ -119,7 +119,7 @@ export default class Register extends React.Component {
 		console.log(this.state)
 		return (
 			<div id="registerContainer">
-				<h1>Rejuvenate</h1>
+				<h1 id="title">Rejuvenate</h1>
 				<div id="registerComponent">
 					<FormControl>
 						<TextField

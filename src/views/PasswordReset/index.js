@@ -65,7 +65,7 @@ export default class PasswordReset extends React.Component {
 	render() {
 		return (
 			<div id="passwordResetContainer">
-				<h1>Rejuvenate</h1>
+				<h1 id="title">Rejuvenate</h1>
 				<div id="passwordResetComponent">
 					<FormControl>
 						<TextField
