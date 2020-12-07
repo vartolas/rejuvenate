@@ -132,7 +132,7 @@ export default class RecordStatistics extends React.Component {
 											<label>{point.x}</label>
 											<label>{point.y}</label>
 										</form>
-										<button onClick={this.removePoint(index)}>
+										<button onClick={this.removePoint(index).bind(this)}>
 											x
 										</button>
 									</div>
