@@ -1,19 +1,32 @@
 #homeContainer {
 	height: 93vh;
 	overflow-y: hidden;
+	scrollbar-width: none;
 	display: flex;
 	flex-direction: row;
+	background-color: #202936;
 }
 
-#friendListContainer {
-	width: 23%;
-	position: relative;
-	background-color: #323f45;
+::-webkit-scrollbar {
+	display: none;
 }
 
-#postListContainer {
-	width: 77%;
+.friendListContainer {
+	width: 340px;
 	position: relative;
-	background-color: #323f45;
+	background-color: #202936;
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	flex: 0 1 auto;
+}
+
+.postListContainer {
+	width: 700px;
+	position: relative;
+	background-color: #202936;
 	overflow-y: scroll;
+	float: left;
+	margin-top: 10px;
+	flex: 1 1 auto;
 }

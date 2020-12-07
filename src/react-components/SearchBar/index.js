@@ -4,94 +4,6 @@ import { getUsersAsList } from '../../userData.js'
 
 import SmallProfileBar from '../../react-components/SmallProfileBar';
 
-// This is a TEMPORARY list; change after we create the hardcoded data.
-// const users = [
-//   {
-//     name: 'John Doe',
-//     username: 'johndoethebroe99'
-//   },
-//   {
-//     name: 'Steve Jones',
-//     username: 'jonesinator10984'
-//   },
-//   {
-//     name: 'Jonathan Peters',
-//     username: 'johnthemon'
-//   },
-//   {
-//     name: 'Mathy Cathy',
-//     username: 'catlover22'
-//   },
-//   {
-//     name: 'Jessica Pearson',
-//     username: 'jessicaisthebestsica'
-//   },
-//   {
-//     name: 'Walter White',
-//     username: 'heisenberg1963'
-//   },
-//   {
-//     name: 'Harvey Spector',
-//     username: 'bestcloserinthecity'
-//   },
-//   {
-//     name: 'Jesse Pinkman',
-//     username: 'yoyospicyyo'
-//   },
-//   {
-//     name: 'Wonder Woman',
-//     username:'wonderwoman'
-//   },
-//   {
-//     name: 'Auston Matthews',
-//     username: 'hitemwiththe4'
-//   },
-//   {
-//     name: 'George Clooney',
-//     username: 'curiousgeorge00'
-//   },
-//   {
-//     name: 'Pen Pencilman',
-//     username: 'pennythepencil'
-//   },
-//   {
-//     name: 'Jim Lu',
-//     username: 'jimmmmlu'
-//   },
-//   {
-//     name: 'Demar DeRozan',
-//     username: 'dbo_10'
-//   },
-//   {
-//     name: 'Kyle Lowry',
-//     username: 'bigklo7'
-//   },
-//   {
-//     name: 'Neil Armstrong',
-//     username: 'spacelover00_'
-//   },
-//   {
-//     name: 'JJ Smith',
-//     username: 'jjjjssssmith'
-//   },
-//   {
-//     name: 'Simona Halep',
-//     username: 'imi_place_tenisul'
-//   },
-//   {
-//     name: 'Bart Baker',
-//     username: 'bartismart'
-//   },
-//   {
-//     name: 'Ivan Lendl',
-//     username: 'lendlivan'
-//   },
-//   {
-//     name: 'Spiderman',
-//     username: 'spidey_99'
-//   }
-// ]
-
 export default class SearchBar extends React.Component {
   state = {
     query: ''
@@ -146,7 +58,7 @@ export default class SearchBar extends React.Component {
       {
         firstMatchedUsers.map( (user) => {
           return (
-            <SmallProfileBar isFollower={ true } name={ user.firstName + " " + user.lastName } username={ user.username } imgSrc='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' />
+            <SmallProfileBar uid={ user.uid } isFollower={ true } name={ user.firstName + " " + user.lastName } username={ user.username } imgSrc='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' />
           )
         })
       }
@@ -157,7 +69,7 @@ export default class SearchBar extends React.Component {
   render() {
     return (
       <div id='searchBar'>
-        <input onKeyUp={ this.handleInput.bind(this) } type='text' name='searchBar' id='searchBar' placeholder='Search for a user' />
+        <input autocomplete='off' onKeyUp={ this.handleInput.bind(this) } type='text' name='searchBar' id='searchBar' placeholder='Search for a user...' />
         <div id='searchedProfilesContainer' style={{ display: 'none' }}>
           <div id='searchBarSeparator'></div>
 

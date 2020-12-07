@@ -1,21 +1,25 @@
 .postEntryContainer {
-	border: 6px solid #38474e;
-	border-radius: 2%;
+	margin-left: 1%;
+	border: 6px solid #253749;
+	padding: 30px;
+	border-radius: 10px;
 	margin-bottom: 4%;
-	width: 99%;
-	background-color: #38474e;
+	width: 98%;
+	background-color: #253749;
+	padding: 25px;
+	position: relative;
 }
 
 .tag {
-	font-size: x-large;
-	font-weight: bold;
-	color: #ffffff;
+	font-size: xx-large;
+	font-weight: 300;
+	color: #ececec;
 	position: relative;
 }
 
 .text {
-	font-size: medium;
-	color: #ffffff;
+	font-size: large;
+	color: #ececec;
 	position: relative;
 	padding-left: 60px;
 }
@@ -28,8 +32,8 @@
 
 .username {
 	font-size: large;
-	font-weight: bold;
-	color: #ffffff;
+	font-weight: 300;
+	color: #ececec;
 	position: relative;
 	padding-top: 11px;
 	margin-left: 10px;
@@ -39,7 +43,7 @@
 	margin-top: 2px;
 	width: 50px;
 	height: 50px;
-	border-radius: 50%;
+	border-radius: 4px;
 	position: relative;
 	justify-self: start;
 }
@@ -64,22 +68,18 @@
 	justify-content: flex-end;
 }
 
-.likeButton {
-	color: #ffffff;
-}
-
 .likeIcon {
-	color: #ffffff;
+	color: #ececec;
 }
 
 .filledLikeIcon {
-	color: #ffffff;
+	color: #f2a365;
 }
 
 .likeNum {
 	display: flex;
 	flex-direction: column;
-	color: #ffffff;
+	color: #ececec;
 	font-size: large;
 	font-weight: bold;
 	margin-right: 4%;
@@ -90,26 +90,71 @@
 .commentListItem {
 	margin-top: 1%;
 	width: 99%;
-	background-color: #323f45;
-	border-radius: 3%;
+	background-color: #202936;
+	border-radius: 4px;
 	border-width: 4px;
-	border-color: #323f45;
+	border-color: #202936;
+	position: relative;
 }
 
 .commentuser {
 	font-size: large;
-	font-weight: bold;
-	color: #ffffff;
+	font-weight: 300;
+	color: #ececec;
 	position: relative;
 }
 
 .comment {
 	font-size: medium;
-	color: #ffffff;
+	color: #ececec;
 	position: relative;
 }
 
 .commentInput {
 	margin-top: 2%;
 	width: 99%;
+}
+
+#postRemoveButton {
+	top: 0px;
+	position: absolute;
+	margin-left: 89%;
+}
+
+#commentRemoveButton {
+	top: 0px;
+	position: absolute;
+	margin-left: 92%;
+}
+
+#cancelIcon {
+	font-size: 50px;
+	/* background-color: #f2a365; */
+	color: #f2a365;
+
+	box-sizing: border-box;
+	user-select: none;
+	z-index: 2;
+}
+
+#cancelIcon:hover {
+	cursor: pointer;
+	opacity: 100%;
+	color: #ececec;
+}
+
+#commentCancelIcon {
+	font-size: 30px;
+	/* background-color: #f2a365; */
+	color: #f2a365;
+
+	box-sizing: border-box;
+	user-select: none;
+	z-index: 2;
+}
+
+#commentCancelIcon:hover {
+	cursor: pointer;
+	opacity: 100%;
+	color: #ececec;
 }

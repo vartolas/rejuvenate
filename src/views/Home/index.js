@@ -91,14 +91,15 @@ export default class Home extends React.Component {
 	render() {
 		return (
 			<div id="homeContainer">
-				<div id="friendListContainer">
+				<div className="friendListContainer">
 					<ProfileUserConnections
+						canUnfollow={true}
 						followers={this.state.followers}
 						following={this.state.following}
 						unfollow={this.unfollow.bind(this)}
 					/>
 				</div>
-				<div id="postListContainer">
+				<div className="postListContainer">
 					<CreatePost
 						posts={this.state.posts}
 						tag={this.state.tag}

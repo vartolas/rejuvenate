@@ -1,129 +1,149 @@
-import React from 'react';
-import './styles.css';
+import React from "react";
+import "./styles.css";
+import loginConstant from "./../../constants/login/login_constants.js";
 
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
+import { Button } from "react-bootstrap";
+import TextField from "@material-ui/core/TextField";
+import FormControl from "@material-ui/core/FormControl";
 
-export const CORRECT_REGULAR_USER_USERNAME = "user";
-export const CORRECT_REGULAR_USER_PASSWORD = "user";
-export const CORRECT_ADMIN_USERNAME = "admin";
-export const CORRECT_ADMIN_PASSWORD = "admin";
+const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
 
-export const MISSING_USERNAME_ERROR_MSG = "Username is missing.";
-export const MISSING_PASSWORD_ERROR_MSG = "Password is missing.";
-export const INCORRECT_USERNAME_ERROR_MSG = "Username is incorrect.";
-export const INCORRECT_PASSWORD_ERROR_MSG = "Password is incorrect.";
-export const CORRECT_CREDENTIALS_MSG = "Username and password are correct.";
-
+// TODO: Convert this to a functional component.
 export default class Login extends React.Component {
-    // I found this helpful: 
-    // - https://reactjs.org/docs/forms.html
-    // - https://material-ui.com/components/text-fields/
-    // - https://material-ui.com/components/buttons/#text-buttons
-    // - https://material-ui.com/api/form-control/
+	// I found this helpful:
+	// - https://reactjs.org/docs/forms.html
+	// - https://material-ui.com/components/text-fields/
+	// - https://material-ui.com/components/buttons/#text-buttons
+	// - https://material-ui.com/api/form-control/
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            password: ''
-        };
-    }
+	constructor(props) {
+		super(props);
+		// TODO: Use React hooks and useState instead.
+		this.state = {
+			username: "",
+			password: "",
+			lastActionWasLoginAttempt: false
+		};
+	}
 
-    updateUsername = (e) => {
-        e.preventDefault();
-        this.setState({ username: e.target.value });
-    }
+	updateUsername = (e) => {
+		e.preventDefault();
+		this.setState({ username: e.target.value, lastActionWasLoginAttempt: false });
+	}
 
-    updatePassword = (e) => {
-        e.preventDefault();
-        this.setState({ password: e.target.value });
-    }
+	updatePassword = (e) => {
+		e.preventDefault();
+		this.setState({ password: e.target.value, lastActionWasLoginAttempt: false  });
+	}
 
-    // TODO: I may not need this function.
-    processCredentials() {
-        return this.state.username !== '' &&
-            this.state.password !== '' &&
-            ((this.state.username === CORRECT_REGULAR_USER_USERNAME &&
-                this.state.password === CORRECT_REGULAR_USER_PASSWORD) ||
-            (this.state.username === CORRECT_ADMIN_USERNAME &&
-                this.state.password === CORRECT_ADMIN_PASSWORD));
-    }
+	// TODO: In phase 2, we plan on verifying user credentials against a database.
+	usernameExists() {
+		return this.state.username === loginConstant.CORRECT_REGULAR_USER_USERNAME;
+	}
 
-    // TODO: In phase 2, we plan on verifying user/admin credentials against a database.
-    displayUsernameError() {
-        if (this.state.username === '') {
-            return MISSING_USERNAME_ERROR_MSG;
-        } else if (this.state.username !== CORRECT_REGULAR_USER_USERNAME && this.state.username !== CORRECT_ADMIN_USERNAME) {
-            return INCORRECT_USERNAME_ERROR_MSG;
-        } else {
-            return '';
-        }
-    }
+	// TODO: In phase 2, we plan on verifying admin credentials against a database.
+	adminUsernameExists() {
+		return this.state.username === loginConstant.CORRECT_ADMIN_USERNAME;
+	}
 
-    // TODO: In phase 2, we plan on verifying user/admin credentials against a database.
-    displayPasswordError() {
-        if (this.state.password === '') {
-            return MISSING_PASSWORD_ERROR_MSG;
-        } else if (this.state.password !== CORRECT_REGULAR_USER_PASSWORD && this.state.username !== CORRECT_ADMIN_PASSWORD) {
-            return INCORRECT_PASSWORD_ERROR_MSG;
-        } else {
-            return '';
-        }
-    }
+	// TODO: In phase 2, we plan on verifying user credentials against a database.
+	userPasswordIsCorrect(username) {
+		return this.state.password === loginConstant.CORRECT_REGULAR_USER_PASSWORD;
+	}
 
-    logIn() {
-        if (this.state.username === CORRECT_REGULAR_USER_USERNAME &&
-            this.state.password === CORRECT_REGULAR_USER_PASSWORD) {
-            return "/home";
-        } else if (this.state.username === CORRECT_ADMIN_USERNAME &&
-            this.state.password === CORRECT_ADMIN_PASSWORD) {
-            return "/admin home";
-        } else {
-            return "/";
-        }
-    }
+	// TODO: In phase 2, we plan on verifying admin credentials against a database.
+	adminPasswordIsCorrect(username) {
+		return this.state.password === loginConstant.CORRECT_ADMIN_PASSWORD;
+	}
 
-    render() {
-        return (
-            <div id="loginContainer">
-                <h1>Rejuvenate</h1>
-                <div id="loginComponent">
-                    <FormControl>
-                        <TextField
-                            id="usernameTextbox"
-                            value={this.state.username}
-                            onChange={this.updateUsername}
-                            label="Username"
-                            error={!this.state.username}
-                            helperText={this.displayUsernameError()}
-                        />
-                        <TextField
-                            id="passwordTextbox"
-                            value={this.state.password}
-                            onChange={this.updatePassword}
-                            label="Password"
-                            type="password"
-                            error={!this.state.password}
-                            helperText={this.displayPasswordError()}
-                        />
-                        <br></br>
-                        <Button href={this.logIn().toString()} variant="contained" color="primary" disableElevation>
-                            Log In
-                        </Button>
-                        <br></br>
-                        <Button href="/register" variant="contained" color="primary" disableElevation>
-                            Sign Up
-                        </Button>
-                        <br></br>
-                        <Button href="/password reset" variant="contained" color="primary" disableElevation>
-                            Reset Password
-                        </Button>
-                        <br></br>
-                    </FormControl>
-                </div>
-            </div>
-        );
-    }
+	logIn = () => {
+		fetch(`${HOST_URL}/api/login`, {
+			method: 'post',
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				username: this.state.username,
+				password: this.state.password
+			}),
+		}).then(response => {
+			if (response.status === 200) {
+				this.props.history.push('/home'); // go to user home
+			} else {
+				// login attempt has failed, handle notifying user somehow
+				console.log("login attempt failed"); // do whatever here
+				this.setState({lastActionWasLoginAttempt: true});
+			}
+		});
+		// if (this.usernameExists() && this.userPasswordIsCorrect()) {
+		// 	this.props.history.push('/home')
+		// } else if (this.adminUsernameExists() && this.adminPasswordIsCorrect()) {
+		// 	this.props.history.push('/admin home')
+		// } else {
+		// 	this.setState({lastActionWasLoginAttempt: true})
+		// }
+	}
+
+	helperText() {
+		if (this.state.lastActionWasLoginAttempt) {
+			return loginConstant.INCORRECT_CREDENTIAL_MSG;
+		} else {
+			return "";
+		}
+	}
+
+	render() {
+		return (
+			<div id="loginContainer">
+				<h1 id="title">Rejuvenate</h1>
+				<div id="loginComponent">
+					<FormControl>
+						<TextField
+							id="usernameTextbox"
+							value={this.state.username}
+							onChange={this.updateUsername}
+							label="Username"
+							error={this.helperText.call(this) !== ""}
+						/>
+						<TextField
+							id="passwordTextbox"
+							value={this.state.password}
+							onChange={this.updatePassword}
+							label="Password"
+							type="password"
+							error={this.helperText.call(this) !== ""}
+							helperText={this.helperText.call(this)}
+						/>
+						<br></br>
+						<Button
+							className="loginButton"
+							onClick={this.logIn}
+							variant="contained"
+							disabled={!this.state.username
+								|| !this.state.password}
+							disableElevation
+						>
+							Log In
+						</Button>
+						<Button
+							className="loginButton"
+							href="/register"
+							variant="contained"
+							disableElevation
+						>
+							Sign Up
+						</Button>
+						<Button
+							className="loginButton"
+							href="/password reset"
+							variant="contained"
+							disableElevation
+						>
+							Reset Password
+						</Button>
+					</FormControl>
+				</div>
+			</div>
+		);
+	}
 }
