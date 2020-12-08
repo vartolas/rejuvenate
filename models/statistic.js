@@ -12,19 +12,19 @@ const Statistic = mongoose.model('Statistic', {
     title: {
         type: String,
         required: true,
-        minlength: 5,
+        minlength: 1,
         trim: true
     },
     xAxis: {
         type: String,
         required: true,
-        minlength: 5,
+        minlength: 1,
         trim: true
     },
     yAxis: {
         type: String,
         required: true,
-        minlength: 5,
+        minlength: 1,
         trim: true
     },
     data: [],
