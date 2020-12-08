@@ -114,27 +114,28 @@ Lastly, on the right you can see your list of followers and followees, and acces
 
 ![Add New Entry Corner](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/AddNewEntryCorner.png)
 
-Users can add new entries to their data for this statistic by writing valid numbers tot eh input boxes and clicking "add new entry". All changes will be refelected in a local copy of the statistic as they happen so the user can see exactly what their changes look like
+Users can add new entries for existing statistics by entering numbers into these input boxes and clicking "Add New Entry."
+This creates a local copy of the updated statistics. To save these changes into our database, click "Confirm All Changes." Afterwards, you'll see your updated statistics data.
 
 ![Existing Entries](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ExistingEntriesCorner.png)
 
-Users can see all of the existing entries for their statistic here, and delete any as necessary.
-
-Once a user is satisfied with their changes, they can click on the "confirm all changes" button to commit their changes to the database (only a placeholder for now) and go to the View Statistics page.
+At the bottom of the screen, users can see existing values for their statistic, and delete any as necessary.
+Once a user is satisfied with their changes, they can click on the "Confirm All Changes" button to commit their changes to the database and go back to the View Statistics page.
 
 # View Statistics Page
 
 ![View Statistics](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ViewStatistics.png)
 
-Users can view all their statistics as nicely graphed charts on this page, organized by their category.
-Click the "+" button to create a new statistic. 
-Click on any of the charts to navigate to the record statistics page and edit the data for that chart/statistic.
+Users can view graphs of all of their statistics on this page, organized by category.
+To edit a statistic's value, click on the statistic you want to change.
 
 # Create Statistic Page
 
 ![Create New Statistic](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/CreateStatistic.png)
 
-Users can create their own statistic by navigating her via the "+" button on the view statistics page, and filling out the form, note that this is only a placeholder right now because we need to write the newly created statisitc to the database for full functionality.
+Users can create new statistics by clicking on the "Create New Statistics" button at the bottom of the page.
+Then, enter in the title, category, and label names for the x-axis and y-axis of this statistic.
+When you're done, click on the "Create New Statistic" button to save this new statistic to our database.
 
 # Settings Page
 
