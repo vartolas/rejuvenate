@@ -4,12 +4,10 @@ import { BrowserRouter } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import SearchBar from "../../react-components/SearchBar";
 
-const HOST_URL = process.env.HOST_URL || "http://localhost:5000"
-
 export default class TopNavbar extends React.Component {
 
 	logout = () => {
-		fetch(`${HOST_URL}/api/logout`, {
+		fetch(`/api/logout`, {
 			method: 'post'
 		});
 		this.props.history.push("/login");

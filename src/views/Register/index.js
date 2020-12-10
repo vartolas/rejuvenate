@@ -6,8 +6,6 @@ import { Button } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 
-const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
-
 // TODO: Convert this to a functional component.
 export default class Register extends React.Component {
 	// I found this helpful:
@@ -70,12 +68,12 @@ export default class Register extends React.Component {
 	}
 
 	register = () => {
-		fetch(`${HOST_URL}/api/users/check/${this.state.username}`)
+		fetch(`/api/users/check/${this.state.username}`)
 			.then(res => res.json())
 			.then(json => {
 				this.setState({usernameTaken: json.usernameTaken})
 				if (!this.state.usernameTaken){
-					fetch(`${HOST_URL}/api/users`, {
+					fetch(`/api/users`, {
 						method: 'post',
 						headers: {"Content-Type": "application/json"},
 						body: JSON.stringify({

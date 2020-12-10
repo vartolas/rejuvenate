@@ -6,8 +6,6 @@ import { Button } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 
-const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
-
 // TODO: Convert this to a functional component.
 export default class Login extends React.Component {
 	// I found this helpful:
@@ -57,7 +55,7 @@ export default class Login extends React.Component {
 	}
 
 	logIn = () => {
-		fetch(`${HOST_URL}/api/login`, {
+		fetch(`/api/login`, {
 			method: 'post',
 			headers: {
 				"Content-Type": "application/json"

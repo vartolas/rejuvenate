@@ -1,3 +1,4 @@
+import { TransferWithinAStation } from "@material-ui/icons";
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 // import { addPost } from "../../actions/post";
@@ -5,6 +6,38 @@ import { Form, Button } from "react-bootstrap";
 import "./styles.css";
 
 export default class CreatePost extends React.Component {
+
+	constructor(props){
+		super(props);
+		this.state = {
+			createPostImage: null
+		}
+	}
+
+	handleImageUpload(e) {
+		var fileUpload = e.target;
+		console.log("yes")
+		console.log(e.target);
+		if('files' in fileUpload) {
+			console.log("iwuhfsd")
+			if(fileUpload.files.length > 0) {
+				var image = fileUpload.files[0];
+				this.setState({createPostImage: image});
+			}
+		}
+	}
+
+	displayUploadedImage(){
+		if (this.state.createPostImage) {
+			return (
+				<div id="createPostImageContainer">
+					<img src={this.state.createPostImage.src} alt="yourUploadedImg"></img>
+					<button onClick={() => this.setState({createPostImage: null})}>remove picture</button>
+				</div>
+			);
+		}
+	}
+
 	render() {
 		const {
 			posts,
@@ -51,9 +84,11 @@ export default class CreatePost extends React.Component {
 								name="picture"
 								id="file"
 								className="inputPicture"
-								value={picture}
+								onChange={this.handleImageUpload}
 							/>
 							<label for="file">Choose Picture</label>
+
+							{this.displayUploadedImage()}
 						</Form.Group>
 						<Button
 							variant="primary"

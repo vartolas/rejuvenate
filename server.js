@@ -44,10 +44,10 @@ app.use(require('./api_routes/statistics'));
 /*** Routes to serve webpage **********************************/
 
 //for root and /login, check for existing session, if no session, continue to login page
-app.get('/', sessionChecker, (req, res) => {
-    console.log("rerouting to login")
-    res.redirect('/login')
-})
+// app.get('/', sessionChecker, (req, res) => {
+//     console.log("rerouting to login")
+//     res.redirect('/login')
+// })
 
 //have to define afer '/' route or else it will override our get method for '/'
 app.use(express.static(path.join(__dirname, 'build')));

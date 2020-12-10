@@ -5,7 +5,6 @@ import { Button } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 
-const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
 
 export default class CreateStatistic extends React.Component {
 	constructor(props) {
@@ -44,7 +43,7 @@ export default class CreateStatistic extends React.Component {
 		const xAxisLabel = document.querySelector("#statistic-x-axis").value;
 		const yAxisLabel = document.querySelector("#statistic-y-axis").value;
 
-		fetch(`${HOST_URL}/api/statistics`, {
+		fetch(`/api/statistics`, {
 			method: 'POST',
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
