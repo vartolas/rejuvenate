@@ -1,10 +1,20 @@
 const express = require('express');
 const { ObjectID } = require('mongodb');
-const { Post } = require('../models');
+const { Image, Post } = require('../models');
 const { mongoChecker, isMongoError } = require('./helpers/mongo_helpers');
-
+const cloudinary = require('cloudinary');
 const router = express.Router();
 const log = console.log;
+
+const CLOUDINARY_API_KEY = "193735732249155";
+const CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET || "HkfQZDE4wfICeSlDf1igVz5ta1M";
+
+
+cloudinary.config({
+    cloud_name: 'ooglyboogly343',
+    api_key: CLOUDINARY_API_KEY,
+    api_secret: CLOUDINARY_API_SECRET
+});
 
 /**
  * Create a new post.
@@ -13,27 +23,46 @@ const log = console.log;
  * 
  * {
  *      "userid": <userid>,
- *      "title": <title>,
+ *      "tag": <tag>
  *      "text": <text>,
- *      "image": <image>
+ *      "image_url": <image url>
  * }
  */
-router.post('/api/post', mongoChecker, async (req, res) => {
+router.post('/api/posts', mongoChecker, async (req, res) => {
     const userid = req.body.userid;
-    const title = req.body.title;
+    const tag = req.body.tag;
     const text = req.body.text;
-    const image = req.body.image;
+    const image_url = req.body.image_url;
+    var image = null;
+    
+    //upload to cloudinary and create image modelm using result
+    if(image_url){
+        try {
+            cloudinary.uploader.upload(
+                image_url, 
+                function (result) {
+                    image = {
+                        image_id: result.public_id,
+                        image_url: result.url,
+                        created_at: new Date(),
+                    };
+                }
+            );
+        } catch (error) {
+            log(error);
+            res.status(500).send("Problem uploading to cloudinary");
+            return;
+        }
+    }
 
-    log(`Creating new post`);
-
-    if (req.session.user !== userid) {
+    if (req.session.user != userid) {
         res.status(401).send("Unauthorized");
         return;
     }
 
     const post = new Post({
         userid: userid, //id of user whos post this is
-        title: title, //title of post
+        tag: tag, //tag for this post
         text: text, //text for this post
         timestamp: new Date(), //current time
         image: image, //image for post or null
@@ -43,6 +72,7 @@ router.post('/api/post', mongoChecker, async (req, res) => {
 
     try {
         const result = await post.save();
+        log(`Created post for user [${userid}]`);
         res.status(200).send(result);
     } catch (error) {
         log(error);
@@ -56,7 +86,7 @@ router.post('/api/post', mongoChecker, async (req, res) => {
 
 // TODO: Did you mean to create a GET method?
 /** Get post with id as given in url parameter. */
-router.post('/api/post/:id', mongoChecker, async (req, res) => {
+router.post('/api/posts/:id', mongoChecker, async (req, res) => {
     const postID = req.params.id;
 
     if (!ObjectID.isValid(postID)) {

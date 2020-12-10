@@ -1,8 +1,17 @@
 const mongoose = require('mongoose')
 
+// create an image schema
 const ImageSchema = mongoose.Schema({
-    type: {type: String, required: true}, // for example 'png', 'jpeg' etc.
-    data: {type: Buffer, required: true} // the actual image bytes
-})
+    image_id: {
+        type: String,
+        required: true
+    },
+    image_url: {
+        type: String,
+        required: true
+    },
+    created_at: String
+});
+
 
 module.exports = { ImageSchema };

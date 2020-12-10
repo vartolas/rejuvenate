@@ -119,7 +119,6 @@ export default class Login extends React.Component {
 							variant="contained"
 							disabled={!this.state.username
 								|| !this.state.password}
-							disableElevation
 						>
 							Log In
 						</Button>
@@ -127,7 +126,7 @@ export default class Login extends React.Component {
 							className="loginButton"
 							href="/register"
 							variant="contained"
-							disableElevation
+							
 						>
 							Sign Up
 						</Button>
@@ -135,7 +134,7 @@ export default class Login extends React.Component {
 							className="loginButton"
 							href="/password reset"
 							variant="contained"
-							disableElevation
+							
 						>
 							Reset Password
 						</Button>

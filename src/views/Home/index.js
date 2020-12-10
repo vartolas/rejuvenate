@@ -101,6 +101,7 @@ export default class Home extends React.Component {
 				</div>
 				<div className="postListContainer">
 					<CreatePost
+						app={this.props.app}
 						posts={this.state.posts}
 						tag={this.state.tag}
 						text={this.state.text}

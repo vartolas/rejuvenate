@@ -10,7 +10,9 @@ export default class CreatePost extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			createPostImage: null
+			image_url: null,
+			text: "",
+			tag: "General"
 		}
 	}
 
@@ -22,20 +24,44 @@ export default class CreatePost extends React.Component {
 			console.log("iwuhfsd")
 			if(fileUpload.files.length > 0) {
 				var image = fileUpload.files[0];
-				this.setState({createPostImage: image});
+				this.setState({image_url: URL.createObjectURL(image)});
 			}
 		}
 	}
 
 	displayUploadedImage(){
-		if (this.state.createPostImage) {
+		if (this.state.image_url) {
 			return (
-				<div id="createPostImageContainer">
-					<img src={this.state.createPostImage.src} alt="yourUploadedImg"></img>
-					<button onClick={() => this.setState({createPostImage: null})}>remove picture</button>
+				<div id="image_urlContainer">
+					<img src={this.state.image_url} alt="yourUploadedImg"></img>
+					<button onClick={() => this.setState({image_url: null})}>remove picture</button>
 				</div>
 			);
 		}
+	}
+
+	createPost(e) {
+		e.preventDefault();
+		console.log(this.props.app.state.user._id)
+		fetch(`/api/posts`, {
+			method: "post",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				userid: this.props.app.state.user._id,
+				tag: this.state.tag,
+				text: this.state.text,
+				image_url: this.state.image_url,
+
+			})
+		})
+		.then(res => res.json())
+		.then(json => {
+			console.log("created post!");
+		});
+	}
+
+	handleTextChange(){
+
 	}
 
 	render() {
@@ -58,8 +84,8 @@ export default class CreatePost extends React.Component {
 								as="select"
 								className="tagSelect"
 								name="tag"
-								value={tag}
-								onChange={handleInputChange}
+								value={this.state.tag}
+								onChange={(e) => this.setState({tag: e.target.value})}
 							>
 								<option className="tagSelect">General</option>
 								<option className="tagSelect">Fitness</option>
@@ -75,26 +101,26 @@ export default class CreatePost extends React.Component {
 								rows={3}
 								className="contentInput"
 								name="text"
-								value={text}
-								onChange={handleInputChange}
+								value={this.state.text}
+								onChange={(e) => this.setState({text: e.target.value})}
 							/>
-
 							<input
 								type="file"
+								accept="/image/*"
 								name="picture"
 								id="file"
 								className="inputPicture"
-								onChange={this.handleImageUpload}
+								onChange={this.handleImageUpload.bind(this)}
 							/>
-							<label for="file">Choose Picture</label>
+							<label htmlFor="file">Choose Picture</label>
 
 							{this.displayUploadedImage()}
 						</Form.Group>
 						<Button
 							variant="primary"
-							type="button"
+							type="submit"
 							className="postButton"
-							onClick={addPost}
+							onClick={this.createPost.bind(this)}
 						>
 							Post
 						</Button>

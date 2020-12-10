@@ -4,11 +4,7 @@ const { CommentSchema } = require('./comment')
 
 const Post = mongoose.model('Post', {
     userid: mongoose.Schema.Types.ObjectId, // id of user whos post this is
-    title: {
-        type: String,
-        required: true,
-        minlength: 1
-    },
+    tag: {type: String},
     text: {
         type: String,
         maxlength: 300
