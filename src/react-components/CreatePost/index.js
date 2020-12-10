@@ -10,7 +10,7 @@ export default class CreatePost extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			image_url: null,
+			image: null,
 			text: "",
 			tag: "General"
 		}
@@ -24,17 +24,17 @@ export default class CreatePost extends React.Component {
 			console.log("iwuhfsd")
 			if(fileUpload.files.length > 0) {
 				var image = fileUpload.files[0];
-				this.setState({image_url: URL.createObjectURL(image)});
+				this.setState({image: image});
 			}
 		}
 	}
 
 	displayUploadedImage(){
-		if (this.state.image_url) {
+		if (this.state.image) {
 			return (
 				<div id="image_urlContainer">
-					<img src={this.state.image_url} alt="yourUploadedImg"></img>
-					<button onClick={() => this.setState({image_url: null})}>remove picture</button>
+					<img src={URL.createObjectURL(this.state.image)} alt="yourUploadedImg"></img>
+					<button onClick={() => this.setState({image: null})}>remove picture</button>
 				</div>
 			);
 		}
@@ -42,17 +42,17 @@ export default class CreatePost extends React.Component {
 
 	createPost(e) {
 		e.preventDefault();
-		console.log(this.props.app.state.user._id)
+		var data = new FormData();
+		if(this.state.image){
+			data.append('image', this.state.image);
+		}
+		data.append('tag', this.state.tag);
+		data.append('text', this.state.text);
+		data.append('userid', this.props.app.state.user._id);
+		
 		fetch(`/api/posts`, {
 			method: "post",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				userid: this.props.app.state.user._id,
-				tag: this.state.tag,
-				text: this.state.text,
-				image_url: this.state.image_url,
-
-			})
+			body: data
 		})
 		.then(res => res.json())
 		.then(json => {
@@ -60,20 +60,7 @@ export default class CreatePost extends React.Component {
 		});
 	}
 
-	handleTextChange(){
-
-	}
-
 	render() {
-		const {
-			posts,
-			tag,
-			text,
-			have_pic,
-			picture,
-			handleInputChange,
-			addPost,
-		} = this.props;
 		return (
 			<div className="createPostContainer">
 				<div className="createPostComponent">

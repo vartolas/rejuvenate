@@ -76,11 +76,11 @@ router.get('/api/users/check/:username', async (req, res) => {
  * Get a particular user by id.
  */
 router.get('/api/users/:id', mongoChecker, async (req, res) => {
-    const userID = req.params.id;
-    log(`fetching user ${userID}`);
+    const userid = req.params.id;
+    log(`fetching user ${userid}`);
 
     try {
-        const user = await User.findById(userID);
+        const user = await User.findById(userid);
         if (!user) {
             res.status(404).send();
             return;
@@ -143,17 +143,17 @@ router.post('/api/users', mongoChecker, async (req, res) => {
  * This generates the user feed.
  */
 router.get('/api/user/:id/feed', mongoChecker, async (req, res) => {
-    const userID = req.params.id;
+    const userid = req.params.id;
     
-    if (!ObjectID.isValid(userID)) {
+    if (!ObjectID.isValid(userid)) {
         res.status(404).send();
         return;
     }
 
-    log(`fetching feed for ${userID}`);
+    log(`fetching feed for ${userid}`);
 
     try {
-        const user = await User.findById(userID);
+        const user = await User.findById(userid);
         if (!user) {
             res.status(404).send();
             return;
@@ -175,20 +175,52 @@ router.get('/api/user/:id/feed', mongoChecker, async (req, res) => {
 })
 
 /**
- * Get all statistics for this user.
+ * Get all posts for this user.
  */
-router.get('/api/users/:id/statistics', mongoChecker, async (req, res) => {
-    const userID = req.params.id;
+router.get('/api/users/:id/posts', mongoChecker, async (req, res) => {
+    const userid = req.params.id;
 
-    if (!ObjectID.isValid(userID)) {
+    if (!ObjectID.isValid(userid)) {
         res.status(404).send();
         return;
     }
 
-    log(`fetching all statistics for user [${userID}]`);
+    log(`fetching all posts for user [${userid}]`);
 
     try {
-        const stats = await Statistic.find({userid: userID});
+        const posts = await Post.find({userid: userid});
+        if (!posts) {
+            res.status(404).send();
+            return;
+        }
+        res.status(200).send(posts);
+    } catch (error) {
+        log(error);
+        if (isMongoError(error)) {
+            res.status(500).send("Internal Server Error");
+        } else {
+            res.status(400).send();
+        }
+    }
+
+});
+
+
+/**
+ * Get all statistics for this user.
+ */
+router.get('/api/users/:id/statistics', mongoChecker, async (req, res) => {
+    const userid = req.params.id;
+
+    if (!ObjectID.isValid(userid)) {
+        res.status(404).send();
+        return;
+    }
+
+    log(`fetching all statistics for user [${userid}]`);
+
+    try {
+        const stats = await Statistic.find({userid: userid});
         if (!stats) {
             res.status(404).send();
             return;
@@ -215,16 +247,16 @@ router.delete('/api/users/:id', mongoChecker, async (req, res) => {
         return;
     }
 
-    const userID = req.params.id;
+    const userid = req.params.id;
 
-    if (!ObjectID.isValid(userID)) {
+    if (!ObjectID.isValid(userid)) {
 		res.status(404).send()
 		return;
     }
     
     try {
-        log(`deleting user [${userID}]`);
-        const user = await User.findById(userID);
+        log(`deleting user [${userid}]`);
+        const user = await User.findById(userid);
         user.remove();
         res.send(user);
     } catch (error) {

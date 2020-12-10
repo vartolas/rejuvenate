@@ -58,10 +58,7 @@ export default class Home extends React.Component {
 			posts: allPosts,
 			followers: followersList,
 			following: followingList,
-			tag: "General",
-			text: "",
 			have_pic: 0,
-			picture: "",
 		};
 	}
 
@@ -102,13 +99,6 @@ export default class Home extends React.Component {
 				<div className="postListContainer">
 					<CreatePost
 						app={this.props.app}
-						posts={this.state.posts}
-						tag={this.state.tag}
-						text={this.state.text}
-						have_pic={this.state.have_pic}
-						picture={this.state.picture}
-						handleInputChange={this.handleInputChange}
-						addPost={() => addPost(this)}
 					/>
 					<PostList posts={this.state.posts} listComponent={this} />
 				</div>

@@ -3,6 +3,7 @@ const { ObjectID } = require('mongodb');
 const { Image, Post } = require('../models');
 const { mongoChecker, isMongoError } = require('./helpers/mongo_helpers');
 const cloudinary = require('cloudinary');
+const multipart = require('connect-multiparty');
 const router = express.Router();
 const log = console.log;
 
@@ -16,6 +17,8 @@ cloudinary.config({
     api_secret: CLOUDINARY_API_SECRET
 });
 
+const multipartMiddleware = multipart();
+
 /**
  * Create a new post.
  * 
@@ -25,21 +28,27 @@ cloudinary.config({
  *      "userid": <userid>,
  *      "tag": <tag>
  *      "text": <text>,
- *      "image_url": <image url>
+ * }
+ * 
+ * Request files expects (if image present): 
+ * 
+ * {
+ *     "image": {...}
  * }
  */
-router.post('/api/posts', mongoChecker, async (req, res) => {
+router.post('/api/posts', multipartMiddleware, mongoChecker, async (req, res) => {
+    //console.log(req);
     const userid = req.body.userid;
     const tag = req.body.tag;
     const text = req.body.text;
-    const image_url = req.body.image_url;
     var image = null;
     
     //upload to cloudinary and create image modelm using result
-    if(image_url){
+  
+    if(req.files && 'image' in req.files){
         try {
             cloudinary.uploader.upload(
-                image_url, 
+                req.files.image.path, 
                 function (result) {
                     image = {
                         image_id: result.public_id,
@@ -54,7 +63,9 @@ router.post('/api/posts', mongoChecker, async (req, res) => {
             return;
         }
     }
-
+    console.log(req.body)
+    console.log(req.body.userid)
+    console.log(req.session.user)
     if (req.session.user != userid) {
         res.status(401).send("Unauthorized");
         return;
