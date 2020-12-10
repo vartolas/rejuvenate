@@ -1,13 +1,16 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const Statistic = mongoose.model('Statistic', {
     userid: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true
+        required: true,
+        minlength: 1,
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        minlength: 1,
+        trim: true
     },
     title: {
         type: String,
@@ -30,4 +33,4 @@ const Statistic = mongoose.model('Statistic', {
     data: [],
 })
 
-module.exports = { Statistic }
+module.exports = { Statistic };

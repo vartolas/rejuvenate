@@ -1,23 +1,24 @@
-const express = require('express')
+const express = require('express');
 const { ObjectID } = require('mongodb');
 const { Post } = require('../models');
-const {mongoChecker, isMongoError} = require('./helpers/mongo_helpers')
+const { mongoChecker, isMongoError } = require('./helpers/mongo_helpers');
 
 const router = express.Router();
 const log = console.log;
 
-//Create Post
-/*
-Request body expects :
-{
-    "userid": <userid>,
-    "title": <title>,
-    "text": <text>,
-    "image": <image>
-}
-*/
+/**
+ * Create a new post.
+ * 
+ * Request body expects:
+ * 
+ * {
+ *      "userid": <userid>,
+ *      "title": <title>,
+ *      "text": <text>,
+ *      "image": <image>
+ * }
+ */
 router.post('/api/post', mongoChecker, async (req, res) => {
-
     const userid = req.body.userid;
     const title = req.body.title;
     const text = req.body.text;
@@ -53,30 +54,24 @@ router.post('/api/post', mongoChecker, async (req, res) => {
     }
 })
 
-
-//Get post with id as given in url parameter
+// TODO: Did you mean to create a GET method?
+/** Get post with id as given in url parameter. */
 router.post('/api/post/:id', mongoChecker, async (req, res) => {
+    const postID = req.params.id;
 
-    const postid = req.params.id;
-
-    
-
-    if(!ObjectID.isValid(postid)){
+    if (!ObjectID.isValid(postID)) {
 		res.status(404).send();
 		return;
     }
     
-
     try {
-        log(`fetching post [${postid}]`);
-        const post = await Post.findById(postid);
+        log(`fetching post [${postID}]`);
+        const post = await Post.findById(postID);
         if (!post) {
-            res.status(404).send()
+            res.status(404).send();
             return;
         }
         res.status(200).send(post);
-        
-        
     } catch (error) {
         log(error);
         if (isMongoError(error)) {
@@ -87,43 +82,43 @@ router.post('/api/post/:id', mongoChecker, async (req, res) => {
     }
 })
 
-//Like a post
-/*
-Request body expects :
-{
-    "userid": <user id>
-}
-*/
+/**
+ * Record that this user likes this post.
+ * 
+ * Request body expects:
+ * 
+ * {
+ *      "userid": <user id>
+ * }
+ */
 router.post('/api/posts/:id/like', mongoChecker, async (req, res) => {
+    const postID = req.params.id;
+    const userID = req.body.userid;
 
-    const postid = req.params.id
-    const userid = req.body.userid
-
-    if(!ObjectID.isValid(postid)){
-		res.status(404).send("No such post")
+    if (!ObjectID.isValid(postID)) {
+        res.status(404).send("No such post");
 		return;
     }
 
-    if(!ObjectID.isValid(userid)){
-		res.status(404).send("No such user")
+    if (!ObjectID.isValid(userID)) {
+        res.status(404).send("No such user");
 		return;
     }
 
-    if(userid !== req.session.user){
-        res.status(401).send("Unauthorized")
+    if (userID !== req.session.user) {
+        res.status(401).send("Unauthorized");
     }
 
     try {
-        const post = await Post.findById(postid);
-        if (post.likes.find(userid)){
-            res.status(400).send("User has already liked this post")
+        const post = await Post.findById(postID);
+        if (post.likes.find(userID)) {
+            res.status(400).send("User has already liked this post");
             return;
         }
-        post.likes.push(userid);
-        const result = await post.save()
+        post.likes.push(userID);
+        const result = await post.save();
         res.status(200).send(result);
-        log(`user [${userid}] liked a post [${post._id}]`)
-
+        log(`user [${userID}] liked a post [${post._id}]`);
     } catch (error) {
         log(error);
         if (isMongoError(error)) {
@@ -135,46 +130,48 @@ router.post('/api/posts/:id/like', mongoChecker, async (req, res) => {
 
 });
 
-//Like a post
-/*
-Request body expects :
-{
-    "userid": <user id>
-    "text": <comment text>
-}
-*/
+/**
+ * Record that this user commented on this post.
+ * 
+ * Request body expects:
+ * 
+ * {
+ *      "userid": <user id>
+ *      "text": <comment text>
+ * }
+ */
 router.post('/api/posts/:id/comment', mongoChecker, async (req, res) => {
+    const postID = req.params.id;
+    const { userID, text } = req.body;
 
-    const postid = req.params.id;
-    const { userid, text } = req.body;
-
-    if(!ObjectID.isValid(postid)){
-		res.status(404).send("No such post")
+    if (!ObjectID.isValid(postID)) {
+        res.status(404).send("No such post");
 		return;
     }
 
-    if(!ObjectID.isValid(userid)){
-		res.status(404).send("No such user")
+    if (!ObjectID.isValid(userID)) {
+        res.status(404).send("No such user");
 		return;
     }
 
-    if(userid !== req.session.user){
-        res.status(401).send("Unauthorized")
+    if (userID !== req.session.user) {
+        res.status(401).send("Unauthorized");
+        return;
     }
 
     try {
-        const post = await Post.findById(postid);
-        if (!post){
-            res.status(404).send("Could not find post")
+        const post = await Post.findById(postID);
+        if (!post) {
+            res.status(404).send("Could not find post");
             return;
         }
         post.comments.push({
-            userid: userid,
+            userid: userID,
             text: text
         });
-        const result = await post.save()
+        const result = await post.save();
         res.status(200).send(result);
-        log(`user [${userid}] commented on a post [${post._id}]`)
+        log(`user [${userID}] commented on a post [${post._id}]`);
 
     } catch (error) {
         log(error);

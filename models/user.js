@@ -26,15 +26,15 @@ UserSchema.statics.findByUsernamePassword = function(username, password) {
     const User = this;
 
     return User.findOne({username: username}).then(user => {
-        if(!user) {
-            return Promise.reject()
+        if (!user) {
+            return Promise.reject();
         }
 
         return new Promise((resolve, reject) => {
-            if(user.password === password){
-                resolve(user)
+            if (user.password === password) {
+                resolve(user);
             } else {
-                reject()
+                reject();
             }
         })
     })
@@ -42,9 +42,9 @@ UserSchema.statics.findByUsernamePassword = function(username, password) {
 
 UserSchema.statics.findByUsername = function(username) {
     const User = this;
-    return User.findOne({username: username})
+    return User.findOne({ username: username });
 }
 
 const User = mongoose.model('User', UserSchema);
 
-module.exports = { User }
+module.exports = { User };

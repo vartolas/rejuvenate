@@ -6,4 +6,4 @@ const CommentSchema = mongoose.Schema({
     text: { type: String, required: true }
 })
 
-module.exports = { CommentSchema }
+module.exports = { CommentSchema };
