@@ -79,9 +79,9 @@ export default class ProfileUserConnections extends React.Component {
 						uid={f.uid}
 						key={index}
 						canUnfollow={false}
-						name={f.name ? f.name : f.firstName + " " + f.lastName}
+						name={f.firstname + " " + f.lastname}
 						username={f.username}
-						imgSrc={f.imgSrc}
+						imgSrc={f.profilePicture ? f.profilePicture.image_url : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'}
 					/>
 				);
 			});
@@ -94,9 +94,9 @@ export default class ProfileUserConnections extends React.Component {
 						unfollow={this.props.unfollow}
 						key={index}
 						canUnfollow={this.props.canUnfollow}
-						name={f.name ? f.name : f.firstName + " " + f.lastName}
+						name={f.firstname + " " + f.lastname}
 						username={f.username}
-						imgSrc={f.imgSrc}
+						imgSrc={f.profilePicture ? f.profilePicture.image_url : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'}
 					/>
 				);
 			});

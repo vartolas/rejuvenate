@@ -188,6 +188,76 @@ router.post('/api/users', mongoChecker, async (req, res) => {
 })
 
 /**
+ * Get all users this user is following.
+ */
+router.get('/api/users/:id/following', mongoChecker, async (req, res) => {
+    const userid = req.params.id;
+    
+    if (!ObjectID.isValid(userid)) {
+        res.status(404).send();
+        return;
+    }
+
+    try {
+        const user = await User.findById(userid);
+        if (!user) {
+            res.status(404).send();
+            return;
+        }
+
+        const following = await User.find({_id: {$in: user.following}}); 
+
+        if (!following) {
+            res.status(404).send();
+            return;
+        }
+        res.status(200).send(following);
+    } catch (error) {
+        log(error);
+        if (isMongoError(error)) {
+            res.status(500).send("Internal Server Error");
+        } else {
+            res.status(400).send();
+        }
+    }
+})
+
+/**
+ * Get all users following this user
+ */
+router.get('/api/users/:id/followers', mongoChecker, async (req, res) => {
+    const userid = req.params.id;
+    
+    if (!ObjectID.isValid(userid)) {
+        res.status(404).send();
+        return;
+    }
+
+    try {
+        const user = await User.findById(userid);
+        if (!user) {
+            res.status(404).send();
+            return;
+        }
+
+        const followers = await User.find({_id: {$in: user.followers}}); 
+
+        if (!followers) {
+            res.status(404).send();
+            return;
+        }
+        res.status(200).send(followers);
+    } catch (error) {
+        log(error);
+        if (isMongoError(error)) {
+            res.status(500).send("Internal Server Error");
+        } else {
+            res.status(400).send();
+        }
+    }
+})
+
+/**
  * Get top 10 most recent posts of this user and the users they follow.
  * This generates the user feed.
  */
@@ -339,8 +409,8 @@ router.post('/api/users/follow/:id', mongoChecker, async (req, res) => {
     }
 
     try {
-        const user = User.findById(req.session.user);
-        const follow = User.findById(followid);
+        const user = await User.findById(req.session.user);
+        const follow = await User.findById(followid);
         if (!user || !follow) {
             res.status(404).send();
             return;

@@ -65,11 +65,19 @@ export default class Home extends React.Component {
 	componentDidMount() {
 		const userid = this.props.app.state.user._id;
 		this.setState({ userid: userid });
-		fetch(`/api/users/${userid}`)
+
+		fetch(`/api/users/${userid}/followers`)
 			.then((res) => res.json())
 			.then((json) => {
-				this.setState({ followers: json.followers, following: json.following }); //causes component to re-render with new state
+				this.setState({ followers: json}); //causes component to re-render with new state
 			});
+		
+		fetch(`/api/users/${userid}/following`)
+			.then((res) => res.json())
+			.then((json) => {
+				this.setState({ following: json}); //causes component to re-render with new state
+			});
+		
 
 		fetch(`/api/users/${userid}/feed`)
 			.then((res) => res.json())

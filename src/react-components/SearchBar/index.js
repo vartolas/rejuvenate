@@ -65,13 +65,12 @@ export default class SearchBar extends React.Component {
           {
             this.state.matchedUsers.map( (user) => {
               return (
-                <SmallProfileBar key={user._id} uid={ user._id } isFollower={ true } name={ user.firstname + " " + user.lastname } username={ user.username } imgSrc='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' />
+                <SmallProfileBar key={user._id} uid={ user._id } isFollower={ true } name={ user.firstname + " " + user.lastname } username={ user.username } imgSrc={user.profilePicture ? user.profilePicture.image_url : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'} />
               )
             })
           }
         </div>
       )
-    
   }
     // const users = getUsersAsList();
     // const matchedUsers = users.filter( user => user.username.toLowerCase().startsWith(this.state.query.toLowerCase()) || (user.firstName + " " + user.lastName).toLowerCase().startsWith(this.state.query.toLowerCase()));
