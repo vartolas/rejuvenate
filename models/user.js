@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { ImageSchema } = require('./image')
+const mongoose = require("mongoose");
+const { ImageSchema } = require("./image");
 
 const UserSchema = mongoose.Schema({
     username: {
@@ -22,9 +22,8 @@ const UserSchema = mongoose.Schema({
     isAdmin: {type: Boolean, required: true}
 })
 
-UserSchema.statics.findByUsernamePassword = function(username, password) {
-    const User = this;
-
+UserSchema.statics.findByUsernamePassword = function (username, password) {
+	const User = this;
     return User.findOne({username: username}).then(user => {
         if (!user) {
             return Promise.reject();
@@ -45,6 +44,6 @@ UserSchema.statics.findByUsername = function(username) {
     return User.findOne({ username: username });
 }
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model("User", UserSchema);
 
 module.exports = { User };

@@ -139,72 +139,42 @@ router.post('/api/users', mongoChecker, async (req, res) => {
 })
 
 /**
- * Get all posts for a particular user for each user they follow.
+ * Get all posts of a particular user and each user they follow.
  * This generates the user feed.
  */
-router.get('/api/user/:id/feed', mongoChecker, async (req, res) => {
-    const userid = req.params.id;
-    
-    if (!ObjectID.isValid(userid)) {
-        res.status(404).send();
-        return;
-    }
+router.get("/api/user/:id/feed", mongoChecker, async (req, res) => {
+	const userid = req.params.id;
 
-    log(`fetching feed for ${userid}`);
+	if (!ObjectID.isValid(userid)) {
+		res.status(404).send();
+		return;
+	}
 
-    try {
-        const user = await User.findById(userid);
-        if (!user) {
-            res.status(404).send();
-            return;
-        }
-        const feed = await Post.find({ userid: { $in: user.following } }); // returns all posts of all followed users
-        if (!feed) {
-            res.status(404).send();
-            return;
-        }
-        res.status(200).send(feed);
-    } catch (error) {
-        log(error);
-        if (isMongoError(error)) {
-            res.status(500).send("Internal Server Error");
-        } else {
-            res.status(400).send();
-        }
-    }
-})
+	log(`fetching feed for ${userid}`);
 
-/**
- * Get all posts for this user.
- */
-router.get('/api/users/:id/posts', mongoChecker, async (req, res) => {
-    const userid = req.params.id;
-
-    if (!ObjectID.isValid(userid)) {
-        res.status(404).send();
-        return;
-    }
-
-    log(`fetching all posts for user [${userid}]`);
-
-    try {
-        const posts = await Post.find({userid: userid});
-        if (!posts) {
-            res.status(404).send();
-            return;
-        }
-        res.status(200).send(posts);
-    } catch (error) {
-        log(error);
-        if (isMongoError(error)) {
-            res.status(500).send("Internal Server Error");
-        } else {
-            res.status(400).send();
-        }
-    }
-
+	try {
+		const user = await User.findById(userid);
+		if (!user) {
+			res.status(404).send();
+			return;
+		}
+		const feed = await Post.find({
+			$or: [{ userid: { $in: user.following } }, { userid: userid }],
+		}); //returns all posts of all followed users
+		if (!feed) {
+			res.status(404).send();
+			return;
+		}
+		res.status(200).send(feed);
+	} catch (error) {
+		log(error);
+		if (isMongoError(error)) {
+			res.status(500).send("Internal Server Error");
+		} else {
+			res.status(400).send();
+		}
+	}
 });
-
 
 /**
  * Get all statistics for this user.
@@ -235,7 +205,30 @@ router.get('/api/users/:id/statistics', mongoChecker, async (req, res) => {
         }
     }
 
+	if (!ObjectID.isValid(userid)) {
+		res.status(404).send();
+		return;
+	}
+
+	log(`'fetching all statistics for user [${userid}]`);
+
+	try {
+		const stats = await Statistic.find({ userid: userid });
+		if (!stats) {
+			res.status(404).send();
+			return;
+		}
+		res.status(200).send(stats);
+	} catch (error) {
+		log(error);
+		if (isMongoError(error)) {
+			res.status(500).send("Internal Server Error");
+		} else {
+			res.status(400).send();
+		}
+	}
 });
+
 
 /**
  * Delete this user with a particular id.
@@ -247,8 +240,8 @@ router.delete('/api/users/:id', mongoChecker, async (req, res) => {
         return;
     }
 
-    const userid = req.params.id;
-
+	const userid = req.params.id;
+  
     if (!ObjectID.isValid(userid)) {
 		res.status(404).send()
 		return;
