@@ -47,26 +47,6 @@ export default class Register extends React.Component {
 		this.setState({ password: e.target.value });
 	}
 
-	// TODO: In phase 2, we plan on verifying user credentials against a database.
-	usernameExists() {
-		return this.state.username === loginConstant.CORRECT_REGULAR_USER_USERNAME;
-	}
-
-	// TODO: In phase 2, we plan on verifying admin credentials against a database.
-	adminUsernameExists() {
-		return this.state.username === loginConstant.CORRECT_ADMIN_USERNAME;
-	}
-
-	// TODO: In phase 2, we plan on verifying user credentials against a database.
-	userPasswordIsStrong() {
-		return this.state.password !== loginConstant.CORRECT_REGULAR_USER_PASSWORD;
-	}
-
-	// TODO: In phase 2, we plan on verifying admin credentials against a database.
-	adminPasswordIsStrong() {
-		return this.state.password !== loginConstant.CORRECT_ADMIN_PASSWORD;
-	}
-
 	register = () => {
 		fetch(`/api/users/check/${this.state.username}`)
 			.then(res => res.json())

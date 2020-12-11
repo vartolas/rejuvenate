@@ -34,26 +34,6 @@ export default class Login extends React.Component {
 		this.setState({ password: e.target.value, lastActionWasLoginAttempt: false  });
 	}
 
-	// TODO: In phase 2, we plan on verifying user credentials against a database.
-	usernameExists() {
-		return this.state.username === loginConstant.CORRECT_REGULAR_USER_USERNAME;
-	}
-
-	// TODO: In phase 2, we plan on verifying admin credentials against a database.
-	adminUsernameExists() {
-		return this.state.username === loginConstant.CORRECT_ADMIN_USERNAME;
-	}
-
-	// TODO: In phase 2, we plan on verifying user credentials against a database.
-	userPasswordIsCorrect(username) {
-		return this.state.password === loginConstant.CORRECT_REGULAR_USER_PASSWORD;
-	}
-
-	// TODO: In phase 2, we plan on verifying admin credentials against a database.
-	adminPasswordIsCorrect(username) {
-		return this.state.password === loginConstant.CORRECT_ADMIN_PASSWORD;
-	}
-
 	logIn = () => {
 		fetch(`/api/login`, {
 			method: 'post',
@@ -73,13 +53,6 @@ export default class Login extends React.Component {
 				this.setState({lastActionWasLoginAttempt: true});
 			}
 		});
-		// if (this.usernameExists() && this.userPasswordIsCorrect()) {
-		// 	this.props.history.push('/home')
-		// } else if (this.adminUsernameExists() && this.adminPasswordIsCorrect()) {
-		// 	this.props.history.push('/admin home')
-		// } else {
-		// 	this.setState({lastActionWasLoginAttempt: true})
-		// }
 	}
 
 	helperText() {
