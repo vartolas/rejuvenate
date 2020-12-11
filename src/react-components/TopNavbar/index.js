@@ -52,9 +52,9 @@ export default class TopNavbar extends React.Component {
 										View Statistics
 									</NavDropdown.Item>
 								</NavDropdown> */}
-								<Nav.Link id="topNavBarOption" href="/settings">
+								{/* <Nav.Link id="topNavBarOption" href="/settings">
 									Settings
-								</Nav.Link>
+								</Nav.Link> */}
 								<Nav.Link id="topNavBarOption" onClick={this.logout} href="/login">
 									Sign Out
 								</Nav.Link>

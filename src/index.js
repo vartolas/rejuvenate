@@ -62,7 +62,7 @@ class App extends React.Component {
 
 						<Route exact path="/statistics/record" render={() => (<RecordStatistics app={this}/>)} />
 						
-						<Route exact path="/settings" render={() => (<Settings app={this}/>)} />
+						{/* <Route exact path="/settings" render={() => (<Settings app={this}/>)} /> */}
 					</Switch>
 				</BrowserRouter>
 			</>
