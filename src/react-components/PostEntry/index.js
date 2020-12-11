@@ -10,6 +10,34 @@ import LoadingDisplay from "../../react-components/LoadingDisplay";
 
 import "./styles.css";
 
+
+
+
+class CommentRow extends React.Component {
+	render(props){
+
+		const comment = this.props.comment;
+		return (
+			<ListGroup.Item className="commentListItem" key={uuid()}>
+				{this.props.removable ? (
+					//TODO: maybe modify this
+					<IconButton
+						id="commentRemoveButton"
+						onClick={() => this.props.removeComment(comment._id)}
+					>
+						<CancelIcon id="commentCancelIcon" />
+					</IconButton>
+				) : (
+					""
+				)}
+				<div className="commentuser">{this.props.comment.username}</div>
+				<div className="comment">{this.props.comment.text}</div>
+			</ListGroup.Item>
+		);
+	}
+}
+
+
 export default class PostEntry extends React.Component {
 	constructor(props) {
 		super(props);
@@ -21,13 +49,14 @@ export default class PostEntry extends React.Component {
 			image,
 			comments,
 			likes,
-		} = this.props.entry;
+		} = this.props.post;
 
 		this.state = {
 			liked: likes.includes(userid),
 			num_likes: likes.length,
 			postUser: null,
 			commentRows: null,
+			comments: comments
 		};
 	}
 
@@ -40,62 +69,48 @@ export default class PostEntry extends React.Component {
 			image,
 			comments,
 			likes,
-		} = this.props.entry;
+		} = this.props.post;
 
 		fetch(`/api/users/${userid}`)
 			.then((res) => res.json())
 			.then((json) => {
 				this.setState({ postUser: json });
-			});
-
-		const commentRows = [];
-		let showcomments = [];
-
-		//Setting the maximum number of posts to 3.
-
-		// if (comments.length > 3) {
-		// 	showcomments = comments.slice(0, 3);
-		// } else {
-		// 	showcomments = comments;
-		// }
-
-		//Remove this if there is a maxmum number of posts
-		showcomments = comments;
-
-		if (showcomments.length === 0) {
-			this.setState({ commentRows: [] });
-		} else {
-			showcomments.forEach((usercomment) => {
-				const commentUserId = usercomment.userid;
-				fetch(`/api/users/${commentUserId}`)
-					.then((res) => res.json())
-					.then((json) => {
-						commentRows.push(
-							<ListGroup.Item className="commentListItem" key={uuid()}>
-								{this.props.removable ? (
-									//TODO: maybe modify this
-									<IconButton
-										id="commentRemoveButton"
-										onClick={() => this.props.removeComment(usercomment.cid)}
-									>
-										<CancelIcon id="commentCancelIcon" />
-									</IconButton>
-								) : (
-									""
-								)}
-								<div className="commentuser">{json.username}</div>
-								<div className="comment">{usercomment.text}</div>
-							</ListGroup.Item>
-						);
-
-						this.setState({ commentRows: commentRows });
-					});
-			});
-		}
+		});	
 	}
 
+	// getCommentRows() {
+	// 	var commentRows = [];
+
+	// 	this.state.comments.forEach((usercomment) => {
+	// 		const commentUserId = usercomment.userid;
+	// 		fetch(`/api/users/${commentUserId}`)
+	// 			.then((res) => res.json())
+	// 			.then((json) => {
+	// 				commentRows.push(
+	// 					<ListGroup.Item className="commentListItem" key={uuid()}>
+	// 						{this.props.removable ? (
+	// 							//TODO: maybe modify this
+	// 							<IconButton
+	// 								id="commentRemoveButton"
+	// 								onClick={() => this.props.removeComment(usercomment.cid)}
+	// 							>
+	// 								<CancelIcon id="commentCancelIcon" />
+	// 							</IconButton>
+	// 						) : (
+	// 							""
+	// 						)}
+	// 						<div className="commentuser">{json.username}</div>
+	// 						<div className="comment">{usercomment.text}</div>
+	// 					</ListGroup.Item>
+	// 				);
+
+	// 				this.setState({ commentRows: commentRows });
+	// 		});
+	// 	});
+	// }
+
 	handleLike() {
-		fetch(`/api/posts/${this.props.entry._id}/like`, {
+		fetch(`/api/posts/${this.props.post._id}/like`, {
 			method: "post",
 			headers: {
 				"Content-Type": "application/json",
@@ -123,22 +138,31 @@ export default class PostEntry extends React.Component {
 
 	onKeyUp(event) {
 		if (event.key === "Enter") {
+			const user = this.props.app.state.user;
 			const commentText = event.target.value;
+			console.log(user);
 
-			fetch(`/api/posts/${this.props.entry._id}/comment`, {
+			fetch(`/api/posts/${this.props.post._id}/comment`, {
 				method: "post",
 				headers: {
 					"Content-Type": "application/json",
 				},
+				
 				body: JSON.stringify({
-					userid: this.props.app.state.user._id,
+					userid: user._id,
+					username: user.username,
 					text: commentText,
 				}),
 			})
 				.then((res) => res.json())
-				.then((json) => {
-					console.log(json);
+				.then((comment) => {
+					console.log(comment);
 					event.target.value = "";
+					const comments = this.state.comments;
+					console.log(comment.username);
+					console.log(comment.text);
+					comments.push(comment)
+					this.setState({comments: comments});
 				});
 		}
 	}
@@ -148,7 +172,7 @@ export default class PostEntry extends React.Component {
 			//TODO: maybe modify this
 			<IconButton
 				id="postRemoveButton"
-				onClick={() => this.props.removePost(this.props.entry.pid)}
+				onClick={() => this.props.removePost(this.props.post._id)}
 			>
 				<CancelIcon id="cancelIcon" />
 			</IconButton>
@@ -164,7 +188,7 @@ export default class PostEntry extends React.Component {
 			image,
 			comments,
 			likes,
-		} = this.props.entry;
+		} = this.props.post;
 
 		const imageContainer = [];
 
@@ -174,7 +198,7 @@ export default class PostEntry extends React.Component {
 			);
 		}
 
-		if (this.state.postUser == null || this.state.commentRows == null) {
+		if (this.state.postUser == null) {
 			return <LoadingDisplay />;
 		} else {
 			return (
@@ -211,7 +235,11 @@ export default class PostEntry extends React.Component {
 					</div>
 					<div className="comments">
 						<ListGroup className="commentSection">
-							{this.state.commentRows}
+							{
+								this.state.comments.map(comment => {
+									return (<CommentRow key={uuid()} comment={comment}/>);
+								})
+							}
 						</ListGroup>
 						<Form.Control
 							className="commentInput"

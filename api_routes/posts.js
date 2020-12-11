@@ -207,12 +207,13 @@ router.post("/api/posts/:id/like", mongoChecker, async (req, res) => {
  * 
  * {
  *      "userid": <user id>
+ *      "username": <username>
  *      "text": <comment text>
  * }
  */
 router.post("/api/posts/:id/comment", mongoChecker, async (req, res) => {
 	const postid = req.params.id;
-	const { userid, text } = req.body;
+	const { userid, username, text } = req.body;
 
 	if (!ObjectID.isValid(postid)) {
 		res.status(404).send("No such post");
@@ -237,11 +238,13 @@ router.post("/api/posts/:id/comment", mongoChecker, async (req, res) => {
 		}
 		post.comments.push({
 			postid: post._id,
-			userid: userid,
+            userid: userid,
+            username: username,
 			text: text,
 		});
-		const result = await post.save();
-		res.status(200).send(result);
+        const result = await post.save();
+        const commentResult = result.comments[result.comments.length - 1];
+		res.status(200).send(commentResult);
 		log(`user [${userid}] commented on a post [${post._id}]`);
 	} catch (error) {
 		log(error);
