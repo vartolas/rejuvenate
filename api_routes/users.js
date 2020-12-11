@@ -89,7 +89,7 @@ router.get('/api/users/search', mongoChecker, async (req, res) => {
 
     try {
         
-        const users = await User.find({username: {$regex: `^${searchstring}.*`}}).limit(maxusers); // find by regular expression match
+        const users = await User.find({username: new RegExp(`^${searchstring}.*`, 'i')}).limit(maxusers); // find by regular expression match
         log(`search for username "${searchstring}" found ${users.length} matches`);
         res.status(200).send(users);
     } catch (error) {
@@ -207,7 +207,14 @@ router.get('/api/users/:id/feed', mongoChecker, async (req, res) => {
             res.status(404).send();
             return;
         }
-        const feed = await Post.find({ userid: { $in: user.following } }).sort({timestamp: -1}).limit(10); // returns all posts of all followed users
+        
+        const feed = await Post.find({ 
+            $or: [
+                {userid: {$in: user.following}},
+                {userid: user._id}
+            ] 
+        }).sort({timestamp: -1}).limit(10); // returns top 10 most recent posts from followers or self
+
         if (!feed) {
             res.status(404).send();
             return;
