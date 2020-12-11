@@ -14,8 +14,6 @@ import { addPost } from "../../actions/post";
 // const users = getUsers();
 // const user = users[getLoggInUser()];
 
-const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
-
 // const followersList = [];
 // for (let i = 0; i < user.numFollowers; i++) {
 // 	const uid = user.followers[i];
@@ -67,13 +65,13 @@ export default class Home extends React.Component {
 	componentDidMount() {
 		const userid = this.props.app.state.user._id;
 		this.setState({ userid: userid });
-		fetch(`${HOST_URL}/api/users/${userid}`)
+		fetch(`/api/users/${userid}`)
 			.then((res) => res.json())
 			.then((json) => {
 				this.setState({ followers: json.followers, following: json.following }); //causes component to re-render with new state
 			});
 
-		fetch(`${HOST_URL}/api/user/${userid}/feed`)
+		fetch(`/api/user/${userid}/feed`)
 			.then((res) => res.json())
 			.then((json) => {
 				this.setState({ posts: json }); //causes component to re-render with new state

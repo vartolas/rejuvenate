@@ -10,8 +10,6 @@ import LoadingDisplay from "../../react-components/LoadingDisplay";
 
 import "./styles.css";
 
-const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
-
 export default class PostEntry extends React.Component {
 	constructor(props) {
 		super(props);
@@ -44,7 +42,7 @@ export default class PostEntry extends React.Component {
 			likes,
 		} = this.props.entry;
 
-		fetch(`${HOST_URL}/api/users/${userid}`)
+		fetch(`/api/users/${userid}`)
 			.then((res) => res.json())
 			.then((json) => {
 				this.setState({ postUser: json });
@@ -69,7 +67,7 @@ export default class PostEntry extends React.Component {
 		} else {
 			showcomments.forEach((usercomment) => {
 				const commentUserId = usercomment.userid;
-				fetch(`${HOST_URL}/api/users/${commentUserId}`)
+				fetch(`/api/users/${commentUserId}`)
 					.then((res) => res.json())
 					.then((json) => {
 						commentRows.push(
