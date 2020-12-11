@@ -71,7 +71,7 @@ export default class Home extends React.Component {
 				this.setState({ followers: json.followers, following: json.following }); //causes component to re-render with new state
 			});
 
-		fetch(`/api/user/${userid}/feed`)
+		fetch(`/api/users/${userid}/feed`)
 			.then((res) => res.json())
 			.then((json) => {
 				this.setState({ posts: json }); //causes component to re-render with new state

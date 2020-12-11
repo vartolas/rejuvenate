@@ -36,7 +36,7 @@ export default class TopNavbar extends React.Component {
 						</Navbar.Brand>
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
 						<Navbar.Collapse id="basic-navbar-nav">
-							<SearchBar />
+							<SearchBar maxusers={10}/>
 							<Nav className="navContent">
 								<Nav.Link id="topNavBarOption" href="/userProfile">
 									Profile

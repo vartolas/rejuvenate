@@ -27,7 +27,7 @@
 }
 
 #searchedProfilesContainer {
-	height: 370px;
+	height: fit-content;
 	width: 280px;
 	position: absolute;
 	top: -10px;

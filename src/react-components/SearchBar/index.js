@@ -6,11 +6,18 @@ import SmallProfileBar from '../../react-components/SmallProfileBar';
 
 export default class SearchBar extends React.Component {
   state = {
-    query: ''
+    matchedUsers: []
   }
 
   handleInput(e) {
-    this.setState({ query: e.target.value });
+    const query = e.target.value;
+    fetch(`/api/users/search?s=${query}&max=${this.props.maxusers}`)
+    .then(res => res.json())
+    .then(users => { 
+      console.log(`matched ${users.length} users for "${query}"`);
+      this.setState({matchedUsers: users})
+    });
+
     document.querySelector('#searchedProfilesContainer').style.display = 'block';
   }
 
@@ -22,7 +29,7 @@ export default class SearchBar extends React.Component {
       if (element.parentNode === searchBar) {
         return true;
       }
-      element = element.parentNode
+      element = element.parentNode;
     }
 
     return false;
@@ -49,31 +56,31 @@ export default class SearchBar extends React.Component {
   }
 
   getSearchedUsers() {
-    const users = getUsersAsList();
-    const matchedUsers = users.filter( user => user.username.toLowerCase().startsWith(this.state.query.toLowerCase()) || (user.firstName + " " + user.lastName).toLowerCase().startsWith(this.state.query.toLowerCase()));
-    const firstMatchedUsers = matchedUsers.slice(0, 5);
-
-    return (
-      <div>
-      {
-        firstMatchedUsers.map( (user) => {
-          return (
-            <SmallProfileBar uid={ user.uid } isFollower={ true } name={ user.firstName + " " + user.lastName } username={ user.username } imgSrc='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' />
-          )
-        })
-      }
-      </div>
-    )
+      return (
+        <div>
+          {
+            this.state.matchedUsers.map( (user) => {
+              return (
+                <SmallProfileBar key={user._id} uid={ user._id } isFollower={ true } name={ user.firstname + " " + user.lastname } username={ user.username } imgSrc='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' />
+              )
+            })
+          }
+        </div>
+      )
+    
   }
+    // const users = getUsersAsList();
+    // const matchedUsers = users.filter( user => user.username.toLowerCase().startsWith(this.state.query.toLowerCase()) || (user.firstName + " " + user.lastName).toLowerCase().startsWith(this.state.query.toLowerCase()));
+    // const firstMatchedUsers = matchedUsers.slice(0, 5);
 
   render() {
     return (
       <div id='searchBar'>
-        <input autocomplete='off' onKeyUp={ this.handleInput.bind(this) } type='text' name='searchBar' id='searchBar' placeholder='Search for a user...' />
+        <input autoComplete='off' onKeyUp={ this.handleInput.bind(this) } type='text' name='searchBar' id='searchBar' placeholder='Search for a user...' />
         <div id='searchedProfilesContainer' style={{ display: 'none' }}>
           <div id='searchBarSeparator'></div>
 
-          { this.getSearchedUsers() }
+          {this.getSearchedUsers()}
 
         </div>
       </div>

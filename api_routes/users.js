@@ -88,7 +88,9 @@ router.get('/api/users/search', mongoChecker, async (req, res) => {
     const maxusers = parseInt(req.query.max) || 5;
 
     try {
-        const users = await User.find({username: {$regex: `${searchstring}.*`}}).limit(maxusers) // find by regular expression match
+        
+        const users = await User.find({username: {$regex: `^${searchstring}.*`}}).limit(maxusers); // find by regular expression match
+        log(`search for username "${searchstring}" found ${users.length} matches`);
         res.status(200).send(users);
     } catch (error) {
         log(error);
@@ -186,7 +188,7 @@ router.post('/api/users', mongoChecker, async (req, res) => {
 })
 
 /**
- * Get all posts of a particular user and each user they follow.
+ * Get top 10 most recent posts of  each user this user follows.
  * This generates the user feed.
  */
 router.get('/api/users/:id/feed', mongoChecker, async (req, res) => {
@@ -205,7 +207,7 @@ router.get('/api/users/:id/feed', mongoChecker, async (req, res) => {
             res.status(404).send();
             return;
         }
-        const feed = await Post.find({ userid: { $in: user.following } }); // returns all posts of all followed users
+        const feed = await Post.find({ userid: { $in: user.following } }).sort({timestamp: -1}).limit(10); // returns all posts of all followed users
         if (!feed) {
             res.status(404).send();
             return;
@@ -309,29 +311,6 @@ router.get('/api/users/:id/statistics', mongoChecker, async (req, res) => {
             res.status(400).send();
         }
     }
-
-	if (!ObjectID.isValid(userid)) {
-		res.status(404).send();
-		return;
-	}
-
-	log(`'fetching all statistics for user [${userid}]`);
-
-	try {
-		const stats = await Statistic.find({ userid: userid });
-		if (!stats) {
-			res.status(404).send();
-			return;
-		}
-		res.status(200).send(stats);
-	} catch (error) {
-		log(error);
-		if (isMongoError(error)) {
-			res.status(500).send("Internal Server Error");
-		} else {
-			res.status(400).send();
-		}
-	}
 });
 
 
