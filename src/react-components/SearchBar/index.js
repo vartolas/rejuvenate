@@ -9,15 +9,18 @@ export default class SearchBar extends React.Component {
     matchedUsers: []
   }
 
-  handleInput(e) {
-    const query = e.target.value;
+  setMatchedUsers(query){
     fetch(`/api/users/search?s=${query}&max=${this.props.maxusers}`)
     .then(res => res.json())
     .then(users => { 
       console.log(`matched ${users.length} users for "${query}"`);
       this.setState({matchedUsers: users})
     });
+  }
 
+  handleInput(e) {
+    const query = e.target.value;
+    this.setMatchedUsers(query);
     document.querySelector('#searchedProfilesContainer').style.display = 'block';
   }
 
@@ -49,13 +52,14 @@ export default class SearchBar extends React.Component {
 
   componentDidMount() {
     document.addEventListener('mouseup', this.handleMouseUp.bind(this));
+    this.setMatchedUsers("");
   }
 
   componentWillUnmount() {
     document.removeEventListener("mouseup", this.handleMouseUp.bind(this));
   }
 
-  getSearchedUsers() {
+  getMatchedUsers() {
       return (
         <div>
           {
@@ -80,7 +84,7 @@ export default class SearchBar extends React.Component {
         <div id='searchedProfilesContainer' style={{ display: 'none' }}>
           <div id='searchBarSeparator'></div>
 
-          {this.getSearchedUsers()}
+          {this.getMatchedUsers()}
 
         </div>
       </div>

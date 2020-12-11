@@ -19,7 +19,7 @@ import RecordStatistics from "./views/RecordStatistics";
 import Settings from "./views/Settings";
 
 import TopNavbar from "./react-components/TopNavbar";
-
+import LoadingDisplay from "./react-components/LoadingDisplay";
 import "./index.css";
 
 class App extends React.Component {
@@ -35,7 +35,7 @@ class App extends React.Component {
 		//page still fetching the user, return loading screen for now
 		if (!this.state.user){
 			return (
-				<h1>loading</h1>
+				<LoadingDisplay/>
 			);
 		}
 		console.log(`Logged in as user ${this.state.user._id}`);

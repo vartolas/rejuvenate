@@ -188,7 +188,7 @@ router.post('/api/users', mongoChecker, async (req, res) => {
 })
 
 /**
- * Get top 10 most recent posts of  each user this user follows.
+ * Get top 10 most recent posts of this user and the users they follow.
  * This generates the user feed.
  */
 router.get('/api/users/:id/feed', mongoChecker, async (req, res) => {
@@ -207,7 +207,7 @@ router.get('/api/users/:id/feed', mongoChecker, async (req, res) => {
             res.status(404).send();
             return;
         }
-        
+
         const feed = await Post.find({ 
             $or: [
                 {userid: {$in: user.following}},

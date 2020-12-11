@@ -101,6 +101,12 @@ export default class Home extends React.Component {
 		}));
 	}
 
+	appendPostToFeed(post){
+		const posts = this.state.posts;
+		posts.unshift(post); //append as first element
+		this.setState({posts: posts});
+	}
+
 	render() {
 		return (
 			<div id="homeContainer">
@@ -113,7 +119,7 @@ export default class Home extends React.Component {
 					/>
 				</div>
 				<div className="postListContainer">
-					<CreatePost app={this.props.app} />
+					<CreatePost app={this.props.app} appendPostToFeed={this.appendPostToFeed.bind(this)}/>
 					<PostList
 						posts={this.state.posts}
 						listComponent={this}

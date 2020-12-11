@@ -62,12 +62,13 @@ export default class CreatePost extends React.Component {
 			body: data,
 		})
 			.then((res) => res.json())
-			.then((json) => {
+			.then((newPost) => {
 				this.setState({
 					image: null,
 					text: "",
 					tag: "General",
 				});
+				this.props.appendPostToFeed(newPost);
 				console.log("created post!");
 			});
 	}
