@@ -24,22 +24,22 @@ export default class CreateStatistic extends React.Component {
 	updateStatTitle = (e) => {
 		e.preventDefault();
 		this.setState({ statTitle: e.target.value });
-	}
+	};
 
 	updateStatType = (e) => {
 		e.preventDefault();
 		this.setState({ statType: e.target.value });
-	}
+	};
 
 	updateStatXAxis = (e) => {
 		e.preventDefault();
 		this.setState({ statXAxis: e.target.value });
-	}
+	};
 
 	updateStatYAxis = (e) => {
 		e.preventDefault();
 		this.setState({ statYAxis: e.target.value });
-	}
+	};
 
 	render() {
 		return (
@@ -76,10 +76,12 @@ export default class CreateStatistic extends React.Component {
 							className="createStatisticsButton"
 							onClick={this.createStatistic}
 							href="/statistics"
-							disabled={!this.state.statTitle
-								|| !this.state.statType
-								|| !this.state.statXAxis
-								|| !this.state.statYAxis}
+							disabled={
+								!this.state.statTitle ||
+								!this.state.statType ||
+								!this.state.statXAxis ||
+								!this.state.statYAxis
+							}
 							variant="contained"
 							disableElevation
 						>

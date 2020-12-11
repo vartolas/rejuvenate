@@ -8,61 +8,76 @@ import ProfileUserConnections from "../../react-components/ProfileUserConnection
 import PostList from "../../react-components/PostList";
 import CreatePost from "../../react-components/CreatePost";
 import { addPost } from "../../actions/post";
-import { getLoggInUser, getUsers } from "../../userData";
+// import { getLoggInUser, getUsers } from "../../userData";
 
 // Set up initial profile state.
-const users = getUsers();
-const user = users[getLoggInUser()];
+// const users = getUsers();
+// const user = users[getLoggInUser()];
 
-const followersList = [];
-for (let i = 0; i < user.numFollowers; i++) {
-	const uid = user.followers[i];
-	followersList.push({
-		uid: uid,
-		name: users[uid].firstName + " " + users[uid].lastName,
-		username: users[uid].username,
-		imgSrc: users[uid].profilePic,
-	});
-}
+const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
 
-const followingList = [];
-for (let i = 0; i < user.numFollowing; i++) {
-	const uid = user.following[i];
-	followingList.push({
-		uid: uid,
-		name: users[uid].firstName + " " + users[uid].lastName,
-		username: users[uid].username,
-		imgSrc: users[uid].profilePic,
-	});
-}
+// const followersList = [];
+// for (let i = 0; i < user.numFollowers; i++) {
+// 	const uid = user.followers[i];
+// 	followersList.push({
+// 		uid: uid,
+// 		name: users[uid].firstName + " " + users[uid].lastName,
+// 		username: users[uid].username,
+// 		imgSrc: users[uid].profilePic,
+// 	});
+// }
+
+// const followingList = [];
+// for (let i = 0; i < user.numFollowing; i++) {
+// 	const uid = user.following[i];
+// 	followingList.push({
+// 		uid: uid,
+// 		name: users[uid].firstName + " " + users[uid].lastName,
+// 		username: users[uid].username,
+// 		imgSrc: users[uid].profilePic,
+// 	});
+// }
 
 export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
-		const loggedInUser = getLoggInUser();
-		const allPosts = [];
-		const users = getUsers();
-		const followingUids = users[loggedInUser].following;
+		// const loggedInUser = getLoggInUser();
+		// const allPosts = [];
+		// const users = getUsers();
+		// const followingUids = users[loggedInUser].following;
 
-		// Show only the posts of the logged in user and the users they are following
-		followingUids.push(loggedInUser);
-		Object.keys(users).forEach((key) => {
-			if (followingUids.includes(parseInt(key))) {
-				users[key].posts.forEach((post) => {
-					allPosts.push(post);
-				});
-			}
-		});
+		// // Show only the posts of the logged in user and the users they are following
+		// followingUids.push(loggedInUser);
+		// Object.keys(users).forEach((key) => {
+		// 	if (followingUids.includes(parseInt(key))) {
+		// 		users[key].posts.forEach((post) => {
+		// 			allPosts.push(post);
+		// 		});
+		// 	}
+		// });
 
 		this.state = {
-			posts: allPosts,
-			followers: followersList,
-			following: followingList,
-			tag: "General",
-			text: "",
-			have_pic: 0,
-			picture: "",
+			userid: null,
+			posts: [],
+			followers: [],
+			following: [],
 		};
+	}
+
+	componentDidMount() {
+		const userid = this.props.app.state.user._id;
+		this.setState({ userid: userid });
+		fetch(`${HOST_URL}/api/users/${userid}`)
+			.then((res) => res.json())
+			.then((json) => {
+				this.setState({ followers: json.followers, following: json.following }); //causes component to re-render with new state
+			});
+
+		fetch(`${HOST_URL}/api/user/${userid}/feed`)
+			.then((res) => res.json())
+			.then((json) => {
+				this.setState({ posts: json }); //causes component to re-render with new state
+			});
 	}
 
 	// Generic handler for whenever we type in an input box.
@@ -100,16 +115,12 @@ export default class Home extends React.Component {
 					/>
 				</div>
 				<div className="postListContainer">
-					<CreatePost
+					<CreatePost app={this.props.app} />
+					<PostList
 						posts={this.state.posts}
-						tag={this.state.tag}
-						text={this.state.text}
-						have_pic={this.state.have_pic}
-						picture={this.state.picture}
-						handleInputChange={this.handleInputChange}
-						addPost={() => addPost(this)}
+						listComponent={this}
+						app={this.props.app}
 					/>
-					<PostList posts={this.state.posts} listComponent={this} />
 				</div>
 			</div>
 		);

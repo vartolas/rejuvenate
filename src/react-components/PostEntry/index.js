@@ -6,39 +6,124 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { addLike, removeLike, addComment } from "../../actions/post";
-import { getLoggInUser, getUsers } from "../../userData";
+import LoadingDisplay from "../../react-components/LoadingDisplay";
 
 import "./styles.css";
+
+const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
 
 export default class PostEntry extends React.Component {
 	constructor(props) {
 		super(props);
-		const likes = this.props.entry.likes;
-		const currentUid = getLoggInUser();
+		const {
+			userid,
+			tag,
+			text,
+			timestamp,
+			image,
+			comments,
+			likes,
+		} = this.props.entry;
+
 		this.state = {
-			liked: likes.includes(currentUid),
-			currentUid: currentUid,
+			liked: likes.includes(userid),
+			num_likes: likes.length,
+			postUser: null,
+			commentRows: null,
 		};
+	}
+
+	componentDidMount() {
+		const {
+			userid,
+			tag,
+			text,
+			timestamp,
+			image,
+			comments,
+			likes,
+		} = this.props.entry;
+
+		fetch(`${HOST_URL}/api/users/${userid}`)
+			.then((res) => res.json())
+			.then((json) => {
+				this.setState({ postUser: json });
+			});
+
+		const commentRows = [];
+		let showcomments = [];
+
+		//Setting the maximum number of posts to 3.
+
+		// if (comments.length > 3) {
+		// 	showcomments = comments.slice(0, 3);
+		// } else {
+		// 	showcomments = comments;
+		// }
+
+		//Remove this if there is a maxmum number of posts
+		showcomments = comments;
+
+		showcomments.forEach((usercomment) => {
+			const commentUserId = usercomment.userId;
+			fetch(`${HOST_URL}/api/users/${commentUserId}`)
+				.then((res) => res.json())
+				.then((json) => {
+					commentRows.push(
+						<ListGroup.Item className="commentListItem" key={uuid()}>
+							{this.props.removable ? (
+								//TODO: maybe modify this
+								<IconButton
+									id="commentRemoveButton"
+									onClick={() => this.props.removeComment(usercomment.cid)}
+								>
+									<CancelIcon id="commentCancelIcon" />
+								</IconButton>
+							) : (
+								""
+							)}
+							<div className="commentuser">{json.username}</div>
+							<div className="comment">{usercomment.text}</div>
+						</ListGroup.Item>
+					);
+				});
+		});
+
+		this.setState({ commentRows: commentRows });
 	}
 
 	handleLike() {
 		if (this.state.liked) {
-			removeLike(
-				this.props.entry,
-				this.props.listComponent,
-				this.state.currentUid
-			);
+			fetch(`/api/posts/${this.props.entry._id}/like`, {
+				method: "post",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ userid: this.props.app.state.user._id }),
+			})
+				.then((res) => res.json())
+				.then((json) => {
+					console.log(json);
+				});
 			this.setState({
 				liked: false,
+				num_likes: this.state.num_likes - 1,
 			});
 		} else {
-			addLike(
-				this.props.entry,
-				this.props.listComponent,
-				this.state.currentUid
-			);
+			fetch(`/api/posts/${this.props.entry._id}/like`, {
+				method: "post",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ userid: this.props.app.state.user._id }),
+			})
+				.then((res) => res.json())
+				.then((json) => {
+					console.log(json);
+				});
 			this.setState({
 				liked: true,
+				num_likes: this.state.num_likes + 1,
 			});
 		}
 	}
@@ -57,6 +142,7 @@ export default class PostEntry extends React.Component {
 
 	displayRemoveButton() {
 		return (
+			//TODO: maybe modify this
 			<IconButton
 				id="postRemoveButton"
 				onClick={() => this.props.removePost(this.props.entry.pid)}
@@ -67,85 +153,70 @@ export default class PostEntry extends React.Component {
 	}
 
 	render() {
-		const { tag, content, uid, comments, likes } = this.props.entry;
-		const users = getUsers();
-		let user = null;
-		Object.keys(users).forEach((key) => {
-			if (key === uid.toString()) {
-				user = users[key];
-			}
-		});
-		const commentRows = [];
-		let showcomments = [];
+		const {
+			userid,
+			title,
+			text,
+			timestamp,
+			image,
+			comments,
+			likes,
+		} = this.props.entry;
 
-		//Setting the maximum number of posts to 3.
+		const imageContainer = [];
 
-		// if (comments.length > 3) {
-		// 	showcomments = comments.slice(0, 3);
-		// } else {
-		// 	showcomments = comments;
-		// }
-
-		//Remove this if there is a maxmum number of posts
-		showcomments = comments;
-
-		showcomments.forEach((usercomment) => {
-			const commentUser = users[usercomment.uid];
-			commentRows.push(
-				<ListGroup.Item className="commentListItem" key={uuid()}>
-					{this.props.removable ? (
-						<IconButton
-							id="commentRemoveButton"
-							onClick={() => this.props.removeComment(usercomment.cid)}
-						>
-							<CancelIcon id="commentCancelIcon" />
-						</IconButton>
-					) : (
-						""
-					)}
-					<div className="commentuser">{commentUser.username}</div>
-					<div className="comment">{usercomment.comment}</div>
-				</ListGroup.Item>
+		if (image) {
+			imageContainer.push(
+				<img className="img" src={image.image_url} key={uuid()} />
 			);
-		});
-
-		const image = [];
-
-		if (content.have_pic === 1) {
-			image.push(<img className="img" src={content.picture} key={uuid()} />);
 		}
 
-		return (
-			<div className="postEntryContainer">
-				{this.props.removable ? this.displayRemoveButton() : ""}
-				<div className="tag">{tag}</div>
-				<div className="user">
-					<img className="avatar" src={user.profilePic} alt="" />
-					<div className="username">{user.username}</div>
-				</div>
-				<div className="text">{content.text}</div>
-				<div className="imageContainer">{image}</div>
+		if (this.state.postUser == null || this.state.commentRows == null) {
+			return <LoadingDisplay />;
+		} else {
+			return (
+				<div className="postEntryContainer">
+					{this.props.removable ? this.displayRemoveButton() : ""}
+					<div className="tag">{title}</div>
+					<div className="user">
+						<img
+							className="avatar"
+							src={
+								this.state.postUser.profilePicture
+									? this.state.postUser.profilePicture.image_url
+									: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+							}
+							alt=""
+						/>
+						<div className="username">{this.state.postUser.username}</div>
+					</div>
+					<div className="text">{text}</div>
+					<div className="imageContainer">{imageContainer}</div>
 
-				<div className="likes">
-					<IconButton className="likeButton" onClick={() => this.handleLike()}>
-						{this.state.liked ? (
-							<FavoriteIcon className="filledLikeIcon" />
-						) : (
-							<FavoriteBorderIcon className="likeIcon" />
-						)}
-					</IconButton>
-					<div className="likeNum">{likes.length}</div>
+					<div className="likes">
+						<IconButton
+							className="likeButton"
+							onClick={() => this.handleLike()}
+						>
+							{this.state.liked ? (
+								<FavoriteIcon className="filledLikeIcon" />
+							) : (
+								<FavoriteBorderIcon className="likeIcon" />
+							)}
+						</IconButton>
+						<div className="likeNum">{this.state.num_likes}</div>
+					</div>
+					<div className="comments">
+						<ListGroup className="commentSection">{this.commentRows}</ListGroup>
+						<Form.Control
+							className="commentInput"
+							type="text"
+							placeholder="Write Your Comment!"
+							onKeyPress={this.onKeyUp.bind(this)}
+						/>
+					</div>
 				</div>
-				<div className="comments">
-					<ListGroup className="commentSection">{commentRows}</ListGroup>
-					<Form.Control
-						className="commentInput"
-						type="text"
-						placeholder="Write Your Comment!"
-						onKeyPress={this.onKeyUp.bind(this)}
-					/>
-				</div>
-			</div>
-		);
+			);
+		}
 	}
 }
