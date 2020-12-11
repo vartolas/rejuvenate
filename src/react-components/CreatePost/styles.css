@@ -102,3 +102,41 @@
 	border-color: #ececec;
 	transition: all 0.1s ease-in-out;
 }
+
+#uploadedImage {
+	margin: 15px;
+	height: 500px;
+	width: 500px;
+}
+
+#uploadImageButton {
+	margin: 10px;
+	display: block;
+	width: 140px;
+	height: 40px;
+	border-radius: 4px;
+	background-color: #f2a365;
+	border: solid 1px transparent;
+	color: #ececec;
+	font-size: 18px;
+	font-weight: 300;
+	cursor: pointer;
+	transition: all 0.1s ease-in-out;
+}
+
+#removeImageButton {
+	margin-top: 1%;
+	margin-left: 26%;
+	margin-bottom: 4%;
+	display: block;
+	width: 400px;
+	height: 40px;
+	border-radius: 4px;
+	background-color: #f2a365;
+	border: solid 1px transparent;
+	color: #ececec;
+	font-size: 18px;
+	font-weight: 300;
+	cursor: pointer;
+	transition: all 0.1s ease-in-out;
+}
