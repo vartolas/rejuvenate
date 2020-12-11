@@ -54,7 +54,7 @@ class App extends React.Component {
 
 						<Route exact path="/otherUserProfile" render={() => (<ViewableProfile app={this}/>)} />
 
-						<Route exact path="/password reset" render={() => (<PasswordReset app={this}/>)} />
+						{/* <Route exact path="/password reset" render={() => (<PasswordReset app={this}/>)} /> */}
 
 						<Route exact path="/statistics" render={() => (<Statistics app={this}/>)} />
 

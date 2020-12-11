@@ -130,14 +130,14 @@ export default class Login extends React.Component {
 						>
 							Sign Up
 						</Button>
-						<Button
+						{/* <Button
 							className="loginButton"
 							href="/password reset"
 							variant="contained"
 							
 						>
 							Reset Password
-						</Button>
+						</Button> */}
 					</FormControl>
 				</div>
 			</div>
