@@ -68,6 +68,10 @@
 	justify-content: flex-end;
 }
 
+.likeButton:focus {
+	outline: none;
+}
+
 .likeIcon {
 	color: #ececec;
 }
