@@ -110,11 +110,9 @@
 }
 
 #uploadImageButton {
-	margin-top: 1%;
-	margin-left: 26%;
-	margin-bottom: 4%;
+	margin: 10px;
 	display: block;
-	width: 400px;
+	width: 140px;
 	height: 40px;
 	border-radius: 4px;
 	background-color: #f2a365;
