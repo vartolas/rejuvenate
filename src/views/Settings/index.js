@@ -116,7 +116,7 @@ export default class Setting extends React.Component {
 				<h1 id="settingsTitle">Settings</h1>
 				<div id="settingsComponent">
 					<FormControl>
-						<TextField
+						{/* <TextField
 							id="usernameTextbox"
 							value={this.state.username}
 							onChange={this.updateUsername}
@@ -148,7 +148,7 @@ export default class Setting extends React.Component {
 							disableElevation
 						>
 							Change Password
-						</Button>
+						</Button> */}
 						{/* TODO: make proper upload photo (change profile pic) */}
 						<span>
 							<input
