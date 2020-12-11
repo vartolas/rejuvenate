@@ -1,21 +1,23 @@
-const express = require("express");
-const { ObjectID } = require("mongodb");
-const { Post } = require("../models");
-const { mongoChecker, isMongoError } = require("./helpers/mongo_helpers");
-const multipart = require("connect-multiparty");
+const express = require('express');
+const { ObjectID } = require('mongodb');
+const { Image, Post } = require('../models');
+const { mongoChecker, isMongoError } = require('./helpers/mongo_helpers');
+const cloudinary = require('cloudinary');
+const multipart = require('connect-multiparty');
+const router = express.Router();
+const log = console.log;
 
-// uses cloudinary to store the images of a post
-const cloudinary = require("cloudinary");
+const CLOUDINARY_API_KEY = "193735732249155";
+const CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET || "HkfQZDE4wfICeSlDf1igVz5ta1M";
+
+
 cloudinary.config({
-	cloud_name: "druaf5vie",
-	api_key: "771591311784341",
-	api_secret: "nSUBmGMGzhUUb314DPNrjbbusGM",
+    cloud_name: 'ooglyboogly343',
+    api_key: CLOUDINARY_API_KEY,
+    api_secret: CLOUDINARY_API_SECRET
 });
 
 const multipartMiddleware = multipart();
-
-const router = express.Router();
-const log = console.log;
 
 //Create Post
 /*
@@ -160,15 +162,15 @@ router.post("/api/posts/:id/like", mongoChecker, async (req, res) => {
 		res.status(404).send("No such post");
 		return;
 	}
-
+  
 	if (!ObjectID.isValid(userid)) {
 		res.status(404).send("No such user");
 		return;
 	}
 
-	// if (userid !== req.session.user) {
-	// 	res.status(401).send("Unauthorized");
-	// }
+	if (userid !== req.session.user) {
+		res.status(401).send("Unauthorized");
+	}
 
 	try {
 		const post = await Post.findById(postid);
@@ -197,14 +199,17 @@ router.post("/api/posts/:id/like", mongoChecker, async (req, res) => {
 	}
 });
 
-//Comment a post
-/*
-Request body expects :
-{
-    "userid": <user id>
-    "text": <comment text>
-}
-*/
+
+/**
+ * Record that this user commented on this post.
+ * 
+ * Request body expects:
+ * 
+ * {
+ *      "userid": <user id>
+ *      "text": <comment text>
+ * }
+ */
 router.post("/api/posts/:id/comment", mongoChecker, async (req, res) => {
 	const postid = req.params.id;
 	const { userid, text } = req.body;
@@ -222,6 +227,7 @@ router.post("/api/posts/:id/comment", mongoChecker, async (req, res) => {
 	if (userid !== req.session.user) {
 		res.status(401).send("Unauthorized");
 	}
+
 
 	try {
 		const post = await Post.findById(postid);
@@ -263,7 +269,7 @@ router.delete("/api/post/:id", mongoChecker, async (req, res) => {
 			res.status(404).send();
 			return;
 		}
-
+    
 		if (post.image == null) {
 			// No image in post
 			// Delete the post from the database

@@ -8,8 +8,6 @@ import LoadingDisplay from "../../react-components/LoadingDisplay";
 
 import "./styles.css";
 
-const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
-
 function get_stats_by_category(stats){
 	var stats_by_category = [];
 	console.log(stats);
@@ -41,7 +39,7 @@ export default class Statistics extends React.Component {
 
 	componentDidMount(){
 		const userid = this.props.app.state.user._id
-		fetch(`${HOST_URL}/api/users/${userid}/statistics`)
+		fetch(`/api/users/${userid}/statistics`)
 		.then(res => res.json())
 		.then(json =>{
 			this.setState({stats: json}); //causes component to re-render with new state

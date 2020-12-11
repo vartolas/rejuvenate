@@ -5,41 +5,59 @@ import { Button } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 
+
 export default class CreateStatistic extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			statTitle: "",
-			statType: "",
-			statXAxis: "",
-			statYAxis: "",
-		};
-		this.formInfo = null;
-		this.state = {
-			createStatState: Initial,
-			formIsValid: null,
+			title: "",
+			category: "",
+			xAxis: "",
+			yAxis: "",
 		};
 	}
 
 	updateStatTitle = (e) => {
 		e.preventDefault();
-		this.setState({ statTitle: e.target.value });
-	};
+		this.setState({ title: e.target.value });
+	}
 
-	updateStatType = (e) => {
+	updateStatCategory = (e) => {
 		e.preventDefault();
-		this.setState({ statType: e.target.value });
-	};
+		this.setState({ category: e.target.value });
+	}
 
 	updateStatXAxis = (e) => {
 		e.preventDefault();
-		this.setState({ statXAxis: e.target.value });
-	};
+		this.setState({ xAxis: e.target.value });
+	}
 
 	updateStatYAxis = (e) => {
 		e.preventDefault();
-		this.setState({ statYAxis: e.target.value });
-	};
+		this.setState({ yAxis: e.target.value });
+	}
+
+	createNewStatistic = () => {
+		const title = document.querySelector("#statistic-title").value;
+		const category = document.querySelector("#statistic-category").value;
+		const xAxisLabel = document.querySelector("#statistic-x-axis").value;
+		const yAxisLabel = document.querySelector("#statistic-y-axis").value;
+
+		fetch(`/api/statistics`, {
+			method: 'POST',
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				userid: this.props.app.state.user._id,
+				category: category,
+				title: title,
+				xAxis: xAxisLabel,
+				yAxis: yAxisLabel
+			})
+		})
+			.then(res => res.json())
+			.then(newStat => this.setState({ newStat }))
+			.catch(error => console.log(error));
+	}
 
 	render() {
 		return (
@@ -48,40 +66,38 @@ export default class CreateStatistic extends React.Component {
 				<div id="createStatComponent">
 					<FormControl>
 						<TextField
-							id="statisticsTextbox"
-							value={this.state.statTitle}
+							id="statistic-title"
+							value={this.state.title}
 							onChange={this.updateStatTitle}
-							label="Name of Statistic"
+							label="Statistic Name"
 						/>
 						<TextField
-							id="statisticsType"
-							value={this.state.statType}
-							onChange={this.updateStatType}
-							label="Type of Statistic"
+							id="statistic-category"
+							value={this.state.category}
+							onChange={this.updateStatCategory}
+							label="Statistic Category"
 						/>
 						<TextField
-							id="statistics-x-axis"
-							value={this.state.statXAxis}
+							id="statistic-x-axis"
+							value={this.state.xAxis}
 							onChange={this.updateStatXAxis}
 							label="X-Axis Label"
 						/>
 						<TextField
-							id="statistics-y-axis"
-							value={this.state.statYAxis}
+							id="statistic-y-axis"
+							value={this.state.yAxis}
 							onChange={this.updateStatYAxis}
 							label="Y-Axis Label"
 						/>
 						<br></br>
 						<Button
 							className="createStatisticsButton"
-							onClick={this.createStatistic}
+							onClick={this.createNewStatistic}
 							href="/statistics"
-							disabled={
-								!this.state.statTitle ||
-								!this.state.statType ||
-								!this.state.statXAxis ||
-								!this.state.statYAxis
-							}
+							disabled={!this.state.title
+								|| !this.state.category
+								|| !this.state.xAxis
+								|| !this.state.yAxis}
 							variant="contained"
 							disableElevation
 						>
@@ -100,37 +116,4 @@ export default class CreateStatistic extends React.Component {
 			</div>
 		);
 	}
-
-	createStatistic = (e) => {
-		var title = document.getElementById("createStatTitleInput").value;
-		var xAxisLabel = document.getElementById("createStatX-AxisInput").value;
-		var yAxisLabel = document.getElementById("createStatY-AxisInput").value;
-		var type = document.getElementById("createStatTypeSelect").value;
-
-		if (!title || !xAxisLabel || !yAxisLabel) {
-			this.setState({ createStatState: Unsuccessfull });
-		} else {
-			this.formInfo = {
-				title: title,
-				xAxisLabel: xAxisLabel,
-				yAxisLabel: yAxisLabel,
-				type: type,
-			};
-			this.setState({ createStatState: Successfull });
-		}
-
-		console.log("created stat", title, xAxisLabel, yAxisLabel, type);
-	};
-}
-
-function Initial() {
-	return null;
-}
-
-function Unsuccessfull() {
-	return <span>unsuccessfull</span>;
-}
-
-function Successfull() {
-	return <span>Successfull</span>;
 }

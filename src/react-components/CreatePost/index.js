@@ -1,3 +1,4 @@
+import { TransferWithinAStation } from "@material-ui/icons";
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 // import { addPost } from "../../actions/post";
@@ -5,7 +6,8 @@ import { Form, Button } from "react-bootstrap";
 import "./styles.css";
 
 export default class CreatePost extends React.Component {
-	constructor(props) {
+	
+  constructor(props) {
 		super(props);
 		this.state = {
 			image: null,

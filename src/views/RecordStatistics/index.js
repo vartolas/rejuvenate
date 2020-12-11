@@ -4,7 +4,6 @@ import { StatChart } from "../Statistics";
 import LoadingDisplay from "../../react-components/LoadingDisplay";
 import "./styles.css";
 
-const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
 
 export default class RecordStatistics extends React.Component {
 	constructor(props) {
@@ -19,7 +18,7 @@ export default class RecordStatistics extends React.Component {
 	getNewPointID = () => "point".concat(++this.numPointIDs);
 
 	componentDidMount() {
-		fetch(`${HOST_URL}/api/statistics/${this.statID}`)
+		fetch(`/api/statistics/${this.statID}`)
 			.then(res => res.json())
 			.then(stat => {
 				this.setState({stat: stat});
@@ -55,7 +54,7 @@ export default class RecordStatistics extends React.Component {
 	}
 
 	saveStatisticsChanges = (e) => {
-		fetch(`${HOST_URL}/api/statistics/${this.statID}`, {
+		fetch(`/api/statistics/${this.statID}`, {
 			method: 'PATCH',
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({

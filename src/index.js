@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route , Redirect} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 //views
@@ -21,8 +21,6 @@ import Settings from "./views/Settings";
 import TopNavbar from "./react-components/TopNavbar";
 
 import "./index.css";
-
-const HOST_URL = process.env.HOST_URL || "http://localhost:5000";
 
 class App extends React.Component {
 	constructor(props){
@@ -72,7 +70,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount(){
-		fetch(`${HOST_URL}/api/users/currentuser`)
+		fetch(`/api/users/currentuser`)
 			.then(res => res.json())
 			.then(json => this.setState({user: json}));
 	}
@@ -84,6 +82,7 @@ class AppLoginWrapper extends React.Component {
 		return (
 			<BrowserRouter>
 				<Switch>
+					<Route exact path="/"  render={()=> (<Redirect to="/login"/>)}/>
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/password reset" component={PasswordReset} />
