@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(session({
     secret: process.env.SESSION_SECRET || "HARDCODED_SECRET",
     cookie: {
-        expires: 600000, // have to log in after 10 minutes without server interaction
+        expires: 60000000, // have to log in after ~1 year (not 10 minutes) without server interaction
         httpOnly: true,
     },
 
