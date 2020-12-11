@@ -1,5 +1,7 @@
 # Welcome to our Rejuvenate website! 💪 🏃 🥗 🍲 🛏️ 
 
+website URL: https://rejuvenate309.herokuapp.com
+
 Here at Rejuvenate, we believe in sharing fitness, nutrition, and sleep advice in our journey to good health.
 
 ```Whenever we are fetching data from src/userData.js, we would be fetching data from the database.```
