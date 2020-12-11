@@ -64,63 +64,58 @@ export default class PostEntry extends React.Component {
 		//Remove this if there is a maxmum number of posts
 		showcomments = comments;
 
-		showcomments.forEach((usercomment) => {
-			const commentUserId = usercomment.userId;
-			fetch(`${HOST_URL}/api/users/${commentUserId}`)
-				.then((res) => res.json())
-				.then((json) => {
-					commentRows.push(
-						<ListGroup.Item className="commentListItem" key={uuid()}>
-							{this.props.removable ? (
-								//TODO: maybe modify this
-								<IconButton
-									id="commentRemoveButton"
-									onClick={() => this.props.removeComment(usercomment.cid)}
-								>
-									<CancelIcon id="commentCancelIcon" />
-								</IconButton>
-							) : (
-								""
-							)}
-							<div className="commentuser">{json.username}</div>
-							<div className="comment">{usercomment.text}</div>
-						</ListGroup.Item>
-					);
-				});
-		});
+		if (showcomments.length === 0) {
+			this.setState({ commentRows: [] });
+		} else {
+			showcomments.forEach((usercomment) => {
+				const commentUserId = usercomment.userid;
+				fetch(`${HOST_URL}/api/users/${commentUserId}`)
+					.then((res) => res.json())
+					.then((json) => {
+						commentRows.push(
+							<ListGroup.Item className="commentListItem" key={uuid()}>
+								{this.props.removable ? (
+									//TODO: maybe modify this
+									<IconButton
+										id="commentRemoveButton"
+										onClick={() => this.props.removeComment(usercomment.cid)}
+									>
+										<CancelIcon id="commentCancelIcon" />
+									</IconButton>
+								) : (
+									""
+								)}
+								<div className="commentuser">{json.username}</div>
+								<div className="comment">{usercomment.text}</div>
+							</ListGroup.Item>
+						);
 
-		this.setState({ commentRows: commentRows });
+						this.setState({ commentRows: commentRows });
+					});
+			});
+		}
 	}
 
 	handleLike() {
+		fetch(`/api/posts/${this.props.entry._id}/like`, {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ userid: this.props.app.state.user._id }),
+		})
+			.then((res) => res.json())
+			.then((json) => {
+				console.log(json);
+			});
+
+		// Update frontend so that it matches the new status after refresh
 		if (this.state.liked) {
-			fetch(`/api/posts/${this.props.entry._id}/like`, {
-				method: "post",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ userid: this.props.app.state.user._id }),
-			})
-				.then((res) => res.json())
-				.then((json) => {
-					console.log(json);
-				});
 			this.setState({
 				liked: false,
 				num_likes: this.state.num_likes - 1,
 			});
 		} else {
-			fetch(`/api/posts/${this.props.entry._id}/like`, {
-				method: "post",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ userid: this.props.app.state.user._id }),
-			})
-				.then((res) => res.json())
-				.then((json) => {
-					console.log(json);
-				});
 			this.setState({
 				liked: true,
 				num_likes: this.state.num_likes + 1,
@@ -131,12 +126,22 @@ export default class PostEntry extends React.Component {
 	onKeyUp(event) {
 		if (event.key === "Enter") {
 			const commentText = event.target.value;
-			addComment(
-				this.props.entry,
-				this.props.listComponent,
-				commentText,
-				this.state.currentUid
-			);
+
+			fetch(`/api/posts/${this.props.entry._id}/comment`, {
+				method: "post",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					userid: this.props.app.state.user._id,
+					text: commentText,
+				}),
+			})
+				.then((res) => res.json())
+				.then((json) => {
+					console.log(json);
+					event.target.value = "";
+				});
 		}
 	}
 
@@ -155,7 +160,7 @@ export default class PostEntry extends React.Component {
 	render() {
 		const {
 			userid,
-			title,
+			tag,
 			text,
 			timestamp,
 			image,
@@ -177,7 +182,7 @@ export default class PostEntry extends React.Component {
 			return (
 				<div className="postEntryContainer">
 					{this.props.removable ? this.displayRemoveButton() : ""}
-					<div className="tag">{title}</div>
+					<div className="tag">{tag}</div>
 					<div className="user">
 						<img
 							className="avatar"
@@ -207,7 +212,9 @@ export default class PostEntry extends React.Component {
 						<div className="likeNum">{this.state.num_likes}</div>
 					</div>
 					<div className="comments">
-						<ListGroup className="commentSection">{this.commentRows}</ListGroup>
+						<ListGroup className="commentSection">
+							{this.state.commentRows}
+						</ListGroup>
 						<Form.Control
 							className="commentInput"
 							type="text"

@@ -230,6 +230,7 @@ router.post("/api/posts/:id/comment", mongoChecker, async (req, res) => {
 			return;
 		}
 		post.comments.push({
+			postid: post._id,
 			userid: userid,
 			text: text,
 		});
