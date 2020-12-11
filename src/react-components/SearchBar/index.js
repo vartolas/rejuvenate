@@ -58,7 +58,7 @@ export default class SearchBar extends React.Component {
       {
         firstMatchedUsers.map( (user) => {
           return (
-            <SmallProfileBar key={user.uid} uid={ user.uid } isFollower={ true } name={ user.firstName + " " + user.lastName } username={ user.username } imgSrc='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' />
+            <SmallProfileBar uid={ user.uid } isFollower={ true } name={ user.firstName + " " + user.lastName } username={ user.username } imgSrc='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' />
           )
         })
       }
@@ -69,7 +69,7 @@ export default class SearchBar extends React.Component {
   render() {
     return (
       <div id='searchBar'>
-        <input autoComplete='off' onKeyUp={ this.handleInput.bind(this) } type='text' name='searchBar' id='searchBar' placeholder='Search for a user...' />
+        <input autocomplete='off' onKeyUp={ this.handleInput.bind(this) } type='text' name='searchBar' id='searchBar' placeholder='Search for a user...' />
         <div id='searchedProfilesContainer' style={{ display: 'none' }}>
           <div id='searchBarSeparator'></div>
 

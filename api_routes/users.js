@@ -73,6 +73,35 @@ router.get('/api/users/check/:username', async (req, res) => {
 });
 
 /**
+ * Get users matching search, query parameters are:
+ * 
+ * s: string of username to search,
+ * max: max number of users to return
+ */
+router.get('/api/users/search', mongoChecker, async (req, res) => {
+    if(!req.query){
+        res.status(400).send("Bad request");
+        return;
+    }
+    
+    const searchstring = req.query.s || "";
+    const maxusers = parseInt(req.query.max) || 5;
+
+    try {
+        const users = await User.find({username: {$regex: `${searchstring}.*`}}).limit(maxusers) // find by regular expression match
+        res.status(200).send(users);
+    } catch (error) {
+        log(error);
+        if (isMongoError(error)) {
+            res.status(500).send("Internal Server Error");
+        } else {
+            res.status(400).send();
+        }
+    }
+
+});
+
+/**
  * Get a particular user by id.
  */
 router.get('/api/users/:id', mongoChecker, async (req, res) => {
@@ -92,6 +121,24 @@ router.get('/api/users/:id', mongoChecker, async (req, res) => {
             res.status(500).send("Internal Server Error");
         } else {
             res.status(400).send("Bad Request");
+        }
+    }
+})
+
+/**
+ * get all users in database
+ */
+router.get('/api/users', mongoChecker, async (req, res) => {
+   
+    try {
+        const users = await User.find();
+        res.send(users);
+    } catch (error) {
+        if (isMongoError(error)) {
+            res.status(500).redirect('/login');
+        } else {
+            log(error);
+            res.status(400).redirect('/login');
         }
     }
 })
@@ -142,8 +189,66 @@ router.post('/api/users', mongoChecker, async (req, res) => {
  * Get all posts of a particular user and each user they follow.
  * This generates the user feed.
  */
-router.get("/api/user/:id/feed", mongoChecker, async (req, res) => {
-	const userid = req.params.id;
+router.get('/api/users/:id/feed', mongoChecker, async (req, res) => {
+    const userid = req.params.id;
+    
+    if (!ObjectID.isValid(userid)) {
+        res.status(404).send();
+        return;
+    }
+
+    log(`fetching feed for ${userid}`);
+
+    try {
+        const user = await User.findById(userid);
+        if (!user) {
+            res.status(404).send();
+            return;
+        }
+        const feed = await Post.find({ userid: { $in: user.following } }); // returns all posts of all followed users
+        if (!feed) {
+            res.status(404).send();
+            return;
+        }
+        res.status(200).send(feed);
+    } catch (error) {
+        log(error);
+        if (isMongoError(error)) {
+            res.status(500).send("Internal Server Error");
+        } else {
+            res.status(400).send();
+        }
+    }
+})
+
+/**
+ * Get all posts for this user.
+ */
+router.get('/api/users/:id/posts', mongoChecker, async (req, res) => {
+    const userid = req.params.id;
+
+    if (!ObjectID.isValid(userid)) {
+        res.status(404).send();
+        return;
+    }
+
+    log(`fetching all posts for user [${userid}]`);
+
+    try {
+        const posts = await Post.find({userid: userid});
+        if (!posts) {
+            res.status(404).send();
+            return;
+        }
+        res.status(200).send(posts);
+    } catch (error) {
+        log(error);
+        if (isMongoError(error)) {
+            res.status(500).send("Internal Server Error");
+        } else {
+            res.status(400).send();
+        }
+    }
 
 	if (!ObjectID.isValid(userid)) {
 		res.status(404).send();
@@ -229,6 +334,47 @@ router.get('/api/users/:id/statistics', mongoChecker, async (req, res) => {
 	}
 });
 
+
+/**
+ * Follow another user.
+ */
+router.post('/api/users/follow/:id', mongoChecker, async (req, res) => {
+    const followid = req.params.id;
+
+    if (!ObjectID.isValid(followid)) {
+        res.status(404).send();
+        return;
+    } 
+
+    //can only follow other users when logged in
+    if(!req.session.user){
+        res.status(401).send("Unauthorized")
+        return;
+    }
+
+    try {
+        const user = User.findById(req.session.user);
+        const follow = User.findById(followid);
+        if (!user || !follow) {
+            res.status(404).send();
+            return;
+        }
+        user.following.push(followid);
+        follow.followers.push(req.session.user);
+        const userResult = await user.save();
+        const followResult = await follow.save();
+
+        res.status(200).json({user: user, follow: follow});
+    } catch (error) {
+        log(error);
+        if (isMongoError(error)) {
+            res.status(500).send("Internal Server Error");
+        } else {
+            res.status(400).send();
+        }
+    }
+
+});
 
 /**
  * Delete this user with a particular id.
