@@ -6,8 +6,7 @@ import { Form, Button } from "react-bootstrap";
 import "./styles.css";
 
 export default class CreatePost extends React.Component {
-	
-  constructor(props) {
+  	constructor(props) {
 		super(props);
 		this.state = {
 			image: null,
@@ -32,13 +31,16 @@ export default class CreatePost extends React.Component {
 	displayUploadedImage() {
 		if (this.state.image) {
 			return (
-				<div id="image_urlContainer">
+				<div id="imageURLContainer">
 					<img
+						id="uploadedImage"
 						src={URL.createObjectURL(this.state.image)}
 						alt="yourUploadedImg"
 					></img>
-					<button onClick={() => this.setState({ image: null })}>
-						remove picture
+					<button
+						id="removeImageButton"
+						onClick={() => this.setState({ image: null })}>
+						Remove Image
 					</button>
 				</div>
 			);
@@ -109,7 +111,9 @@ export default class CreatePost extends React.Component {
 								className="inputPicture"
 								onChange={this.handleImageUpload.bind(this)}
 							/>
-							<label htmlFor="file">Choose Picture</label>
+							<label htmlFor="file" id="uploadImageButton">
+								Upload Image
+							</label>
 
 							{this.displayUploadedImage()}
 						</Form.Group>
