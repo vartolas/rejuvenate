@@ -102,3 +102,10 @@
 	border-color: #ececec;
 	transition: all 0.1s ease-in-out;
 }
+
+#uploadedImage {
+	margin: 15px;
+	height: 500px;
+	width: 500px;
+}
+
