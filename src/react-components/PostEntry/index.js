@@ -12,9 +12,58 @@ import "./styles.css";
 
 
 
+class CommentSection extends React.Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			display: 'none',
+			comments: props.comments
+		}
+	}
+
+	toggleDisplay(e) {
+		let toggledDisplay = this.state.display === 'none' ? 'block' : 'none';
+			this.setState({display: toggledDisplay});
+	}
+
+	showCommentsButton() {
+		let spanText = this.state.display === 'none' ? 'show comments' : 'hide comments';
+		return(
+			<span className="showCommentsSpan" onClick={this.toggleDisplay.bind(this)}>{spanText}</span>
+		)
+	}
+
+	render() {
+		return (
+			<div className="comments">
+				{this.showCommentsButton()}
+				<ListGroup style={{display: this.state.display}}className="commentSection">
+					{
+						this.state.comments.map(comment => {
+							return (<CommentRow key={uuid()} comment={comment}/>);
+						})
+					}
+				</ListGroup>
+				<Form.Control
+					className="commentInput"
+					type="text"
+					placeholder="Write Your Comment!"
+					onKeyPress={this.props.onKeyUp}
+				/>
+			</div>
+		);
+
+	}
+}
 
 class CommentRow extends React.Component {
-	render(props){
+	constructor(props){
+		super(props);
+		this.state = {
+			commentsVisible: false
+		}
+	}
+	render(){
 
 		const comment = this.props.comment;
 		return (
@@ -77,37 +126,6 @@ export default class PostEntry extends React.Component {
 				this.setState({ postUser: json });
 		});	
 	}
-
-	// getCommentRows() {
-	// 	var commentRows = [];
-
-	// 	this.state.comments.forEach((usercomment) => {
-	// 		const commentUserId = usercomment.userid;
-	// 		fetch(`/api/users/${commentUserId}`)
-	// 			.then((res) => res.json())
-	// 			.then((json) => {
-	// 				commentRows.push(
-	// 					<ListGroup.Item className="commentListItem" key={uuid()}>
-	// 						{this.props.removable ? (
-	// 							//TODO: maybe modify this
-	// 							<IconButton
-	// 								id="commentRemoveButton"
-	// 								onClick={() => this.props.removeComment(usercomment.cid)}
-	// 							>
-	// 								<CancelIcon id="commentCancelIcon" />
-	// 							</IconButton>
-	// 						) : (
-	// 							""
-	// 						)}
-	// 						<div className="commentuser">{json.username}</div>
-	// 						<div className="comment">{usercomment.text}</div>
-	// 					</ListGroup.Item>
-	// 				);
-
-	// 				this.setState({ commentRows: commentRows });
-	// 		});
-	// 	});
-	// }
 
 	handleLike() {
 		fetch(`/api/posts/${this.props.post._id}/like`, {
@@ -233,21 +251,7 @@ export default class PostEntry extends React.Component {
 						</IconButton>
 						<div className="likeNum">{this.state.num_likes}</div>
 					</div>
-					<div className="comments">
-						<ListGroup className="commentSection">
-							{
-								this.state.comments.map(comment => {
-									return (<CommentRow key={uuid()} comment={comment}/>);
-								})
-							}
-						</ListGroup>
-						<Form.Control
-							className="commentInput"
-							type="text"
-							placeholder="Write Your Comment!"
-							onKeyPress={this.onKeyUp.bind(this)}
-						/>
-					</div>
+					<CommentSection comments={this.state.comments} onKeyUp={this.onKeyUp.bind(this)}/>
 				</div>
 			);
 		}
