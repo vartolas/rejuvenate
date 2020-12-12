@@ -69,20 +69,14 @@ export default class SearchBar extends React.Component {
 		return (
 			<div>
 				{this.state.matchedUsers.map((user) => {
-					var followed = null;
-
-					fetch(`/api/users/${user._id}`)
-						.then((res) => res.json())
-						.then((json) => {
-							followed = json.followers.includes(this.props.loginUserid);
-						});
-
 					return (
 						<SmallProfileBar
 							key={user._id}
 							uid={user._id}
 							isFollower={true}
-							followed={followed}
+							canUnfollow={true}
+							canFollow={true}
+							loginUserid={this.props.loginUserid}
 							name={user.firstname + " " + user.lastname}
 							username={user.username}
 							imgSrc={

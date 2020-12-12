@@ -1,12 +1,83 @@
 import React from "react";
 import "./styles.css";
 import { Link, refresh } from "react-router-dom";
+import LoadingDisplay from "../../react-components/LoadingDisplay";
 
 export default class SmallProfileBar extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			followed: null,
+		};
+	}
+
 	followUser(userid) {
 		fetch(`/api/users/follow/${userid}`, {
 			method: "post",
 		});
+	}
+
+	unfollowUser(userid) {
+		fetch(`/api/users/unfollow/${userid}`, {
+			method: "post",
+		});
+	}
+
+	getBothBar() {
+		const { name, username, imgSrc } = this.props;
+
+		const linkTarget = {
+			pathname: this.props.uid ? "/otherUserProfile" : "/userProfile",
+			state: { uid: this.props.uid },
+			key: 0,
+		};
+
+		fetch(`/api/users/${this.props.uid}`)
+			.then((res) => res.json())
+			.then((json) => {
+				const followedstate = json.followers.includes(this.props.loginUserid);
+				this.setState({ followed: followedstate });
+			});
+
+		if (this.state.followed == null) {
+			return <LoadingDisplay />;
+		} else {
+			return (
+				<div id="smallProfileBar">
+					<Link
+						onClick={() => {
+							this.forceUpdate();
+						}}
+						to={linkTarget}
+					>
+						<div id="smallProfileBarLinkPartial">
+							<img id="smallProfileImg" src={imgSrc} alt="profile pic" />
+							<div id="smallProfileInfo">
+								<h5 id="smallProfileName">{name}</h5>
+								<h6 id="smallProfileUsername">@{username}</h6>
+							</div>
+						</div>
+					</Link>
+					<div id="buttonContainer">
+						{this.state.followed ? (
+							<div
+								onClick={() => this.unfollowUser(this.props.uid)}
+								id="unfollowButtonSmall"
+							>
+								Unfollow
+							</div>
+						) : (
+							<div
+								onClick={() => this.followUser(this.props.uid)}
+								id="unfollowButtonSmall"
+							>
+								follow
+							</div>
+						)}
+					</div>
+				</div>
+			);
+		}
 	}
 
 	getNormalBar() {
@@ -17,7 +88,7 @@ export default class SmallProfileBar extends React.Component {
 			state: { uid: this.props.uid },
 			key: 0,
 		};
-		console.log(this.props.followed);
+
 		return (
 			<div id="smallProfileBar">
 				<Link
@@ -34,23 +105,6 @@ export default class SmallProfileBar extends React.Component {
 						</div>
 					</div>
 				</Link>
-				<div id="buttonContainer">
-					{this.props.followed ? (
-						<div
-							onClick={() => this.props.unfollow(this.props.user)}
-							id="unfollowButtonSmall"
-						>
-							Unfollow
-						</div>
-					) : (
-						<div
-							onClick={() => this.followUser(this.props.uid)}
-							id="unfollowButtonSmall"
-						>
-							follow
-						</div>
-					)}
-				</div>
 			</div>
 		);
 	}
@@ -125,7 +179,7 @@ export default class SmallProfileBar extends React.Component {
 					</div>
 				</Link>
 				<div
-					onClick={() => this.props.unfollow(this.props.user)}
+					onClick={() => this.unfollowUser(this.props.user)}
 					id="unfollowButtonSmall"
 				>
 					Unfollow
@@ -146,7 +200,9 @@ export default class SmallProfileBar extends React.Component {
 		return (
 			<div>
 				{this.props.canUnfollow
-					? this.getUnfollowableBar()
+					? this.props.canFollow
+						? this.getBothBar()
+						: this.getUnfollowableBar()
 					: this.props.removeUser
 					? this.getRemovableBar()
 					: this.getNormalBar()}
