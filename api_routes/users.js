@@ -390,6 +390,53 @@ router.get('/api/users/:id/statistics', mongoChecker, async (req, res) => {
     }
 });
 
+/**
+ * Unfollow another user.
+ */
+router.post('/api/users/unfollow/:id', mongoChecker, async (req, res) => {
+    const followid = req.params.id;
+
+    if (!ObjectID.isValid(followid)) {
+        res.status(404).send();
+        return;
+    } 
+
+    //can only follow other users when logged in
+    if(!req.session.user){
+        res.status(401).send("Unauthorized")
+        return;
+    }
+
+    try {
+        const user = await User.findById(req.session.user);
+        const follow = await User.findById(followid);
+        if (!user || !follow) {
+            res.status(404).send();
+            return;
+        }
+        let follow_index = user.following.indexOf(followid);
+        let user_index = follow.followers.indexOf(user._id);
+        if(follow_index == -1 || user_index == -1){
+            res.status(400).send();
+            return;
+        }
+
+        user.following.slice(follow_index, 1);
+        follow.followers.slice(user_index, 1);
+        const userResult = await user.save();
+        const followResult = await follow.save();
+
+        res.status(200).json({user: userResult, follow: followResult});
+    } catch (error) {
+        log(error);
+        if (isMongoError(error)) {
+            res.status(500).send("Internal Server Error");
+        } else {
+            res.status(400).send();
+        }
+    }
+
+});
 
 /**
  * Follow another user.

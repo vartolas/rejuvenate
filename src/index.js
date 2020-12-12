@@ -16,7 +16,6 @@ import ViewableProfile from "./views/ViewableProfile";
 import Statistics from "./views/Statistics";
 import CreateStatistics from "./views/CreateStatistic";
 import RecordStatistics from "./views/RecordStatistics";
-import Settings from "./views/Settings";
 
 import TopNavbar from "./react-components/TopNavbar";
 import LoadingDisplay from "./react-components/LoadingDisplay";
