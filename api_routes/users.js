@@ -462,10 +462,12 @@ router.post('/api/users/follow/:id', mongoChecker, async (req, res) => {
             res.status(404).send();
             return;
         }
-        user.following.push(followid);
-        follow.followers.push(req.session.user);
-        const userResult = await user.save();
-        const followResult = await follow.save();
+        if(!user.following.includes(followid)){
+            user.following.push(followid);
+            follow.followers.push(req.session.user);
+            const userResult = await user.save();
+            const followResult = await follow.save();
+        }
 
         res.status(200).json({user: user, follow: follow});
     } catch (error) {
