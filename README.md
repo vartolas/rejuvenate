@@ -87,19 +87,18 @@ At the top of the page in the navbar there is a search bar which allows users to
 
 # Profile Page
 
+On the left, you can view your profile picture, your bio, and your favourite activities.
+
 ![Profile Picture and Bio](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ProfilePictureAndBio.png)
 
 ![User Favourites](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserFavourites.png)
 
-On the left, you can view your profile picture, your bio, and your favourite activities.
-```However, users can no longer see their pinned statistics, nor click on them to go to the View Statistics page for phase 2.```
+In the middle of the screen, you can see all of your posts you've made. ```However, users can no longer see their pinned statistics, nor click on them to go to the View Statistics page for phase 2.```
 ```We also haven't figured out how other users can see all of your statistics, or how you can all of another user's statistics yet.```
 
-In the middle of the screen, you can see all of your posts you've made.
+Lastly, on the right you can see your list of followers and followees, and access their profiles the same way as in the home page.
 
 ![User Profile Connections](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserConnectionsFollowing.png)
-
-Lastly, on the right you can see your list of followers and followees, and access their profiles the same way as in the home page.
 
 # Record Statistics Page
 
