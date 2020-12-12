@@ -8,7 +8,6 @@ export default class PostSearchBar extends React.Component {
   state = {
     query: '',
     matchedUsers: [],
-    users: []
   }
 
   handleInput(e) {
@@ -27,45 +26,40 @@ export default class PostSearchBar extends React.Component {
   }
 
   componentDidMount() {
-    // Initialize posts and comments
-    const users = getUsersAsList();
-    this.setState({ users: users, matchedUsers: users });
+    this.setMatchedUsers();
+   
   }
 
   setMatchedUsers() {
-    const matchedUsers = this.state.users.filter(user => {
-      const name = user.name ? user.name : user.firstName + " " + user.lastName;
-      if (user.username.toLowerCase().startsWith(this.state.query.toLowerCase()) ||
-          name.toLowerCase().startsWith(this.state.query.toLowerCase())) {
-        return true;
-      }
+    fetch(`/api/users/search?s=${this.state.query}&max=${10}`)
+    .then(res => res.json())
+    .then(json => {
+      this.setState({matchedUsers: json})
     })
 
-    this.setState({matchedUsers: matchedUsers});
   }
 
   removeUser(uid) {
-    const users = this.state.users;
-    let i = 0;
-    while (this.state.users[i].uid != uid) {
-      i++;
-    }
-    users.splice(i, 1);
-    this.setState({ users: users }, this.setMatchedUsers.bind(this));
+    fetch(`/api/users/${uid}`, {
+      method: "delete"
+    })
+    .then(() =>{
+      this.setMatchedUsers()
+    });
   }
 
   render() {
     return (
       <div className='adminSearchBar'>
         <div className='searchSettings'>
-          <input autocomplete='off' onKeyUp={ this.handleInput.bind(this) } type='text' placeholder='Search for a user...' />
+          <input autoComplete='off' onKeyUp={ this.handleInput.bind(this) } type='text' placeholder='Search for a user...' />
         </div>
 
         {
           this.state.matchedUsers.map((user, i) => {
             console.log(user)
             return (
-              <SmallProfileBar uid={ user.uid } user={ user } key={i} removeUser={this.removeUser.bind(this)} canUnfollow={ false } name={ user.name ? user.name : user.firstName + " " + user.lastName } username={ user.username } imgSrc={ user.profilePic } />
+              <SmallProfileBar uid={ user._id } user={ user } key={i} removeUser={this.removeUser.bind(this)} canUnfollow={ false } name={user.firstname + " " + user.lastname } username={ user.username } imgSrc={ user.profilePic ? user.profilePic.image_url : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' } />
             )
           })
         }
