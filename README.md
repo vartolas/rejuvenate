@@ -1,11 +1,8 @@
 # Welcome to our Rejuvenate website! 💪 🏃 🥗 🍲 🛏️ 
 
-website URL: https://rejuvenate309.herokuapp.com
+Website URL: https://rejuvenate309.herokuapp.com
 
 Here at Rejuvenate, we believe in sharing fitness, nutrition, and sleep advice in our journey to good health.
-
-```Whenever we are fetching data from src/userData.js, we would be fetching data from the database.```
-```Whenever the fetched data is manipulated in the state, we would be send this manipulated data back to the server, so we can edit our database.```
 
 ## What Libraries Did We Use?
 
@@ -15,7 +12,7 @@ Here at Rejuvenate, we believe in sharing fitness, nutrition, and sleep advice i
 - Chart.js (for creating bar graphs)
 
 ### phase 2
-- Mongoose, MongoDb, Cloudinary (for all our database operations)
+- Mongoose, MongoDB, Cloudinary (for all our database operations)
 - Express session (for maintaining user log in sessions)
 - Body parser (for json middleware parsing of requests)
 
@@ -35,7 +32,7 @@ or the admin home page with these credentials:
 
 and then clicking on the ```Login``` button.
 
-```Currently, any error messages (e.g. blank field or incorrect credentials) that occur will appear as the contents of the username and password fields are updated, as opposed to after the user presses the login button.```
+In addition, for phase 2 users with existing accounts can login in using their own credentials.
 
 # Register Page
 
@@ -51,99 +48,84 @@ You can sign up for a new admin account with these credentials:
 - username: admin
 - password: admin
 
-and then clicking on the ```Register``` button.
+and then clicking on the ```Register``` button. If your registration is successful you'll get this message:
 
-```The same "instant error message" problem occurs as the login page.```
-```Moreover, there is no "new email" field, confirm password field, or the ability to confirm the user's new password via a confirmation email.```
+![Registration Success](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/SuccessfullyRegisteredUser.png)
+
+otherwise you get an error saying that this username is already taken.
+
+In addition, for phase 2 users can create new accounts by specifying their first and last name, and their new username and password.
 
 # Reset Password Page
 
-![Reset Password Page](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ResetPasswordPage.png)
-
-You can reset a user's password with these credentials:
-
-- username: user
-- password: user
-
-You can reset an admin's password with these credentials:
-
-- username: admin
-- password: admin
-
-and then clicking on the ```Reset Password``` button.
-
-```The same "instant error message" problem occurs as the login page.```
-```Moreover, there is no "current email" field, confirm password field, or the ability to confirm the user's new password via a confirmation email.```
+```We had to remove access to the reset password page since we couldn't figure out a way to save new passwords into our user account database.```
 
 # Home Page
 
 ![Create Post Corner](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/CreatePostCorner.png)
 
-In the home page, you can post content in one of the following categories: "General," "Fitness," and "Recipe."
-Users also have the option to add a message to their post, or add images to their post. 
+In the home page, you can post content in one of the following categories: "General," "Fitness," "Recipe," and "Sleep."
+Users also have the option to add a message to their post, or add images to their post.
 
-```However, user cannot save uploaded photos because we don't have a backend yet.```
+![Upload a Post](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UploadedImage.png)
+
+Then you can press ```Post``` to create a new post, along with any image.
 
 ![Sample User Post](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/SamplePost.png)
 
-You can like other people's posts, and other people can like your posts as well.
-You can also comment on other people's posts, ```although comments don't have the ability to track like counts yet.```
-
-![User Connections](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserConnections.png)
+Users can like all posts, and comment on any post., ```although comments don't have the ability to track like counts yet.```
 
 On the left, the user can see who they follow, and who follows them. As well, you can unfollow users by clicking on the ```Unfollow``` button.
 You can click on one of your followers or followees to visit their profile page.
+
+![User Followers](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserConnectionsFollowers.png)
+
+![User Follwoing](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserConnectionsFollowing.png)
 
 At the top of the page in the navbar there is a search bar which allows users to search through all users on the plaform to view their profile and follow them.
 ```However, for now clicking on an user in the drop down of the search bar does not automatically redirect user to the desired user's profile page. The url is changed so going to url and hit enter would redirect the user to the desired profile page.```
 
 # Profile Page
 
+On the left, you can view your profile picture, your bio, and your favourite activities.
+
 ![Profile Picture and Bio](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ProfilePictureAndBio.png)
 
 ![User Favourites](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserFavourites.png)
 
-On the left, you can view your profile picture, your bio, and your favourite activities.
-
-![User Pinned Statistics](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserPinnedStats.png)
-
-At the top center of the page, you can view sample charts for your favorite statistics.
-To see all of your statistics, click on the "See more of your stats" link.
-
-```We haven't figured out how other users can see all of your statistics, or how you can all of another user's statistics yet.```
-
-Below, you can see all of your posts you've made.
-
-![User Profile Connections](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserConnectionsFollowing.png)
+In the middle of the screen, you can see all of your posts you've made. ```However, users can no longer see their pinned statistics, nor click on them to go to the View Statistics page for phase 2.```
+```We also haven't figured out how other users can see all of your statistics, or how you can all of another user's statistics yet.```
 
 Lastly, on the right you can see your list of followers and followees, and access their profiles the same way as in the home page.
 
+![User Profile Connections](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserConnectionsFollowing.png)
+
 # Record Statistics Page
 
-![Add New Entry Corner](https://github.com/csc309-fall-2020/team01/blob/CreateStatisticView/readme_images/AddNewEntryCorner.png)
+![Add New Entry Corner](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/AddNewEntryCorner.png)
 
 Users can add new entries for existing statistics by entering numbers into these input boxes and clicking "Add New Entry."
 This creates a local copy of the updated statistics. To save these changes into our database, click "Confirm All Changes." Afterwards, you'll see your updated statistics data.
 
-![Existing Entries](https://github.com/csc309-fall-2020/team01/blob/CreateStatisticView/readme_images/ExistingEntriesCorner.png)
+![Existing Entries Corner](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ExistingEntriesCorner.png)
 
 At the bottom of the screen, users can see existing values for their statistic, and delete any as necessary.
 Once a user is satisfied with their changes, they can click on the "Confirm All Changes" button to commit their changes to the database and go back to the View Statistics page.
 
 # View Statistics Page
 
-![View Statistics](https://github.com/csc309-fall-2020/team01/blob/CreateStatisticView/readme_images/ViewStatistics.png)
+![View Statistics](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ViewStatistics.png)
 
 Users can view graphs of all of their statistics on this page, organized by category.
 To edit a statistic's value, click on the statistic you want to change.
 
 # Create Statistic Page
 
-![Create New Statistic Button](https://github.com/csc309-fall-2020/team01/blob/CreateStatisticView/readme_images/CreateNewStatisticsButton.png)
+![Create New Statistic Button](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/CreateNewStatisticsButton.png)
 
 Users can create new statistics by clicking on the "Create New Statistics" button at the bottom of the page.
 
-![Create New Statistic](https://github.com/csc309-fall-2020/team01/blob/CreateStatisticView/readme_images/CreateStatistic.png)
+![Create New Statistic](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/CreateStatistic.png)
 
 Then, enter in the title, category, and label names for the x-axis and y-axis of this statistic.
 When you're done, click on the "Create New Statistic" button to save this new statistic to our database.
@@ -152,9 +134,7 @@ When you're done, click on the "Create New Statistic" button to save this new st
 
 ![Settings Page](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/SettingsPage.png)
 
-Users can change their username, password, or their profile picture.
-
-```However, user cannot save uploaded photos because we don't have a backend yet.```
+```We chose to remove the settings page for two reasons: (1) there's no point of users being able to change their username or password in the settings page because users can do the same without logging in, and (2) it'd be better if users can change their profile picture in their profile page instead.```
 
 # Admin Home Page
 
