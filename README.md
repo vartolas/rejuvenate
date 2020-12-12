@@ -7,11 +7,17 @@ Here at Rejuvenate, we believe in sharing fitness, nutrition, and sleep advice i
 ```Whenever we are fetching data from src/userData.js, we would be fetching data from the database.```
 ```Whenever the fetched data is manipulated in the state, we would be send this manipulated data back to the server, so we can edit our database.```
 
-# What Libraries Did We Use?
+## What Libraries Did We Use?
 
+### phase 1
 - MaterialUI (to improve the appearance of the login page)
 - Bootstrap (for the navigation bar and add image buttons)
 - Chart.js (for creating bar graphs)
+
+### phase 2
+- Mongoose, MongoDb, Cloudinary (for all our database operations)
+- Express session (for maintaining user log in sessions)
+- Body parser (for json middleware parsing of requests)
 
 # Login Page
 
