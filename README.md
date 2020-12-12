@@ -1,11 +1,8 @@
 # Welcome to our Rejuvenate website! 💪 🏃 🥗 🍲 🛏️ 
 
-website URL: https://rejuvenate309.herokuapp.com
+Website URL: https://rejuvenate309.herokuapp.com
 
 Here at Rejuvenate, we believe in sharing fitness, nutrition, and sleep advice in our journey to good health.
-
-```Whenever we are fetching data from src/userData.js, we would be fetching data from the database.```
-```Whenever the fetched data is manipulated in the state, we would be send this manipulated data back to the server, so we can edit our database.```
 
 ## What Libraries Did We Use?
 
@@ -15,7 +12,7 @@ Here at Rejuvenate, we believe in sharing fitness, nutrition, and sleep advice i
 - Chart.js (for creating bar graphs)
 
 ### phase 2
-- Mongoose, MongoDb, Cloudinary (for all our database operations)
+- Mongoose, MongoDB, Cloudinary (for all our database operations)
 - Express session (for maintaining user log in sessions)
 - Body parser (for json middleware parsing of requests)
 
@@ -35,7 +32,7 @@ or the admin home page with these credentials:
 
 and then clicking on the ```Login``` button.
 
-```Currently, any error messages (e.g. blank field or incorrect credentials) that occur will appear as the contents of the username and password fields are updated, as opposed to after the user presses the login button.```
+In addition, for phase 2 users with existing accounts can login in using their own credentials.
 
 # Register Page
 
@@ -51,36 +48,26 @@ You can sign up for a new admin account with these credentials:
 - username: admin
 - password: admin
 
-and then clicking on the ```Register``` button.
+and then clicking on the ```Register``` button. If your registration is successful you'll get this message:
 
-```The same "instant error message" problem occurs as the login page.```
-```Moreover, there is no "new email" field, confirm password field, or the ability to confirm the user's new password via a confirmation email.```
+![Registration Success](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/SuccessfullyRegisteredUser.png)
+
+otherwise you get an error saying that this username is already taken.
+
+In addition, for phase 2 users can create new accounts by specifying their first and last name, and their new username and password.
+
+
 
 # Reset Password Page
 
-![Reset Password Page](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ResetPasswordPage.png)
-
-You can reset a user's password with these credentials:
-
-- username: user
-- password: user
-
-You can reset an admin's password with these credentials:
-
-- username: admin
-- password: admin
-
-and then clicking on the ```Reset Password``` button.
-
-```The same "instant error message" problem occurs as the login page.```
-```Moreover, there is no "current email" field, confirm password field, or the ability to confirm the user's new password via a confirmation email.```
+```We had to remove access to the reset password page since we couldn't figure out a way to save new passwords into our user account database.```
 
 # Home Page
 
 ![Create Post Corner](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/CreatePostCorner.png)
 
 In the home page, you can post content in one of the following categories: "General," "Fitness," and "Recipe."
-Users also have the option to add a message to their post, or add images to their post. 
+Users also have the option to add a message to their post, or add images to their post.
 
 ```However, user cannot save uploaded photos because we don't have a backend yet.```
 
