@@ -134,9 +134,7 @@ When you're done, click on the "Create New Statistic" button to save this new st
 
 ![Settings Page](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/SettingsPage.png)
 
-Users can change their username, password, or their profile picture.
-
-```However, user cannot save uploaded photos because we don't have a backend yet.```
+```We chose to remove the settings page for two reasons: (1) there's no point of users being able to change their username or password in the settings page because users can do the same without logging in, and (2) it'd be better if users can change their profile picture in their profile page instead.```
 
 # Admin Home Page
 
