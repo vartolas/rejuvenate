@@ -102,30 +102,30 @@ Lastly, on the right you can see your list of followers and followees, and acces
 
 # Record Statistics Page
 
-![Add New Entry Corner](https://github.com/csc309-fall-2020/team01/blob/CreateStatisticView/readme_images/AddNewEntryCorner.png)
+![Add New Entry Corner](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/AddNewEntryCorner.png)
 
 Users can add new entries for existing statistics by entering numbers into these input boxes and clicking "Add New Entry."
 This creates a local copy of the updated statistics. To save these changes into our database, click "Confirm All Changes." Afterwards, you'll see your updated statistics data.
 
-![Existing Entries](https://github.com/csc309-fall-2020/team01/blob/CreateStatisticView/readme_images/ExistingEntriesCorner.png)
+![Existing Entries Corner](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ExistingEntriesCorner.png)
 
 At the bottom of the screen, users can see existing values for their statistic, and delete any as necessary.
 Once a user is satisfied with their changes, they can click on the "Confirm All Changes" button to commit their changes to the database and go back to the View Statistics page.
 
 # View Statistics Page
 
-![View Statistics](https://github.com/csc309-fall-2020/team01/blob/CreateStatisticView/readme_images/ViewStatistics.png)
+![View Statistics](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/ViewStatistics.png)
 
 Users can view graphs of all of their statistics on this page, organized by category.
 To edit a statistic's value, click on the statistic you want to change.
 
 # Create Statistic Page
 
-![Create New Statistic Button](https://github.com/csc309-fall-2020/team01/blob/CreateStatisticView/readme_images/CreateNewStatisticsButton.png)
+![Create New Statistic Button](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/CreateNewStatisticsButton.png)
 
 Users can create new statistics by clicking on the "Create New Statistics" button at the bottom of the page.
 
-![Create New Statistic](https://github.com/csc309-fall-2020/team01/blob/CreateStatisticView/readme_images/CreateStatistic.png)
+![Create New Statistic](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/CreateStatistic.png)
 
 Then, enter in the title, category, and label names for the x-axis and y-axis of this statistic.
 When you're done, click on the "Create New Statistic" button to save this new statistic to our database.
