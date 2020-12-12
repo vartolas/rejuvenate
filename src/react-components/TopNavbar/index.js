@@ -5,13 +5,12 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import SearchBar from "../../react-components/SearchBar";
 
 export default class TopNavbar extends React.Component {
-
 	logout = () => {
 		fetch(`/api/logout`, {
-			method: 'post'
+			method: "post",
 		});
 		this.props.history.push("/login");
-	}
+	};
 
 	dashboardLinkIfAdmin() {
 		const app = this.props.app;
@@ -22,7 +21,7 @@ export default class TopNavbar extends React.Component {
 						Admin Dashboard
 					</Nav.Link>
 				</div>
-			)
+			);
 		}
 	}
 
@@ -36,7 +35,10 @@ export default class TopNavbar extends React.Component {
 						</Navbar.Brand>
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
 						<Navbar.Collapse id="basic-navbar-nav">
-							<SearchBar maxusers={10}/>
+							<SearchBar
+								maxusers={10}
+								loginUserid={this.props.app.state.user._id}
+							/>
 							<Nav className="navContent">
 								<Nav.Link id="topNavBarOption" href="/userProfile">
 									Profile
@@ -55,7 +57,11 @@ export default class TopNavbar extends React.Component {
 								{/* <Nav.Link id="topNavBarOption" href="/settings">
 									Settings
 								</Nav.Link> */}
-								<Nav.Link id="topNavBarOption" onClick={this.logout} href="/login">
+								<Nav.Link
+									id="topNavBarOption"
+									onClick={this.logout}
+									href="/login"
+								>
 									Sign Out
 								</Nav.Link>
 								{this.dashboardLinkIfAdmin()}

@@ -37,6 +37,10 @@
 	font-size: medium;
 }
 
+#buttonContainer {
+	height: 100%;
+}
+
 #unfollowButtonSmall {
 	float: left;
 	width: 20%;
