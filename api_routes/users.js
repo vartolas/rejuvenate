@@ -416,7 +416,7 @@ router.post('/api/users/unfollow/:id', mongoChecker, async (req, res) => {
         }
         let follow_index = user.following.indexOf(followid);
         let user_index = follow.followers.indexOf(user._id);
-        if(follow_index == -1 || user_index == -1){
+        if(follow_index === -1 || user_index === -1){
             res.status(400).send();
             return;
         }

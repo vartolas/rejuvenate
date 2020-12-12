@@ -48,16 +48,16 @@ router.get('/api/statistics/:id', mongoChecker, async (req, res) => {
  * }
  */
 router.post('/api/statistics', mongoChecker, async (req, res) => {
-    const { userID, category, title, xAxis, yAxis } = req.body;
+    const { userid, category, title, xAxis, yAxis } = req.body;
     
-    if (!ObjectID.isValid(userID)) {
+    if (!ObjectID.isValid(userid)) {
 		res.status(400).send();
 		return;
     }
 
     try {
         const stat = new Statistic({
-            userid: userID,
+            userid: userid,
             category: category,
             title: title,
             xAxis: xAxis,
