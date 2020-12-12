@@ -132,17 +132,22 @@ When you're done, click on the "Create New Statistic" button to save this new st
 
 # Settings Page
 
-![Settings Page](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/SettingsPage.png)
-
 ```We chose to remove the settings page for two reasons: (1) there's no point of users being able to change their username or password in the settings page because users can do the same without logging in, and (2) it'd be better if users can change their profile picture in their profile page instead.```
 
 # Admin Home Page
 
-```Clicking on the top left hand corner where the name of the app is navigates the admin to regular user's home page, instead of admin's home page.```
+The main difference between the user home page and the admin home page is that the top navigator bar will have a "Admin Dashboard" tab in the top right.
+
+![Admin Home Paoge](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/AdminHomePage.png)
 
 # Admin Dashboard Page
 
-In the admin dashboard page, the admin can search through all users and posts, and delete unwanted ones. 
-To search for a post, the admin has to enter the prefix (first n characters) of the post content or its comment.
+![Admin Dashboard Page](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/AdminDashboardPage.png)
 
-```For now the deletion button does not work since we cannot delete any hardcoded data. This can be fixed during phase 2.```
+To search for a post, the admin has to enter the first few characters of a user's full name or their username, 
+```but not the post content or any of its comments.```
+```However, it's not possible to search for users whose username contains digits.```
+
+![Admin Dashboard Page Search](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/AdminDashboardSearchUser.png)
+
+In Phase 2, it's possible to delete users ```but not posts```.
