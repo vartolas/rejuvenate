@@ -16,10 +16,10 @@ export default class AdminDashboard extends React.Component {
 					<UserSearchBar />
 				</div>
 
-        <div className='dashboardSegment' id='postDashboardSegment'>
+        {/* <div className='dashboardSegment' id='postDashboardSegment'>
 					<h1 className='dashboardHeader'>Posts and Comments</h1>
 					<PostSearchBar />
-        </div>
+        </div> */}
 
       </div>
 

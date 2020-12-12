@@ -24,7 +24,7 @@
 
 .dashboardSegment {
 	background-color: #202936;
-	margin: 1% 0 1% 1%;
-	float: left;
+	margin: auto;
+	margin-top: 20px;
 	overflow-y: scroll;
 }
