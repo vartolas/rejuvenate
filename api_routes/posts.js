@@ -19,22 +19,23 @@ cloudinary.config({
 
 const multipartMiddleware = multipart();
 
-//Create Post
-/*
-Request body expects :
-{
-    "userid": <userid>,
-    "title": <title>,
-    "text": <text>,
-    "image": <image>
-}
-*/
+/**
+ * Create a new post.
+ * 
+ * Request body expects:
+ * 
+ * {
+ * 		"userid": <userid>,
+ * 		"title": <title>,
+ * 		"text": <text>,
+ * 		"image": <image>
+ * }
+ */
 router.post(
 	"/api/posts",
 	multipartMiddleware,
 	mongoChecker,
 	async (req, res) => {
-		//console.log(req);
 		const userid = req.body.userid;
 		const tag = req.body.tag;
 		const text = req.body.text;
@@ -46,8 +47,8 @@ router.post(
 			res.status(401).send("Unauthorized");
 			return;
 		}
-		//upload to cloudinary and create image modelm using result
 
+		// Uploading an image to cloudinary, and creating an image modelm using result
 		if (req.files && "image" in req.files) {
 			try {
 				cloudinary.uploader.upload(req.files.image.path, async (result) => {
@@ -56,10 +57,7 @@ router.post(
 						image_url: result.url,
 						created_at: new Date(),
 					};
-
-					// console.log(req.body);
-					// console.log(req.body.userid);
-					// console.log(req.session.user);
+					
 					if (req.session.user !== userid) {
 						res.status(401).send("Unauthorized");
 						return;
@@ -120,7 +118,7 @@ router.post(
 	}
 );
 
-//Get post with id as given in url parameter
+/** Get post with id as given in url parameter. */
 router.get("/api/post/:id", mongoChecker, async (req, res) => {
 	const postid = req.params.id;
 
@@ -147,13 +145,15 @@ router.get("/api/post/:id", mongoChecker, async (req, res) => {
 	}
 });
 
-//Like or unlike a post
-/*
-Request body expects :
-{
-    "userid": <user id>
-}
-*/
+/**
+ * Like or unlike a user post.
+ * 
+ * Request body expects:
+ * 
+ * {
+ * 		"userid": <user id>
+ * }
+ */
 router.post("/api/posts/:id/like", mongoChecker, async (req, res) => {
 	const postid = req.params.id;
 	const userid = req.body.userid;
@@ -256,7 +256,7 @@ router.post("/api/posts/:id/comment", mongoChecker, async (req, res) => {
 	}
 });
 
-// Delete a Post by its id
+/** Delete a post by its id. */
 router.delete("/api/post/:id", mongoChecker, async (req, res) => {
 	const postid = req.params.id;
 
@@ -283,9 +283,9 @@ router.delete("/api/post/:id", mongoChecker, async (req, res) => {
 			}
 			res.status(200).send(result);
 		} else {
-			//Have image in post
+			// Have image in post
 			// Delete an image by its id (NOT the database ID, but its id on the cloudinary server)
-			// on the cloudinary server
+			// on the cloudinary server.
 			cloudinary.uploader.destroy(post.image.image_id, async (saveRes) => {
 				// Delete the post from the database
 				const result = await Post.findByIdAndRemove(postid);

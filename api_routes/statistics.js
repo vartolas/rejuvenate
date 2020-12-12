@@ -7,9 +7,7 @@ const router = express.Router();
 const log = console.log;
 
 
-/**
- * Get a statistic with this id.
- */
+/** Get a statistic with this id. */
 router.get('/api/statistics/:id', mongoChecker, async (req, res) => {
     const statID = req.params.id;
 
@@ -40,6 +38,7 @@ router.get('/api/statistics/:id', mongoChecker, async (req, res) => {
  * Create this new statistic.
  * 
  * Request body expects:
+ * 
  * {
  *      userid: <user id>,
  *      category: <category>
@@ -103,6 +102,7 @@ router.patch('/api/statistics/:id', mongoChecker, async (req, res) =>{
             res.status(404).send();
             return;
         }
+        
         if (req.session.user === stat.userid || req.session.isAdmin) {
             log(`patching statistic [${stat._id}]`);
             stat.data = data;
@@ -120,7 +120,6 @@ router.patch('/api/statistics/:id', mongoChecker, async (req, res) =>{
             res.status(400).send("Internal Server Error");
         }
     }
-
 });
 
 /**
@@ -132,7 +131,7 @@ router.delete('/api/statistics/:id', async (req, res) => {
 
     if (!ObjectID.isValid(statID)) {
         res.status(404).send();
-		return;
+        return;
     }
     
     try {
@@ -157,6 +156,6 @@ router.delete('/api/statistics/:id', async (req, res) => {
             res.status(400).send();
         }
     }
-})
+});
 
 module.exports = router;
