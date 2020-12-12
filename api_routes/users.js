@@ -391,7 +391,6 @@ router.get("/api/users/:id/statistics", mongoChecker, async (req, res) => {
 /**
  * Unfollow another user.
  */
-<<<<<<< HEAD
 router.post("/api/users/unfollow/:id", mongoChecker, async (req, res) => {
 	const followid = req.params.id;
 
@@ -440,7 +439,6 @@ router.post("/api/users/unfollow/:id", mongoChecker, async (req, res) => {
 /**
  * Follow another user.
  */
-<<<<<<< HEAD
 router.post("/api/users/follow/:id", mongoChecker, async (req, res) => {
 	const followid = req.params.id;
 
@@ -448,45 +446,36 @@ router.post("/api/users/follow/:id", mongoChecker, async (req, res) => {
 		res.status(404).send();
 		return;
 	}
-=======
-router.post('/api/users/follow/:id', mongoChecker, async (req, res) => {
-    const followid = req.params.id;
 
-    if (!ObjectID.isValid(followid)) {
-        res.status(404).send();
-        return;
-    } 
+	//can only follow other users when logged in
+	if (!req.session.user) {
+		res.status(401).send("Unauthorized");
+		return;
+	}
 
-    //can only follow other users when logged in
-    if(!req.session.user){
-        res.status(401).send("Unauthorized")
-        return;
-    }
+	try {
+		const user = await User.findById(req.session.user);
+		const follow = await User.findById(followid);
+		if (!user || !follow) {
+			res.status(404).send();
+			return;
+		}
+		if (!user.following.includes(followid)) {
+			user.following.push(followid);
+			follow.followers.push(req.session.user);
+			const userResult = await user.save();
+			const followResult = await follow.save();
+		}
 
-    try {
-        const user = await User.findById(req.session.user);
-        const follow = await User.findById(followid);
-        if (!user || !follow) {
-            res.status(404).send();
-            return;
-        }
-        if(!user.following.includes(followid)){
-            user.following.push(followid);
-            follow.followers.push(req.session.user);
-            const userResult = await user.save();
-            const followResult = await follow.save();
-        }
-
-        res.status(200).json({user: user, follow: follow});
-    } catch (error) {
-        log(error);
-        if (isMongoError(error)) {
-            res.status(500).send("Internal Server Error");
-        } else {
-            res.status(400).send();
-        }
-    }
->>>>>>> 08d991ca839d3e631ee397022318733d8693033f
+		res.status(200).json({ user: user, follow: follow });
+	} catch (error) {
+		log(error);
+		if (isMongoError(error)) {
+			res.status(500).send("Internal Server Error");
+		} else {
+			res.status(400).send();
+		}
+	}
 
 	//can only follow other users when logged in
 	if (!req.session.user) {
