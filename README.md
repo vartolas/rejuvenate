@@ -56,8 +56,6 @@ otherwise you get an error saying that this username is already taken.
 
 In addition, for phase 2 users can create new accounts by specifying their first and last name, and their new username and password.
 
-
-
 # Reset Password Page
 
 ```We had to remove access to the reset password page since we couldn't figure out a way to save new passwords into our user account database.```
@@ -66,20 +64,23 @@ In addition, for phase 2 users can create new accounts by specifying their first
 
 ![Create Post Corner](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/CreatePostCorner.png)
 
-In the home page, you can post content in one of the following categories: "General," "Fitness," and "Recipe."
+In the home page, you can post content in one of the following categories: "General," "Fitness," "Recipe," and "Sleep."
 Users also have the option to add a message to their post, or add images to their post.
 
-```However, user cannot save uploaded photos because we don't have a backend yet.```
+![Upload a Post](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UploadedImage.png)
+
+Then you can press ```Post``` to create a new post, along with any image.
 
 ![Sample User Post](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/SamplePost.png)
 
-You can like other people's posts, and other people can like your posts as well.
-You can also comment on other people's posts, ```although comments don't have the ability to track like counts yet.```
-
-![User Connections](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserConnections.png)
+Users can like all posts, and comment on any post., ```although comments don't have the ability to track like counts yet.```
 
 On the left, the user can see who they follow, and who follows them. As well, you can unfollow users by clicking on the ```Unfollow``` button.
 You can click on one of your followers or followees to visit their profile page.
+
+![User Followers](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserConnectionsFollowers.png)
+
+![User Follwoing](https://github.com/csc309-fall-2020/team01/blob/master/readme_images/UserConnectionsFollowing.png)
 
 At the top of the page in the navbar there is a search bar which allows users to search through all users on the plaform to view their profile and follow them.
 ```However, for now clicking on an user in the drop down of the search bar does not automatically redirect user to the desired user's profile page. The url is changed so going to url and hit enter would redirect the user to the desired profile page.```
