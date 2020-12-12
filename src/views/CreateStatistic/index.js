@@ -38,24 +38,19 @@ export default class CreateStatistic extends React.Component {
 	}
 
 	createNewStatistic = () => {
-		const title = document.querySelector("#statistic-title").value;
-		const category = document.querySelector("#statistic-category").value;
-		const xAxisLabel = document.querySelector("#statistic-x-axis").value;
-		const yAxisLabel = document.querySelector("#statistic-y-axis").value;
-
+		console.log("doenswef")
 		fetch(`/api/statistics`, {
 			method: 'POST',
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
 				userid: this.props.app.state.user._id,
-				category: category,
-				title: title,
-				xAxis: xAxisLabel,
-				yAxis: yAxisLabel
+				category: this.state.category,
+				title: this.state.title,
+				xAxis: this.state.xAxis,
+				yAxis: this.state.yAxis
 			})
 		})
 			.then(res => res.json())
-			.then(newStat => this.setState({ newStat }))
 			.catch(error => console.log(error));
 	}
 
@@ -68,19 +63,19 @@ export default class CreateStatistic extends React.Component {
 						<TextField
 							id="statistic-title"
 							value={this.state.title}
-							onChange={this.updateStatTitle}
+							onChange={this.updateStatTitle.bind(this)}
 							label="Statistic Name"
 						/>
 						<TextField
 							id="statistic-category"
 							value={this.state.category}
-							onChange={this.updateStatCategory}
+							onChange={this.updateStatCategory.bind(this)}
 							label="Statistic Category"
 						/>
 						<TextField
 							id="statistic-x-axis"
 							value={this.state.xAxis}
-							onChange={this.updateStatXAxis}
+							onChange={this.updateStatXAxis.bind(this)}
 							label="X-Axis Label"
 						/>
 						<TextField
@@ -92,14 +87,13 @@ export default class CreateStatistic extends React.Component {
 						<br></br>
 						<Button
 							className="createStatisticsButton"
-							onClick={this.createNewStatistic}
-							href="/statistics"
+							onClick={this.createNewStatistic.bind(this)}
+							href='/statistics'
 							disabled={!this.state.title
 								|| !this.state.category
 								|| !this.state.xAxis
 								|| !this.state.yAxis}
 							variant="contained"
-							disableElevation
 						>
 							Create New Statistic
 						</Button>
@@ -107,7 +101,6 @@ export default class CreateStatistic extends React.Component {
 							className="createStatisticsButton"
 							href="/statistics"
 							variant="contained"
-							disableElevation
 						>
 							Go Back
 						</Button>
