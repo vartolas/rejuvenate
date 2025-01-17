@@ -17,7 +17,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "mongodb": "^3.6.3",
-    "mongoose": "^5.10.19",
+    "mongoose": "^8.9.5",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
